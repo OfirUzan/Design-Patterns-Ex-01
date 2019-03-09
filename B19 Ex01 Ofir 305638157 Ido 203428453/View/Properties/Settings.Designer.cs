@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace B19_Ex01_Ofir_305638157_Ido_203428453.Properties
+namespace View.Properties
 {
 
 

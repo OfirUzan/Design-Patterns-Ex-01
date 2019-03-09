@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace B19_Ex01_Ofir_305638157_Ido_203428453.Properties
+namespace View.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("B19_Ex01_Ofir_305638157_Ido_203428453.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("View.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

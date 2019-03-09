@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using FacebookWrapper;
 
-namespace B19_Ex01_Ofir_305638157_Ido_203428453
+namespace Model
 {
     public class AlbumsManager
     {
