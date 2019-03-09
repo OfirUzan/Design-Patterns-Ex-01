@@ -36,7 +36,7 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
                 "publish_to_groups",
                 "groups_access_member_info",
                 "user_friends",
-                "user_events",
+                "user_events",              
                 "user_likes",
                 "user_location",
                 "user_photos",
@@ -51,6 +51,96 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
         private void button1_Click(object sender, EventArgs e)
         {
             loginAndInit();
+            setTabProfile();
+        }
+
+        private void setTabProfile()
+        {
+            m_PB_TabProfile_CoverPhoto.LoadAsync(mostLikedPictureFromAlbum("Cover Photos"));
+            m_PB_TabProfile_ProfilePic.LoadAsync(m_User.PictureNormalURL);
+            m_Label_TabProfile_FullName.Text = m_User.Name;
+        }
+
+        private string mostLikedPictureFromAlbum(string i_AlbumName)
+        {
+            int maxLikes = 0;
+            Photo res = null;
+
+            Album profilePicAlbum = m_User.Albums.Find(x => x.Name == i_AlbumName);
+            if (profilePicAlbum == null)
+            {
+                // Album Not Found Exeption
+            }
+            else
+            {
+                foreach (var p in profilePicAlbum.Photos)
+                {
+                    if (sumPhotoLikes(p) > maxLikes)
+                    {
+                        res = p;
+                    }
+                }
+            }
+
+            return res.Pictures.PictureUrl;
+        }
+
+        private int sumAlbumLikes(Album i_Album)
+        {
+            int res = 0;
+            foreach (var p in i_Album.Photos)
+            {
+                res += sumPhotoLikes(p);
+            }
+
+            return res;
+        }
+
+        private int sumPhotoLikes(Photo i_Photo)
+        {
+            int res = 0;
+            foreach(var like in i_Photo.LikedBy)
+            {
+                res++;
+            }
+
+            return res;
+        }
+
+        private void countLikesOfPhotoByGender(Photo i_Photo ,ref int r_MaleCount, ref int r_FemaleCount)
+        {
+            r_MaleCount = 0;
+            r_FemaleCount = 0;
+            foreach (var like in i_Photo.LikedBy)
+            {
+                if(like.Gender == User.eGender.male)
+                {
+                    r_MaleCount++;
+                }
+                else if (like.Gender == User.eGender.female)
+                {
+                    r_FemaleCount++;
+                }
+
+            }
+        }
+
+        private void countLikesOfAlbumByGender(Album i_Album, ref int r_MaleCount, ref int r_FemaleCount)
+        {
+            r_MaleCount = 0;
+            r_FemaleCount = 0;
+            foreach (var photo in i_Album.Photos)
+            {
+                int male = 0, female = 0;
+                countLikesOfPhotoByGender(photo, ref male, ref female);
+                r_MaleCount += male;
+                r_FemaleCount += female;
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
