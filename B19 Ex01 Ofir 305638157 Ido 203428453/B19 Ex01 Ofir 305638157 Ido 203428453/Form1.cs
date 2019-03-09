@@ -70,9 +70,9 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
 
         private void setTabProfile()
         {
-            m_PB_TabProfile_CoverPhoto.LoadAsync(mostLikedPictureFromAlbum("Cover Photos"));
-            m_PB_TabProfile_ProfilePic.LoadAsync(m_User.PictureNormalURL);
-            m_Label_TabProfile_FullName.Text = m_User.Name;
+           // m_PB_TabProfile_CoverPhoto.LoadAsync(mostLikedPictureFromAlbum("Cover Photos"));
+           // m_PB_TabProfile_ProfilePic.LoadAsync(m_User.PictureNormalURL);
+          //  m_Label_TabProfile_FullName.Text = m_User.Name;
         }
 
         private string mostLikedPictureFromAlbum(string i_AlbumName)
@@ -175,6 +175,11 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
         {
             string previousPhotoUrl = m_AlbumsManager.GetPreviousPhotoURL();
             m_pictureBoxCurrentPic.ImageLocation = previousPhotoUrl;
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
