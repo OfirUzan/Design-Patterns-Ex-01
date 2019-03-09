@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.m_tabsControl = new System.Windows.Forms.TabControl();
             this.m_TabProfile = new System.Windows.Forms.TabPage();
             this.m_Panel_TabProfile = new System.Windows.Forms.Panel();
             this.m_Label_TabProfile_About = new System.Windows.Forms.Label();
@@ -48,12 +48,13 @@
             this.m_PB_TabProfile_ProfilePic = new System.Windows.Forms.PictureBox();
             this.m_PB_TabProfile_CoverPhoto = new System.Windows.Forms.PictureBox();
             this.m_TabMyAlbums = new System.Windows.Forms.TabPage();
+            this.m_labelPicNumber = new System.Windows.Forms.Label();
             this.m_buttonUpload = new System.Windows.Forms.Button();
             this.m_buttonPrevoiusPic = new System.Windows.Forms.Button();
             this.m_buttonNextPic = new System.Windows.Forms.Button();
             this.m_pictureBoxCurrentPic = new System.Windows.Forms.PictureBox();
             this.m_comboBoxAlbums = new System.Windows.Forms.ComboBox();
-            this.tabControl1.SuspendLayout();
+            this.m_tabsControl.SuspendLayout();
             this.m_TabProfile.SuspendLayout();
             this.m_Panel_TabProfile.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -66,17 +67,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxCurrentPic)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // m_tabsControl
             // 
-            this.tabControl1.Controls.Add(this.m_TabProfile);
-            this.tabControl1.Controls.Add(this.m_TabMyAlbums);
-            this.tabControl1.Location = new System.Drawing.Point(0, 15);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1268, 741);
-            this.tabControl1.TabIndex = 4;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.m_tabsControl.Controls.Add(this.m_TabProfile);
+            this.m_tabsControl.Controls.Add(this.m_TabMyAlbums);
+            this.m_tabsControl.Location = new System.Drawing.Point(0, 15);
+            this.m_tabsControl.Margin = new System.Windows.Forms.Padding(4);
+            this.m_tabsControl.Name = "m_tabsControl";
+            this.m_tabsControl.SelectedIndex = 0;
+            this.m_tabsControl.Size = new System.Drawing.Size(1268, 741);
+            this.m_tabsControl.TabIndex = 4;
             // 
             // m_TabProfile
             // 
@@ -267,6 +267,7 @@
             // 
             // m_TabMyAlbums
             // 
+            this.m_TabMyAlbums.Controls.Add(this.m_labelPicNumber);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonUpload);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonPrevoiusPic);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonNextPic);
@@ -280,6 +281,14 @@
             this.m_TabMyAlbums.TabIndex = 2;
             this.m_TabMyAlbums.Text = "My Albums";
             this.m_TabMyAlbums.UseVisualStyleBackColor = true;
+            // 
+            // m_labelPicNumber
+            // 
+            this.m_labelPicNumber.AutoSize = true;
+            this.m_labelPicNumber.Location = new System.Drawing.Point(420, 395);
+            this.m_labelPicNumber.Name = "m_labelPicNumber";
+            this.m_labelPicNumber.Size = new System.Drawing.Size(0, 17);
+            this.m_labelPicNumber.TabIndex = 4;
             // 
             // m_buttonUpload
             // 
@@ -335,12 +344,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 788);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.m_tabsControl);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DesktopFacebook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facebook For Desktop!";
-            this.tabControl1.ResumeLayout(false);
+            this.m_tabsControl.ResumeLayout(false);
             this.m_TabProfile.ResumeLayout(false);
             this.m_TabProfile.PerformLayout();
             this.m_Panel_TabProfile.ResumeLayout(false);
@@ -356,6 +365,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.m_PB_TabProfile_ProfilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_PB_TabProfile_CoverPhoto)).EndInit();
             this.m_TabMyAlbums.ResumeLayout(false);
+            this.m_TabMyAlbums.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxCurrentPic)).EndInit();
             this.ResumeLayout(false);
 
@@ -363,7 +373,7 @@
 
         #endregion
         private System.Windows.Forms.Button m_buttonUpload;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl m_tabsControl;
         private System.Windows.Forms.TabPage m_TabProfile;
         private System.Windows.Forms.TabPage m_TabMyAlbums;
         private System.Windows.Forms.Button m_buttonNextPic;
@@ -387,5 +397,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label m_Label_TabProfile_Birth;
         private System.Windows.Forms.Label Label_TabProfile_birth;
+        private System.Windows.Forms.Label m_labelPicNumber;
     }
 }

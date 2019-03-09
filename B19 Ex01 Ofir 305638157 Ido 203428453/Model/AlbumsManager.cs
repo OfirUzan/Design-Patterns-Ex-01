@@ -13,9 +13,11 @@ namespace Model
         private LinkedList<string> m_CurrentAlbumPhotosURL;
         private LinkedListNode<string> m_CurrentPhotoURL;
 
+        public LinkedList<string> CurrentAlbumPhotosURL { get => m_CurrentAlbumPhotosURL; set => m_CurrentAlbumPhotosURL = value; }
+
         public AlbumsManager(User i_User)
         {
-            m_CurrentAlbumPhotosURL = new LinkedList<string>();
+            CurrentAlbumPhotosURL = new LinkedList<string>();
             m_User = i_User;
         }
 
@@ -37,8 +39,8 @@ namespace Model
             }
             else
             {
-                nextPhotoURL = m_CurrentAlbumPhotosURL.First.Value;
-                m_CurrentPhotoURL = m_CurrentAlbumPhotosURL.First;
+                nextPhotoURL = CurrentAlbumPhotosURL.First.Value;
+                m_CurrentPhotoURL = CurrentAlbumPhotosURL.First;
             }
 
             return nextPhotoURL;
@@ -55,8 +57,8 @@ namespace Model
             }
             else
             {
-                previousPhotoURL = m_CurrentAlbumPhotosURL.Last.Value;
-                m_CurrentPhotoURL = m_CurrentAlbumPhotosURL.Last;
+                previousPhotoURL = CurrentAlbumPhotosURL.Last.Value;
+                m_CurrentPhotoURL = CurrentAlbumPhotosURL.Last;
             }
 
             return previousPhotoURL;
@@ -64,15 +66,15 @@ namespace Model
 
         public void setCurrentAlbum(string i_AlbumName)
         {
-            m_CurrentAlbumPhotosURL.Clear();
+            CurrentAlbumPhotosURL.Clear();
             Album photosAlbum = m_User.Albums.Find(x => x.Name == i_AlbumName);
 
             foreach (Photo photo in photosAlbum.Photos)
             {
-                m_CurrentAlbumPhotosURL.AddLast(photo.PictureNormalURL);
+                CurrentAlbumPhotosURL.AddLast(photo.PictureNormalURL);
             }
 
-            m_CurrentPhotoURL = m_CurrentAlbumPhotosURL.First;
+            m_CurrentPhotoURL = CurrentAlbumPhotosURL.First;
         }
 
         // like counters
