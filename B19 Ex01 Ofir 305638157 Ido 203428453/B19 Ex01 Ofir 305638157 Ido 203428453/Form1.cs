@@ -26,27 +26,7 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
 
         private void loginAndInit()
         {
-            m_User = FacebookService.Login(
-                "451139335614057",
-                "public_profile",
-                "email",
-                "publish_to_groups",
-                "user_birthday",
-                "user_age_range",
-                "user_gender",
-                "user_link",
-                "user_tagged_places",
-                "user_videos",
-                "publish_to_groups",
-                "groups_access_member_info",
-                "user_friends",
-                "user_events",
-                "user_likes",
-                "user_location",
-                "user_photos",
-                "user_posts",
-                "user_hometown")
-                .LoggedInUser;
+            m_User = FacebookService.Connect("EAAGaTwZCX7mkBALhG2IpO6nHDW8omIfWaZAT2CVemRYIZCzWazlx3e8quq7kZA9ZCnJ5FweoJx7KlXbum38u4blTPOPyzY4EZBVZCRrXkNaZBQabYq8DDOLfgEDIz8pcx0GT8jZBuC5HzfNlaxL3AUUMR8lQbraKLH2aVZBmZC2ZCPgrjgZDZD").LoggedInUser;
             m_AlbumsManager = new AlbumsManager(m_User);
             m_PB_UserProfilePic.LoadAsync(m_User.PictureNormalURL);
             label1.Text = m_User.FirstName;
@@ -100,5 +80,17 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
             fetchAlbums();
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text == "Profile")
+            {
+                tabProfile_Click(sender, e);
+            }
+
+            else
+            {
+                tabAlbum_Click(sender, e);
+            }
+        }
     } 
 }
