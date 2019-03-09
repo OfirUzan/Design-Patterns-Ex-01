@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FacebookWrapper;
 
 namespace B19_Ex01_Ofir_305638157_Ido_203428453
 {
@@ -126,6 +127,11 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
                 r_MaleCount += male;
                 r_FemaleCount += female;
             }
+        }
+
+        public void UploadPhotoToCurrentAlbum(string i_PhotoLocalPath)
+        {
+            m_User.PostPhoto(i_PhotoLocalPath);
         }
 
         private string mostLikedPictureFromAlbum(string i_AlbumName)

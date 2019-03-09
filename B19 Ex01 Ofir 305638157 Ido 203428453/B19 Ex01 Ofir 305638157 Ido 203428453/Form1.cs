@@ -26,7 +26,9 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
 
         private void loginAndInit()
         {
-            m_User = FacebookService.Connect("EAAGaTwZCX7mkBALhG2IpO6nHDW8omIfWaZAT2CVemRYIZCzWazlx3e8quq7kZA9ZCnJ5FweoJx7KlXbum38u4blTPOPyzY4EZBVZCRrXkNaZBQabYq8DDOLfgEDIz8pcx0GT8jZBuC5HzfNlaxL3AUUMR8lQbraKLH2aVZBmZC2ZCPgrjgZDZD").LoggedInUser;
+            //LoginResult res = FacebookService.Login("451139335614057", "public_profile", "email", "user_friends", "user_photos", "user_birthday", "user_likes", "manage_pages", "user_events", "user_hometown", "user_posts", "user_tagged_places", "user_location");
+           
+            m_User = FacebookService.Connect("EAAGaTwZCX7mkBABYUROUeIUZCn3DxkhqDkP4ZBEfkGptrWSWkqhsrJfZCYMlbtRWz8FhtdcXZA2ByMqOVx7n7ktg8zHecBc170pw7En2Ohg1EgV7ErRrz1mEzDi0sykK8D6IDnVuAKQXjSsZCSkpTDQ4PjH61288pqyOoMSQZAGQQZDZD").LoggedInUser;
             m_AlbumsManager = new AlbumsManager(m_User);
             m_PB_UserProfilePic.LoadAsync(m_User.PictureNormalURL);
             label1.Text = m_User.FirstName;
@@ -96,6 +98,25 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
             else
             {
                 tabAlbum_Click(sender, e);
+            }
+        }
+
+        private void m_buttonUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select a picture";
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    MessageBox.Show("Uploaded successfuly!");
+                }
+                catch (Exception uploadException)
+                {
+                    MessageBox.Show(uploadException.Message);
+                }
             }
         }
     } 

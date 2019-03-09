@@ -176,6 +176,7 @@
             // 
             // m_TabMyAlbums
             // 
+            this.m_TabMyAlbums.Controls.Add(this.m_buttonUpload);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonPrevoiusPic);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonNextPic);
             this.m_TabMyAlbums.Controls.Add(this.m_pictureBoxCurrentPic);
