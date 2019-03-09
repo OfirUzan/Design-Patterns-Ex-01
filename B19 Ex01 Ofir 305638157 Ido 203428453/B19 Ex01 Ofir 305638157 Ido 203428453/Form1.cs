@@ -73,6 +73,12 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
             m_PB_TabProfile_ProfilePic.ImageLocation = m_User.PictureLargeURL;
             m_PB_TabProfile_ProfilePic.SizeMode = PictureBoxSizeMode.StretchImage;
             m_LinkLabel_TabProfile_FullName.Text = m_User.Name;
+
+            m_Label_TabProfile_Email.Text = m_User.Email;
+            m_Label_TabProfile_Lives.Text = m_User.Hometown.Name;
+            m_Label_TabProfile_Birth.Text = m_User.Birthday;
+            m_Label_TabProfile_Relationship.Text = m_User.RelationshipStatus.ToString();
+            m_Label_TabProfile_About.Text = m_User.About;
         }
 
         private void tabAlbum_Click(object sender, EventArgs e)

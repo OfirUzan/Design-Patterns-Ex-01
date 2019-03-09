@@ -74,7 +74,6 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
             m_CurrentPhotoURL = m_CurrentAlbumPhotosURL.First;
         }
 
-
         // like counters
         private int sumAlbumLikes(Album i_Album)
         {
