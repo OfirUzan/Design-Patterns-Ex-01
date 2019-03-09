@@ -11,11 +11,13 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
         private User m_User;
         private LinkedList<string> m_CurrentAlbumPhotosURL;
         private LinkedListNode<string> m_CurrentPhotoURL;
+
         public AlbumsManager(User i_User)
         {
             m_CurrentAlbumPhotosURL = new LinkedList<string>();
             m_User = i_User;
         }
+
         public string GetLatestPhotoURL(string i_AlbumName)
         {
             Album photosAlbum = m_User.Albums.Find(x => x.Name == i_AlbumName);
@@ -70,6 +72,85 @@ namespace B19_Ex01_Ofir_305638157_Ido_203428453
             }
 
             m_CurrentPhotoURL = m_CurrentAlbumPhotosURL.First;
+        }
+
+
+        // like counters
+        private int sumAlbumLikes(Album i_Album)
+        {
+            int res = 0;
+            foreach (var p in i_Album.Photos)
+            {
+                res += sumPhotoLikes(p);
+            }
+
+            return res;
+        }
+
+        private int sumPhotoLikes(Photo i_Photo)
+        {
+            int res = 0;
+            foreach (var like in i_Photo.LikedBy)
+            {
+                res++;
+            }
+
+            return res;
+        }
+
+        private void countLikesOfPhotoByGender(Photo i_Photo, ref int r_MaleCount, ref int r_FemaleCount)
+        {
+            r_MaleCount = 0;
+            r_FemaleCount = 0;
+            foreach (var like in i_Photo.LikedBy)
+            {
+                if (like.Gender == User.eGender.male)
+                {
+                    r_MaleCount++;
+                }
+                else if (like.Gender == User.eGender.female)
+                {
+                    r_FemaleCount++;
+                }
+
+            }
+        }
+
+        private void countLikesOfAlbumByGender(Album i_Album, ref int r_MaleCount, ref int r_FemaleCount)
+        {
+            r_MaleCount = 0;
+            r_FemaleCount = 0;
+            foreach (var photo in i_Album.Photos)
+            {
+                int male = 0, female = 0;
+                countLikesOfPhotoByGender(photo, ref male, ref female);
+                r_MaleCount += male;
+                r_FemaleCount += female;
+            }
+        }
+
+        private string mostLikedPictureFromAlbum(string i_AlbumName)
+        {
+            int maxLikes = 0;
+            Photo res = null;
+
+            Album profilePicAlbum = m_User.Albums.Find(x => x.Name == i_AlbumName);
+            if (profilePicAlbum == null)
+            {
+                // Album Not Found Exeption
+            }
+            else
+            {
+                foreach (var p in profilePicAlbum.Photos)
+                {
+                    if (sumPhotoLikes(p) > maxLikes)
+                    {
+                        res = p;
+                    }
+                }
+            }
+
+            return res.Pictures.PictureUrl;
         }
     }
 }
