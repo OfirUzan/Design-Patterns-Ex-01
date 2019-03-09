@@ -41,6 +41,7 @@
             this.m_TabMyAlbums = new System.Windows.Forms.TabPage();
             this.m_buttonPrevoiusPic = new System.Windows.Forms.Button();
             this.m_buttonNextPic = new System.Windows.Forms.Button();
+            this.m_buttonUpload = new System.Windows.Forms.Button();
             this.m_pictureBoxCurrentPic = new System.Windows.Forms.PictureBox();
             this.m_comboBoxAlbums = new System.Windows.Forms.ComboBox();
             this.m_Panel_TabProfile = new System.Windows.Forms.Panel();
@@ -395,6 +396,8 @@
 
         private System.Windows.Forms.PictureBox m_PB_UserProfilePic;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button m_buttonUpload;
+
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabControl1;
