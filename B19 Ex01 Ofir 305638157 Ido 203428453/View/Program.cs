@@ -1,16 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace View
+﻿namespace View
 {
-    static class Program
+    public static class Program
     {
-        [STAThread]
-        static void Main()
+        public static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DesktopFacebook());
+            DesktopFacebook desktopFacebook = new DesktopFacebook();
+            desktopFacebook.StartLoginSession();
         }
     }
 }

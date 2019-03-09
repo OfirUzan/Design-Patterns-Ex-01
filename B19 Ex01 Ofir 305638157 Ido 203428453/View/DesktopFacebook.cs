@@ -9,27 +9,34 @@ namespace View
 {
     public partial class DesktopFacebook : Form
     {
+        private LoginForm m_LoginForm;
+        public DesktopFacebook()
+        {
+            m_LoginForm = new LoginForm();
+            m_LoginForm.LoginSucess += m_LoginForm_LoginSucess;
+            m_LoginForm.LoginFailed += m_LoginForm_LoginFailed;
+        }
+
+        public void StartLoginSession()
+        {
+            m_LoginForm.ShowDialog();
+        }
+
+        private void m_LoginForm_LoginFailed()
+        {
+            Close();
+        }
+
+        private void m_LoginForm_LoginSucess()
+        {
+            InitializeComponent();
+            m_AlbumsManager = new AlbumsManager(m_User);
+            ShowDialog();
+        }
+
         private User m_User;
         private AlbumsManager m_AlbumsManager;
         private LinkedList<string> m_CurrentAlbumPhotosURL;
-
-        public DesktopFacebook()
-        {
-            InitializeComponent();
-            //FacebookWrapper.FacebookService.s_CollectionLimit = 200;
-            //FacebookWrapper.FacebookService.s_FbApiVersion = 2.8f;
-        }
-
-        private void loginAndInit()
-        {
-            //LoginResult res = FacebookService.Login("451139335614057", "public_profile", "email", "user_friends", "user_photos", "user_birthday", "user_likes", "manage_pages", "user_events", "user_hometown", "user_posts", "user_tagged_places", "user_location");
-           
-            m_User = FacebookService.Connect("EAAGaTwZCX7mkBABYUROUeIUZCn3DxkhqDkP4ZBEfkGptrWSWkqhsrJfZCYMlbtRWz8FhtdcXZA2ByMqOVx7n7ktg8zHecBc170pw7En2Ohg1EgV7ErRrz1mEzDi0sykK8D6IDnVuAKQXjSsZCSkpTDQ4PjH61288pqyOoMSQZAGQQZDZD").LoggedInUser;
-            m_AlbumsManager = new AlbumsManager(m_User);
-            m_PB_UserProfilePic.LoadAsync(m_User.PictureNormalURL);
-            label1.Text = m_User.FirstName;
-            label2.Text = m_User.LastName;
-        }
 
         private void fetchAlbums()
         {
@@ -37,11 +44,6 @@ namespace View
             {
                 m_comboBoxAlbums.Items.Add(album.Name);
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            loginAndInit();
         }
 
         private void m_comboBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
