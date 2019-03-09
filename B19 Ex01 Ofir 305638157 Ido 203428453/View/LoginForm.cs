@@ -20,6 +20,7 @@ namespace View
         public LoginForm()
         {
             InitializeComponent();
+            BackgroundImageLayout = ImageLayout.Center;
         }
 
         private void m_buttonExit_Click(object sender, EventArgs e)

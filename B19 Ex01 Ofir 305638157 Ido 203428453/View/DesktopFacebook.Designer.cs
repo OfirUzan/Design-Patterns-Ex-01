@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesktopFacebook));
             this.m_tabsControl = new System.Windows.Forms.TabControl();
             this.m_TabProfile = new System.Windows.Forms.TabPage();
             this.m_Panel_TabProfile = new System.Windows.Forms.Panel();
@@ -80,6 +81,8 @@
             // 
             // m_TabProfile
             // 
+            this.m_TabProfile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("m_TabProfile.BackgroundImage")));
+            this.m_TabProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.m_TabProfile.Controls.Add(this.m_Panel_TabProfile);
             this.m_TabProfile.Controls.Add(this.m_LinkLabel_TabProfile_FullName);
             this.m_TabProfile.Controls.Add(this.m_PB_TabProfile_ProfilePic);
@@ -267,6 +270,8 @@
             // 
             // m_TabMyAlbums
             // 
+            this.m_TabMyAlbums.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("m_TabMyAlbums.BackgroundImage")));
+            this.m_TabMyAlbums.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.m_TabMyAlbums.Controls.Add(this.m_labelPicNumber);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonUpload);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonPrevoiusPic);
@@ -345,6 +350,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 788);
             this.Controls.Add(this.m_tabsControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DesktopFacebook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
