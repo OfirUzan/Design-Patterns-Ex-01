@@ -43,6 +43,7 @@
             this.m_buttonNextPic = new System.Windows.Forms.Button();
             this.m_pictureBoxCurrentPic = new System.Windows.Forms.PictureBox();
             this.m_comboBoxAlbums = new System.Windows.Forms.ComboBox();
+            this.m_buttonUpload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.m_PB_UserProfilePic)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.m_TabHome.SuspendLayout();
@@ -166,6 +167,7 @@
             // 
             // m_TabMyAlbums
             // 
+            this.m_TabMyAlbums.Controls.Add(this.m_buttonUpload);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonPrevoiusPic);
             this.m_TabMyAlbums.Controls.Add(this.m_buttonNextPic);
             this.m_TabMyAlbums.Controls.Add(this.m_pictureBoxCurrentPic);
@@ -216,6 +218,16 @@
             this.m_comboBoxAlbums.TabIndex = 0;
             this.m_comboBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.m_comboBoxAlbums_SelectedIndexChanged);
             // 
+            // m_buttonUpload
+            // 
+            this.m_buttonUpload.Location = new System.Drawing.Point(68, 242);
+            this.m_buttonUpload.Name = "m_buttonUpload";
+            this.m_buttonUpload.Size = new System.Drawing.Size(162, 94);
+            this.m_buttonUpload.TabIndex = 4;
+            this.m_buttonUpload.Text = "Upload a new picture!";
+            this.m_buttonUpload.UseVisualStyleBackColor = true;
+            this.m_buttonUpload.Click += new System.EventHandler(this.m_buttonUpload_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -256,5 +268,6 @@
         private System.Windows.Forms.LinkLabel m_LinkLabel_TabProfile_FullName;
         private System.Windows.Forms.PictureBox m_PB_TabProfile_ProfilePic;
         private System.Windows.Forms.PictureBox m_PB_TabProfile_CoverPhoto;
+        private System.Windows.Forms.Button m_buttonUpload;
     }
 }
