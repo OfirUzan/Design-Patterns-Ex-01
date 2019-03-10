@@ -66,6 +66,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserProfileComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserProfileComponent.Designer.cs">
+      <DependentUpon>UserProfileComponent.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DesktopFacebook.resx">
       <DependentUpon>DesktopFacebook.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +87,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserProfileComponent.resx">
+      <DependentUpon>UserProfileComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppResources\intro_Icon.PNG" />
+    <Content Include="AppResources\App Icon.ico" />
     <Content Include="AppResources\Login Background.jpg" />
     <Content Include="AppResources\Main App Background.jpg" />
   </ItemGroup>

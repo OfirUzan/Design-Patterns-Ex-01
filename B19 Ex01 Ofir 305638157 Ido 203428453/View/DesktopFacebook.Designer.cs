@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesktopFacebook));
             this.m_tabsControl = new System.Windows.Forms.TabControl();
             this.m_TabProfile = new System.Windows.Forms.TabPage();
@@ -64,6 +65,12 @@
             this.m_buttonNextPic = new System.Windows.Forms.Button();
             this.m_pictureBoxCurrentPic = new System.Windows.Forms.PictureBox();
             this.m_comboBoxAlbums = new System.Windows.Forms.ComboBox();
+            this.m_TabMyProfile = new System.Windows.Forms.TabPage();
+            this.m_userProfileComponent = new View.UserProfileComponent();
+            this.m_TabFriendsProfile = new System.Windows.Forms.TabPage();
+            this.m_buttonSearchAFriend = new System.Windows.Forms.Button();
+            this.m_textBoxFriendName = new System.Windows.Forms.TextBox();
+            this.m_friendProfileComponent = new View.UserProfileComponent();
             this.panel1 = new System.Windows.Forms.Panel();
             this.m_PB_TabProfile_ProfilePic = new System.Windows.Forms.PictureBox();
             this.m_button_Friends = new System.Windows.Forms.Button();
@@ -86,17 +93,20 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_PB_TabProfile_ProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PB_IntroIcon)).BeginInit();
+            this.m_TabMyProfile.SuspendLayout();
+            this.m_TabFriendsProfile.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_tabsControl
             // 
             this.m_tabsControl.Controls.Add(this.m_TabProfile);
             this.m_tabsControl.Controls.Add(this.m_TabMyAlbums);
-            this.m_tabsControl.Location = new System.Drawing.Point(0, 19);
-            this.m_tabsControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.m_tabsControl.Controls.Add(this.m_TabMyProfile);
+            this.m_tabsControl.Controls.Add(this.m_TabFriendsProfile);
+            this.m_tabsControl.Location = new System.Drawing.Point(0, 12);
             this.m_tabsControl.Name = "m_tabsControl";
             this.m_tabsControl.SelectedIndex = 0;
-            this.m_tabsControl.Size = new System.Drawing.Size(1454, 976);
+            this.m_tabsControl.Size = new System.Drawing.Size(951, 602);
             this.m_tabsControl.TabIndex = 4;
             // 
             // m_TabProfile
@@ -411,11 +421,10 @@
             this.m_TabMyAlbums.Controls.Add(this.m_buttonNextPic);
             this.m_TabMyAlbums.Controls.Add(this.m_pictureBoxCurrentPic);
             this.m_TabMyAlbums.Controls.Add(this.m_comboBoxAlbums);
-            this.m_TabMyAlbums.Location = new System.Drawing.Point(4, 29);
-            this.m_TabMyAlbums.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.m_TabMyAlbums.Location = new System.Drawing.Point(4, 22);
             this.m_TabMyAlbums.Name = "m_TabMyAlbums";
-            this.m_TabMyAlbums.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.m_TabMyAlbums.Size = new System.Drawing.Size(1446, 943);
+            this.m_TabMyAlbums.Padding = new System.Windows.Forms.Padding(3);
+            this.m_TabMyAlbums.Size = new System.Drawing.Size(943, 576);
             this.m_TabMyAlbums.TabIndex = 2;
             this.m_TabMyAlbums.Text = "My Albums";
             this.m_TabMyAlbums.UseVisualStyleBackColor = true;
@@ -423,25 +432,25 @@
             // m_labelPicNumber
             // 
             this.m_labelPicNumber.AutoSize = true;
-            this.m_labelPicNumber.Location = new System.Drawing.Point(472, 494);
+            this.m_labelPicNumber.Location = new System.Drawing.Point(315, 321);
+            this.m_labelPicNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.m_labelPicNumber.Name = "m_labelPicNumber";
-            this.m_labelPicNumber.Size = new System.Drawing.Size(0, 20);
+            this.m_labelPicNumber.Size = new System.Drawing.Size(0, 13);
             this.m_labelPicNumber.TabIndex = 4;
             // 
             // m_buttonUpload
             // 
             this.m_buttonUpload.Location = new System.Drawing.Point(0, 0);
-            this.m_buttonUpload.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.m_buttonUpload.Name = "m_buttonUpload";
-            this.m_buttonUpload.Size = new System.Drawing.Size(112, 35);
+            this.m_buttonUpload.Size = new System.Drawing.Size(75, 23);
             this.m_buttonUpload.TabIndex = 0;
             // 
             // m_buttonPrevoiusPic
             // 
-            this.m_buttonPrevoiusPic.Location = new System.Drawing.Point(316, 475);
-            this.m_buttonPrevoiusPic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_buttonPrevoiusPic.Location = new System.Drawing.Point(211, 309);
+            this.m_buttonPrevoiusPic.Margin = new System.Windows.Forms.Padding(2);
             this.m_buttonPrevoiusPic.Name = "m_buttonPrevoiusPic";
-            this.m_buttonPrevoiusPic.Size = new System.Drawing.Size(90, 58);
+            this.m_buttonPrevoiusPic.Size = new System.Drawing.Size(60, 37);
             this.m_buttonPrevoiusPic.TabIndex = 3;
             this.m_buttonPrevoiusPic.Text = "Previous";
             this.m_buttonPrevoiusPic.UseVisualStyleBackColor = true;
@@ -449,10 +458,10 @@
             // 
             // m_buttonNextPic
             // 
-            this.m_buttonNextPic.Location = new System.Drawing.Point(606, 475);
-            this.m_buttonNextPic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_buttonNextPic.Location = new System.Drawing.Point(404, 309);
+            this.m_buttonNextPic.Margin = new System.Windows.Forms.Padding(2);
             this.m_buttonNextPic.Name = "m_buttonNextPic";
-            this.m_buttonNextPic.Size = new System.Drawing.Size(90, 58);
+            this.m_buttonNextPic.Size = new System.Drawing.Size(60, 37);
             this.m_buttonNextPic.TabIndex = 2;
             this.m_buttonNextPic.Text = "Next";
             this.m_buttonNextPic.UseVisualStyleBackColor = true;
@@ -460,20 +469,20 @@
             // 
             // m_pictureBoxCurrentPic
             // 
-            this.m_pictureBoxCurrentPic.Location = new System.Drawing.Point(316, 168);
-            this.m_pictureBoxCurrentPic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_pictureBoxCurrentPic.Location = new System.Drawing.Point(211, 109);
+            this.m_pictureBoxCurrentPic.Margin = new System.Windows.Forms.Padding(2);
             this.m_pictureBoxCurrentPic.Name = "m_pictureBoxCurrentPic";
-            this.m_pictureBoxCurrentPic.Size = new System.Drawing.Size(379, 288);
+            this.m_pictureBoxCurrentPic.Size = new System.Drawing.Size(253, 187);
             this.m_pictureBoxCurrentPic.TabIndex = 1;
             this.m_pictureBoxCurrentPic.TabStop = false;
             // 
             // m_comboBoxAlbums
             // 
             this.m_comboBoxAlbums.FormattingEnabled = true;
-            this.m_comboBoxAlbums.Location = new System.Drawing.Point(21, 51);
-            this.m_comboBoxAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_comboBoxAlbums.Location = new System.Drawing.Point(14, 33);
+            this.m_comboBoxAlbums.Margin = new System.Windows.Forms.Padding(2);
             this.m_comboBoxAlbums.Name = "m_comboBoxAlbums";
-            this.m_comboBoxAlbums.Size = new System.Drawing.Size(293, 28);
+            this.m_comboBoxAlbums.Size = new System.Drawing.Size(197, 21);
             this.m_comboBoxAlbums.TabIndex = 0;
             this.m_comboBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.m_comboBoxAlbums_SelectedIndexChanged);
             // 
@@ -549,6 +558,11 @@
             // 
             // PB_IntroIcon
             // 
+            this.m_friendProfileComponent.Location = new System.Drawing.Point(0, 31);
+            this.m_friendProfileComponent.Margin = new System.Windows.Forms.Padding(2);
+            this.m_friendProfileComponent.Name = "m_friendProfileComponent";
+            this.m_friendProfileComponent.Size = new System.Drawing.Size(932, 574);
+            this.m_friendProfileComponent.TabIndex = 0;
             this.PB_IntroIcon.BackColor = System.Drawing.Color.Gainsboro;
             this.PB_IntroIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PB_IntroIcon.BackgroundImage")));
             this.PB_IntroIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -594,6 +608,9 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.m_PB_TabProfile_ProfilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PB_IntroIcon)).EndInit();
+            this.m_TabMyProfile.ResumeLayout(false);
+            this.m_TabFriendsProfile.ResumeLayout(false);
+            this.m_TabFriendsProfile.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -641,5 +658,11 @@
         private System.Windows.Forms.Button m_button_AlbumsLink;
         private System.Windows.Forms.Button m_button_Friends;
         private System.Windows.Forms.PictureBox PB_IntroIcon;
+        private System.Windows.Forms.TabPage m_TabMyProfile;
+        private UserProfileComponent m_userProfileComponent;
+        private System.Windows.Forms.TabPage m_TabFriendsProfile;
+        private System.Windows.Forms.Button m_buttonSearchAFriend;
+        private System.Windows.Forms.TextBox m_textBoxFriendName;
+        private UserProfileComponent m_friendProfileComponent;
     }
 }
