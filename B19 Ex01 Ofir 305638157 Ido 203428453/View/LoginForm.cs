@@ -27,12 +27,14 @@ namespace View
 
         private void finishLoginWithSucess(User i_User)
         {
+            Hide();
             Close();
             LoginSucessListeners.Invoke(i_User);
         }
 
         private void finishLoginWithFailure()
         {
+            Hide();
             Close();
             LoginFailedListeners.Invoke(null);
         }
