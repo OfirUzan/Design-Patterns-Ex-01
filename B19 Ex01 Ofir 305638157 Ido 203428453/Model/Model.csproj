@@ -52,6 +52,7 @@
     <Compile Include="DataSaver.cs" />
     <Compile Include="FacebookAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WallHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
