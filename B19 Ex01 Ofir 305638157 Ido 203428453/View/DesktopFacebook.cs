@@ -15,16 +15,16 @@ namespace View
         private AlbumsManager m_AlbumsManager;
         private bool m_firstLaunch = true;
 
-        public DesktopFacebook()
+        private void initializeLoginForm()
         {
             m_LoginForm = new LoginForm();
             m_LoginForm.LoginSucessListeners += m_LoginForm_LoginSucess;
             m_LoginForm.LoginFailedListeners += m_LoginForm_LoginFailed;
-            StartLoginSession();
         }
 
-        private void StartLoginSession()
+        public void StartLoginSession()
         {
+            initializeLoginForm();
             m_LoginForm.StartLoginSession();
         }
 
@@ -54,6 +54,35 @@ namespace View
         {
             initializeProfileTab();
             initializeMyAlbumsTab();
+            initializeMyProfileTab();
+        }
+
+        private void initializeMyProfileTab()
+        {
+            m_userProfileComponent.ComponentPictureBoxProfilePic.ImageLocation = m_User.PictureLargeURL;
+            m_userProfileComponent.ComponentTextBoxUserInfo.Text
+                = string.Format(
+@"Name: {0}
+Gender: {1}
+Birthday: {2}
+Email: {3}
+City: {4}
+Education: {5}
+Work: {6}
+Status: {7}
+About: {8}",
+                m_User.Name,
+                m_User.Gender,
+                m_User.Birthday,
+                m_User.Email,
+                m_User.Hometown?.Name,
+                m_User.Educations?[0].School?.Name,
+                m_User.WorkExperiences?[0].Name,
+                m_User.RelationshipStatus,
+                m_User.About
+);
+            //Following code line is on comment to prevent an error and suppose to get user's events.
+            //m_userProfileComponent.ComponentBindingSourceUpcomingEvents.DataSource = m_User.Events;
         }
 
         private void initializeMyAlbumsTab()
@@ -127,7 +156,57 @@ namespace View
         private void m_buttonLogout_Click(object sender, EventArgs e)
         {
             Hide();
+            initializeLoginForm();
             m_LoginForm.LogoutUser();
+        }
+
+        private User getAFriendOfTheUserByName(string i_FriendName)
+        {
+            User friend = m_User.Friends.Find(x => x.Name == i_FriendName);
+            return friend;
+        }
+
+        private void m_buttonSearchAFriend_Click(object sender, EventArgs e)
+        {
+            User friend = getAFriendOfTheUserByName(m_textBoxFriendName.Text);
+
+            if (friend != null)
+            {
+                m_friendProfileComponent.ComponentPictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
+                m_friendProfileComponent.ComponentTextBoxUserInfo.Text
+                    = string.Format(
+    @"Name: {0}
+Gender: {1}
+Birthday: {2}
+Email: {3}
+City: {4}
+Education: {5}
+Work: {6}
+Status: {7}
+About: {8}",
+                    friend.Name,
+                    friend.Gender,
+                    friend.Birthday,
+                    friend.Email,
+                    friend.Hometown?.Name,
+                    friend.Educations?[0].School?.Name,
+                    friend.WorkExperiences?[0].Name,
+                    friend.RelationshipStatus,
+                    friend.About
+    );
+                //Following code line is on comment to prevent an error and suppose to get user's events.
+                //m_userProfileComponent.ComponentBindingSourceUpcomingEvents.DataSource = m_User.Events;
+            }
+            else
+            {
+                MessageBox.Show("Friend was not found.");
+            }
+        }
+
+        private void m_textBoxFriendName_Click(object sender, EventArgs e)
+        {
+            m_textBoxFriendName.Text = string.Empty;
+            (sender as TextBox).Click -= m_textBoxFriendName_Click;
         }
     } 
 }
