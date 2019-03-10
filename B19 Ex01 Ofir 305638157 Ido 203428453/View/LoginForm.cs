@@ -27,7 +27,7 @@ namespace View
 
         private void finishLoginWithSucess(User i_User)
         {
-            Hide();
+            Close();
             LoginSucessListeners.Invoke(i_User);
         }
 

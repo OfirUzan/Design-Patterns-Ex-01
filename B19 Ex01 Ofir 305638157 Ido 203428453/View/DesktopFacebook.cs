@@ -15,16 +15,16 @@ namespace View
         private AlbumsManager m_AlbumsManager;
         private bool m_firstLaunch = true;
 
-        public DesktopFacebook()
+        private void initializeLoginForm()
         {
             m_LoginForm = new LoginForm();
             m_LoginForm.LoginSucessListeners += m_LoginForm_LoginSucess;
             m_LoginForm.LoginFailedListeners += m_LoginForm_LoginFailed;
-            StartLoginSession();
         }
 
-        private void StartLoginSession()
+        public void StartLoginSession()
         {
+            initializeLoginForm();
             m_LoginForm.StartLoginSession();
         }
 
@@ -127,6 +127,7 @@ namespace View
         private void m_buttonLogout_Click(object sender, EventArgs e)
         {
             Hide();
+            initializeLoginForm();
             m_LoginForm.LogoutUser();
         }
     } 
