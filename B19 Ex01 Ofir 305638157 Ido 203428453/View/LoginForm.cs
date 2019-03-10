@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
+using Model;
 
 namespace View
 {
@@ -15,25 +16,59 @@ namespace View
 
     public partial class LoginForm : Form
     {
-        public event LoginDoneDelegate LoginSucess;
-        public event LoginDoneDelegate LoginFailed;
+        public event LoginDoneDelegate LoginSucessListeners;
+        public event LoginDoneDelegate LoginFailedListeners;
+        private FacebookAuthenticator m_facebookAuthenticator;
         public LoginForm()
         {
             InitializeComponent();
-            BackgroundImageLayout = ImageLayout.Center;
+            m_facebookAuthenticator = new FacebookAuthenticator();
+        }
+
+        private void finishLoginWithSucess(User i_User)
+        {
+            Close();
+            LoginSucessListeners.Invoke(i_User);
+        }
+
+        private void finishLoginWithFailure()
+        {
+            Close();
+            LoginFailedListeners.Invoke(null);
         }
 
         private void m_buttonExit_Click(object sender, EventArgs e)
         {
-            Close();
-            LoginFailed.Invoke(null);
+            finishLoginWithFailure();
         }
 
         private void m_buttonLogin_Click(object sender, EventArgs e)
         {
-            User user = FacebookService.Connect("EAAGaTwZCX7mkBABYUROUeIUZCn3DxkhqDkP4ZBEfkGptrWSWkqhsrJfZCYMlbtRWz8FhtdcXZA2ByMqOVx7n7ktg8zHecBc170pw7En2Ohg1EgV7ErRrz1mEzDi0sykK8D6IDnVuAKQXjSsZCSkpTDQ4PjH61288pqyOoMSQZAGQQZDZD").LoggedInUser;
-            Close();
-            LoginSucess.Invoke(user);
+            try
+            {
+                User user = m_facebookAuthenticator.LoginUser();
+                finishLoginWithSucess(user);
+            }
+            catch (Exception exception)
+            {
+                string errorMsg = exception.Message + System.Environment.NewLine + "Please check your internet connection.";
+                MessageBox.Show(errorMsg);
+                finishLoginWithFailure();
+            }
+        }
+
+        public void StartLoginSession()
+        {
+            User user;
+
+            if (m_facebookAuthenticator.IsUserLoggedIn(out user))
+            {
+                finishLoginWithSucess(user);
+            }
+            else
+            {
+                ShowDialog();
+            }
         }
     }
 }

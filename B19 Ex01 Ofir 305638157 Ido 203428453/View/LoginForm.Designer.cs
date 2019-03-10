@@ -1,4 +1,5 @@
-﻿namespace View
+﻿using System.Windows.Forms;
+namespace View
 {
     partial class LoginForm
     {
@@ -28,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            BackgroundImageLayout = ImageLayout.Center;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.m_buttonLogin = new System.Windows.Forms.Button();
             this.m_buttonExit = new System.Windows.Forms.Button();

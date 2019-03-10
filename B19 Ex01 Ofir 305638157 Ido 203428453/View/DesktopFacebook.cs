@@ -13,18 +13,17 @@ namespace View
         private int m_nextCounter;
         private User m_User;
         private AlbumsManager m_AlbumsManager;
-        private LinkedList<string> m_CurrentAlbumPhotosURL;
 
         public DesktopFacebook()
         {
             m_LoginForm = new LoginForm();
-            m_LoginForm.LoginSucess += m_LoginForm_LoginSucess;
-            m_LoginForm.LoginFailed += m_LoginForm_LoginFailed;
+            m_LoginForm.LoginSucessListeners += m_LoginForm_LoginSucess;
+            m_LoginForm.LoginFailedListeners += m_LoginForm_LoginFailed;
         }
 
         public void StartLoginSession()
         {
-            m_LoginForm.ShowDialog();
+            m_LoginForm.StartLoginSession();
         }
 
         private void m_LoginForm_LoginFailed(User i_User)
