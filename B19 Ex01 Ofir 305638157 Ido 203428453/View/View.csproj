@@ -101,16 +101,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{5b27e2ab-ad6e-4a3a-bd22-f49701b10c54}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="AppResources\intro_Icon.PNG" />
     <Content Include="AppResources\App Icon.ico" />
     <Content Include="AppResources\Login Background.jpg" />
     <Content Include="AppResources\Main App Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{5b27e2ab-ad6e-4a3a-bd22-f49701b10c54}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
