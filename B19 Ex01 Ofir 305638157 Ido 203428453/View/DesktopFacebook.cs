@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
@@ -9,11 +10,12 @@ namespace View
 {
     public partial class DesktopFacebook : Form
     {
-        private LoginForm m_LoginForm;
-        private int m_nextCounter;
-        private User m_User;
+        private LoginForm     m_LoginForm;
+        private int           m_nextCounter;
+        private User          m_User;
         private AlbumsManager m_AlbumsManager;
-        private bool m_firstLaunch = true;
+        private WallHanndler  m_WallHandler;
+        private bool          m_firstLaunch = true;
 
         private void initializeLoginForm()
         {
@@ -25,7 +27,7 @@ namespace View
         public void StartLoginSession()
         {
             initializeLoginForm();
-            m_LoginForm.StartLoginSession();
+            m_LoginForm.StartLoginSession();   
         }
 
         private void m_LoginForm_LoginFailed(User i_User)
@@ -54,6 +56,8 @@ namespace View
         {
             initializeProfileTab();
             initializeMyAlbumsTab();
+            m_WallHandler = new WallHanndler(m_User.WallPosts);
+            nextWallPost();
         }
 
         private void initializeMyAlbumsTab()
@@ -71,12 +75,43 @@ namespace View
             m_PB_TabProfile_ProfilePic.ImageLocation = m_User.PictureLargeURL;
             m_PB_TabProfile_ProfilePic.SizeMode = PictureBoxSizeMode.StretchImage;
             m_LinkLabel_TabProfile_FullName.Text = m_User.Name;
-
+            makeRoundPictureBox(m_PB_TabProfile_ProfilePic, 3, 3);
             m_Label_TabProfile_Email.Text = m_User.Email;
-            //m_Label_TabProfile_Lives.Text = m_User.Hometown.Name;
             m_Label_TabProfile_Birth.Text = m_User.Birthday;
-            m_Label_TabProfile_Relationship.Text = m_User.RelationshipStatus.ToString();
-            m_Label_TabProfile_About.Text = m_User.About;
+            Label_TabProfile_Gender.Text = m_User.Gender.ToString();
+        }
+
+        private void makeRoundPictureBox(PictureBox pictureBox, int i_WidthRound, int i_HeightRound)
+        {
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            gp.AddEllipse(0, 0, pictureBox.Width - i_WidthRound, pictureBox.Height - i_HeightRound);
+            Region rg = new Region(gp);
+            pictureBox.Region = rg;
+        }
+
+        private void nextWallPost()
+        {
+            Post p = m_WallHandler.getNextWallPost();
+            Comment c = m_WallHandler.getNextCommentOfCurrentPost();
+            m_PB_Wall.ImageLocation = p.PictureURL;
+            m_PB_Wall.SizeMode = PictureBoxSizeMode.StretchImage;
+            m_Label_Wall_Date.Text = p.CreatedTime.ToString();
+            m_Label_Wall_Name.Text = p.Name;
+            m_RTB_Wall_Description.Text = p.Message;
+            nextPostComment();
+        }
+
+        private void nextPostComment()
+        {
+            Comment c = m_WallHandler.getNextCommentOfCurrentPost();
+            if (c == null)
+            {
+                m_RTB_Wall_Comment.Text = "No Comments";
+            }
+            else
+            {
+                m_RTB_Wall_Comment.Text = c.Message;
+            }
         }
 
         private void m_comboBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
@@ -129,6 +164,16 @@ namespace View
             Hide();
             initializeLoginForm();
             m_LoginForm.LogoutUser();
+        }
+
+        private void m_Button_Wall_NextComment_Click(object sender, EventArgs e)
+        {
+            nextPostComment();
+        }
+
+        private void m_Button_Wall_Next_Post_Click(object sender, EventArgs e)
+        {
+            nextWallPost();
         }
     } 
 }
