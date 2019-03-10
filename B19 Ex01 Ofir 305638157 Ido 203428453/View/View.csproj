@@ -107,6 +107,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppResources\intro_Icon.PNG" />
     <Content Include="AppResources\App Icon.ico" />
     <Content Include="AppResources\Login Background.jpg" />
     <Content Include="AppResources\Main App Background.jpg" />
