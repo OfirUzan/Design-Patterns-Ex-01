@@ -10,10 +10,9 @@ namespace Model
     public class AlbumsManager
     {
         private User m_User;
-        private LinkedList<string> m_CurrentAlbumPhotosURL;
         private LinkedListNode<string> m_CurrentPhotoURL;
 
-        public LinkedList<string> CurrentAlbumPhotosURL { get => m_CurrentAlbumPhotosURL; set => m_CurrentAlbumPhotosURL = value; }
+        public LinkedList<string> CurrentAlbumPhotosURL { get; set; }
 
         public AlbumsManager(User i_User)
         {
