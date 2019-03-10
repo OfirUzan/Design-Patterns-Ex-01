@@ -98,8 +98,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Login Background.jpg" />
-    <Content Include="Main App Background.jpg" />
+    <Content Include="AppResources\Login Background.jpg" />
+    <Content Include="AppResources\Main App Background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

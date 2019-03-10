@@ -55,6 +55,7 @@
             this.m_buttonNextPic = new System.Windows.Forms.Button();
             this.m_pictureBoxCurrentPic = new System.Windows.Forms.PictureBox();
             this.m_comboBoxAlbums = new System.Windows.Forms.ComboBox();
+            this.m_buttonLogout = new System.Windows.Forms.Button();
             this.m_tabsControl.SuspendLayout();
             this.m_TabProfile.SuspendLayout();
             this.m_Panel_TabProfile.SuspendLayout();
@@ -83,6 +84,7 @@
             // 
             this.m_TabProfile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("m_TabProfile.BackgroundImage")));
             this.m_TabProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.m_TabProfile.Controls.Add(this.m_buttonLogout);
             this.m_TabProfile.Controls.Add(this.m_Panel_TabProfile);
             this.m_TabProfile.Controls.Add(this.m_LinkLabel_TabProfile_FullName);
             this.m_TabProfile.Controls.Add(this.m_PB_TabProfile_ProfilePic);
@@ -344,6 +346,16 @@
             this.m_comboBoxAlbums.TabIndex = 0;
             this.m_comboBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.m_comboBoxAlbums_SelectedIndexChanged);
             // 
+            // m_buttonLogout
+            // 
+            this.m_buttonLogout.Location = new System.Drawing.Point(532, 497);
+            this.m_buttonLogout.Name = "m_buttonLogout";
+            this.m_buttonLogout.Size = new System.Drawing.Size(104, 50);
+            this.m_buttonLogout.TabIndex = 4;
+            this.m_buttonLogout.Text = "Logout";
+            this.m_buttonLogout.UseVisualStyleBackColor = true;
+            this.m_buttonLogout.Click += new System.EventHandler(this.m_buttonLogout_Click);
+            // 
             // DesktopFacebook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -405,5 +417,6 @@
         private System.Windows.Forms.Label m_Label_TabProfile_Birth;
         private System.Windows.Forms.Label Label_TabProfile_birth;
         private System.Windows.Forms.Label m_labelPicNumber;
+        private System.Windows.Forms.Button m_buttonLogout;
     }
 }

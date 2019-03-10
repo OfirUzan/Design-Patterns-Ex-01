@@ -27,7 +27,7 @@ namespace View
 
         private void finishLoginWithSucess(User i_User)
         {
-            Close();
+            Hide();
             LoginSucessListeners.Invoke(i_User);
         }
 
@@ -69,6 +69,12 @@ namespace View
             {
                 ShowDialog();
             }
+        }
+
+        public void LogoutUser()
+        {
+            m_facebookAuthenticator.LogoutUser();
+            ShowDialog();
         }
     }
 }

@@ -13,15 +13,17 @@ namespace View
         private int m_nextCounter;
         private User m_User;
         private AlbumsManager m_AlbumsManager;
+        private bool m_firstLaunch = true;
 
         public DesktopFacebook()
         {
             m_LoginForm = new LoginForm();
             m_LoginForm.LoginSucessListeners += m_LoginForm_LoginSucess;
             m_LoginForm.LoginFailedListeners += m_LoginForm_LoginFailed;
+            StartLoginSession();
         }
 
-        public void StartLoginSession()
+        private void StartLoginSession()
         {
             m_LoginForm.StartLoginSession();
         }
@@ -37,7 +39,15 @@ namespace View
             InitializeComponent();
             m_AlbumsManager = new AlbumsManager(m_User);
             InitializeFormTabs();
-            ShowDialog();
+            if (m_firstLaunch)
+            {
+                m_firstLaunch = false;
+                ShowDialog();
+            }
+            else
+            {
+                Show();
+            }
         }
 
         private void InitializeFormTabs()
@@ -112,6 +122,12 @@ namespace View
                     MessageBox.Show(uploadException.Message);
                 }
             }
+        }
+
+        private void m_buttonLogout_Click(object sender, EventArgs e)
+        {
+            Hide();
+            m_LoginForm.LogoutUser();
         }
     } 
 }

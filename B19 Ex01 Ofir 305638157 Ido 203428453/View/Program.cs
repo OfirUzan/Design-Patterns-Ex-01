@@ -1,11 +1,16 @@
-﻿namespace View
+﻿using System;
+using System.Windows.Forms;
+
+namespace View
 {
     public static class Program
     {
+        [STAThread]
         public static void Main()
         {
-            DesktopFacebook desktopFacebook = new DesktopFacebook();
-            desktopFacebook.StartLoginSession();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new DesktopFacebook());
         }
     }
 }
