@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using FacebookWrapper;
@@ -10,24 +11,21 @@ namespace View
 {
     public partial class DesktopFacebook : Form
     {
-        private LoginForm m_LoginForm;
-        private int m_nextCounter;
-        private User m_User;
+        private LoginForm     m_LoginForm;
+        private int           m_nextCounter;
+        private User          m_User;
         private AlbumsManager m_AlbumsManager;
-        private bool m_firstLaunch = true;
-        private WallHanndler m_WallHandler;
+        private bool          m_firstLaunch = true;
+        private WallHanndler  m_WallHandler;
+
+
+        //Login Methods
 
         private void initializeLoginForm()
         {
             m_LoginForm = new LoginForm();
             m_LoginForm.LoginSucessListeners += m_LoginForm_LoginSucess;
             m_LoginForm.LoginFailedListeners += m_LoginForm_LoginFailed;
-        }
-
-        public void StartLoginSession()
-        {
-            initializeLoginForm();
-            m_LoginForm.StartLoginSession();
         }
 
         private void m_LoginForm_LoginFailed(User i_User)
@@ -52,12 +50,21 @@ namespace View
             }
         }
 
+        public void StartLoginSession()
+        {
+            initializeLoginForm();
+            m_LoginForm.StartLoginSession();
+        }
+
+        // init (Form/Tab) Methods
+
         private void InitializeFormTabs()
         {
-            initializeProfileTab();
+            
             initializeMyAlbumsTab();
             initializeMyProfileTab();
-            m_WallHandler = new WallHanndler(m_User.WallPosts);
+            initializeTabMain();
+            
 
         }
 
@@ -97,18 +104,22 @@ About: {8}",
             }
         }
 
-        private void initializeProfileTab()
+        private void initializeTabMain()
         {
-            m_PB_TabProfile_CoverPhoto.ImageLocation = m_AlbumsManager.GetLatestPhotoURL("Cover Photos");
-            m_PB_TabProfile_CoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
-            m_PB_TabProfile_ProfilePic.ImageLocation = m_User.PictureLargeURL;
-            m_PB_TabProfile_ProfilePic.SizeMode = PictureBoxSizeMode.StretchImage;
-            m_LinkLabel_TabProfile_FullName.Text = m_User.Name;
-            makeRoundPictureBox(m_PB_TabProfile_ProfilePic, 3, 3);
-            m_Label_TabProfile_Email.Text = m_User.Email;
-            m_Label_TabProfile_Birth.Text = m_User.Birthday;
-            Label_TabProfile_Gender.Text = m_User.Gender.ToString();
+            m_WallHandler                         = new WallHanndler(m_User.WallPosts);
+            m_PB_TabMain_CoverPhoto.ImageLocation = m_AlbumsManager.GetLatestPhotoURL("Cover Photos");
+            m_PB_TabMain_CoverPhoto.SizeMode      = PictureBoxSizeMode.StretchImage;
+            m_PB_TabMain_ProfilePic.ImageLocation = m_User.PictureLargeURL;
+            m_PB_TabMain_ProfilePic.SizeMode      = PictureBoxSizeMode.StretchImage;
+            m_LinkLabel_TabMain_FullName.Text     = m_User.Name;
+            m_Label_TabMain_Email.Text            = m_User.Email;
+            m_Label_TabMain_Birth.Text            = m_User.Birthday;
+            m_Label_TabMain_Gender.Text           = m_User.Gender.ToString();
+            makeRoundPictureBox(m_PB_TabMain_ProfilePic, 3, 3);
+            this.nextWallPost();
         }
+
+        // UI Methods
         private void makeRoundPictureBox(PictureBox pictureBox, int i_WidthRound, int i_HeightRound)
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
@@ -116,6 +127,8 @@ About: {8}",
             Region rg = new Region(gp);
             pictureBox.Region = rg;
         }
+
+        // Other Tab Methods
 
         private void m_comboBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -143,7 +156,54 @@ About: {8}",
             m_labelPicNumber.Text = m_nextCounter.ToString() + " / " + m_AlbumsManager.CurrentAlbumPhotosURL.Count.ToString();
         }
 
-        private void m_buttonUpload_Click(object sender, EventArgs e)
+        private User getAFriendOfTheUserByName(string i_FriendName)
+        {
+            User friend = m_User.Friends.Find(x => x.Name == i_FriendName);
+            return friend;
+        }
+
+        // Wall Methods
+
+        private void nextWallPost()
+        {
+            Post p = m_WallHandler.getNextWallPost();
+            Comment c = m_WallHandler.getNextCommentOfCurrentPost();
+            m_PB_Wall.ImageLocation = p.PictureURL;
+            m_PB_Wall.SizeMode = PictureBoxSizeMode.StretchImage;
+            m_Label_Wall_Date.Text = p.CreatedTime.ToString();
+            m_Label_Wall_Name.Text = p.Name;
+            m_RTB_Wall_Description.Text = p.Message;
+            nextPostComment();
+        }
+
+        private void nextPostComment()
+        {
+            Comment c = m_WallHandler.getNextCommentOfCurrentPost();
+            if (c == null)
+            {
+                m_RTB_Wall_Comment.Text = "No Comments";
+                m_Label_Wall_Comment_Date.Text = "";
+                m_LinkLabel_Wall_CommentInfo.Visible = false;
+
+
+            }
+            else
+            {
+                m_RTB_Wall_Comment.Text = c.Message;
+                m_Label_Wall_Comment_Date.Text = c.CreatedTime.ToString();
+                m_LinkLabel_Wall_CommentInfo.Visible = true;
+            }
+        }
+        
+        // on Click Methods
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            Hide();
+            initializeLoginForm();
+            m_LoginForm.LogoutUser();
+        }
+
+        private void buttonUpload_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select a picture";
@@ -162,20 +222,23 @@ About: {8}",
             }
         }
 
-        private void m_buttonLogout_Click(object sender, EventArgs e)
+        private void label_TabProfile_About_Click(object sender, EventArgs e)
         {
-            Hide();
-            initializeLoginForm();
-            m_LoginForm.LogoutUser();
+
         }
 
-        private User getAFriendOfTheUserByName(string i_FriendName)
+        private void textBoxFriendName_Click(object sender, EventArgs e)
         {
-            User friend = m_User.Friends.Find(x => x.Name == i_FriendName);
-            return friend;
+            m_textBoxFriendName.Text = string.Empty;
+            (sender as TextBox).Click -= textBoxFriendName_Click;
         }
 
-        private void m_buttonSearchAFriend_Click(object sender, EventArgs e)
+        private void button_Wall_NextComment_Click(object sender, EventArgs e)
+        {
+            nextPostComment();
+        }
+
+        private void button_SearchAFriend_Click(object sender, EventArgs e)
         {
             User friend = getAFriendOfTheUserByName(m_textBoxFriendName.Text);
 
@@ -212,53 +275,46 @@ About: {8}",
             }
         }
 
-        private void m_textBoxFriendName_Click(object sender, EventArgs e)
-        {
-            m_textBoxFriendName.Text = string.Empty;
-            (sender as TextBox).Click -= m_textBoxFriendName_Click;
-        }
-
-        private void m_Label_TabProfile_About_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void nextWallPost()
-        {
-            Post p = m_WallHandler.getNextWallPost();
-            Comment c = m_WallHandler.getNextCommentOfCurrentPost();
-            m_PB_Wall.ImageLocation = p.PictureURL;
-            m_PB_Wall.SizeMode = PictureBoxSizeMode.StretchImage;
-            m_Label_Wall_Date.Text = p.CreatedTime.ToString();
-            m_Label_Wall_Name.Text = p.Name;
-            m_RTB_Wall_Description.Text = p.Message;
-            nextPostComment();
-        }
-
-        private void nextPostComment()
-        {
-            Comment c = m_WallHandler.getNextCommentOfCurrentPost();
-            if (c == null)
-            {
-                m_RTB_Wall_Comment.Text = "No Comments";
-            }
-            else
-            {
-                m_RTB_Wall_Comment.Text = c.Message;
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            nextPostComment();
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
+        private void button_Wall_NextPost_Click(object sender, EventArgs e)
+        {          
+           
             nextWallPost();
 
+        }
+
+        private void button_TabMain_Friends_Click(object sender, EventArgs e)
+        {
+            m_tabsControl.SelectedTab = m_TabFriendsProfile;
+        }
+
+        private void button_TabMain_Albums_Click(object sender, EventArgs e)
+        {
+            m_tabsControl.SelectedTab = m_TabMyAlbums;
+        }
+
+        private void button_TabMain_Profile_Click(object sender, EventArgs e)
+        {
+            m_tabsControl.SelectedTab = m_TabMyProfile;
+        }
+
+        private void linkLabel_TabMain_FullName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            String profileUrl = m_User.Link;
+            ProcessStartInfo sInfo = new ProcessStartInfo(profileUrl);
+            Process.Start(sInfo);
+        }
+
+        private void linkLabel_Wall_CommentInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            String commentUrl = "https://www.facebook.com/" + m_WallHandler.getCommentID();
+            ProcessStartInfo sInfo = new ProcessStartInfo(commentUrl);
+            Process.Start(sInfo);
+        }
+
+        private void linkLabel_Wall_PostLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo(m_WallHandler.getPostId());
+            Process.Start(sInfo);
         }
     } 
 }

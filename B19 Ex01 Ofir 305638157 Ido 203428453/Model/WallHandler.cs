@@ -13,10 +13,9 @@ namespace Model
         private int m_PostIndex;
         private int m_CommentIndex;
         private int m_PicturePostCount;
+        private string m_CurrCommentId;
+        private string m_CurrPostId;
 
-
-
-        public LinkedList<string> CurrentAlbumPhotosURL { get; set; }
 
         public WallHanndler(FacebookObjectCollection<Post> i_Wall)
         {
@@ -56,6 +55,8 @@ namespace Model
                 }
             }
 
+            //m_CurrPostId = post.Id;
+            m_CurrPostId = post.Link;
             return post;
         }
 
@@ -67,6 +68,7 @@ namespace Model
                 if (m_Wall[m_PostIndex].Comments.Count == 0)
                 {
                     comment = null;
+                    m_CurrCommentId = null;
                 }
                 else
                 {
@@ -76,14 +78,25 @@ namespace Model
                     }
 
                     comment = m_Wall[m_PostIndex].Comments[m_CommentIndex++];
+                    m_CurrCommentId = comment.Id;
                 }
             }
             catch (Exception e)
             {
                 comment = null;
+                m_CurrCommentId = null;
             }
 
             return comment;
+        }
+        
+        public string getCommentID()
+        {
+            return (m_CurrCommentId);
+        }
+        public string getPostId()
+        {
+            return (m_CurrPostId);
         }
     }
 }
