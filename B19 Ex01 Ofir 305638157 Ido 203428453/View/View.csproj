@@ -66,10 +66,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserProfileComponent.cs">
+    <Compile Include="AssistiveComponents\UserAlbumPicturesComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserProfileComponent.Designer.cs">
+    <Compile Include="AssistiveComponents\UserAlbumPicturesComponent.Designer.cs">
+      <DependentUpon>UserAlbumPicturesComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssistiveComponents\UserProfileComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AssistiveComponents\UserProfileComponent.Designer.cs">
       <DependentUpon>UserProfileComponent.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DesktopFacebook.resx">
@@ -87,7 +93,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UserProfileComponent.resx">
+    <EmbeddedResource Include="AssistiveComponents\UserAlbumPicturesComponent.resx">
+      <DependentUpon>UserAlbumPicturesComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssistiveComponents\UserProfileComponent.resx">
       <DependentUpon>UserProfileComponent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -101,7 +110,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppResources\intro_Icon.PNG" />
+    <Content Include="AppResources\Choose Your Album.gif" />
+    <Content Include="AppResources\Intro Icon.png" />
     <Content Include="AppResources\App Icon.ico" />
     <Content Include="AppResources\Login Background.jpg" />
     <Content Include="AppResources\Main App Background.jpg" />

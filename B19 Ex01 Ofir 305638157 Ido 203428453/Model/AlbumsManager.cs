@@ -11,6 +11,7 @@ namespace Model
     {
         private User m_User;
         private LinkedListNode<string> m_CurrentPhotoURL;
+        private object m_threadsLock = new object();
 
         public LinkedList<string> CurrentAlbumPhotosURL { get; set; }
 
@@ -31,15 +32,18 @@ namespace Model
         {
             string nextPhotoURL;
 
-            if(m_CurrentPhotoURL.Next != null)
+            lock (m_threadsLock)
             {
-                nextPhotoURL = m_CurrentPhotoURL.Next.Value;
-                m_CurrentPhotoURL = m_CurrentPhotoURL.Next;
-            }
-            else
-            {
-                nextPhotoURL = CurrentAlbumPhotosURL.First.Value;
-                m_CurrentPhotoURL = CurrentAlbumPhotosURL.First;
+                if (m_CurrentPhotoURL.Next != null)
+                {
+                    nextPhotoURL = m_CurrentPhotoURL.Next.Value;
+                    m_CurrentPhotoURL = m_CurrentPhotoURL.Next;
+                }
+                else
+                {
+                    nextPhotoURL = CurrentAlbumPhotosURL.First.Value;
+                    m_CurrentPhotoURL = CurrentAlbumPhotosURL.First;
+                };
             }
 
             return nextPhotoURL;
@@ -67,10 +71,11 @@ namespace Model
         {
             CurrentAlbumPhotosURL.Clear();
             Album photosAlbum = m_User.Albums.Find(x => x.Name == i_AlbumName);
-
+            
             foreach (Photo photo in photosAlbum.Photos)
             {
                 CurrentAlbumPhotosURL.AddLast(photo.PictureNormalURL);
+                
             }
 
             m_CurrentPhotoURL = CurrentAlbumPhotosURL.First;

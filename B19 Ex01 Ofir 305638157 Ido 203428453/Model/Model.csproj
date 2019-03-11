@@ -51,6 +51,7 @@
     <Compile Include="AlbumsManager.cs" />
     <Compile Include="DataSaver.cs" />
     <Compile Include="FacebookAuthenticator.cs" />
+    <Compile Include="PictureBoxThread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WallHandler.cs" />
   </ItemGroup>

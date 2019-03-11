@@ -12,7 +12,6 @@ namespace View
     public partial class DesktopFacebook : Form
     {
         private LoginForm     m_LoginForm;
-        private int           m_nextCounter;
         private User          m_User;
         private AlbumsManager m_AlbumsManager;
         private bool          m_firstLaunch = true;
@@ -132,28 +131,67 @@ About: {8}",
 
         private void m_comboBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_nextCounter = 1;
+            m_buttonNextPic.Enabled = true;
+            m_buttonPrevoiusPic.Enabled = true;
             string albumName = m_comboBoxAlbums.SelectedItem.ToString();
             m_AlbumsManager.setCurrentAlbum(albumName);
-            m_pictureBoxCurrentPic.ImageLocation = m_AlbumsManager.GetLatestPhotoURL(albumName);
-            m_pictureBoxCurrentPic.SizeMode = PictureBoxSizeMode.StretchImage;
-            m_labelPicNumber.Text = m_nextCounter.ToString() + " / " + m_AlbumsManager.CurrentAlbumPhotosURL.Count.ToString();
+            createThreadsForAlbumPhotosNextClick();
+        }
+
+        private void createThreadsForAlbumPhotosNextClick()
+        {
+            PictureBoxThread[] pictureBoxThreads = new PictureBoxThread[8];
+
+            for (int i = 0; i < m_userAlbumPicturesComponent.NumOfPictureBoxes; ++i)
+            {
+                pictureBoxThreads[i] = new PictureBoxThread();
+                pictureBoxThreads[i].PictureBoxIndex = i;
+            }
+
+            foreach (PictureBoxThread pictureBoxThread in pictureBoxThreads)
+            {
+                pictureBoxThread.Thread = new System.Threading.Thread(() => updateUserPhotoOnAlbumNextClick(pictureBoxThread.PictureBoxIndex));
+                pictureBoxThread.Thread.Start();
+            }
+        }
+
+        private void createThreadsForAlbumPhotosPreviousClick()
+        {
+            PictureBoxThread[] pictureBoxThreads = new PictureBoxThread[8];
+
+            for (int i = 0; i < m_userAlbumPicturesComponent.NumOfPictureBoxes; ++i)
+            {
+                pictureBoxThreads[i] = new PictureBoxThread();
+                pictureBoxThreads[i].PictureBoxIndex = i;
+            }
+
+            foreach (PictureBoxThread pictureBoxThread in pictureBoxThreads)
+            {
+                pictureBoxThread.Thread = new System.Threading.Thread(() => updateUserPhotoOnAlbumPreviousClick(pictureBoxThread.PictureBoxIndex));
+                pictureBoxThread.Thread.Start();
+            }
+        }
+
+        private void updateUserPhotoOnAlbumNextClick(int i_PictureBoxIndex)
+        {
+            m_userAlbumPicturesComponent.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetNextPhotoURL();
+            m_userAlbumPicturesComponent.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        private void updateUserPhotoOnAlbumPreviousClick(int i_PictureBoxIndex)
+        {
+            m_userAlbumPicturesComponent.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetPreviousPhotoURL();
+            m_userAlbumPicturesComponent.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            m_nextCounter = (m_nextCounter + 1) % m_AlbumsManager.CurrentAlbumPhotosURL.Count;
-            string nextPhotoUrl = m_AlbumsManager.GetNextPhotoURL();
-            m_pictureBoxCurrentPic.ImageLocation = nextPhotoUrl;
-            m_labelPicNumber.Text = m_nextCounter.ToString() + " / " + m_AlbumsManager.CurrentAlbumPhotosURL.Count.ToString();
+            createThreadsForAlbumPhotosNextClick();
         }
 
         private void m_buttonPrevoiusPic_Click(object sender, EventArgs e)
         {
-            m_nextCounter = (m_nextCounter - 1) % m_AlbumsManager.CurrentAlbumPhotosURL.Count;
-            string previousPhotoUrl = m_AlbumsManager.GetPreviousPhotoURL();
-            m_pictureBoxCurrentPic.ImageLocation = previousPhotoUrl;
-            m_labelPicNumber.Text = m_nextCounter.ToString() + " / " + m_AlbumsManager.CurrentAlbumPhotosURL.Count.ToString();
+            createThreadsForAlbumPhotosPreviousClick();
         }
 
         private User getAFriendOfTheUserByName(string i_FriendName)
@@ -284,17 +322,17 @@ About: {8}",
 
         private void button_TabMain_Friends_Click(object sender, EventArgs e)
         {
-            m_tabsControl.SelectedTab = m_TabFriendsProfile;
+            m_tabsControl.SelectedTab = m_TabFriends;
         }
 
         private void button_TabMain_Albums_Click(object sender, EventArgs e)
         {
-            m_tabsControl.SelectedTab = m_TabMyAlbums;
+            m_tabsControl.SelectedTab = m_TabAlbums;
         }
 
         private void button_TabMain_Profile_Click(object sender, EventArgs e)
         {
-            m_tabsControl.SelectedTab = m_TabMyProfile;
+            m_tabsControl.SelectedTab = m_TabProfile;
         }
 
         private void linkLabel_TabMain_FullName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
