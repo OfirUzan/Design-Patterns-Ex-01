@@ -11,33 +11,46 @@ namespace View
 {
     public partial class UserProfileComponent : UserControl
     {
-        public PictureBox ComponentPictureBoxProfilePic
+        public PictureBox PictureBoxProfilePic
         {
             get
             {
-                return m_ComponentPictureBoxProfilePic;
+                return m_pictureBoxProfilePic;
             }
 
             set
             {
-                m_ComponentPictureBoxProfilePic = value;
+                m_pictureBoxProfilePic = value;
             }
         }
 
-        public TextBox ComponentTextBoxUserInfo
+        public TextBox TextBoxUserInfo
         {
             get
             {
-                return m_ComponentTextBoxUserInfo;
+                return m_textBoxUserInfo;
             }
 
             set
             {
-                m_ComponentTextBoxUserInfo = value;
+                m_textBoxUserInfo = value;
             }
         }
 
-        public BindingSource ComponentBindingSourceUpcomingEvents
+        public TextBox TextBoxPostText
+        {
+            get
+            {
+                return m_textBoxPostText;
+            }
+
+            set
+            {
+                m_textBoxPostText = value;
+            }
+        }
+
+        public BindingSource BindingSourceUpcomingEvents
         {
             get
             {
@@ -50,33 +63,20 @@ namespace View
             }
         }
 
-        public Button Post
+        public Button ButtonAttachAFile
         {
             get
             {
-                return m_ComponentButtonPostOnWall;
+                return m_buttonAttachAPicture;
             }
 
             set
             {
-                m_ComponentButtonPostOnWall = value;
+                m_buttonAttachAPicture = value;
             }
         }
 
-        public Button AttachAFile
-        {
-            get
-            {
-                return m_buttonUploadPic;
-            }
-
-            set
-            {
-                m_buttonUploadPic = value;
-            }
-        }
-
-        public Button GetEvents
+        public Button ButtonGetEvents
         {
             get
             {
@@ -89,29 +89,28 @@ namespace View
             }
         }
 
+        public Button ButtonPost
+        {
+            get
+            {
+                return m_buttonPost;
+            }
+
+            set
+            {
+                m_buttonPost = value;
+            }
+        }
+
         public UserProfileComponent()
         {
             InitializeComponent();
         }
 
-        private void m_ComponentTextBoxPostOnWall_Click(object sender, EventArgs e)
+        private void m_textBoxPostText_Click(object sender, EventArgs e)
         {
-            m_ComponentTextBoxPostOnWall.Text = string.Empty;
-            (sender as TextBox).Click -= m_ComponentTextBoxPostOnWall_Click;
-        }
-
-        private void m_ComponentButtonPostOnWall_Click(object sender, EventArgs e)
-        {
-            if (m_ComponentTextBoxPostOnWall.Text != string.Empty &&
-               m_ComponentTextBoxPostOnWall.Text != "Do you want to say anything?")
-            {
-                MessageBox.Show("Posted successfully to the wall!");
-            }
-
-            else
-            {
-                MessageBox.Show("Please insert a text to post!");
-            }
+            m_textBoxPostText.Text = string.Empty;
+            (sender as TextBox).Click -= m_textBoxPostText_Click;
         }
     }
 }

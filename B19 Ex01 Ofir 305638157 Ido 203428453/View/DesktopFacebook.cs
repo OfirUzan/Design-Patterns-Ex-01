@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 using Model;
 
@@ -11,21 +9,21 @@ namespace View
 {
     public partial class DesktopFacebook : Form
     {
-        private LoginForm     m_LoginForm;
-        private AlbumsManager m_AlbumsManager;
-        private WallHanndler  m_WallHandler;
-        private AppController m_AppController;
-        private FilesUploader m_FilesUploader;
+        // ** Class Properties ** //
+        public LoginForm LoginForm { get; set; }
+        public AlbumsManager AlbumsManager { get; set; }
+        public WallManager WallManager{ get; set; }
+        public AppController AppController { get; set; }
+        public FilesUploader FilesUploader { get; set; }
         private bool          m_firstLaunch = true;
 
 
-        //Login Methods
-
+        // ** Login Methods ** //
         private void initializeLoginForm()
         {
-            m_LoginForm = new LoginForm();
-            m_LoginForm.LoginSucessListeners += m_LoginForm_LoginSucess;
-            m_LoginForm.LoginFailedListeners += m_LoginForm_LoginFailed;
+            LoginForm = new LoginForm();
+            LoginForm.LoginSucessListeners += m_LoginForm_LoginSucess;
+            LoginForm.LoginFailedListeners += m_LoginForm_LoginFailed;
         }
 
         private void m_LoginForm_LoginFailed()
@@ -36,8 +34,8 @@ namespace View
         private void m_LoginForm_LoginSucess(User i_LoggedUser)
         {
             InitializeComponent();
-            m_AppController = new AppController() { User = i_LoggedUser };
-            m_AlbumsManager = new AlbumsManager(m_AppController.User);
+            AppController = new AppController() { User = i_LoggedUser };
+            AlbumsManager = new AlbumsManager(AppController.User);
             InitializeFormTabs();
             if (m_firstLaunch)
             {
@@ -50,72 +48,131 @@ namespace View
             }
         }
 
-        // init (Form/Tab) Methods
 
+        // ** Tabs Init Methods** //
         private void InitializeFormTabs()
         {
+            initializeFeedTab();
             initializeAlbumsTab();
             initializeProfileTab();
-            initializeFeedTab();
             initializeFriendsTab();
         }
 
-        private void initializeFriendsTab()
+        private void initializeFeedTab()
         {
-            m_friendProfileComponent.AttachAFile.Click += FriendTabAttachAFile_Click;
-            m_friendProfileComponent.GetEvents.Click += FriendTabGetEvents_Click;
+            WallHandler = new WallManager(AppController.User.WallPosts);
+            m_pictureBox_Feed_CoverPhoto.ImageLocation = AlbumsManager.GetLatestPhotoURL("Cover Photos");
+            m_pictureBox_Feed_CoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+            m_pictureBox_Feed_ProfilePic.ImageLocation = AppController.User.PictureLargeURL;
+            m_pictureBox_Feed_ProfilePic.SizeMode = PictureBoxSizeMode.StretchImage;
+            m_linkLabel_Feed_FullName.Text = AppController.User.Name;
+            m_label_Feed_Email.Text = AppController.User.Email;
+            m_label_Feed_Birthday.Text = AppController.User.Birthday;
+            m_Label_TabMain_Gender.Text = AppController.User.Gender.ToString();
+            makeRoundPictureBox(m_pictureBox_Feed_ProfilePic, 3, 3);
+            this.nextWallPost();
         }
 
-        private void FriendTabGetEvents_Click(object sender, EventArgs e)
+        private void initializeAlbumsTab()
         {
-            if (m_AppController.Friend == null)
+            foreach (Album album in AppController.User.Albums)
             {
-                MessageBox.Show("Please select a friend first!");
+                m_comboBox_Albums_AlbumsList.Items.Add(album.Name);
             }
-            else
-            {
-                try
-                {
-                    m_friendProfileComponent.ComponentBindingSourceUpcomingEvents.DataSource = m_AppController.Friend.Events;
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-        }
-
-        private void FriendTabAttachAFile_Click(object sender, EventArgs e)
-        {
-            if(m_AppController.Friend == null)
-            {
-                MessageBox.Show("Please select a friend first!");
-            }
-            else
-            {
-                m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.Friend);
-            }
-        }
-
-        private void ProfileTabAttachAFile_Click(object sender, EventArgs e)
-        {
-            m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.User);
         }
 
         private void initializeProfileTab()
         {
-            m_FilesUploader = new FilesUploader();
-            m_userProfileComponent.AttachAFile.Click += ProfileTabAttachAFile_Click;
-            m_userProfileComponent.GetEvents.Click += ProfileTabGetEvents_Click;
-            m_userProfileComponent.ComponentPictureBoxProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
-            m_userProfileComponent.ComponentTextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(m_AppController.User);
+            FilesUploader = new FilesUploader();
+            m_userProfileComponent_Profile.ButtonAttachAFile.Click += ProfileTab_AttachAFile_Click;
+            m_userProfileComponent_Profile.ButtonGetEvents.Click += ProfileTab_GetEvents_Click;
+            m_userProfileComponent_Profile.ButtonPost.Click += ProfileTab_Post_Click;
+            m_userProfileComponent_Profile.PictureBoxProfilePic.ImageLocation = AppController.User.PictureLargeURL;
+            m_userProfileComponent_Profile.TextBoxUserInfo.Text = AppController.GetFacebookUserInfo(AppController.User);
         }
 
-        private void ProfileTabGetEvents_Click(object sender, EventArgs e)
+        private void initializeFriendsTab()
+        {
+            m_userProfileComponent_Friends.ButtonAttachAFile.Click += FriendsTab_AttachAFile_Click;
+            m_userProfileComponent_Friends.ButtonGetEvents.Click += FriendsTab_GetEvents_Click;
+            m_userProfileComponent_Friends.ButtonPost.Click += FriendsTabButtonPost_Click;
+        }
+
+
+        // ** OnClick Methods ** //
+        private void FeedTab_Logout_Click(object sender, EventArgs e)
+        {
+            Hide();
+            initializeLoginForm();
+            LoginForm.LogoutUser();
+        }
+
+        private void FeedTab_NextComment_Click(object sender, EventArgs e)
+        {
+            nextPostComment();
+        }
+
+        private void FeedTab_NextPost_Click(object sender, EventArgs e)
+        {
+            nextWallPost();
+        }
+
+        private void FeedTab_Friends_Click(object sender, EventArgs e)
+        {
+            m_tabsControl.SelectedTab = m_tabPage_Friends;
+        }
+
+        private void FeedTab_Albums_Click(object sender, EventArgs e)
+        {
+            m_tabsControl.SelectedTab = m_tabPage_Albums;
+        }
+
+        private void FeedTab_Profile_Click(object sender, EventArgs e)
+        {
+            m_tabsControl.SelectedTab = m_tabPage_Profile;
+        }
+
+        private void FeedTab_linkLabelFullName_Click(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            String profileUrl = AppController.User.Link;
+            ProcessStartInfo sInfo = new ProcessStartInfo(profileUrl);
+            Process.Start(sInfo);
+        }
+
+        private void FeedTab_linkLabelCommentInfo_Click(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            String commentUrl = "https://www.facebook.com/" + WallHandler.getCommentID();
+            ProcessStartInfo sInfo = new ProcessStartInfo(commentUrl);
+            Process.Start(sInfo);
+        }
+
+        private void FeedTab_linkLabelPostLink_Click(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo(WallHandler.getPostId());
+            Process.Start(sInfo);
+        }
+
+        private void AlbumsTab_Next_Click(object sender, EventArgs e)
+        {
+            AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnAlbumsTab, m_userAlbumPicturesComponent_Albums.NumOfPictureBoxes);
+        }
+
+        private void AlbumsTab_Previous_Click(object sender, EventArgs e)
+        {
+            AppController.UpdatePhotosOnAlbumsTab(updatePreviousUserPhotosOnAlbumsTab, m_userAlbumPicturesComponent_Albums.NumOfPictureBoxes);
+        }
+
+        private void ProfileTab_Post_Click(object sender, EventArgs e)
+        {
+            string postText = m_userProfileComponent_Profile.TextBoxPostText.Text;
+            postToWall(AppController.User, postText);
+        }
+
+        private void ProfileTab_GetEvents_Click(object sender, EventArgs e)
         {
             try
             {
-                m_userProfileComponent.ComponentBindingSourceUpcomingEvents.DataSource = m_AppController.User.Events;
+                m_userProfileComponent_Profile.BindingSourceUpcomingEvents.DataSource = AppController.User.Events;
             }
 
             catch (Exception exception)
@@ -124,30 +181,90 @@ namespace View
             }
         }
 
-        private void initializeAlbumsTab()
+        private void ProfileTab_AttachAFile_Click(object sender, EventArgs e)
         {
-            foreach (Album album in m_AppController.User.Albums)
+            FilesUploader.UploadAPhotoToTimeline(AlbumsManager, AppController.User);
+        }
+
+        private void FriendsTabButtonPost_Click(object sender, EventArgs e)
+        {
+            if (AppController.Friend == null)
             {
-                m_comboBoxAlbums.Items.Add(album.Name);
+                MessageBox.Show("Please select a friend first!");
+            }
+            else
+            {
+                string postText = m_userProfileComponent_Friends.TextBoxPostText.Text;
+                postToWall(AppController.Friend, postText);
             }
         }
 
-        private void initializeFeedTab()
+        private void FriendsTab_GetEvents_Click(object sender, EventArgs e)
         {
-            m_WallHandler                         = new WallHanndler(m_AppController.User.WallPosts);
-            m_PB_TabMain_CoverPhoto.ImageLocation = m_AlbumsManager.GetLatestPhotoURL("Cover Photos");
-            m_PB_TabMain_CoverPhoto.SizeMode      = PictureBoxSizeMode.StretchImage;
-            m_PB_TabMain_ProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
-            m_PB_TabMain_ProfilePic.SizeMode      = PictureBoxSizeMode.StretchImage;
-            m_LinkLabel_TabMain_FullName.Text     = m_AppController.User.Name;
-            m_Label_TabMain_Email.Text            = m_AppController.User.Email;
-            m_Label_TabMain_Birth.Text            = m_AppController.User.Birthday;
-            m_Label_TabMain_Gender.Text           = m_AppController.User.Gender.ToString();
-            makeRoundPictureBox(m_PB_TabMain_ProfilePic, 3, 3);
-            this.nextWallPost();
+            if (AppController.Friend == null)
+            {
+                MessageBox.Show("Please select a friend first!");
+            }
+            else
+            {
+                try
+                {
+                    m_userProfileComponent_Friends.BindingSourceUpcomingEvents.DataSource = AppController.Friend.Events;
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
         }
 
-        // UI Methods
+        private void FriendsTab_AttachAFile_Click(object sender, EventArgs e)
+        {
+            if (AppController.Friend == null)
+            {
+                MessageBox.Show("Please select a friend first!");
+            }
+            else
+            {
+                FilesUploader.UploadAPhotoToTimeline(AlbumsManager, AppController.Friend);
+            }
+        }
+
+        private void FriendsTab_Search_Click(object sender, EventArgs e)
+        {
+            User friend = getAFriendOfTheUserByName(m_textBox_Friends_FriendName.Text);
+
+            if (friend != null)
+            {
+                AppController.Friend = friend;
+                m_userProfileComponent_Friends.PictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
+                m_userProfileComponent_Friends.TextBoxUserInfo.Text = AppController.GetFacebookUserInfo(friend);
+            }
+            else
+            {
+                MessageBox.Show("Friend was not found.");
+            }
+        }
+
+        private void FriendsTab_textBoxFriendName_Click(object sender, EventArgs e)
+        {
+            m_textBox_Friends_FriendName.Text = string.Empty;
+            (sender as TextBox).Click -= FriendsTab_textBoxFriendName_Click;
+        }
+
+
+        // ** OnItemSelected Methods ** //
+        private void AlbumsTab_ComboBoxAlbums_AlbumSelected(object sender, EventArgs e)
+        {
+            m_button_Albums_Next.Enabled = true;
+            m_button_Albums_Prevoius.Enabled = true;
+            string albumName = m_comboBox_Albums_AlbumsList.SelectedItem.ToString();
+            AlbumsManager.SetCurrentAlbum(albumName);
+            AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnAlbumsTab, m_userAlbumPicturesComponent_Albums.NumOfPictureBoxes);
+        }
+
+
+        // ** Class Methods ** //
         private void makeRoundPictureBox(PictureBox pictureBox, int i_WidthRound, int i_HeightRound)
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
@@ -156,203 +273,77 @@ namespace View
             pictureBox.Region = rg;
         }
 
-        // Other Tab Methods
-
-        private void m_comboBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            m_buttonNextPic.Enabled = true;
-            m_buttonPrevoiusPic.Enabled = true;
-            string albumName = m_comboBoxAlbums.SelectedItem.ToString();
-            m_AlbumsManager.SetCurrentAlbum(albumName);
-            createThreadsForAlbumPhotosNextClick();
-        }
-
-        private void createThreadsForAlbumPhotosNextClick()
-        {
-            PictureBoxThread[] pictureBoxThreads = new PictureBoxThread[8];
-
-            for (int i = 0; i < m_userAlbumPicturesComponent.NumOfPictureBoxes; ++i)
-            {
-                pictureBoxThreads[i] = new PictureBoxThread();
-                pictureBoxThreads[i].PictureBoxIndex = i;
-            }
-
-            foreach (PictureBoxThread pictureBoxThread in pictureBoxThreads)
-            {
-                pictureBoxThread.Thread = new System.Threading.Thread(() => updateUserPhotoOnAlbumNextClick(pictureBoxThread.PictureBoxIndex));
-                pictureBoxThread.Thread.Start();
-            }
-        }
-
-        private void createThreadsForAlbumPhotosPreviousClick()
-        {
-            PictureBoxThread[] pictureBoxThreads = new PictureBoxThread[8];
-
-            for (int i = 0; i < m_userAlbumPicturesComponent.NumOfPictureBoxes; ++i)
-            {
-                pictureBoxThreads[i] = new PictureBoxThread();
-                pictureBoxThreads[i].PictureBoxIndex = i;
-            }
-
-            foreach (PictureBoxThread pictureBoxThread in pictureBoxThreads)
-            {
-                pictureBoxThread.Thread = new System.Threading.Thread(() => updateUserPhotoOnAlbumPreviousClick(pictureBoxThread.PictureBoxIndex));
-                pictureBoxThread.Thread.Start();
-            }
-        }
-
-        private void updateUserPhotoOnAlbumNextClick(int i_PictureBoxIndex)
-        {
-            m_userAlbumPicturesComponent.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetNextPhotoURL();
-            m_userAlbumPicturesComponent.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
-        }
-
-        private void updateUserPhotoOnAlbumPreviousClick(int i_PictureBoxIndex)
-        {
-            m_userAlbumPicturesComponent.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetPreviousPhotoURL();
-            m_userAlbumPicturesComponent.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
-        }
-
-        private void buttonNext_Click(object sender, EventArgs e)
-        {
-            createThreadsForAlbumPhotosNextClick();
-        }
-
-        private void m_buttonPrevoiusPic_Click(object sender, EventArgs e)
-        {
-            createThreadsForAlbumPhotosPreviousClick();
-        }
-
         private User getAFriendOfTheUserByName(string i_FriendName)
         {
-            User friend = m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
-            return friend;
+            return AppController.User.Friends.Find(x => x.Name == i_FriendName);
         }
 
-        // Wall Methods
+        private void updateNextUserPhotosOnAlbumsTab(int i_PictureBoxIndex)
+        {
+            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].ImageLocation = AlbumsManager.GetNextPhotoURL();
+            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        private void updatePreviousUserPhotosOnAlbumsTab(int i_PictureBoxIndex)
+        {
+            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].ImageLocation = AlbumsManager.GetPreviousPhotoURL();
+            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
+        }
 
         private void nextWallPost()
         {
-            Post p = m_WallHandler.getNextWallPost();
-            Comment c = m_WallHandler.getNextCommentOfCurrentPost();
-            m_PB_Wall.ImageLocation = p.PictureURL;
-            m_PB_Wall.SizeMode = PictureBoxSizeMode.StretchImage;
-            m_Label_Wall_Date.Text = p.CreatedTime.ToString();
-            m_Label_Wall_Name.Text = p.Name;
-            m_RTB_Wall_Description.Text = p.Message;
+            Post p = WallHandler.getNextWallPost();
+            Comment c = WallHandler.getNextCommentOfCurrentPost();
+            m_pictureBox_Feed_PostPic.ImageLocation = p.PictureURL;
+            m_pictureBox_Feed_PostPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            m_label_Feed_PostDate.Text = p.CreatedTime.ToString();
+            m_label_Feed_PostName.Text = p.Name;
+            m_richTextBox_Feed_PostDescription.Text = p.Message;
             nextPostComment();
         }
 
         private void nextPostComment()
         {
-            Comment c = m_WallHandler.getNextCommentOfCurrentPost();
+            Comment c = WallHandler.getNextCommentOfCurrentPost();
             if (c == null)
             {
-                m_RTB_Wall_Comment.Text = "No Comments";
-                m_Label_Wall_Comment_Date.Text = "";
-                m_LinkLabel_Wall_CommentInfo.Visible = false;
+                m_richTextBox_Feed_CommentText.Text = "No Comments";
+                m_label_Feed_CommentDate.Text = "";
+                m_linkLabel_Feed_PostInfo.Visible = false;
 
 
             }
             else
             {
-                m_RTB_Wall_Comment.Text = c.Message;
-                m_Label_Wall_Comment_Date.Text = c.CreatedTime.ToString();
-                m_LinkLabel_Wall_CommentInfo.Visible = true;
+                m_richTextBox_Feed_CommentText.Text = c.Message;
+                m_label_Feed_CommentDate.Text = c.CreatedTime.ToString();
+                m_linkLabel_Feed_PostInfo.Visible = true;
+            }
+        }
+
+        private void postToWall(User i_User, string i_postText)
+        {
+            if (i_postText != string.Empty && i_postText != "Do you want to say anything?")
+            {
+                try
+                {
+                    WallHandler.PostToWall(i_User, i_postText);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please insert a text to post!");
             }
         }
         
-        // on Click Methods
-        private void buttonLogout_Click(object sender, EventArgs e)
-        {
-            Hide();
-            initializeLoginForm();
-            m_LoginForm.LogoutUser();
-        }
-
-        private void buttonUpload_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label_TabProfile_About_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxFriendName_Click(object sender, EventArgs e)
-        {
-            m_textBoxFriendName.Text = string.Empty;
-            (sender as TextBox).Click -= textBoxFriendName_Click;
-        }
-
-        private void button_Wall_NextComment_Click(object sender, EventArgs e)
-        {
-            nextPostComment();
-        }
-
-        private void button_SearchAFriend_Click(object sender, EventArgs e)
-        {
-            User friend = getAFriendOfTheUserByName(m_textBoxFriendName.Text);
-
-            if (friend != null)
-            {
-                m_AppController.Friend = friend;
-                m_friendProfileComponent.ComponentPictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
-                m_friendProfileComponent.ComponentTextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(friend);
-            }
-            else
-            {
-                MessageBox.Show("Friend was not found.");
-            }
-        }
-
-        private void button_Wall_NextPost_Click(object sender, EventArgs e)
-        {          
-           
-            nextWallPost();
-
-        }
-
-        private void button_TabMain_Friends_Click(object sender, EventArgs e)
-        {
-            m_tabsControl.SelectedTab = m_TabFriends;
-        }
-
-        private void button_TabMain_Albums_Click(object sender, EventArgs e)
-        {
-            m_tabsControl.SelectedTab = m_TabAlbums;
-        }
-
-        private void button_TabMain_Profile_Click(object sender, EventArgs e)
-        {
-            m_tabsControl.SelectedTab = m_TabProfile;
-        }
-
-        private void linkLabel_TabMain_FullName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            String profileUrl = m_AppController.User.Link;
-            ProcessStartInfo sInfo = new ProcessStartInfo(profileUrl);
-            Process.Start(sInfo);
-        }
-
-        private void linkLabel_Wall_CommentInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            String commentUrl = "https://www.facebook.com/" + m_WallHandler.getCommentID();
-            ProcessStartInfo sInfo = new ProcessStartInfo(commentUrl);
-            Process.Start(sInfo);
-        }
-
-        private void linkLabel_Wall_PostLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ProcessStartInfo sInfo = new ProcessStartInfo(m_WallHandler.getPostId());
-            Process.Start(sInfo);
-        }
-
         public void StartLoginSession()
         {
             initializeLoginForm();
-            m_LoginForm.StartLoginSession();
+            LoginForm.StartLoginSession();
         }
     } 
 }

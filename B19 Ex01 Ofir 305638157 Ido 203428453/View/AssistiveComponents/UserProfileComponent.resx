@@ -123,6 +123,9 @@
   <metadata name="m_ComponentBindingSourceUpcomingEvents.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>254, 17</value>
   </metadata>
+  <metadata name="m_ComponentBindingSourceUpcomingEvents.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>254, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2990,7 +2993,7 @@
         BAAh+QQFAwD/ACwAAAAAAQABAAAIBAD/BQQAIfkEBQMA/wAsAAAAAAEAAQAACAQA/wUEADs=
 </value>
   </data>
-  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="m_pictureBoxFacebookLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAABGdBTUEAALGPC/xhBQAADc1JREFUeF7t
         3f1vleUZwPH6g4nJkv0D+2E/bD8sS8zYfJsFalVaiBhAfOEU2shbINooVTQbE1EZU3Q4tbSU0+IUIauo

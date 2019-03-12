@@ -1,8 +1,5 @@
 ﻿using FacebookWrapper.ObjectModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Model
 {
@@ -35,5 +32,34 @@ About: {8}",
                 i_User.About
 );
         }
+
+        public void UpdatePhotosOnAlbumsTab(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
+        {
+            startThreadsForAlbumsTabUpdate(i_MethodToExecute, i_NumOfPictureBoxes);
+        }
+
+        private void startThreadsForAlbumsTabUpdate(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
+        {
+            PictureBoxThread[] pictureBoxThreads = new PictureBoxThread[i_NumOfPictureBoxes];
+
+            for (int i = 0; i < i_NumOfPictureBoxes; ++i)
+            {
+                pictureBoxThreads[i] = new PictureBoxThread();
+                pictureBoxThreads[i].PictureBoxIndex = i;
+            }
+
+            foreach (PictureBoxThread pictureBoxThread in pictureBoxThreads)
+            {
+                pictureBoxThread.Thread = new System.Threading.Thread(() => i_MethodToExecute(pictureBoxThread.PictureBoxIndex));
+                pictureBoxThread.Thread.Start();
+            }
+        }
+
+        private class PictureBoxThread
+        {
+            public System.Threading.Thread Thread { get; set; }
+            public int PictureBoxIndex { get; set; }
+        }
+
     }
 }

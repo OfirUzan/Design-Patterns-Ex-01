@@ -35,7 +35,7 @@ namespace View
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserProfileComponent));
             this.m_ComponentBindingSourceFeed = new System.Windows.Forms.BindingSource(this.components);
-            this.m_ComponentDataGridViewUpcomingEvents = new System.Windows.Forms.DataGridView();
+            this.m_dataGridViewUpcomingEvents = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.startTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,38 +44,38 @@ namespace View
             this.linkToFacebookDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeStringDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_ComponentBindingSourceUpcomingEvents = new System.Windows.Forms.BindingSource(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.m_ComponentButtonPostOnWall = new System.Windows.Forms.Button();
-            this.m_ComponentTextBoxPostOnWall = new System.Windows.Forms.TextBox();
-            this.m_ComponentTextBoxUserInfo = new System.Windows.Forms.TextBox();
-            this.m_ComponentPictureBoxProfilePic = new System.Windows.Forms.PictureBox();
+            this.m_labelUpcomingEvents = new System.Windows.Forms.Label();
+            this.m_labelBasicInformation = new System.Windows.Forms.Label();
+            this.m_buttonPost = new System.Windows.Forms.Button();
+            this.m_textBoxPostText = new System.Windows.Forms.TextBox();
+            this.m_textBoxUserInfo = new System.Windows.Forms.TextBox();
+            this.m_pictureBoxProfilePic = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.m_buttonUploadPic = new System.Windows.Forms.Button();
+            this.m_pictureBoxFacebookLogo = new System.Windows.Forms.PictureBox();
+            this.m_buttonAttachAPicture = new System.Windows.Forms.Button();
             this.m_buttonGetEvents = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceFeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_ComponentDataGridViewUpcomingEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_dataGridViewUpcomingEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceUpcomingEvents)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_ComponentPictureBoxProfilePic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxFacebookLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // m_ComponentBindingSourceFeed
             // 
             this.m_ComponentBindingSourceFeed.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
             // 
-            // m_ComponentDataGridViewUpcomingEvents
+            // m_dataGridViewUpcomingEvents
             // 
-            this.m_ComponentDataGridViewUpcomingEvents.AllowUserToAddRows = false;
-            this.m_ComponentDataGridViewUpcomingEvents.AllowUserToDeleteRows = false;
-            this.m_ComponentDataGridViewUpcomingEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.m_dataGridViewUpcomingEvents.AllowUserToAddRows = false;
+            this.m_dataGridViewUpcomingEvents.AllowUserToDeleteRows = false;
+            this.m_dataGridViewUpcomingEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_ComponentDataGridViewUpcomingEvents.AutoGenerateColumns = false;
-            this.m_ComponentDataGridViewUpcomingEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.m_ComponentDataGridViewUpcomingEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.m_dataGridViewUpcomingEvents.AutoGenerateColumns = false;
+            this.m_dataGridViewUpcomingEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.m_dataGridViewUpcomingEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn1,
             this.descriptionDataGridViewTextBoxColumn1,
             this.startTimeDataGridViewTextBoxColumn,
@@ -83,14 +83,14 @@ namespace View
             this.locationDataGridViewTextBoxColumn,
             this.linkToFacebookDataGridViewTextBoxColumn,
             this.timeStringDataGridViewTextBoxColumn});
-            this.m_ComponentDataGridViewUpcomingEvents.DataSource = this.m_ComponentBindingSourceUpcomingEvents;
-            this.m_ComponentDataGridViewUpcomingEvents.Location = new System.Drawing.Point(488, 42);
-            this.m_ComponentDataGridViewUpcomingEvents.Margin = new System.Windows.Forms.Padding(2);
-            this.m_ComponentDataGridViewUpcomingEvents.Name = "m_ComponentDataGridViewUpcomingEvents";
-            this.m_ComponentDataGridViewUpcomingEvents.ReadOnly = true;
-            this.m_ComponentDataGridViewUpcomingEvents.RowTemplate.Height = 28;
-            this.m_ComponentDataGridViewUpcomingEvents.Size = new System.Drawing.Size(429, 240);
-            this.m_ComponentDataGridViewUpcomingEvents.TabIndex = 17;
+            this.m_dataGridViewUpcomingEvents.DataSource = this.m_ComponentBindingSourceUpcomingEvents;
+            this.m_dataGridViewUpcomingEvents.Location = new System.Drawing.Point(651, 52);
+            this.m_dataGridViewUpcomingEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_dataGridViewUpcomingEvents.Name = "m_dataGridViewUpcomingEvents";
+            this.m_dataGridViewUpcomingEvents.ReadOnly = true;
+            this.m_dataGridViewUpcomingEvents.RowTemplate.Height = 28;
+            this.m_dataGridViewUpcomingEvents.Size = new System.Drawing.Size(572, 295);
+            this.m_dataGridViewUpcomingEvents.TabIndex = 17;
             // 
             // nameDataGridViewTextBoxColumn1
             // 
@@ -145,172 +145,172 @@ namespace View
             // 
             this.m_ComponentBindingSourceUpcomingEvents.DataSource = typeof(FacebookWrapper.ObjectModel.Event);
             // 
-            // label5
+            // m_labelUpcomingEvents
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.m_labelUpcomingEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label5.Location = new System.Drawing.Point(492, 23);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(138, 17);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Upcoming Events:";
+            this.m_labelUpcomingEvents.AutoSize = true;
+            this.m_labelUpcomingEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_labelUpcomingEvents.Location = new System.Drawing.Point(656, 28);
+            this.m_labelUpcomingEvents.Name = "m_labelUpcomingEvents";
+            this.m_labelUpcomingEvents.Size = new System.Drawing.Size(161, 20);
+            this.m_labelUpcomingEvents.TabIndex = 14;
+            this.m_labelUpcomingEvents.Text = "Upcoming Events:";
             // 
-            // label4
+            // m_labelBasicInformation
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.m_labelBasicInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.Control;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label4.Location = new System.Drawing.Point(150, 313);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 17);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Basic Information:";
+            this.m_labelBasicInformation.AutoSize = true;
+            this.m_labelBasicInformation.BackColor = System.Drawing.SystemColors.Control;
+            this.m_labelBasicInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_labelBasicInformation.Location = new System.Drawing.Point(200, 385);
+            this.m_labelBasicInformation.Name = "m_labelBasicInformation";
+            this.m_labelBasicInformation.Size = new System.Drawing.Size(163, 20);
+            this.m_labelBasicInformation.TabIndex = 16;
+            this.m_labelBasicInformation.Text = "Basic Information:";
             // 
-            // m_ComponentButtonPostOnWall
+            // m_buttonPost
             // 
-            this.m_ComponentButtonPostOnWall.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.m_buttonPost.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_ComponentButtonPostOnWall.BackColor = System.Drawing.Color.DarkBlue;
-            this.m_ComponentButtonPostOnWall.ForeColor = System.Drawing.Color.White;
-            this.m_ComponentButtonPostOnWall.Location = new System.Drawing.Point(759, 490);
-            this.m_ComponentButtonPostOnWall.Margin = new System.Windows.Forms.Padding(2);
-            this.m_ComponentButtonPostOnWall.Name = "m_ComponentButtonPostOnWall";
-            this.m_ComponentButtonPostOnWall.Size = new System.Drawing.Size(158, 36);
-            this.m_ComponentButtonPostOnWall.TabIndex = 13;
-            this.m_ComponentButtonPostOnWall.Text = "Post";
-            this.m_ComponentButtonPostOnWall.UseVisualStyleBackColor = false;
-            this.m_ComponentButtonPostOnWall.Click += new System.EventHandler(this.m_ComponentButtonPostOnWall_Click);
+            this.m_buttonPost.BackColor = System.Drawing.Color.DarkBlue;
+            this.m_buttonPost.ForeColor = System.Drawing.Color.White;
+            this.m_buttonPost.Location = new System.Drawing.Point(1012, 603);
+            this.m_buttonPost.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_buttonPost.Name = "m_buttonPost";
+            this.m_buttonPost.Size = new System.Drawing.Size(211, 44);
+            this.m_buttonPost.TabIndex = 13;
+            this.m_buttonPost.Text = "Post";
+            this.m_buttonPost.UseVisualStyleBackColor = false;
             // 
-            // m_ComponentTextBoxPostOnWall
+            // m_textBoxPostText
             // 
-            this.m_ComponentTextBoxPostOnWall.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.m_textBoxPostText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_ComponentTextBoxPostOnWall.BackColor = System.Drawing.Color.AliceBlue;
-            this.m_ComponentTextBoxPostOnWall.Location = new System.Drawing.Point(495, 332);
-            this.m_ComponentTextBoxPostOnWall.Margin = new System.Windows.Forms.Padding(2);
-            this.m_ComponentTextBoxPostOnWall.Multiline = true;
-            this.m_ComponentTextBoxPostOnWall.Name = "m_ComponentTextBoxPostOnWall";
-            this.m_ComponentTextBoxPostOnWall.Size = new System.Drawing.Size(422, 155);
-            this.m_ComponentTextBoxPostOnWall.TabIndex = 12;
-            this.m_ComponentTextBoxPostOnWall.Tag = "Do you want to say anything?";
-            this.m_ComponentTextBoxPostOnWall.Text = "Do you want to say anything?";
-            this.m_ComponentTextBoxPostOnWall.Click += new System.EventHandler(this.m_ComponentTextBoxPostOnWall_Click);
+            this.m_textBoxPostText.BackColor = System.Drawing.Color.AliceBlue;
+            this.m_textBoxPostText.Location = new System.Drawing.Point(660, 409);
+            this.m_textBoxPostText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_textBoxPostText.Multiline = true;
+            this.m_textBoxPostText.Name = "m_textBoxPostText";
+            this.m_textBoxPostText.Size = new System.Drawing.Size(561, 190);
+            this.m_textBoxPostText.TabIndex = 12;
+            this.m_textBoxPostText.Tag = "Do you want to say anything?";
+            this.m_textBoxPostText.Text = "Do you want to say anything?";
+            this.m_textBoxPostText.Click += new System.EventHandler(this.m_textBoxPostText_Click);
             // 
-            // m_ComponentTextBoxUserInfo
+            // m_textBoxUserInfo
             // 
-            this.m_ComponentTextBoxUserInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.m_textBoxUserInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_ComponentTextBoxUserInfo.Location = new System.Drawing.Point(153, 332);
-            this.m_ComponentTextBoxUserInfo.Margin = new System.Windows.Forms.Padding(2);
-            this.m_ComponentTextBoxUserInfo.Multiline = true;
-            this.m_ComponentTextBoxUserInfo.Name = "m_ComponentTextBoxUserInfo";
-            this.m_ComponentTextBoxUserInfo.ReadOnly = true;
-            this.m_ComponentTextBoxUserInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.m_ComponentTextBoxUserInfo.Size = new System.Drawing.Size(231, 214);
-            this.m_ComponentTextBoxUserInfo.TabIndex = 11;
+            this.m_textBoxUserInfo.Location = new System.Drawing.Point(204, 409);
+            this.m_textBoxUserInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_textBoxUserInfo.Multiline = true;
+            this.m_textBoxUserInfo.Name = "m_textBoxUserInfo";
+            this.m_textBoxUserInfo.ReadOnly = true;
+            this.m_textBoxUserInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.m_textBoxUserInfo.Size = new System.Drawing.Size(307, 262);
+            this.m_textBoxUserInfo.TabIndex = 11;
             // 
-            // m_ComponentPictureBoxProfilePic
+            // m_pictureBoxProfilePic
             // 
-            this.m_ComponentPictureBoxProfilePic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.m_pictureBoxProfilePic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_ComponentPictureBoxProfilePic.Location = new System.Drawing.Point(153, 42);
-            this.m_ComponentPictureBoxProfilePic.Margin = new System.Windows.Forms.Padding(2);
-            this.m_ComponentPictureBoxProfilePic.Name = "m_ComponentPictureBoxProfilePic";
-            this.m_ComponentPictureBoxProfilePic.Size = new System.Drawing.Size(231, 240);
-            this.m_ComponentPictureBoxProfilePic.TabIndex = 10;
-            this.m_ComponentPictureBoxProfilePic.TabStop = false;
+            this.m_pictureBoxProfilePic.Location = new System.Drawing.Point(204, 52);
+            this.m_pictureBoxProfilePic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_pictureBoxProfilePic.Name = "m_pictureBoxProfilePic";
+            this.m_pictureBoxProfilePic.Size = new System.Drawing.Size(308, 295);
+            this.m_pictureBoxProfilePic.TabIndex = 10;
+            this.m_pictureBoxProfilePic.TabStop = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(685, 490);
+            this.pictureBox1.Location = new System.Drawing.Point(913, 603);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(43, 36);
+            this.pictureBox1.Size = new System.Drawing.Size(57, 44);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // m_pictureBoxFacebookLogo
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(89, 84);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 19;
-            this.pictureBox2.TabStop = false;
+            this.m_pictureBoxFacebookLogo.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBoxFacebookLogo.Image")));
+            this.m_pictureBoxFacebookLogo.Location = new System.Drawing.Point(0, 0);
+            this.m_pictureBoxFacebookLogo.Margin = new System.Windows.Forms.Padding(4);
+            this.m_pictureBoxFacebookLogo.Name = "m_pictureBoxFacebookLogo";
+            this.m_pictureBoxFacebookLogo.Size = new System.Drawing.Size(119, 103);
+            this.m_pictureBoxFacebookLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.m_pictureBoxFacebookLogo.TabIndex = 19;
+            this.m_pictureBoxFacebookLogo.TabStop = false;
             // 
-            // m_buttonUploadPic
+            // m_buttonAttachAPicture
             // 
-            this.m_buttonUploadPic.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.m_buttonUploadPic.Font = new System.Drawing.Font("Arial Narrow", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_buttonUploadPic.ForeColor = System.Drawing.Color.AliceBlue;
-            this.m_buttonUploadPic.Location = new System.Drawing.Point(495, 490);
-            this.m_buttonUploadPic.Margin = new System.Windows.Forms.Padding(2);
-            this.m_buttonUploadPic.Name = "m_buttonUploadPic";
-            this.m_buttonUploadPic.Size = new System.Drawing.Size(158, 36);
-            this.m_buttonUploadPic.TabIndex = 20;
-            this.m_buttonUploadPic.Text = "Attach A Picture";
-            this.m_buttonUploadPic.UseVisualStyleBackColor = false;
+            this.m_buttonAttachAPicture.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.m_buttonAttachAPicture.Font = new System.Drawing.Font("Arial Narrow", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_buttonAttachAPicture.ForeColor = System.Drawing.Color.AliceBlue;
+            this.m_buttonAttachAPicture.Location = new System.Drawing.Point(660, 603);
+            this.m_buttonAttachAPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_buttonAttachAPicture.Name = "m_buttonAttachAPicture";
+            this.m_buttonAttachAPicture.Size = new System.Drawing.Size(211, 44);
+            this.m_buttonAttachAPicture.TabIndex = 20;
+            this.m_buttonAttachAPicture.Text = "Attach A Picture";
+            this.m_buttonAttachAPicture.UseVisualStyleBackColor = false;
             // 
             // m_buttonGetEvents
             // 
-            this.m_buttonGetEvents.Location = new System.Drawing.Point(643, 288);
+            this.m_buttonGetEvents.Location = new System.Drawing.Point(857, 354);
+            this.m_buttonGetEvents.Margin = new System.Windows.Forms.Padding(4);
             this.m_buttonGetEvents.Name = "m_buttonGetEvents";
-            this.m_buttonGetEvents.Size = new System.Drawing.Size(122, 23);
+            this.m_buttonGetEvents.Size = new System.Drawing.Size(163, 28);
             this.m_buttonGetEvents.TabIndex = 21;
             this.m_buttonGetEvents.Text = "Get Events";
             this.m_buttonGetEvents.UseVisualStyleBackColor = true;
             // 
             // UserProfileComponent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.m_buttonGetEvents);
-            this.Controls.Add(this.m_buttonUploadPic);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.m_buttonAttachAPicture);
+            this.Controls.Add(this.m_pictureBoxFacebookLogo);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.m_ComponentDataGridViewUpcomingEvents);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.m_ComponentButtonPostOnWall);
-            this.Controls.Add(this.m_ComponentTextBoxPostOnWall);
-            this.Controls.Add(this.m_ComponentTextBoxUserInfo);
-            this.Controls.Add(this.m_ComponentPictureBoxProfilePic);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Controls.Add(this.m_dataGridViewUpcomingEvents);
+            this.Controls.Add(this.m_labelUpcomingEvents);
+            this.Controls.Add(this.m_labelBasicInformation);
+            this.Controls.Add(this.m_buttonPost);
+            this.Controls.Add(this.m_textBoxPostText);
+            this.Controls.Add(this.m_textBoxUserInfo);
+            this.Controls.Add(this.m_pictureBoxProfilePic);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UserProfileComponent";
-            this.Size = new System.Drawing.Size(978, 566);
+            this.Size = new System.Drawing.Size(1304, 697);
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceFeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_ComponentDataGridViewUpcomingEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_dataGridViewUpcomingEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceUpcomingEvents)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_ComponentPictureBoxProfilePic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxProfilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxFacebookLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView m_ComponentDataGridViewUpcomingEvents;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button m_ComponentButtonPostOnWall;
-        private System.Windows.Forms.TextBox m_ComponentTextBoxPostOnWall;
-        private System.Windows.Forms.TextBox m_ComponentTextBoxUserInfo;
-        private System.Windows.Forms.PictureBox m_ComponentPictureBoxProfilePic;
+        private System.Windows.Forms.DataGridView m_dataGridViewUpcomingEvents;
+        private System.Windows.Forms.Label m_labelUpcomingEvents;
+        private System.Windows.Forms.Label m_labelBasicInformation;
+        private System.Windows.Forms.Button m_buttonPost;
+        private System.Windows.Forms.TextBox m_textBoxPostText;
+        private System.Windows.Forms.TextBox m_textBoxUserInfo;
+        private System.Windows.Forms.PictureBox m_pictureBoxProfilePic;
         private System.Windows.Forms.BindingSource m_ComponentBindingSourceFeed;
         private System.Windows.Forms.BindingSource m_ComponentBindingSourceUpcomingEvents;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
@@ -321,8 +321,8 @@ namespace View
         private System.Windows.Forms.DataGridViewTextBoxColumn linkToFacebookDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeStringDataGridViewTextBoxColumn;
         private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
-        private Button m_buttonUploadPic;
+        private PictureBox m_pictureBoxFacebookLogo;
+        private Button m_buttonAttachAPicture;
         private Button m_buttonGetEvents;
     }
 }

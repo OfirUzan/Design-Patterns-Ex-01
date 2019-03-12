@@ -1,13 +1,9 @@
 ﻿using FacebookWrapper.ObjectModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FacebookWrapper;
 
 namespace Model
 {
-    public class WallHanndler
+    public class WallManager
     {
         private FacebookObjectCollection<Post> m_Wall;
         private int m_PostIndex;
@@ -16,8 +12,7 @@ namespace Model
         private string m_CurrCommentId;
         private string m_CurrPostId;
 
-
-        public WallHanndler(FacebookObjectCollection<Post> i_Wall)
+        public WallManager(FacebookObjectCollection<Post> i_Wall)
         {
             m_Wall = i_Wall;
             m_PostIndex = -1;
@@ -94,9 +89,15 @@ namespace Model
         {
             return (m_CurrCommentId);
         }
+
         public string getPostId()
         {
             return (m_CurrPostId);
+        }
+
+        public void PostToWall(User i_User, string i_PostText)
+        {
+            i_User.PostStatus(i_PostText);
         }
     }
 }
