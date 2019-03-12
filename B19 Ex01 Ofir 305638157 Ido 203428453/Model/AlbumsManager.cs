@@ -5,8 +5,8 @@ namespace Model
 {
     public class AlbumsManager
     {
-        private User m_User;
-        private LinkedListNode<string> m_CurrentPhotoURL;
+        public User User { get; set; }
+        public LinkedListNode<string> CurrentPhotoURL { get; set; }
         private object m_threadsLock = new object();
 
         public LinkedList<string> CurrentAlbumPhotosURL { get; set; }
@@ -14,12 +14,12 @@ namespace Model
         public AlbumsManager(User i_User)
         {
             CurrentAlbumPhotosURL = new LinkedList<string>();
-            m_User = i_User;
+            User = i_User;
         }
 
         public string GetLatestPhotoURL(string i_AlbumName)
         {
-            Album photosAlbum = m_User.Albums.Find(x => x.Name == i_AlbumName);
+            Album photosAlbum = User.Albums.Find(x => x.Name == i_AlbumName);
             Photo latestPhoto = photosAlbum.Photos[0];
             return latestPhoto.PictureNormalURL;
         }
@@ -30,15 +30,15 @@ namespace Model
 
             lock (m_threadsLock)
             {
-                if (m_CurrentPhotoURL.Next != null)
+                if (CurrentPhotoURL.Next != null)
                 {
-                    nextPhotoURL = m_CurrentPhotoURL.Next.Value;
-                    m_CurrentPhotoURL = m_CurrentPhotoURL.Next;
+                    nextPhotoURL = CurrentPhotoURL.Next.Value;
+                    CurrentPhotoURL = CurrentPhotoURL.Next;
                 }
                 else
                 {
                     nextPhotoURL = CurrentAlbumPhotosURL.First.Value;
-                    m_CurrentPhotoURL = CurrentAlbumPhotosURL.First;
+                    CurrentPhotoURL = CurrentAlbumPhotosURL.First;
                 };
             }
 
@@ -49,15 +49,15 @@ namespace Model
         {
             string previousPhotoURL;
 
-            if (m_CurrentPhotoURL.Previous != null)
+            if (CurrentPhotoURL.Previous != null)
             {
-                previousPhotoURL = m_CurrentPhotoURL.Previous.Value;
-                m_CurrentPhotoURL = m_CurrentPhotoURL.Previous;
+                previousPhotoURL = CurrentPhotoURL.Previous.Value;
+                CurrentPhotoURL = CurrentPhotoURL.Previous;
             }
             else
             {
                 previousPhotoURL = CurrentAlbumPhotosURL.Last.Value;
-                m_CurrentPhotoURL = CurrentAlbumPhotosURL.Last;
+                CurrentPhotoURL = CurrentAlbumPhotosURL.Last;
             }
 
             return previousPhotoURL;
@@ -66,7 +66,7 @@ namespace Model
         public void SetCurrentAlbum(string i_AlbumName)
         {
             CurrentAlbumPhotosURL.Clear();
-            Album photosAlbum = m_User.Albums.Find(x => x.Name == i_AlbumName);
+            Album photosAlbum = User.Albums.Find(x => x.Name == i_AlbumName);
             
             foreach (Photo photo in photosAlbum.Photos)
             {
@@ -74,7 +74,7 @@ namespace Model
                 
             }
 
-            m_CurrentPhotoURL = CurrentAlbumPhotosURL.First;
+            CurrentPhotoURL = CurrentAlbumPhotosURL.First;
         }
 
         public void UploadAPhotoToTimeline(User i_User, string i_FilePath)
