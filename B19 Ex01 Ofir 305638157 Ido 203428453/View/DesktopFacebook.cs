@@ -82,6 +82,11 @@ namespace View
             {
                 m_comboBox_Albums_AlbumsList.Items.Add(album.Name);
             }
+
+            foreach(PictureBox pictureBox in m_userAlbumPicturesComponent_Albums.PictureBoxes)
+            {
+                pictureBox.Click += AlbumsTab_PictureBox_Click;
+            }
         }
 
         private void initializeProfileTab()
@@ -158,6 +163,13 @@ namespace View
         private void AlbumsTab_Previous_Click(object sender, EventArgs e)
         {
             AppController.UpdatePhotosOnAlbumsTab(updatePreviousUserPhotosOnAlbumsTab, m_userAlbumPicturesComponent_Albums.NumOfPictureBoxes);
+        }
+
+        private void AlbumsTab_PictureBox_Click(object sender, EventArgs e)
+        {
+            LargePhotoForm largePhotoForm = new LargePhotoForm();
+            largePhotoForm.Picture.ImageLocation = (sender as PictureBox).ImageLocation;
+            largePhotoForm.Show();
         }
 
         private void ProfileTab_Post_Click(object sender, EventArgs e)
@@ -254,6 +266,10 @@ namespace View
         // ** OnItemSelected Methods ** //
         private void AlbumsTab_ComboBoxAlbums_AlbumSelected(object sender, EventArgs e)
         {
+            foreach(PictureBox pictureBox in m_userAlbumPicturesComponent_Albums.PictureBoxes)
+            {
+                pictureBox.Cursor = Cursors.Hand;
+            }
             m_button_Albums_Next.Enabled = true;
             m_button_Albums_Prevoius.Enabled = true;
             string albumName = m_comboBox_Albums_AlbumsList.SelectedItem.ToString();
