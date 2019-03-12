@@ -60,6 +60,5 @@ About: {8}",
             public System.Threading.Thread Thread { get; set; }
             public int PictureBoxIndex { get; set; }
         }
-
     }
 }

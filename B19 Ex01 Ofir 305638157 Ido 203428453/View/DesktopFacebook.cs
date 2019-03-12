@@ -11,10 +11,11 @@ namespace View
     {
         // ** Class Properties ** //
         public LoginForm LoginForm { get; set; }
+        public AppController AppController { get; set; }
         public AlbumsManager AlbumsManager { get; set; }
         public WallManager WallManager{ get; set; }
-        public AppController AppController { get; set; }
         public FilesUploader FilesUploader { get; set; }
+        public BrowserLauncher BrowserLauncher { get; set; }
         private bool          m_firstLaunch = true;
 
 
@@ -36,6 +37,9 @@ namespace View
             InitializeComponent();
             AppController = new AppController() { User = i_LoggedUser };
             AlbumsManager = new AlbumsManager(AppController.User);
+            WallManager = new WallManager(AppController.User.WallPosts);
+            FilesUploader = new FilesUploader();
+            BrowserLauncher = new BrowserLauncher();
             InitializeFormTabs();
             if (m_firstLaunch)
             {
@@ -60,7 +64,6 @@ namespace View
 
         private void initializeFeedTab()
         {
-            WallManager = new WallManager(AppController.User.WallPosts);
             m_pictureBox_Feed_CoverPhoto.ImageLocation = AlbumsManager.GetLatestPhotoURL("Cover Photos");
             m_pictureBox_Feed_CoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
             m_pictureBox_Feed_ProfilePic.ImageLocation = AppController.User.PictureLargeURL;
@@ -83,7 +86,6 @@ namespace View
 
         private void initializeProfileTab()
         {
-            FilesUploader = new FilesUploader();
             m_userProfileComponent_Profile.ButtonAttachAFile.Click += ProfileTab_AttachAFile_Click;
             m_userProfileComponent_Profile.ButtonGetEvents.Click += ProfileTab_GetEvents_Click;
             m_userProfileComponent_Profile.ButtonPost.Click += ProfileTab_Post_Click;
@@ -134,22 +136,18 @@ namespace View
 
         private void FeedTab_linkLabelFullName_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            String profileUrl = AppController.User.Link;
-            ProcessStartInfo sInfo = new ProcessStartInfo(profileUrl);
-            Process.Start(sInfo);
+            BrowserLauncher.LaunchBrowser(AppController.User.Link);
         }
 
         private void FeedTab_linkLabelCommentInfo_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            String commentUrl = "https://www.facebook.com/" + WallManager.getCommentID();
-            ProcessStartInfo sInfo = new ProcessStartInfo(commentUrl);
-            Process.Start(sInfo);
+            string commentUrl = "https://www.facebook.com/" + WallManager.GetCommentID();
+            BrowserLauncher.LaunchBrowser(commentUrl);
         }
 
         private void FeedTab_linkLabelPostLink_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProcessStartInfo sInfo = new ProcessStartInfo(WallManager.getPostId());
-            Process.Start(sInfo);
+            BrowserLauncher.LaunchBrowser(WallManager.GetPostId());
         }
 
         private void AlbumsTab_Next_Click(object sender, EventArgs e)
@@ -292,8 +290,8 @@ namespace View
 
         private void nextWallPost()
         {
-            Post p = WallManager.getNextWallPost();
-            Comment c = WallManager.getNextCommentOfCurrentPost();
+            Post p = WallManager.GetNextWallPost();
+            Comment c = WallManager.GetNextCommentOfCurrentPost();
             m_pictureBox_Feed_PostPic.ImageLocation = p.PictureURL;
             m_pictureBox_Feed_PostPic.SizeMode = PictureBoxSizeMode.StretchImage;
             m_label_Feed_PostDate.Text = p.CreatedTime.ToString();
@@ -304,7 +302,7 @@ namespace View
 
         private void nextPostComment()
         {
-            Comment c = WallManager.getNextCommentOfCurrentPost();
+            Comment c = WallManager.GetNextCommentOfCurrentPost();
             if (c == null)
             {
                 m_richTextBox_Feed_CommentText.Text = "No Comments";

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AlbumsManager.cs" />
     <Compile Include="AppController.cs" />
+    <Compile Include="BrowserLauncher.cs" />
     <Compile Include="DataSaver.cs" />
     <Compile Include="FacebookAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

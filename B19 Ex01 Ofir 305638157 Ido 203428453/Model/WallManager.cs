@@ -26,7 +26,7 @@ namespace Model
             }
         }
 
-        public Post getNextWallPost()
+        public Post GetNextWallPost()
         {
             Post post;
             if (m_PicturePostCount == 0)
@@ -46,7 +46,7 @@ namespace Model
 
                 if (post.Type != Post.eType.photo)
                 {
-                    post = this.getNextWallPost();
+                    post = this.GetNextWallPost();
                 }
             }
 
@@ -55,7 +55,7 @@ namespace Model
             return post;
         }
 
-        public Comment getNextCommentOfCurrentPost()
+        public Comment GetNextCommentOfCurrentPost()
         {
             Comment comment;
             try
@@ -85,12 +85,12 @@ namespace Model
             return comment;
         }
         
-        public string getCommentID()
+        public string GetCommentID()
         {
             return (m_CurrCommentId);
         }
 
-        public string getPostId()
+        public string GetPostId()
         {
             return (m_CurrPostId);
         }
