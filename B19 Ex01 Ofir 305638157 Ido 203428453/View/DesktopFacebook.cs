@@ -60,7 +60,7 @@ namespace View
 
         private void initializeFeedTab()
         {
-            WallHandler = new WallManager(AppController.User.WallPosts);
+            WallManager = new WallManager(AppController.User.WallPosts);
             m_pictureBox_Feed_CoverPhoto.ImageLocation = AlbumsManager.GetLatestPhotoURL("Cover Photos");
             m_pictureBox_Feed_CoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
             m_pictureBox_Feed_ProfilePic.ImageLocation = AppController.User.PictureLargeURL;
@@ -141,14 +141,14 @@ namespace View
 
         private void FeedTab_linkLabelCommentInfo_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            String commentUrl = "https://www.facebook.com/" + WallHandler.getCommentID();
+            String commentUrl = "https://www.facebook.com/" + WallManager.getCommentID();
             ProcessStartInfo sInfo = new ProcessStartInfo(commentUrl);
             Process.Start(sInfo);
         }
 
         private void FeedTab_linkLabelPostLink_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProcessStartInfo sInfo = new ProcessStartInfo(WallHandler.getPostId());
+            ProcessStartInfo sInfo = new ProcessStartInfo(WallManager.getPostId());
             Process.Start(sInfo);
         }
 
@@ -292,8 +292,8 @@ namespace View
 
         private void nextWallPost()
         {
-            Post p = WallHandler.getNextWallPost();
-            Comment c = WallHandler.getNextCommentOfCurrentPost();
+            Post p = WallManager.getNextWallPost();
+            Comment c = WallManager.getNextCommentOfCurrentPost();
             m_pictureBox_Feed_PostPic.ImageLocation = p.PictureURL;
             m_pictureBox_Feed_PostPic.SizeMode = PictureBoxSizeMode.StretchImage;
             m_label_Feed_PostDate.Text = p.CreatedTime.ToString();
@@ -304,7 +304,7 @@ namespace View
 
         private void nextPostComment()
         {
-            Comment c = WallHandler.getNextCommentOfCurrentPost();
+            Comment c = WallManager.getNextCommentOfCurrentPost();
             if (c == null)
             {
                 m_richTextBox_Feed_CommentText.Text = "No Comments";
@@ -327,7 +327,7 @@ namespace View
             {
                 try
                 {
-                    WallHandler.PostToWall(i_User, i_postText);
+                    WallManager.PostToWall(i_User, i_postText);
                 }
                 catch (Exception exception)
                 {
