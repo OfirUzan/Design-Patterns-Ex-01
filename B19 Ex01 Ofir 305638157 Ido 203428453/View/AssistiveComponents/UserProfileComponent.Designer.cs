@@ -84,12 +84,12 @@ namespace View
             this.linkToFacebookDataGridViewTextBoxColumn,
             this.timeStringDataGridViewTextBoxColumn});
             this.m_dataGridViewUpcomingEvents.DataSource = this.m_ComponentBindingSourceUpcomingEvents;
-            this.m_dataGridViewUpcomingEvents.Location = new System.Drawing.Point(651, 52);
-            this.m_dataGridViewUpcomingEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_dataGridViewUpcomingEvents.Location = new System.Drawing.Point(488, 42);
+            this.m_dataGridViewUpcomingEvents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_dataGridViewUpcomingEvents.Name = "m_dataGridViewUpcomingEvents";
             this.m_dataGridViewUpcomingEvents.ReadOnly = true;
             this.m_dataGridViewUpcomingEvents.RowTemplate.Height = 28;
-            this.m_dataGridViewUpcomingEvents.Size = new System.Drawing.Size(572, 295);
+            this.m_dataGridViewUpcomingEvents.Size = new System.Drawing.Size(428, 240);
             this.m_dataGridViewUpcomingEvents.TabIndex = 17;
             // 
             // nameDataGridViewTextBoxColumn1
@@ -152,9 +152,10 @@ namespace View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_labelUpcomingEvents.AutoSize = true;
             this.m_labelUpcomingEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.m_labelUpcomingEvents.Location = new System.Drawing.Point(656, 28);
+            this.m_labelUpcomingEvents.Location = new System.Drawing.Point(492, 23);
+            this.m_labelUpcomingEvents.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.m_labelUpcomingEvents.Name = "m_labelUpcomingEvents";
-            this.m_labelUpcomingEvents.Size = new System.Drawing.Size(161, 20);
+            this.m_labelUpcomingEvents.Size = new System.Drawing.Size(138, 17);
             this.m_labelUpcomingEvents.TabIndex = 14;
             this.m_labelUpcomingEvents.Text = "Upcoming Events:";
             // 
@@ -166,9 +167,10 @@ namespace View
             this.m_labelBasicInformation.AutoSize = true;
             this.m_labelBasicInformation.BackColor = System.Drawing.SystemColors.Control;
             this.m_labelBasicInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.m_labelBasicInformation.Location = new System.Drawing.Point(200, 385);
+            this.m_labelBasicInformation.Location = new System.Drawing.Point(150, 313);
+            this.m_labelBasicInformation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.m_labelBasicInformation.Name = "m_labelBasicInformation";
-            this.m_labelBasicInformation.Size = new System.Drawing.Size(163, 20);
+            this.m_labelBasicInformation.Size = new System.Drawing.Size(138, 17);
             this.m_labelBasicInformation.TabIndex = 16;
             this.m_labelBasicInformation.Text = "Basic Information:";
             // 
@@ -179,10 +181,10 @@ namespace View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_buttonPost.BackColor = System.Drawing.Color.DarkBlue;
             this.m_buttonPost.ForeColor = System.Drawing.Color.White;
-            this.m_buttonPost.Location = new System.Drawing.Point(1012, 603);
-            this.m_buttonPost.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_buttonPost.Location = new System.Drawing.Point(759, 490);
+            this.m_buttonPost.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_buttonPost.Name = "m_buttonPost";
-            this.m_buttonPost.Size = new System.Drawing.Size(211, 44);
+            this.m_buttonPost.Size = new System.Drawing.Size(158, 36);
             this.m_buttonPost.TabIndex = 13;
             this.m_buttonPost.Text = "Post";
             this.m_buttonPost.UseVisualStyleBackColor = false;
@@ -193,11 +195,11 @@ namespace View
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_textBoxPostText.BackColor = System.Drawing.Color.AliceBlue;
-            this.m_textBoxPostText.Location = new System.Drawing.Point(660, 409);
-            this.m_textBoxPostText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_textBoxPostText.Location = new System.Drawing.Point(495, 332);
+            this.m_textBoxPostText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_textBoxPostText.Multiline = true;
             this.m_textBoxPostText.Name = "m_textBoxPostText";
-            this.m_textBoxPostText.Size = new System.Drawing.Size(561, 190);
+            this.m_textBoxPostText.Size = new System.Drawing.Size(422, 155);
             this.m_textBoxPostText.TabIndex = 12;
             this.m_textBoxPostText.Tag = "Do you want to say anything?";
             this.m_textBoxPostText.Text = "Do you want to say anything?";
@@ -208,13 +210,13 @@ namespace View
             this.m_textBoxUserInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_textBoxUserInfo.Location = new System.Drawing.Point(204, 409);
-            this.m_textBoxUserInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_textBoxUserInfo.Location = new System.Drawing.Point(153, 332);
+            this.m_textBoxUserInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_textBoxUserInfo.Multiline = true;
             this.m_textBoxUserInfo.Name = "m_textBoxUserInfo";
             this.m_textBoxUserInfo.ReadOnly = true;
             this.m_textBoxUserInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.m_textBoxUserInfo.Size = new System.Drawing.Size(307, 262);
+            this.m_textBoxUserInfo.Size = new System.Drawing.Size(232, 214);
             this.m_textBoxUserInfo.TabIndex = 11;
             // 
             // m_pictureBoxProfilePic
@@ -222,61 +224,70 @@ namespace View
             this.m_pictureBoxProfilePic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_pictureBoxProfilePic.Location = new System.Drawing.Point(204, 52);
-            this.m_pictureBoxProfilePic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_pictureBoxProfilePic.Location = new System.Drawing.Point(153, 42);
+            this.m_pictureBoxProfilePic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_pictureBoxProfilePic.Name = "m_pictureBoxProfilePic";
-            this.m_pictureBoxProfilePic.Size = new System.Drawing.Size(308, 295);
+            this.m_pictureBoxProfilePic.Size = new System.Drawing.Size(231, 240);
             this.m_pictureBoxProfilePic.TabIndex = 10;
             this.m_pictureBoxProfilePic.TabStop = false;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(913, 603);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(671, 490);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(57, 44);
+            this.pictureBox1.Size = new System.Drawing.Size(68, 43);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
             // m_pictureBoxFacebookLogo
             // 
+            this.m_pictureBoxFacebookLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.m_pictureBoxFacebookLogo.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBoxFacebookLogo.Image")));
             this.m_pictureBoxFacebookLogo.Location = new System.Drawing.Point(0, 0);
-            this.m_pictureBoxFacebookLogo.Margin = new System.Windows.Forms.Padding(4);
             this.m_pictureBoxFacebookLogo.Name = "m_pictureBoxFacebookLogo";
-            this.m_pictureBoxFacebookLogo.Size = new System.Drawing.Size(119, 103);
+            this.m_pictureBoxFacebookLogo.Size = new System.Drawing.Size(89, 84);
             this.m_pictureBoxFacebookLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.m_pictureBoxFacebookLogo.TabIndex = 19;
             this.m_pictureBoxFacebookLogo.TabStop = false;
             // 
             // m_buttonAttachAPicture
             // 
+            this.m_buttonAttachAPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.m_buttonAttachAPicture.BackColor = System.Drawing.SystemColors.HotTrack;
             this.m_buttonAttachAPicture.Font = new System.Drawing.Font("Arial Narrow", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_buttonAttachAPicture.ForeColor = System.Drawing.Color.AliceBlue;
-            this.m_buttonAttachAPicture.Location = new System.Drawing.Point(660, 603);
-            this.m_buttonAttachAPicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_buttonAttachAPicture.Location = new System.Drawing.Point(495, 490);
+            this.m_buttonAttachAPicture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_buttonAttachAPicture.Name = "m_buttonAttachAPicture";
-            this.m_buttonAttachAPicture.Size = new System.Drawing.Size(211, 44);
+            this.m_buttonAttachAPicture.Size = new System.Drawing.Size(158, 36);
             this.m_buttonAttachAPicture.TabIndex = 20;
             this.m_buttonAttachAPicture.Text = "Attach A Picture";
             this.m_buttonAttachAPicture.UseVisualStyleBackColor = false;
             // 
             // m_buttonGetEvents
             // 
-            this.m_buttonGetEvents.Location = new System.Drawing.Point(857, 354);
-            this.m_buttonGetEvents.Margin = new System.Windows.Forms.Padding(4);
+            this.m_buttonGetEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.m_buttonGetEvents.Location = new System.Drawing.Point(643, 288);
             this.m_buttonGetEvents.Name = "m_buttonGetEvents";
-            this.m_buttonGetEvents.Size = new System.Drawing.Size(163, 28);
+            this.m_buttonGetEvents.Size = new System.Drawing.Size(148, 24);
             this.m_buttonGetEvents.TabIndex = 21;
             this.m_buttonGetEvents.Text = "Get Events";
             this.m_buttonGetEvents.UseVisualStyleBackColor = true;
             // 
             // UserProfileComponent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.m_buttonGetEvents);
             this.Controls.Add(this.m_buttonAttachAPicture);
@@ -289,9 +300,9 @@ namespace View
             this.Controls.Add(this.m_textBoxPostText);
             this.Controls.Add(this.m_textBoxUserInfo);
             this.Controls.Add(this.m_pictureBoxProfilePic);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "UserProfileComponent";
-            this.Size = new System.Drawing.Size(1304, 697);
+            this.Size = new System.Drawing.Size(978, 566);
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceFeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_dataGridViewUpcomingEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceUpcomingEvents)).EndInit();
