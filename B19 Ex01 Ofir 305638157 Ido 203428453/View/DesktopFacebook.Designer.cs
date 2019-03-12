@@ -75,11 +75,13 @@
             this.m_comboBox_Albums_AlbumsList = new System.Windows.Forms.ComboBox();
             this.m_userAlbumPicturesComponent_Albums = new View.UserAlbumPicturesComponent();
             this.m_tabPage_Profile = new System.Windows.Forms.TabPage();
+            this.m_userProfileComponent_Profile = new View.UserProfileComponent();
             this.m_tabPage_Friends = new System.Windows.Forms.TabPage();
             this.m_button_Friends_Search = new System.Windows.Forms.Button();
             this.m_textBox_Friends_FriendName = new System.Windows.Forms.TextBox();
             this.m_userProfileComponent_Friends = new View.UserProfileComponent();
-            this.m_userProfileComponent_Profile = new View.UserProfileComponent();
+            this.m_button_Feed_Feature1 = new System.Windows.Forms.Button();
+            this.m_button_Feed_Feature2 = new System.Windows.Forms.Button();
             this.m_tabsControl.SuspendLayout();
             this.m_tabPage_Feed.SuspendLayout();
             this.m_panelFeedPosts.SuspendLayout();
@@ -124,7 +126,7 @@
             this.m_tabPage_Feed.Controls.Add(this.m_pictureBox_Feed_CoverPhoto);
             this.m_tabPage_Feed.Location = new System.Drawing.Point(4, 22);
             this.m_tabPage_Feed.Name = "m_tabPage_Feed";
-            this.m_tabPage_Feed.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.m_tabPage_Feed.Padding = new System.Windows.Forms.Padding(3);
             this.m_tabPage_Feed.Size = new System.Drawing.Size(976, 596);
             this.m_tabPage_Feed.TabIndex = 1;
             this.m_tabPage_Feed.Text = "Feed";
@@ -145,7 +147,7 @@
             this.m_panelFeedPosts.Controls.Add(this.m_pictureBox_Feed_PostPic);
             this.m_panelFeedPosts.Controls.Add(this.m_label_Feed_PostDate);
             this.m_panelFeedPosts.Location = new System.Drawing.Point(251, 286);
-            this.m_panelFeedPosts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_panelFeedPosts.Margin = new System.Windows.Forms.Padding(2);
             this.m_panelFeedPosts.Name = "m_panelFeedPosts";
             this.m_panelFeedPosts.Size = new System.Drawing.Size(724, 310);
             this.m_panelFeedPosts.TabIndex = 6;
@@ -187,7 +189,7 @@
             // m_button_Feed_NextComment
             // 
             this.m_button_Feed_NextComment.Location = new System.Drawing.Point(447, 269);
-            this.m_button_Feed_NextComment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_button_Feed_NextComment.Margin = new System.Windows.Forms.Padding(2);
             this.m_button_Feed_NextComment.Name = "m_button_Feed_NextComment";
             this.m_button_Feed_NextComment.Size = new System.Drawing.Size(186, 25);
             this.m_button_Feed_NextComment.TabIndex = 7;
@@ -198,7 +200,7 @@
             // m_button_Feed_NextPost
             // 
             this.m_button_Feed_NextPost.Location = new System.Drawing.Point(82, 223);
-            this.m_button_Feed_NextPost.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_button_Feed_NextPost.Margin = new System.Windows.Forms.Padding(2);
             this.m_button_Feed_NextPost.Name = "m_button_Feed_NextPost";
             this.m_button_Feed_NextPost.Size = new System.Drawing.Size(186, 25);
             this.m_button_Feed_NextPost.TabIndex = 6;
@@ -221,7 +223,7 @@
             this.m_richTextBox_Feed_CommentText.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_richTextBox_Feed_CommentText.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.m_richTextBox_Feed_CommentText.Location = new System.Drawing.Point(364, 209);
-            this.m_richTextBox_Feed_CommentText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_richTextBox_Feed_CommentText.Margin = new System.Windows.Forms.Padding(2);
             this.m_richTextBox_Feed_CommentText.Name = "m_richTextBox_Feed_CommentText";
             this.m_richTextBox_Feed_CommentText.Size = new System.Drawing.Size(351, 56);
             this.m_richTextBox_Feed_CommentText.TabIndex = 4;
@@ -230,7 +232,7 @@
             // m_richTextBox_Feed_PostDescription
             // 
             this.m_richTextBox_Feed_PostDescription.Location = new System.Drawing.Point(364, 26);
-            this.m_richTextBox_Feed_PostDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_richTextBox_Feed_PostDescription.Margin = new System.Windows.Forms.Padding(2);
             this.m_richTextBox_Feed_PostDescription.Name = "m_richTextBox_Feed_PostDescription";
             this.m_richTextBox_Feed_PostDescription.Size = new System.Drawing.Size(351, 159);
             this.m_richTextBox_Feed_PostDescription.TabIndex = 3;
@@ -251,7 +253,7 @@
             // m_pictureBox_Feed_PostPic
             // 
             this.m_pictureBox_Feed_PostPic.Location = new System.Drawing.Point(34, 25);
-            this.m_pictureBox_Feed_PostPic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_pictureBox_Feed_PostPic.Margin = new System.Windows.Forms.Padding(2);
             this.m_pictureBox_Feed_PostPic.Name = "m_pictureBox_Feed_PostPic";
             this.m_pictureBox_Feed_PostPic.Size = new System.Drawing.Size(284, 177);
             this.m_pictureBox_Feed_PostPic.TabIndex = 1;
@@ -272,7 +274,7 @@
             // m_pictureBox_Feed_ProfilePic
             // 
             this.m_pictureBox_Feed_ProfilePic.Location = new System.Drawing.Point(19, 72);
-            this.m_pictureBox_Feed_ProfilePic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_pictureBox_Feed_ProfilePic.Margin = new System.Windows.Forms.Padding(2);
             this.m_pictureBox_Feed_ProfilePic.Name = "m_pictureBox_Feed_ProfilePic";
             this.m_pictureBox_Feed_ProfilePic.Size = new System.Drawing.Size(209, 204);
             this.m_pictureBox_Feed_ProfilePic.TabIndex = 5;
@@ -281,12 +283,14 @@
             // m_panel_Feed_Navigate
             // 
             this.m_panel_Feed_Navigate.BackColor = System.Drawing.Color.White;
+            this.m_panel_Feed_Navigate.Controls.Add(this.m_button_Feed_Feature2);
+            this.m_panel_Feed_Navigate.Controls.Add(this.m_button_Feed_Feature1);
             this.m_panel_Feed_Navigate.Controls.Add(this.m_button_Feed_Profile);
             this.m_panel_Feed_Navigate.Controls.Add(this.m_button_Feed_Albums);
             this.m_panel_Feed_Navigate.Controls.Add(this.m_button_Feed_Friends);
             this.m_panel_Feed_Navigate.Controls.Add(this.m_button_Feed_Logout);
             this.m_panel_Feed_Navigate.Location = new System.Drawing.Point(5, 246);
-            this.m_panel_Feed_Navigate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_panel_Feed_Navigate.Margin = new System.Windows.Forms.Padding(2);
             this.m_panel_Feed_Navigate.Name = "m_panel_Feed_Navigate";
             this.m_panel_Feed_Navigate.Size = new System.Drawing.Size(970, 35);
             this.m_panel_Feed_Navigate.TabIndex = 4;
@@ -296,10 +300,10 @@
             this.m_button_Feed_Profile.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.m_button_Feed_Profile.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_button_Feed_Profile.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_button_Feed_Profile.Location = new System.Drawing.Point(568, 5);
-            this.m_button_Feed_Profile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_button_Feed_Profile.Location = new System.Drawing.Point(487, 3);
+            this.m_button_Feed_Profile.Margin = new System.Windows.Forms.Padding(2);
             this.m_button_Feed_Profile.Name = "m_button_Feed_Profile";
-            this.m_button_Feed_Profile.Size = new System.Drawing.Size(158, 30);
+            this.m_button_Feed_Profile.Size = new System.Drawing.Size(101, 30);
             this.m_button_Feed_Profile.TabIndex = 7;
             this.m_button_Feed_Profile.Text = "Profile ";
             this.m_button_Feed_Profile.UseVisualStyleBackColor = false;
@@ -310,10 +314,10 @@
             this.m_button_Feed_Albums.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.m_button_Feed_Albums.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_button_Feed_Albums.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_button_Feed_Albums.Location = new System.Drawing.Point(406, 5);
-            this.m_button_Feed_Albums.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_button_Feed_Albums.Location = new System.Drawing.Point(365, 3);
+            this.m_button_Feed_Albums.Margin = new System.Windows.Forms.Padding(2);
             this.m_button_Feed_Albums.Name = "m_button_Feed_Albums";
-            this.m_button_Feed_Albums.Size = new System.Drawing.Size(158, 30);
+            this.m_button_Feed_Albums.Size = new System.Drawing.Size(101, 30);
             this.m_button_Feed_Albums.TabIndex = 6;
             this.m_button_Feed_Albums.Text = "Albums";
             this.m_button_Feed_Albums.UseVisualStyleBackColor = false;
@@ -324,10 +328,10 @@
             this.m_button_Feed_Friends.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.m_button_Feed_Friends.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_button_Feed_Friends.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.m_button_Feed_Friends.Location = new System.Drawing.Point(246, 5);
-            this.m_button_Feed_Friends.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_button_Feed_Friends.Location = new System.Drawing.Point(246, 2);
+            this.m_button_Feed_Friends.Margin = new System.Windows.Forms.Padding(2);
             this.m_button_Feed_Friends.Name = "m_button_Feed_Friends";
-            this.m_button_Feed_Friends.Size = new System.Drawing.Size(158, 30);
+            this.m_button_Feed_Friends.Size = new System.Drawing.Size(101, 30);
             this.m_button_Feed_Friends.TabIndex = 5;
             this.m_button_Feed_Friends.Text = "Friends";
             this.m_button_Feed_Friends.UseVisualStyleBackColor = false;
@@ -336,9 +340,9 @@
             // m_button_Feed_Logout
             // 
             this.m_button_Feed_Logout.Location = new System.Drawing.Point(846, 5);
-            this.m_button_Feed_Logout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_button_Feed_Logout.Margin = new System.Windows.Forms.Padding(2);
             this.m_button_Feed_Logout.Name = "m_button_Feed_Logout";
-            this.m_button_Feed_Logout.Size = new System.Drawing.Size(122, 25);
+            this.m_button_Feed_Logout.Size = new System.Drawing.Size(115, 25);
             this.m_button_Feed_Logout.TabIndex = 4;
             this.m_button_Feed_Logout.Text = "Logout";
             this.m_button_Feed_Logout.UseVisualStyleBackColor = true;
@@ -363,7 +367,7 @@
             this.m_pictureBox_Feed_IntroPic.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_Feed_IntroPic.BackgroundImage")));
             this.m_pictureBox_Feed_IntroPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.m_pictureBox_Feed_IntroPic.Location = new System.Drawing.Point(10, 5);
-            this.m_pictureBox_Feed_IntroPic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_pictureBox_Feed_IntroPic.Margin = new System.Windows.Forms.Padding(2);
             this.m_pictureBox_Feed_IntroPic.Name = "m_pictureBox_Feed_IntroPic";
             this.m_pictureBox_Feed_IntroPic.Size = new System.Drawing.Size(44, 37);
             this.m_pictureBox_Feed_IntroPic.TabIndex = 6;
@@ -532,7 +536,7 @@
             this.m_tabPage_Albums.Controls.Add(this.m_userAlbumPicturesComponent_Albums);
             this.m_tabPage_Albums.Location = new System.Drawing.Point(4, 22);
             this.m_tabPage_Albums.Name = "m_tabPage_Albums";
-            this.m_tabPage_Albums.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.m_tabPage_Albums.Padding = new System.Windows.Forms.Padding(3);
             this.m_tabPage_Albums.Size = new System.Drawing.Size(976, 596);
             this.m_tabPage_Albums.TabIndex = 2;
             this.m_tabPage_Albums.Text = "Albums";
@@ -552,7 +556,7 @@
             // 
             this.m_pictureBox_Albums_ChooseYourAlbum.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_Albums_ChooseYourAlbum.Image")));
             this.m_pictureBox_Albums_ChooseYourAlbum.Location = new System.Drawing.Point(97, 23);
-            this.m_pictureBox_Albums_ChooseYourAlbum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_pictureBox_Albums_ChooseYourAlbum.Margin = new System.Windows.Forms.Padding(2);
             this.m_pictureBox_Albums_ChooseYourAlbum.Name = "m_pictureBox_Albums_ChooseYourAlbum";
             this.m_pictureBox_Albums_ChooseYourAlbum.Size = new System.Drawing.Size(822, 83);
             this.m_pictureBox_Albums_ChooseYourAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -566,7 +570,7 @@
             this.m_button_Albums_Next.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_button_Albums_Next.ForeColor = System.Drawing.Color.RoyalBlue;
             this.m_button_Albums_Next.Location = new System.Drawing.Point(563, 513);
-            this.m_button_Albums_Next.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_button_Albums_Next.Margin = new System.Windows.Forms.Padding(2);
             this.m_button_Albums_Next.Name = "m_button_Albums_Next";
             this.m_button_Albums_Next.Size = new System.Drawing.Size(158, 41);
             this.m_button_Albums_Next.TabIndex = 7;
@@ -581,7 +585,7 @@
             this.m_button_Albums_Prevoius.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_button_Albums_Prevoius.ForeColor = System.Drawing.Color.RoyalBlue;
             this.m_button_Albums_Prevoius.Location = new System.Drawing.Point(283, 513);
-            this.m_button_Albums_Prevoius.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_button_Albums_Prevoius.Margin = new System.Windows.Forms.Padding(2);
             this.m_button_Albums_Prevoius.Name = "m_button_Albums_Prevoius";
             this.m_button_Albums_Prevoius.Size = new System.Drawing.Size(158, 41);
             this.m_button_Albums_Prevoius.TabIndex = 6;
@@ -593,7 +597,7 @@
             // 
             this.m_comboBox_Albums_AlbumsList.FormattingEnabled = true;
             this.m_comboBox_Albums_AlbumsList.Location = new System.Drawing.Point(394, 110);
-            this.m_comboBox_Albums_AlbumsList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_comboBox_Albums_AlbumsList.Margin = new System.Windows.Forms.Padding(2);
             this.m_comboBox_Albums_AlbumsList.Name = "m_comboBox_Albums_AlbumsList";
             this.m_comboBox_Albums_AlbumsList.Size = new System.Drawing.Size(198, 21);
             this.m_comboBox_Albums_AlbumsList.TabIndex = 0;
@@ -602,7 +606,7 @@
             // m_userAlbumPicturesComponent_Albums
             // 
             this.m_userAlbumPicturesComponent_Albums.Location = new System.Drawing.Point(97, 154);
-            this.m_userAlbumPicturesComponent_Albums.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_userAlbumPicturesComponent_Albums.Margin = new System.Windows.Forms.Padding(2);
             this.m_userAlbumPicturesComponent_Albums.Name = "m_userAlbumPicturesComponent_Albums";
             this.m_userAlbumPicturesComponent_Albums.Size = new System.Drawing.Size(822, 355);
             this.m_userAlbumPicturesComponent_Albums.TabIndex = 4;
@@ -616,6 +620,14 @@
             this.m_tabPage_Profile.TabIndex = 3;
             this.m_tabPage_Profile.Text = "Profile";
             this.m_tabPage_Profile.UseVisualStyleBackColor = true;
+            // 
+            // m_userProfileComponent_Profile
+            // 
+            this.m_userProfileComponent_Profile.Location = new System.Drawing.Point(2, 2);
+            this.m_userProfileComponent_Profile.Margin = new System.Windows.Forms.Padding(2);
+            this.m_userProfileComponent_Profile.Name = "m_userProfileComponent_Profile";
+            this.m_userProfileComponent_Profile.Size = new System.Drawing.Size(978, 566);
+            this.m_userProfileComponent_Profile.TabIndex = 0;
             // 
             // m_tabPage_Friends
             // 
@@ -654,18 +666,38 @@
             // m_userProfileComponent_Friends
             // 
             this.m_userProfileComponent_Friends.Location = new System.Drawing.Point(0, 31);
-            this.m_userProfileComponent_Friends.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.m_userProfileComponent_Friends.Margin = new System.Windows.Forms.Padding(2);
             this.m_userProfileComponent_Friends.Name = "m_userProfileComponent_Friends";
             this.m_userProfileComponent_Friends.Size = new System.Drawing.Size(978, 566);
             this.m_userProfileComponent_Friends.TabIndex = 0;
             // 
-            // m_userProfileComponent_Profile
+            // m_button_Feed_Feature1
             // 
-            this.m_userProfileComponent_Profile.Location = new System.Drawing.Point(2, 2);
-            this.m_userProfileComponent_Profile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.m_userProfileComponent_Profile.Name = "m_userProfileComponent_Profile";
-            this.m_userProfileComponent_Profile.Size = new System.Drawing.Size(978, 566);
-            this.m_userProfileComponent_Profile.TabIndex = 0;
+            this.m_button_Feed_Feature1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.m_button_Feed_Feature1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_button_Feed_Feature1.ForeColor = System.Drawing.Color.LawnGreen;
+            this.m_button_Feed_Feature1.Image = ((System.Drawing.Image)(resources.GetObject("m_button_Feed_Feature1.Image")));
+            this.m_button_Feed_Feature1.Location = new System.Drawing.Point(610, 3);
+            this.m_button_Feed_Feature1.Margin = new System.Windows.Forms.Padding(2);
+            this.m_button_Feed_Feature1.Name = "m_button_Feed_Feature1";
+            this.m_button_Feed_Feature1.Size = new System.Drawing.Size(100, 30);
+            this.m_button_Feed_Feature1.TabIndex = 8;
+            this.m_button_Feed_Feature1.Text = "Feature 1";
+            this.m_button_Feed_Feature1.UseVisualStyleBackColor = false;
+            // 
+            // m_button_Feed_Feature2
+            // 
+            this.m_button_Feed_Feature2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.m_button_Feed_Feature2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.m_button_Feed_Feature2.ForeColor = System.Drawing.Color.DarkGreen;
+            this.m_button_Feed_Feature2.Image = ((System.Drawing.Image)(resources.GetObject("m_button_Feed_Feature2.Image")));
+            this.m_button_Feed_Feature2.Location = new System.Drawing.Point(733, 3);
+            this.m_button_Feed_Feature2.Margin = new System.Windows.Forms.Padding(2);
+            this.m_button_Feed_Feature2.Name = "m_button_Feed_Feature2";
+            this.m_button_Feed_Feature2.Size = new System.Drawing.Size(100, 30);
+            this.m_button_Feed_Feature2.TabIndex = 9;
+            this.m_button_Feed_Feature2.Text = "Feature 2";
+            this.m_button_Feed_Feature2.UseVisualStyleBackColor = false;
             // 
             // DesktopFacebook
             // 
@@ -759,5 +791,7 @@
         private System.Windows.Forms.LinkLabel m_linkLabel_Feed_PostInfo;
         private System.Windows.Forms.PictureBox m_pictureBox_Albums_FacebookLogo;
         private UserProfileComponent m_userProfileComponent_Profile;
+        private System.Windows.Forms.Button m_button_Feed_Feature2;
+        private System.Windows.Forms.Button m_button_Feed_Feature1;
     }
 }
