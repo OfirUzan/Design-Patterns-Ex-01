@@ -12,12 +12,13 @@ using Model;
 
 namespace View
 {
-    public delegate void LoginDoneDelegate(User i_LoggedUser);
+    public delegate void LoginSucessDelegate(User i_LoggedUser);
+    public delegate void LoginFailedDelegate();
 
     public partial class LoginForm : Form
     {
-        public event LoginDoneDelegate LoginSucessListeners;
-        public event LoginDoneDelegate LoginFailedListeners;
+        public event LoginSucessDelegate LoginSucessListeners;
+        public event LoginFailedDelegate LoginFailedListeners;
         private FacebookAuthenticator m_facebookAuthenticator;
         public LoginForm()
         {
@@ -36,7 +37,7 @@ namespace View
         {
             Hide();
             Close();
-            LoginFailedListeners.Invoke(null);
+            LoginFailedListeners.Invoke();
         }
 
         private void m_buttonExit_Click(object sender, EventArgs e)

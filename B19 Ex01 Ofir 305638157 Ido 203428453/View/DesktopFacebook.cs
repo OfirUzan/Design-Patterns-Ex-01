@@ -12,10 +12,11 @@ namespace View
     public partial class DesktopFacebook : Form
     {
         private LoginForm     m_LoginForm;
-        private User          m_User;
         private AlbumsManager m_AlbumsManager;
-        private bool          m_firstLaunch = true;
         private WallHanndler  m_WallHandler;
+        private AppController m_AppController;
+        private FilesUploader m_FilesUploader;
+        private bool          m_firstLaunch = true;
 
 
         //Login Methods
@@ -27,16 +28,16 @@ namespace View
             m_LoginForm.LoginFailedListeners += m_LoginForm_LoginFailed;
         }
 
-        private void m_LoginForm_LoginFailed(User i_User)
+        private void m_LoginForm_LoginFailed()
         {
             Close();
         }
 
         private void m_LoginForm_LoginSucess(User i_LoggedUser)
         {
-            m_User = i_LoggedUser;
             InitializeComponent();
-            m_AlbumsManager = new AlbumsManager(m_User);
+            m_AppController = new AppController() { User = i_LoggedUser };
+            m_AlbumsManager = new AlbumsManager(m_AppController.User);
             InitializeFormTabs();
             if (m_firstLaunch)
             {
@@ -49,71 +50,99 @@ namespace View
             }
         }
 
-        public void StartLoginSession()
-        {
-            initializeLoginForm();
-            m_LoginForm.StartLoginSession();
-        }
-
         // init (Form/Tab) Methods
 
         private void InitializeFormTabs()
         {
-            
-            initializeMyAlbumsTab();
-            initializeMyProfileTab();
-            initializeTabMain();
-            
-
+            initializeAlbumsTab();
+            initializeProfileTab();
+            initializeFeedTab();
+            initializeFriendsTab();
         }
 
-        private void initializeMyProfileTab()
+        private void initializeFriendsTab()
         {
-            m_userProfileComponent.ComponentPictureBoxProfilePic.ImageLocation = m_User.PictureLargeURL;
-            m_userProfileComponent.ComponentTextBoxUserInfo.Text
-                = string.Format(
-@"Name: {0}
-Gender: {1}
-Birthday: {2}
-Email: {3}
-City: {4}
-Education: {5}
-Work: {6}
-Status: {7}
-About: {8}",
-                m_User.Name,
-                m_User.Gender,
-                m_User.Birthday,
-                m_User.Email,
-                m_User.Hometown?.Name,
-                m_User.Educations?[0].School?.Name,
-                m_User.WorkExperiences?[0].Name,
-                m_User.RelationshipStatus,
-                m_User.About
-);
-            //Following code line is on comment to prevent an error and suppose to get user's events.
-            //m_userProfileComponent.ComponentBindingSourceUpcomingEvents.DataSource = m_User.Events;
+            m_friendProfileComponent.AttachAFile.Click += FriendTabAttachAFile_Click;
+            m_friendProfileComponent.GetEvents.Click += FriendTabGetEvents_Click;
         }
 
-        private void initializeMyAlbumsTab()
+        private void FriendTabGetEvents_Click(object sender, EventArgs e)
         {
-            foreach (Album album in m_User.Albums)
+            if (m_AppController.Friend == null)
+            {
+                MessageBox.Show("Please select a friend first!");
+            }
+            else
+            {
+                try
+                {
+                    m_friendProfileComponent.ComponentBindingSourceUpcomingEvents.DataSource = m_AppController.Friend.Events;
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+        }
+
+        private void FriendTabAttachAFile_Click(object sender, EventArgs e)
+        {
+            if(m_AppController.Friend == null)
+            {
+                MessageBox.Show("Please select a friend first!");
+            }
+            else
+            {
+                m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.Friend);
+            }
+        }
+
+        private void ProfileTabAttachAFile_Click(object sender, EventArgs e)
+        {
+            m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.User);
+        }
+
+        private void initializeProfileTab()
+        {
+            m_FilesUploader = new FilesUploader();
+            m_userProfileComponent.AttachAFile.Click += ProfileTabAttachAFile_Click;
+            m_userProfileComponent.GetEvents.Click += ProfileTabGetEvents_Click;
+            m_userProfileComponent.ComponentPictureBoxProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
+            m_userProfileComponent.ComponentTextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(m_AppController.User);
+        }
+
+        private void ProfileTabGetEvents_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                m_userProfileComponent.ComponentBindingSourceUpcomingEvents.DataSource = m_AppController.User.Events;
+            }
+
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void initializeAlbumsTab()
+        {
+            foreach (Album album in m_AppController.User.Albums)
             {
                 m_comboBoxAlbums.Items.Add(album.Name);
             }
         }
 
-        private void initializeTabMain()
+        private void initializeFeedTab()
         {
-            m_WallHandler                         = new WallHanndler(m_User.WallPosts);
+            m_WallHandler                         = new WallHanndler(m_AppController.User.WallPosts);
             m_PB_TabMain_CoverPhoto.ImageLocation = m_AlbumsManager.GetLatestPhotoURL("Cover Photos");
             m_PB_TabMain_CoverPhoto.SizeMode      = PictureBoxSizeMode.StretchImage;
-            m_PB_TabMain_ProfilePic.ImageLocation = m_User.PictureLargeURL;
+            m_PB_TabMain_ProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
             m_PB_TabMain_ProfilePic.SizeMode      = PictureBoxSizeMode.StretchImage;
-            m_LinkLabel_TabMain_FullName.Text     = m_User.Name;
-            m_Label_TabMain_Email.Text            = m_User.Email;
-            m_Label_TabMain_Birth.Text            = m_User.Birthday;
-            m_Label_TabMain_Gender.Text           = m_User.Gender.ToString();
+            m_LinkLabel_TabMain_FullName.Text     = m_AppController.User.Name;
+            m_Label_TabMain_Email.Text            = m_AppController.User.Email;
+            m_Label_TabMain_Birth.Text            = m_AppController.User.Birthday;
+            m_Label_TabMain_Gender.Text           = m_AppController.User.Gender.ToString();
             makeRoundPictureBox(m_PB_TabMain_ProfilePic, 3, 3);
             this.nextWallPost();
         }
@@ -134,7 +163,7 @@ About: {8}",
             m_buttonNextPic.Enabled = true;
             m_buttonPrevoiusPic.Enabled = true;
             string albumName = m_comboBoxAlbums.SelectedItem.ToString();
-            m_AlbumsManager.setCurrentAlbum(albumName);
+            m_AlbumsManager.SetCurrentAlbum(albumName);
             createThreadsForAlbumPhotosNextClick();
         }
 
@@ -196,7 +225,7 @@ About: {8}",
 
         private User getAFriendOfTheUserByName(string i_FriendName)
         {
-            User friend = m_User.Friends.Find(x => x.Name == i_FriendName);
+            User friend = m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
             return friend;
         }
 
@@ -243,21 +272,7 @@ About: {8}",
 
         private void buttonUpload_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Select a picture";
-            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                try
-                {
-                    MessageBox.Show("Uploaded successfuly!");
-                }
-                catch (Exception uploadException)
-                {
-                    MessageBox.Show(uploadException.Message);
-                }
-            }
+            
         }
 
         private void label_TabProfile_About_Click(object sender, EventArgs e)
@@ -282,30 +297,9 @@ About: {8}",
 
             if (friend != null)
             {
+                m_AppController.Friend = friend;
                 m_friendProfileComponent.ComponentPictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
-                m_friendProfileComponent.ComponentTextBoxUserInfo.Text
-                    = string.Format(
-    @"Name: {0}
-Gender: {1}
-Birthday: {2}
-Email: {3}
-City: {4}
-Education: {5}
-Work: {6}
-Status: {7}
-About: {8}",
-                    friend.Name,
-                    friend.Gender,
-                    friend.Birthday,
-                    friend.Email,
-                    friend.Hometown?.Name,
-                    friend.Educations?[0].School?.Name,
-                    friend.WorkExperiences?[0].Name,
-                    friend.RelationshipStatus,
-                    friend.About
-    );
-                //Following code line is on comment to prevent an error and suppose to get user's events.
-                //m_userProfileComponent.ComponentBindingSourceUpcomingEvents.DataSource = m_User.Events;
+                m_friendProfileComponent.ComponentTextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(friend);
             }
             else
             {
@@ -337,7 +331,7 @@ About: {8}",
 
         private void linkLabel_TabMain_FullName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            String profileUrl = m_User.Link;
+            String profileUrl = m_AppController.User.Link;
             ProcessStartInfo sInfo = new ProcessStartInfo(profileUrl);
             Process.Start(sInfo);
         }
@@ -353,6 +347,12 @@ About: {8}",
         {
             ProcessStartInfo sInfo = new ProcessStartInfo(m_WallHandler.getPostId());
             Process.Start(sInfo);
+        }
+
+        public void StartLoginSession()
+        {
+            initializeLoginForm();
+            m_LoginForm.StartLoginSession();
         }
     } 
 }

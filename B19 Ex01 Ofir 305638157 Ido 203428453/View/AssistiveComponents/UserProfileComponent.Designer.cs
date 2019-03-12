@@ -52,6 +52,8 @@ namespace View
             this.m_ComponentPictureBoxProfilePic = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.m_buttonUploadPic = new System.Windows.Forms.Button();
+            this.m_buttonGetEvents = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceFeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentDataGridViewUpcomingEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceUpcomingEvents)).BeginInit();
@@ -179,10 +181,10 @@ namespace View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_ComponentButtonPostOnWall.BackColor = System.Drawing.Color.DarkBlue;
             this.m_ComponentButtonPostOnWall.ForeColor = System.Drawing.Color.White;
-            this.m_ComponentButtonPostOnWall.Location = new System.Drawing.Point(600, 492);
+            this.m_ComponentButtonPostOnWall.Location = new System.Drawing.Point(759, 490);
             this.m_ComponentButtonPostOnWall.Margin = new System.Windows.Forms.Padding(2);
             this.m_ComponentButtonPostOnWall.Name = "m_ComponentButtonPostOnWall";
-            this.m_ComponentButtonPostOnWall.Size = new System.Drawing.Size(224, 36);
+            this.m_ComponentButtonPostOnWall.Size = new System.Drawing.Size(158, 36);
             this.m_ComponentButtonPostOnWall.TabIndex = 13;
             this.m_ComponentButtonPostOnWall.Text = "Post";
             this.m_ComponentButtonPostOnWall.UseVisualStyleBackColor = false;
@@ -215,7 +217,7 @@ namespace View
             this.m_ComponentTextBoxUserInfo.Name = "m_ComponentTextBoxUserInfo";
             this.m_ComponentTextBoxUserInfo.ReadOnly = true;
             this.m_ComponentTextBoxUserInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.m_ComponentTextBoxUserInfo.Size = new System.Drawing.Size(251, 214);
+            this.m_ComponentTextBoxUserInfo.Size = new System.Drawing.Size(231, 214);
             this.m_ComponentTextBoxUserInfo.TabIndex = 11;
             // 
             // m_ComponentPictureBoxProfilePic
@@ -226,16 +228,16 @@ namespace View
             this.m_ComponentPictureBoxProfilePic.Location = new System.Drawing.Point(153, 42);
             this.m_ComponentPictureBoxProfilePic.Margin = new System.Windows.Forms.Padding(2);
             this.m_ComponentPictureBoxProfilePic.Name = "m_ComponentPictureBoxProfilePic";
-            this.m_ComponentPictureBoxProfilePic.Size = new System.Drawing.Size(251, 240);
+            this.m_ComponentPictureBoxProfilePic.Size = new System.Drawing.Size(231, 240);
             this.m_ComponentPictureBoxProfilePic.TabIndex = 10;
             this.m_ComponentPictureBoxProfilePic.TabStop = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(855, 492);
+            this.pictureBox1.Location = new System.Drawing.Point(685, 490);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(62, 54);
+            this.pictureBox1.Size = new System.Drawing.Size(43, 36);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
@@ -250,10 +252,34 @@ namespace View
             this.pictureBox2.TabIndex = 19;
             this.pictureBox2.TabStop = false;
             // 
+            // m_buttonUploadPic
+            // 
+            this.m_buttonUploadPic.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.m_buttonUploadPic.Font = new System.Drawing.Font("Arial Narrow", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_buttonUploadPic.ForeColor = System.Drawing.Color.AliceBlue;
+            this.m_buttonUploadPic.Location = new System.Drawing.Point(495, 490);
+            this.m_buttonUploadPic.Margin = new System.Windows.Forms.Padding(2);
+            this.m_buttonUploadPic.Name = "m_buttonUploadPic";
+            this.m_buttonUploadPic.Size = new System.Drawing.Size(158, 36);
+            this.m_buttonUploadPic.TabIndex = 20;
+            this.m_buttonUploadPic.Text = "Attach A Picture";
+            this.m_buttonUploadPic.UseVisualStyleBackColor = false;
+            // 
+            // m_buttonGetEvents
+            // 
+            this.m_buttonGetEvents.Location = new System.Drawing.Point(643, 288);
+            this.m_buttonGetEvents.Name = "m_buttonGetEvents";
+            this.m_buttonGetEvents.Size = new System.Drawing.Size(122, 23);
+            this.m_buttonGetEvents.TabIndex = 21;
+            this.m_buttonGetEvents.Text = "Get Events";
+            this.m_buttonGetEvents.UseVisualStyleBackColor = true;
+            // 
             // UserProfileComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.m_buttonGetEvents);
+            this.Controls.Add(this.m_buttonUploadPic);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.m_ComponentDataGridViewUpcomingEvents);
@@ -296,5 +322,7 @@ namespace View
         private System.Windows.Forms.DataGridViewTextBoxColumn timeStringDataGridViewTextBoxColumn;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
+        private Button m_buttonUploadPic;
+        private Button m_buttonGetEvents;
     }
 }

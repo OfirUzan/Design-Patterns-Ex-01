@@ -67,7 +67,7 @@ namespace Model
             return previousPhotoURL;
         }
 
-        public void setCurrentAlbum(string i_AlbumName)
+        public void SetCurrentAlbum(string i_AlbumName)
         {
             CurrentAlbumPhotosURL.Clear();
             Album photosAlbum = m_User.Albums.Find(x => x.Name == i_AlbumName);
@@ -135,9 +135,9 @@ namespace Model
             }
         }
 
-        public void UploadPhotoToCurrentAlbum(string i_PhotoLocalPath)
+        public void UploadAPhotoToTimeline(User i_User, string i_FilePath)
         {
-            m_User.PostPhoto(i_PhotoLocalPath);
+            i_User.PostPhoto(i_FilePath);
         }
 
         private string mostLikedPictureFromAlbum(string i_AlbumName)

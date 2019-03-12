@@ -50,6 +50,45 @@ namespace View
             }
         }
 
+        public Button Post
+        {
+            get
+            {
+                return m_ComponentButtonPostOnWall;
+            }
+
+            set
+            {
+                m_ComponentButtonPostOnWall = value;
+            }
+        }
+
+        public Button AttachAFile
+        {
+            get
+            {
+                return m_buttonUploadPic;
+            }
+
+            set
+            {
+                m_buttonUploadPic = value;
+            }
+        }
+
+        public Button GetEvents
+        {
+            get
+            {
+                return m_buttonGetEvents;
+            }
+
+            set
+            {
+                m_buttonGetEvents = value;
+            }
+        }
+
         public UserProfileComponent()
         {
             InitializeComponent();

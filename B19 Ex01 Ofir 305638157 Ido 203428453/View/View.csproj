@@ -58,6 +58,12 @@
     <Compile Include="DesktopFacebook.Designer.cs">
       <DependentUpon>DesktopFacebook.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilesUploader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilesUploader.Designer.cs">
+      <DependentUpon>FilesUploader.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
