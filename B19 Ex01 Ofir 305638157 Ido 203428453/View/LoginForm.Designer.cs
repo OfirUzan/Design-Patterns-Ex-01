@@ -29,10 +29,10 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            BackgroundImageLayout = ImageLayout.Center;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.m_buttonLogin = new System.Windows.Forms.Button();
             this.m_buttonExit = new System.Windows.Forms.Button();
+            this.m_checkBoxRememberUser = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // m_buttonLogin
@@ -55,6 +55,18 @@ namespace View
             this.m_buttonExit.UseVisualStyleBackColor = true;
             this.m_buttonExit.Click += new System.EventHandler(this.m_buttonExit_Click);
             // 
+            // m_checkBoxRememberUser
+            // 
+            this.m_checkBoxRememberUser.AutoSize = true;
+            this.m_checkBoxRememberUser.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.m_checkBoxRememberUser.Location = new System.Drawing.Point(76, 203);
+            this.m_checkBoxRememberUser.Name = "m_checkBoxRememberUser";
+            this.m_checkBoxRememberUser.Size = new System.Drawing.Size(122, 21);
+            this.m_checkBoxRememberUser.TabIndex = 2;
+            this.m_checkBoxRememberUser.Text = "Remember Me";
+            this.m_checkBoxRememberUser.UseVisualStyleBackColor = false;
+            this.m_checkBoxRememberUser.CheckedChanged += new System.EventHandler(this.m_checkBoxRememberUser_CheckedChanged);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -64,6 +76,7 @@ namespace View
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 357);
+            this.Controls.Add(this.m_checkBoxRememberUser);
             this.Controls.Add(this.m_buttonExit);
             this.Controls.Add(this.m_buttonLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -72,6 +85,7 @@ namespace View
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facebook For Desktop! - Login";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -79,5 +93,6 @@ namespace View
 
         private System.Windows.Forms.Button m_buttonLogin;
         private System.Windows.Forms.Button m_buttonExit;
+        private CheckBox m_checkBoxRememberUser;
     }
 }

@@ -11,8 +11,13 @@ namespace View
 {
     public partial class UserAlbumPicturesComponent : UserControl
     {
+        #region Class Members / Properties
+
         public byte NumOfPictureBoxes { get; }
         public PictureBox[] PictureBoxes { get; set; }
+
+        #endregion
+
         public UserAlbumPicturesComponent()
         {
             NumOfPictureBoxes = 8;

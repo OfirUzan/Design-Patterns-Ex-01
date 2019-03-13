@@ -133,6 +133,7 @@
     <Content Include="AppResources\Login Background.jpg" />
     <Content Include="AppResources\Main App Background.jpg" />
     <Content Include="AppResources\Transparent Logo.png" />
+    <Content Include="AppResources\Welcome To FaceRide!.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
