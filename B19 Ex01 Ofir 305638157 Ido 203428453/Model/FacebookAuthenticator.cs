@@ -24,16 +24,8 @@ namespace Model
 
             if(!string.IsNullOrEmpty(m_AppSettings.LastAcessToken))
             {
-                o_User = FacebookService.Connect(m_AppSettings.LastAcessToken)?.LoggedInUser;
-
-                if (o_User != null)
-                {
-                    isLoggedIn = true;
-                }
-                else
-                {
-                    isLoggedIn = true;
-                }
+                o_User = FacebookService.Connect(m_AppSettings.LastAcessToken).LoggedInUser;
+                isLoggedIn = true;
             }
             else
             {

@@ -63,16 +63,28 @@ namespace View
         public void StartLoginSession()
         {
             User user = null;
-            bool isLoggedIn = m_facebookAuthenticator.IsUserLoggedIn(out user);
 
-            if (isLoggedIn)
+            try
             {
-                finishLoginWithSucess(user);
+                bool isLoggedIn = m_facebookAuthenticator.IsUserLoggedIn(out user);
+
+                if (isLoggedIn)
+                {
+                    finishLoginWithSucess(user);
+                }
+                else
+                {
+                    ShowDialog();
+                }
             }
-            else
+
+            catch(Exception e)
             {
+                MessageBox.Show(e.Message + Environment.NewLine + "Acess token file has been corrupted?");
+                m_facebookAuthenticator.LogoutUser();
                 ShowDialog();
             }
+            
         }
 
         public void LogoutUser()

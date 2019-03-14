@@ -438,7 +438,6 @@ namespace View
         {
             launchBrowser("https://www.facebook.com/messages/t/" + m_faceRideManager.ChosenFriend.Id);
         }
-
         private void ButtonPostOnWall_Click(object sender, EventArgs e)
         {
             try
