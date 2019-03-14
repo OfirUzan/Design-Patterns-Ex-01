@@ -62,10 +62,7 @@ namespace View
 
         public void StartLoginSession()
         {
-            //Change next line to null
-            User user = FacebookService.Connect("EAAGaTwZCX7mkBAK93KkGatqUwhdljP2lQ9TXEK4RfA8xpfYZBeYeLf3hI5Sa0nw9JvrTy5eYjv1lbznBq6LI0KtozQQQBm39LBNk3VXnZBBKIMeiOeNEhlj1ZC7UId1Pm7qUVZBnh8WwKuKFIOJT130VEZCxaZBOm6hClZAGjdxbLQZDZD").LoggedInUser;
-            //delete next line
-            finishLoginWithSucess(user);
+            User user = null;
             bool isLoggedIn = m_facebookAuthenticator.IsUserLoggedIn(out user);
 
             if (isLoggedIn)

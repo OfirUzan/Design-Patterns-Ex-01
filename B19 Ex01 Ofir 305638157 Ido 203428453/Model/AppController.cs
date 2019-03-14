@@ -9,6 +9,8 @@ namespace Model
 
         public User Friend { get; set; }
 
+        public User FaceRideFriend { get; set; }
+
         public string GetFacebookUserInfo(User i_User)
         {
             return string.Format(

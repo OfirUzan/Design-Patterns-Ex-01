@@ -76,7 +76,7 @@ namespace Model
                     m_CurrCommentId = comment.Id;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 comment = null;
                 m_CurrCommentId = null;

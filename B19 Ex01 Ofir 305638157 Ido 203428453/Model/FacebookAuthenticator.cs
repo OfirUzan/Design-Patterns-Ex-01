@@ -11,7 +11,7 @@ namespace Model
 
         public FacebookAuthenticator()
         {
-            m_AppSettings = AppSettings.LoadAppSettingsFromXmlFile();
+            m_AppSettings = AppSettings.GetOrCreateAppSettingsFromXmlFile();
         }
 
         public bool IsUserLoggedIn(out User o_User)
@@ -43,12 +43,13 @@ namespace Model
         public User LoginUser()
         {
             LoginResult result = FacebookService.Login("451139335614057", "public_profile", "email", "publish_to_groups", "user_birthday", "user_age_range", "user_gender", "user_link", "user_tagged_places", "user_videos", "publish_to_groups", "groups_access_member_info", "user_friends", "user_events", "user_likes", "user_location", "user_photos", "user_posts", "user_hometown");
+            m_AppSettings.LastAcessToken = result.AccessToken;
 
             if (result?.LoggedInUser != null)
             {
                 if (RememberUser)
                 {
-                    m_AppSettings.SaveSettingsToXmlFile();
+                    m_AppSettings.SaveAppSettingsToXmlFile();
                 }
             }
             else

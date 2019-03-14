@@ -83,9 +83,23 @@
             this.m_textBox_Friends_FriendName = new System.Windows.Forms.TextBox();
             this.m_userProfileComponent_Friends = new View.UserProfileComponent();
             this.m_tabPage_FaceRide = new System.Windows.Forms.TabPage();
+            this.m_textBox_FaceRide_Km = new System.Windows.Forms.TextBox();
+            this.m_pictureBox_FaceRide_Location = new System.Windows.Forms.PictureBox();
+            this.m_linkLabel_FaceRide_ShowOnMap = new System.Windows.Forms.LinkLabel();
+            this.m_comboBox_FaceRide_Radius = new System.Windows.Forms.ComboBox();
+            this.m_checkBox_FaceRide_Female = new System.Windows.Forms.CheckBox();
+            this.m_linkLabel_FaceRide_CurrentLocation = new System.Windows.Forms.LinkLabel();
+            this.m_richTextBox_FaceRide_WhereFrom = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.m_pictureBox_FaceRide_Title = new System.Windows.Forms.PictureBox();
+            this.m_checkBox_FaceRide_Male = new System.Windows.Forms.CheckBox();
+            this.m_pictureBox_FaceRide_Location2 = new System.Windows.Forms.PictureBox();
+            this.m_pictureBox_FaceRide_Radius = new System.Windows.Forms.PictureBox();
+            this.m_pictureBox_FaceRide_Destination = new System.Windows.Forms.PictureBox();
+            this.m_button_FaceRide_LetsRide = new System.Windows.Forms.Button();
+            this.m_richTextBox_FaceRide_WhereTo = new System.Windows.Forms.RichTextBox();
             this.m_pictureBox_FaceRide_subTitle = new System.Windows.Forms.PictureBox();
+            this.m_pictureBox_FaceRide_Title = new System.Windows.Forms.PictureBox();
+            this.m_pictureBox_FaceRide_FacebookLogo = new System.Windows.Forms.PictureBox();
             this.m_tabsControl.SuspendLayout();
             this.m_tabPage_Feed.SuspendLayout();
             this.m_panelFeedPosts.SuspendLayout();
@@ -105,9 +119,14 @@
             this.m_tabPage_Profile.SuspendLayout();
             this.m_tabPage_Friends.SuspendLayout();
             this.m_tabPage_FaceRide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Location)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Title)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Location2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Radius)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Destination)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_subTitle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Title)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_FacebookLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // m_tabsControl
@@ -118,7 +137,7 @@
             this.m_tabsControl.Controls.Add(this.m_tabPage_Friends);
             this.m_tabsControl.Controls.Add(this.m_tabPage_FaceRide);
             this.m_tabsControl.Location = new System.Drawing.Point(3, 14);
-            this.m_tabsControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_tabsControl.Margin = new System.Windows.Forms.Padding(4);
             this.m_tabsControl.Name = "m_tabsControl";
             this.m_tabsControl.SelectedIndex = 0;
             this.m_tabsControl.Size = new System.Drawing.Size(1312, 766);
@@ -135,9 +154,9 @@
             this.m_tabPage_Feed.Controls.Add(this.m_linkLabel_Feed_FullName);
             this.m_tabPage_Feed.Controls.Add(this.m_pictureBox_Feed_CoverPhoto);
             this.m_tabPage_Feed.Location = new System.Drawing.Point(4, 25);
-            this.m_tabPage_Feed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_tabPage_Feed.Margin = new System.Windows.Forms.Padding(4);
             this.m_tabPage_Feed.Name = "m_tabPage_Feed";
-            this.m_tabPage_Feed.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_tabPage_Feed.Padding = new System.Windows.Forms.Padding(4);
             this.m_tabPage_Feed.Size = new System.Drawing.Size(1304, 737);
             this.m_tabPage_Feed.TabIndex = 1;
             this.m_tabPage_Feed.Text = "Feed";
@@ -327,6 +346,7 @@
             this.m_button_Feed_FaceRide.TabIndex = 8;
             this.m_button_Feed_FaceRide.Text = "FaceRide!";
             this.m_button_Feed_FaceRide.UseVisualStyleBackColor = false;
+            this.m_button_Feed_FaceRide.Click += new System.EventHandler(this.FeedTab_FaceRide_Click);
             // 
             // m_button_Feed_Profile
             // 
@@ -391,7 +411,7 @@
             this.m_panel_Feed_Intro.Controls.Add(this.m_panel_Feed_Email);
             this.m_panel_Feed_Intro.Controls.Add(this.m_panel_Feed_Birthday);
             this.m_panel_Feed_Intro.Location = new System.Drawing.Point(8, 352);
-            this.m_panel_Feed_Intro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_panel_Feed_Intro.Margin = new System.Windows.Forms.Padding(4);
             this.m_panel_Feed_Intro.Name = "m_panel_Feed_Intro";
             this.m_panel_Feed_Intro.Size = new System.Drawing.Size(320, 284);
             this.m_panel_Feed_Intro.TabIndex = 3;
@@ -423,7 +443,7 @@
             this.m_panel_Feed_Gender.Controls.Add(this.m_Label_TabMain_Gender);
             this.m_panel_Feed_Gender.Controls.Add(this.m_label_Feed_Gender2);
             this.m_panel_Feed_Gender.Location = new System.Drawing.Point(13, 213);
-            this.m_panel_Feed_Gender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_panel_Feed_Gender.Margin = new System.Windows.Forms.Padding(4);
             this.m_panel_Feed_Gender.Name = "m_panel_Feed_Gender";
             this.m_panel_Feed_Gender.Size = new System.Drawing.Size(269, 42);
             this.m_panel_Feed_Gender.TabIndex = 4;
@@ -456,7 +476,7 @@
             this.m_panel_Feed_LivesIn.Controls.Add(this.m_label_Feed_LivesIn);
             this.m_panel_Feed_LivesIn.Controls.Add(this.m_label_Feed_LivesIn2);
             this.m_panel_Feed_LivesIn.Location = new System.Drawing.Point(13, 162);
-            this.m_panel_Feed_LivesIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_panel_Feed_LivesIn.Margin = new System.Windows.Forms.Padding(4);
             this.m_panel_Feed_LivesIn.Name = "m_panel_Feed_LivesIn";
             this.m_panel_Feed_LivesIn.Size = new System.Drawing.Size(269, 42);
             this.m_panel_Feed_LivesIn.TabIndex = 3;
@@ -489,7 +509,7 @@
             this.m_panel_Feed_Email.Controls.Add(this.m_label_Feed_Email);
             this.m_panel_Feed_Email.Controls.Add(this.m_label_Feed_Email2);
             this.m_panel_Feed_Email.Location = new System.Drawing.Point(13, 114);
-            this.m_panel_Feed_Email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_panel_Feed_Email.Margin = new System.Windows.Forms.Padding(4);
             this.m_panel_Feed_Email.Name = "m_panel_Feed_Email";
             this.m_panel_Feed_Email.Size = new System.Drawing.Size(269, 42);
             this.m_panel_Feed_Email.TabIndex = 2;
@@ -522,7 +542,7 @@
             this.m_panel_Feed_Birthday.Controls.Add(this.m_label_Feed_Birthday);
             this.m_panel_Feed_Birthday.Controls.Add(this.m_label_Feed_Birthday2);
             this.m_panel_Feed_Birthday.Location = new System.Drawing.Point(13, 65);
-            this.m_panel_Feed_Birthday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_panel_Feed_Birthday.Margin = new System.Windows.Forms.Padding(4);
             this.m_panel_Feed_Birthday.Name = "m_panel_Feed_Birthday";
             this.m_panel_Feed_Birthday.Size = new System.Drawing.Size(269, 42);
             this.m_panel_Feed_Birthday.TabIndex = 0;
@@ -568,7 +588,7 @@
             // m_pictureBox_Feed_CoverPhoto
             // 
             this.m_pictureBox_Feed_CoverPhoto.Location = new System.Drawing.Point(-5, 7);
-            this.m_pictureBox_Feed_CoverPhoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_pictureBox_Feed_CoverPhoto.Margin = new System.Windows.Forms.Padding(4);
             this.m_pictureBox_Feed_CoverPhoto.Name = "m_pictureBox_Feed_CoverPhoto";
             this.m_pictureBox_Feed_CoverPhoto.Size = new System.Drawing.Size(1305, 290);
             this.m_pictureBox_Feed_CoverPhoto.TabIndex = 0;
@@ -584,9 +604,9 @@
             this.m_tabPage_Albums.Controls.Add(this.m_comboBox_Albums_AlbumsList);
             this.m_tabPage_Albums.Controls.Add(this.m_userAlbumPicturesComponent_Albums);
             this.m_tabPage_Albums.Location = new System.Drawing.Point(4, 25);
-            this.m_tabPage_Albums.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_tabPage_Albums.Margin = new System.Windows.Forms.Padding(4);
             this.m_tabPage_Albums.Name = "m_tabPage_Albums";
-            this.m_tabPage_Albums.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_tabPage_Albums.Padding = new System.Windows.Forms.Padding(4);
             this.m_tabPage_Albums.Size = new System.Drawing.Size(1304, 737);
             this.m_tabPage_Albums.TabIndex = 2;
             this.m_tabPage_Albums.Text = "Albums";
@@ -596,7 +616,7 @@
             // 
             this.m_pictureBox_Albums_FacebookLogo.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_Albums_FacebookLogo.Image")));
             this.m_pictureBox_Albums_FacebookLogo.Location = new System.Drawing.Point(0, 0);
-            this.m_pictureBox_Albums_FacebookLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_pictureBox_Albums_FacebookLogo.Margin = new System.Windows.Forms.Padding(4);
             this.m_pictureBox_Albums_FacebookLogo.Name = "m_pictureBox_Albums_FacebookLogo";
             this.m_pictureBox_Albums_FacebookLogo.Size = new System.Drawing.Size(119, 103);
             this.m_pictureBox_Albums_FacebookLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -666,7 +686,7 @@
             // 
             this.m_tabPage_Profile.Controls.Add(this.m_userProfileComponent_Profile);
             this.m_tabPage_Profile.Location = new System.Drawing.Point(4, 25);
-            this.m_tabPage_Profile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_tabPage_Profile.Margin = new System.Windows.Forms.Padding(4);
             this.m_tabPage_Profile.Name = "m_tabPage_Profile";
             this.m_tabPage_Profile.Size = new System.Drawing.Size(1304, 737);
             this.m_tabPage_Profile.TabIndex = 3;
@@ -688,7 +708,7 @@
             this.m_tabPage_Friends.Controls.Add(this.m_userProfileComponent_Friends);
             this.m_tabPage_Friends.ForeColor = System.Drawing.SystemColors.ControlText;
             this.m_tabPage_Friends.Location = new System.Drawing.Point(4, 25);
-            this.m_tabPage_Friends.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_tabPage_Friends.Margin = new System.Windows.Forms.Padding(4);
             this.m_tabPage_Friends.Name = "m_tabPage_Friends";
             this.m_tabPage_Friends.Size = new System.Drawing.Size(1304, 737);
             this.m_tabPage_Friends.TabIndex = 4;
@@ -700,7 +720,7 @@
             this.m_button_Friends_Search.BackColor = System.Drawing.Color.DodgerBlue;
             this.m_button_Friends_Search.ForeColor = System.Drawing.SystemColors.Window;
             this.m_button_Friends_Search.Location = new System.Drawing.Point(265, 7);
-            this.m_button_Friends_Search.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_button_Friends_Search.Margin = new System.Windows.Forms.Padding(4);
             this.m_button_Friends_Search.Name = "m_button_Friends_Search";
             this.m_button_Friends_Search.Size = new System.Drawing.Size(100, 28);
             this.m_button_Friends_Search.TabIndex = 2;
@@ -711,7 +731,7 @@
             // m_textBox_Friends_FriendName
             // 
             this.m_textBox_Friends_FriendName.Location = new System.Drawing.Point(5, 7);
-            this.m_textBox_Friends_FriendName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_textBox_Friends_FriendName.Margin = new System.Windows.Forms.Padding(4);
             this.m_textBox_Friends_FriendName.Name = "m_textBox_Friends_FriendName";
             this.m_textBox_Friends_FriendName.Size = new System.Drawing.Size(251, 22);
             this.m_textBox_Friends_FriendName.TabIndex = 1;
@@ -728,9 +748,23 @@
             // 
             // m_tabPage_FaceRide
             // 
+            this.m_tabPage_FaceRide.Controls.Add(this.m_textBox_FaceRide_Km);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_pictureBox_FaceRide_Location);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_linkLabel_FaceRide_ShowOnMap);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_comboBox_FaceRide_Radius);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_checkBox_FaceRide_Female);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_linkLabel_FaceRide_CurrentLocation);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_richTextBox_FaceRide_WhereFrom);
+            this.m_tabPage_FaceRide.Controls.Add(this.pictureBox1);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_checkBox_FaceRide_Male);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_pictureBox_FaceRide_Location2);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_pictureBox_FaceRide_Radius);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_pictureBox_FaceRide_Destination);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_button_FaceRide_LetsRide);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_richTextBox_FaceRide_WhereTo);
             this.m_tabPage_FaceRide.Controls.Add(this.m_pictureBox_FaceRide_subTitle);
             this.m_tabPage_FaceRide.Controls.Add(this.m_pictureBox_FaceRide_Title);
-            this.m_tabPage_FaceRide.Controls.Add(this.pictureBox1);
+            this.m_tabPage_FaceRide.Controls.Add(this.m_pictureBox_FaceRide_FacebookLogo);
             this.m_tabPage_FaceRide.Location = new System.Drawing.Point(4, 25);
             this.m_tabPage_FaceRide.Name = "m_tabPage_FaceRide";
             this.m_tabPage_FaceRide.Size = new System.Drawing.Size(1304, 737);
@@ -738,36 +772,177 @@
             this.m_tabPage_FaceRide.Text = "FaceRide!";
             this.m_tabPage_FaceRide.UseVisualStyleBackColor = true;
             // 
+            // m_textBox_FaceRide_Km
+            // 
+            this.m_textBox_FaceRide_Km.Location = new System.Drawing.Point(646, 441);
+            this.m_textBox_FaceRide_Km.Name = "m_textBox_FaceRide_Km";
+            this.m_textBox_FaceRide_Km.Size = new System.Drawing.Size(61, 22);
+            this.m_textBox_FaceRide_Km.TabIndex = 38;
+            this.m_textBox_FaceRide_Km.Text = "KM";
+            this.m_textBox_FaceRide_Km.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // m_pictureBox_FaceRide_Location
+            // 
+            this.m_pictureBox_FaceRide_Location.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_Location.Image")));
+            this.m_pictureBox_FaceRide_Location.Location = new System.Drawing.Point(901, 266);
+            this.m_pictureBox_FaceRide_Location.Name = "m_pictureBox_FaceRide_Location";
+            this.m_pictureBox_FaceRide_Location.Size = new System.Drawing.Size(35, 44);
+            this.m_pictureBox_FaceRide_Location.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.m_pictureBox_FaceRide_Location.TabIndex = 37;
+            this.m_pictureBox_FaceRide_Location.TabStop = false;
+            // 
+            // m_linkLabel_FaceRide_ShowOnMap
+            // 
+            this.m_linkLabel_FaceRide_ShowOnMap.AutoSize = true;
+            this.m_linkLabel_FaceRide_ShowOnMap.Location = new System.Drawing.Point(580, 404);
+            this.m_linkLabel_FaceRide_ShowOnMap.Name = "m_linkLabel_FaceRide_ShowOnMap";
+            this.m_linkLabel_FaceRide_ShowOnMap.Size = new System.Drawing.Size(96, 17);
+            this.m_linkLabel_FaceRide_ShowOnMap.TabIndex = 36;
+            this.m_linkLabel_FaceRide_ShowOnMap.TabStop = true;
+            this.m_linkLabel_FaceRide_ShowOnMap.Text = "Show On Map";
+            this.m_linkLabel_FaceRide_ShowOnMap.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.m_linkLabel_FaceRide_ShowMap_LinkClicked);
+            // 
+            // m_comboBox_FaceRide_Radius
+            // 
+            this.m_comboBox_FaceRide_Radius.FormattingEnabled = true;
+            this.m_comboBox_FaceRide_Radius.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.m_comboBox_FaceRide_Radius.Location = new System.Drawing.Point(580, 439);
+            this.m_comboBox_FaceRide_Radius.Name = "m_comboBox_FaceRide_Radius";
+            this.m_comboBox_FaceRide_Radius.Size = new System.Drawing.Size(55, 24);
+            this.m_comboBox_FaceRide_Radius.TabIndex = 35;
+            // 
+            // m_checkBox_FaceRide_Female
+            // 
+            this.m_checkBox_FaceRide_Female.AutoSize = true;
+            this.m_checkBox_FaceRide_Female.Location = new System.Drawing.Point(580, 543);
+            this.m_checkBox_FaceRide_Female.Name = "m_checkBox_FaceRide_Female";
+            this.m_checkBox_FaceRide_Female.Size = new System.Drawing.Size(127, 21);
+            this.m_checkBox_FaceRide_Female.TabIndex = 34;
+            this.m_checkBox_FaceRide_Female.Text = "Female Friends";
+            this.m_checkBox_FaceRide_Female.UseVisualStyleBackColor = true;
+            // 
+            // m_linkLabel_FaceRide_CurrentLocation
+            // 
+            this.m_linkLabel_FaceRide_CurrentLocation.AutoSize = true;
+            this.m_linkLabel_FaceRide_CurrentLocation.Location = new System.Drawing.Point(580, 317);
+            this.m_linkLabel_FaceRide_CurrentLocation.Name = "m_linkLabel_FaceRide_CurrentLocation";
+            this.m_linkLabel_FaceRide_CurrentLocation.Size = new System.Drawing.Size(164, 17);
+            this.m_linkLabel_FaceRide_CurrentLocation.TabIndex = 32;
+            this.m_linkLabel_FaceRide_CurrentLocation.TabStop = true;
+            this.m_linkLabel_FaceRide_CurrentLocation.Text = "Use My Current Location";
+            this.m_linkLabel_FaceRide_CurrentLocation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FaceRideTab_linkLabelLocation_Click);
+            // 
+            // m_richTextBox_FaceRide_WhereFrom
+            // 
+            this.m_richTextBox_FaceRide_WhereFrom.Location = new System.Drawing.Point(580, 266);
+            this.m_richTextBox_FaceRide_WhereFrom.Name = "m_richTextBox_FaceRide_WhereFrom";
+            this.m_richTextBox_FaceRide_WhereFrom.Size = new System.Drawing.Size(296, 44);
+            this.m_richTextBox_FaceRide_WhereFrom.TabIndex = 31;
+            this.m_richTextBox_FaceRide_WhereFrom.Text = "";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-4, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(305, 266);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(119, 103);
+            this.pictureBox1.Size = new System.Drawing.Size(237, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
             // 
-            // m_pictureBox_FaceRide_Title
+            // m_checkBox_FaceRide_Male
             // 
-            this.m_pictureBox_FaceRide_Title.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_Title.Image")));
-            this.m_pictureBox_FaceRide_Title.Location = new System.Drawing.Point(236, 36);
-            this.m_pictureBox_FaceRide_Title.Name = "m_pictureBox_FaceRide_Title";
-            this.m_pictureBox_FaceRide_Title.Size = new System.Drawing.Size(847, 100);
-            this.m_pictureBox_FaceRide_Title.TabIndex = 22;
-            this.m_pictureBox_FaceRide_Title.TabStop = false;
+            this.m_checkBox_FaceRide_Male.AutoSize = true;
+            this.m_checkBox_FaceRide_Male.Location = new System.Drawing.Point(580, 516);
+            this.m_checkBox_FaceRide_Male.Name = "m_checkBox_FaceRide_Male";
+            this.m_checkBox_FaceRide_Male.Size = new System.Drawing.Size(111, 21);
+            this.m_checkBox_FaceRide_Male.TabIndex = 29;
+            this.m_checkBox_FaceRide_Male.Text = "Male Friends";
+            this.m_checkBox_FaceRide_Male.UseVisualStyleBackColor = true;
+            // 
+            // m_pictureBox_FaceRide_Location2
+            // 
+            this.m_pictureBox_FaceRide_Location2.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_Location2.Image")));
+            this.m_pictureBox_FaceRide_Location2.Location = new System.Drawing.Point(901, 357);
+            this.m_pictureBox_FaceRide_Location2.Name = "m_pictureBox_FaceRide_Location2";
+            this.m_pictureBox_FaceRide_Location2.Size = new System.Drawing.Size(35, 44);
+            this.m_pictureBox_FaceRide_Location2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.m_pictureBox_FaceRide_Location2.TabIndex = 28;
+            this.m_pictureBox_FaceRide_Location2.TabStop = false;
+            // 
+            // m_pictureBox_FaceRide_Radius
+            // 
+            this.m_pictureBox_FaceRide_Radius.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_Radius.Image")));
+            this.m_pictureBox_FaceRide_Radius.Location = new System.Drawing.Point(320, 430);
+            this.m_pictureBox_FaceRide_Radius.Name = "m_pictureBox_FaceRide_Radius";
+            this.m_pictureBox_FaceRide_Radius.Size = new System.Drawing.Size(212, 44);
+            this.m_pictureBox_FaceRide_Radius.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.m_pictureBox_FaceRide_Radius.TabIndex = 27;
+            this.m_pictureBox_FaceRide_Radius.TabStop = false;
+            // 
+            // m_pictureBox_FaceRide_Destination
+            // 
+            this.m_pictureBox_FaceRide_Destination.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_Destination.Image")));
+            this.m_pictureBox_FaceRide_Destination.Location = new System.Drawing.Point(305, 356);
+            this.m_pictureBox_FaceRide_Destination.Name = "m_pictureBox_FaceRide_Destination";
+            this.m_pictureBox_FaceRide_Destination.Size = new System.Drawing.Size(237, 45);
+            this.m_pictureBox_FaceRide_Destination.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.m_pictureBox_FaceRide_Destination.TabIndex = 26;
+            this.m_pictureBox_FaceRide_Destination.TabStop = false;
+            // 
+            // m_button_FaceRide_LetsRide
+            // 
+            this.m_button_FaceRide_LetsRide.Location = new System.Drawing.Point(527, 603);
+            this.m_button_FaceRide_LetsRide.Name = "m_button_FaceRide_LetsRide";
+            this.m_button_FaceRide_LetsRide.Size = new System.Drawing.Size(134, 47);
+            this.m_button_FaceRide_LetsRide.TabIndex = 25;
+            this.m_button_FaceRide_LetsRide.Text = "Let\'s Ride!";
+            this.m_button_FaceRide_LetsRide.UseVisualStyleBackColor = true;
+            this.m_button_FaceRide_LetsRide.Click += new System.EventHandler(this.FaceRideTab_LetsRide_Click);
+            // 
+            // m_richTextBox_FaceRide_WhereTo
+            // 
+            this.m_richTextBox_FaceRide_WhereTo.Location = new System.Drawing.Point(580, 357);
+            this.m_richTextBox_FaceRide_WhereTo.Name = "m_richTextBox_FaceRide_WhereTo";
+            this.m_richTextBox_FaceRide_WhereTo.Size = new System.Drawing.Size(296, 44);
+            this.m_richTextBox_FaceRide_WhereTo.TabIndex = 24;
+            this.m_richTextBox_FaceRide_WhereTo.Text = "";
             // 
             // m_pictureBox_FaceRide_subTitle
             // 
             this.m_pictureBox_FaceRide_subTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.m_pictureBox_FaceRide_subTitle.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_subTitle.Image")));
-            this.m_pictureBox_FaceRide_subTitle.Location = new System.Drawing.Point(325, 142);
+            this.m_pictureBox_FaceRide_subTitle.Location = new System.Drawing.Point(252, 142);
             this.m_pictureBox_FaceRide_subTitle.Name = "m_pictureBox_FaceRide_subTitle";
-            this.m_pictureBox_FaceRide_subTitle.Size = new System.Drawing.Size(665, 50);
+            this.m_pictureBox_FaceRide_subTitle.Size = new System.Drawing.Size(810, 50);
             this.m_pictureBox_FaceRide_subTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.m_pictureBox_FaceRide_subTitle.TabIndex = 23;
             this.m_pictureBox_FaceRide_subTitle.TabStop = false;
+            // 
+            // m_pictureBox_FaceRide_Title
+            // 
+            this.m_pictureBox_FaceRide_Title.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_Title.Image")));
+            this.m_pictureBox_FaceRide_Title.Location = new System.Drawing.Point(195, 36);
+            this.m_pictureBox_FaceRide_Title.Name = "m_pictureBox_FaceRide_Title";
+            this.m_pictureBox_FaceRide_Title.Size = new System.Drawing.Size(1095, 100);
+            this.m_pictureBox_FaceRide_Title.TabIndex = 22;
+            this.m_pictureBox_FaceRide_Title.TabStop = false;
+            // 
+            // m_pictureBox_FaceRide_FacebookLogo
+            // 
+            this.m_pictureBox_FaceRide_FacebookLogo.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_FacebookLogo.Image")));
+            this.m_pictureBox_FaceRide_FacebookLogo.Location = new System.Drawing.Point(-4, 0);
+            this.m_pictureBox_FaceRide_FacebookLogo.Margin = new System.Windows.Forms.Padding(4);
+            this.m_pictureBox_FaceRide_FacebookLogo.Name = "m_pictureBox_FaceRide_FacebookLogo";
+            this.m_pictureBox_FaceRide_FacebookLogo.Size = new System.Drawing.Size(119, 103);
+            this.m_pictureBox_FaceRide_FacebookLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.m_pictureBox_FaceRide_FacebookLogo.TabIndex = 21;
+            this.m_pictureBox_FaceRide_FacebookLogo.TabStop = false;
             // 
             // DesktopFacebook
             // 
@@ -777,7 +952,7 @@
             this.Controls.Add(this.m_tabsControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DesktopFacebook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facebook For Desktop!";
@@ -808,9 +983,15 @@
             this.m_tabPage_Friends.ResumeLayout(false);
             this.m_tabPage_Friends.PerformLayout();
             this.m_tabPage_FaceRide.ResumeLayout(false);
+            this.m_tabPage_FaceRide.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Location)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Title)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Location2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Radius)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Destination)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_subTitle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_Title)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox_FaceRide_FacebookLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -871,6 +1052,20 @@
         private System.Windows.Forms.TabPage m_tabPage_FaceRide;
         private System.Windows.Forms.PictureBox m_pictureBox_FaceRide_subTitle;
         private System.Windows.Forms.PictureBox m_pictureBox_FaceRide_Title;
+        private System.Windows.Forms.PictureBox m_pictureBox_FaceRide_FacebookLogo;
+        private System.Windows.Forms.CheckBox m_checkBox_FaceRide_Male;
+        private System.Windows.Forms.PictureBox m_pictureBox_FaceRide_Location2;
+        private System.Windows.Forms.PictureBox m_pictureBox_FaceRide_Radius;
+        private System.Windows.Forms.PictureBox m_pictureBox_FaceRide_Destination;
+        private System.Windows.Forms.Button m_button_FaceRide_LetsRide;
+        private System.Windows.Forms.RichTextBox m_richTextBox_FaceRide_WhereTo;
+        private System.Windows.Forms.RichTextBox m_richTextBox_FaceRide_WhereFrom;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox m_checkBox_FaceRide_Female;
+        private System.Windows.Forms.LinkLabel m_linkLabel_FaceRide_CurrentLocation;
+        private System.Windows.Forms.ComboBox m_comboBox_FaceRide_Radius;
+        private System.Windows.Forms.PictureBox m_pictureBox_FaceRide_Location;
+        private System.Windows.Forms.LinkLabel m_linkLabel_FaceRide_ShowOnMap;
+        private System.Windows.Forms.TextBox m_textBox_FaceRide_Km;
     }
 }

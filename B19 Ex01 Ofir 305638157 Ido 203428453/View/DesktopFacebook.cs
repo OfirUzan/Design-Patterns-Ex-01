@@ -17,6 +17,7 @@ namespace View
         private WallManager     m_wallManager;
         private FilesUploader   m_filesUploader;
         private bool            m_firstLaunch = true;
+        RideForm rideForm = new RideForm();
 
         #endregion
 
@@ -38,7 +39,7 @@ namespace View
             InitializeComponent();
             m_appController = new AppController() { User = i_LoggedUser };
             m_albumsManager = new AlbumsManager(m_appController.User);
-            //m_wallManager = new WallManager(m_appController.User.WallPosts);
+            m_wallManager = new WallManager(m_appController.User.WallPosts);
             m_filesUploader = new FilesUploader();
             if (m_firstLaunch)
             {
@@ -55,12 +56,15 @@ namespace View
 
         #region Tabs Init Methods
 
+        //Note for Ofir: Move Method implementation to Model.
         private void InitializeFormTabs()
         {
-            initializeFeedTab();
-            initializeAlbumsTab();
-            initializeProfileTab();
-            initializeFriendsTab();
+            //Use threads to init each tab
+            new System.Threading.Thread(() => initializeFeedTab()).Start();
+            new System.Threading.Thread(() => initializeAlbumsTab()).Start();
+            new System.Threading.Thread(() => initializeProfileTab()).Start();
+            new System.Threading.Thread(() => initializeFriendsTab()).Start();
+            new System.Threading.Thread(() => initializeFaceRideTab()).Start();
         }
 
         private void initializeFeedTab()
@@ -104,6 +108,22 @@ namespace View
             m_userProfileComponent_Friends.ButtonAttachAFile.Click += FriendsTab_AttachAFile_Click;
             m_userProfileComponent_Friends.ButtonGetEvents.Click += FriendsTab_GetEvents_Click;
             m_userProfileComponent_Friends.ButtonPost.Click += FriendsTabButtonPost_Click;
+        }
+
+        private void initializeFaceRideTab()
+        {
+            rideForm.FriendsDataGridView.CellDoubleClick += FriendsDataGridView_CellDoubleClick;
+        }
+
+        //Implement message sending request to friend.
+        private void FriendsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView friendsDataGridView = sender as DataGridView;
+            SelectedRideFriendForm selectedRideFriendForm = new SelectedRideFriendForm();
+            //selectedRideFriendForm.FriendProfilePicture=friendsDataGridView.SelectedRows[0].Cells[0].Im
+            //selectedRideFriendForm.FriendFirstName.Text = friendsDataGridView.SelectedRows[0].Cells[0].
+            selectedRideFriendForm.ShowDialog();
+            
         }
 
         #endregion
@@ -263,6 +283,96 @@ namespace View
             m_textBox_Friends_FriendName.Text = string.Empty;
             (sender as TextBox).Click -= FriendsTab_textBoxFriendName_Click;
         }
+
+        private void FaceRideTab_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            m_richTextBox_FaceRide_WhereFrom.Text = m_appController.User.Location.Name;
+        }
+
+        private void FaceRideTab_LetsRide_Click(object sender, EventArgs e)
+        {
+            if (validateAllFields())
+            {
+                rideForm.BindingSource.DataSource = m_appController.User.Friends;
+                rideForm.FriendsDataGridView.DataBindingComplete += FriendsDataGridView_DataBindingComplete;
+                rideForm.ShowDialog();
+            }
+        }
+
+        private void FriendsDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            int rowIndex = 0;
+
+            foreach (User friend in m_appController.User.Friends)
+            {
+                DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell()
+                {
+                    Value = friend.Location.Name
+                };
+
+                rideForm.FriendsDataGridView.Rows[rowIndex].Cells[rideForm.LocationColumn.Index] = dataGridViewTextBoxCell;
+                ++rowIndex;
+            }
+        }
+
+        private bool validateAllFields()
+        {
+            return validateWhereFromField() && validateWhereToField() && validateRadiusField() && validateGenderField();
+        }
+
+        private bool validateRadiusField()
+        {
+            bool isValid = true;
+
+            if (m_comboBox_FaceRide_Radius.SelectedItem == null)
+            {
+                MessageBox.Show("Please Select Radius Of Search");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private bool validateWhereToField()
+        {
+            bool isValid = true;
+
+            if (m_richTextBox_FaceRide_WhereTo.Text == string.Empty)
+            {
+                MessageBox.Show("Please Select Your Destination");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private bool validateWhereFromField()
+        {
+            bool isValid = true;
+
+            if(m_richTextBox_FaceRide_WhereFrom.Text == string.Empty)
+            {
+                MessageBox.Show("Please Select Your Origin");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private bool validateGenderField()
+        {
+            bool isValid = true;
+
+            if(!(m_checkBox_FaceRide_Male.Checked || m_checkBox_FaceRide_Female.Checked))
+            {
+                MessageBox.Show("Please Select A Gender Of Your Ride");
+                isValid = false;
+            }
+
+            return isValid;
+
+        }
+
         #endregion
 
         #region Class Methods
@@ -293,7 +403,6 @@ namespace View
 
         private void nextWallPost()
         {
-            /*
             Post p = m_wallManager.GetNextWallPost();
             Comment c = m_wallManager.GetNextCommentOfCurrentPost();
             m_pictureBox_Feed_PostPic.ImageLocation = p.PictureURL;
@@ -302,7 +411,6 @@ namespace View
             m_label_Feed_PostName.Text = p.Name;
             m_richTextBox_Feed_PostDescription.Text = p.Message;
             nextPostComment();
-            */
         }
 
         private void nextPostComment()
@@ -370,10 +478,27 @@ namespace View
 
         public void StartLoginSession()
         {
+            CheckForIllegalCrossThreadCalls = false;
             initializeLoginForm();
             m_loginForm.StartLoginSession();
         }
 
+
         #endregion
+
+        private void m_linkLabel_FaceRide_ShowMap_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (validateWhereToField())
+            {
+                MapForm mapForm = new MapForm();
+                mapForm.ShowLocationOnMap(m_richTextBox_FaceRide_WhereTo.Text);
+                mapForm.ShowDialog();
+            }
+        }
+
+        private void FeedTab_FaceRide_Click(object sender, EventArgs e)
+        {
+            m_tabsControl.SelectedTab = m_tabPage_FaceRide;
+        }
     }
 }
