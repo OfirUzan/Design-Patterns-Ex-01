@@ -18,6 +18,7 @@ namespace View
         private FilesUploader   m_filesUploader;
         private FaceRideManager m_faceRideManager;
         private RideForm        m_rideForm;
+        SelectedRideFriendForm  m_selectedRideFriendForm;
         private bool            m_firstLaunch = true;
 
         #endregion
@@ -361,15 +362,12 @@ namespace View
 
                 try
                 {
-                    FacebookObjectCollection<User> possibleRideFriends = m_faceRideManager.GetPotentialRideFriends(m_appController.User, searchRadius, maleFriends, femaleFriends);
-                    if (possibleRideFriends.Count != 0)
+                    FacebookObjectCollection<User> potentialRideFriends = m_faceRideManager.GetPotentialRideFriends(m_appController.User, searchRadius, maleFriends, femaleFriends);
+
+                    if (potentialRideFriends.Count != 0)
                     {
                         //OnDemand object creation.
-                        m_rideForm = new RideForm();
-                        m_rideForm.FriendsDataGridView.CellDoubleClick += FaceRideTab_FriendsDataGridView_CellDoubleClick;
-                        m_rideForm.BindingSource.DataSource = m_appController.User.Friends;
-                        m_rideForm.FriendsDataGridView.DataBindingComplete += FriendsDataGridView_DataBindingComplete;
-                        m_rideForm.ShowDialog();
+                        createAndShowRideForm();
                     }
                     else
                     {
@@ -381,6 +379,15 @@ namespace View
                     MessageBox.Show("Error: No permission to get user and/or friends locations.");
                 }
             }
+        }
+
+        private void createAndShowRideForm()
+        {
+            m_rideForm = new RideForm();
+            m_rideForm.FriendsDataGridView.CellDoubleClick += FaceRideTab_FriendsDataGridView_CellDoubleClick;
+            m_rideForm.BindingSource.DataSource = m_appController.User.Friends;
+            m_rideForm.FriendsDataGridView.DataBindingComplete += FriendsDataGridView_DataBindingComplete;
+            m_rideForm.ShowDialog();
         }
 
         private void FaceRideTab_linkLabelShowMap_Click(object sender, LinkLabelLinkClickedEventArgs e)
@@ -409,15 +416,39 @@ namespace View
             }
         }
 
-        //Implement message sending request to friend.
         private void FaceRideTab_FriendsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView friendsDataGridView = sender as DataGridView;
-            SelectedRideFriendForm selectedRideFriendForm = new SelectedRideFriendForm();
-            //selectedRideFriendForm.FriendProfilePicture=friendsDataGridView.SelectedRows[0].Cells[0].Im
-            //selectedRideFriendForm.FriendFirstName.Text = friendsDataGridView.SelectedRows[0].Cells[0].
-            selectedRideFriendForm.ShowDialog();
+            m_faceRideManager.ChosenFriend = m_faceRideManager.PossibleRideFriends[e.RowIndex];
+            m_selectedRideFriendForm = new SelectedRideFriendForm();
+            m_selectedRideFriendForm.FriendProfilePicture.Image = (Image) friendsDataGridView.Rows[e.RowIndex].Cells[m_rideForm.ProfilePictureColumn.Index].Value;
+            m_selectedRideFriendForm.FriendFirstName.Text = (string)friendsDataGridView.Rows[e.RowIndex].Cells[m_rideForm.FirstNameColumn.Index].Value;
+            m_selectedRideFriendForm.FriendLastName.Text = (string)friendsDataGridView.Rows[e.RowIndex].Cells[m_rideForm.LastNameColumn.Index].Value;
+            m_selectedRideFriendForm.RequestMessage.Text =
+            string.Format("Hey {0}!{1}I would like to take a ride with you to {2}!{3}What do you say?",
+                          m_selectedRideFriendForm.FriendFirstName.Text, Environment.NewLine, m_richTextBox_FaceRide_WhereTo.Text, Environment.NewLine);
+            m_selectedRideFriendForm.FriendFirstName.ReadOnly = true;
+            m_selectedRideFriendForm.FriendLastName.ReadOnly = true;
+            m_selectedRideFriendForm.ButtonPostOnWall.Click += ButtonPostOnWall_Click;
+            m_selectedRideFriendForm.ButtonPostOnMessanger.Click += ButtonPostOnMessanger_Click;
+            m_selectedRideFriendForm.ShowDialog();
+        }
 
+        private void ButtonPostOnMessanger_Click(object sender, EventArgs e)
+        {
+            launchBrowser("https://www.facebook.com/messages/t/" + m_faceRideManager.ChosenFriend.Id);
+        }
+
+        private void ButtonPostOnWall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                m_faceRideManager.ChosenFriend.PostStatus(m_selectedRideFriendForm.RequestMessage.Text);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private bool validateAllFields()
@@ -475,7 +506,6 @@ namespace View
             }
 
             return isValid;
-
         }
 
         #endregion

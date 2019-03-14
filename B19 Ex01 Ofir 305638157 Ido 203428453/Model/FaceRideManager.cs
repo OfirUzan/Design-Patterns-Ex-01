@@ -1,35 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
     public class FaceRideManager
     {
+        #region Class Members / Properties
+
+        public User ChosenFriend { get; set; }
+
+        public FacebookObjectCollection<User> PossibleRideFriends { get; set; }
+
+        #endregion
+
+        #region Class Methods
+
         //This method receives the user's information, radius search and desired gender for the ride.
         //The method creates and returns a collection of potential FaceRide partners.
         public FacebookObjectCollection<User> GetPotentialRideFriends(User i_User, string i_SearchRadius, bool i_MaleFriends, bool i_FemaleFriends)
         {
             double radius = double.Parse(i_SearchRadius);
-            FacebookObjectCollection<User> possibleRideFriends = new FacebookObjectCollection<User>();
+            PossibleRideFriends = new FacebookObjectCollection<User>();
 
             foreach (User friend in i_User.Friends)
             {
                 if((friend.Gender == User.eGender.male && i_MaleFriends || friend.Gender == User.eGender.female && i_FemaleFriends)
                 && isFriendOnSearchRadius(i_User, friend, radius))
                 {
-                    possibleRideFriends.Add(friend);
+                    PossibleRideFriends.Add(friend);
                 }
             }
 
-            return possibleRideFriends;
+            return PossibleRideFriends;
         }
 
         // *** Following method will fail because we don't have location acess from facebook as supposed to *** //
         private bool isFriendOnSearchRadius(User i_User, User i_Friend, double i_SearchRadius)
         {
+            //Returning always true just for testing purpuses!!!
+            return true;
+
+            //Change to following implementation for REAL implementation.
             double userLatitude = (double)i_User.Location.Location.Latitude;
             double userLongtitude = (double)i_User.Location.Location.Longitude;
             double friendLatitude = (double)i_Friend.Location.Location.Latitude;
@@ -48,16 +59,16 @@ namespace Model
         {
             //The radius of the earth in Km.
             int earthKmRadius = 6371;
-
             double userLatRadians = convertToRadians(i_UserLatitude);
             double userLongRadians = convertToRadians(i_UserLongitude);
             double friendLatRadians = convertToRadians(i_FriendLatitude);
             double friendLonggRadians = convertToRadians(i_FriendLongitude);
-
             double u = Math.Sin((friendLatRadians - userLatRadians) / 2);
             double v = Math.Sin((friendLonggRadians - userLongRadians) / 2);
 
             return 2.0 * earthKmRadius * Math.Asin(Math.Sqrt(u * u + Math.Cos(userLatRadians) * Math.Cos(friendLatRadians) * v * v));
         }
+
+        #endregion
     }
 }

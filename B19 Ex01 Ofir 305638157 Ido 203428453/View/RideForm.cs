@@ -11,11 +11,7 @@ namespace View
 {
     public partial class RideForm : Form
     {
-        public RideForm()
-        {
-            InitializeComponent();
-        }
-
+        #region Class Members / Properties
         public BindingSource BindingSource
         {
             get
@@ -53,5 +49,55 @@ namespace View
                 m_locationColumn = value;
             }
         }
+
+        public DataGridViewTextBoxColumn FirstNameColumn
+        {
+            get
+            {
+                return m_firstNameColumn;
+            }
+
+            set
+            {
+                m_firstNameColumn = value;
+            }
+        }
+
+        public DataGridViewTextBoxColumn LastNameColumn
+        {
+            get
+            {
+                return m_lastNameColumn;
+            }
+
+            set
+            {
+                m_lastNameColumn = value;
+            }
+        }
+
+        public DataGridViewImageColumn ProfilePictureColumn
+        {
+            get
+            {
+                return m_profilePicColumn;
+            }
+
+            set
+            {
+                m_profilePicColumn = value;
+            }
+        }
+
+        #endregion
+
+        #region Class Methods
+
+        public RideForm()
+        {
+            InitializeComponent();
+        }
+
+        #endregion
     }
 }

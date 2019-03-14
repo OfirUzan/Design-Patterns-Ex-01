@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RideForm));
             this.m_dataGridView_Friends = new System.Windows.Forms.DataGridView();
-            this.m_profilePicColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.m_firstNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.m_LastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.m_locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.m_emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_bindingSource_Friends = new System.Windows.Forms.BindingSource(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.m_profilePicColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.m_firstNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.m_lastNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.m_locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.m_emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.m_dataGridView_Friends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_bindingSource_Friends)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -53,7 +53,7 @@
             this.m_dataGridView_Friends.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.m_profilePicColumn,
             this.m_firstNameColumn,
-            this.m_LastNameColumn,
+            this.m_lastNameColumn,
             this.m_locationColumn,
             this.m_emailColumn});
             this.m_dataGridView_Friends.DataSource = this.m_bindingSource_Friends;
@@ -63,40 +63,6 @@
             this.m_dataGridView_Friends.RowTemplate.Height = 50;
             this.m_dataGridView_Friends.Size = new System.Drawing.Size(723, 346);
             this.m_dataGridView_Friends.TabIndex = 0;
-            // 
-            // m_profilePicColumn
-            // 
-            this.m_profilePicColumn.DataPropertyName = "ImageSmall";
-            this.m_profilePicColumn.HeaderText = "Profile Picture";
-            this.m_profilePicColumn.Name = "m_profilePicColumn";
-            this.m_profilePicColumn.ReadOnly = true;
-            // 
-            // m_firstNameColumn
-            // 
-            this.m_firstNameColumn.DataPropertyName = "FirstName";
-            this.m_firstNameColumn.HeaderText = "First Name";
-            this.m_firstNameColumn.Name = "m_firstNameColumn";
-            this.m_firstNameColumn.ReadOnly = true;
-            // 
-            // m_LastNameColumn
-            // 
-            this.m_LastNameColumn.DataPropertyName = "LastName";
-            this.m_LastNameColumn.HeaderText = "Last Name";
-            this.m_LastNameColumn.Name = "m_LastNameColumn";
-            this.m_LastNameColumn.ReadOnly = true;
-            // 
-            // m_locationColumn
-            // 
-            this.m_locationColumn.HeaderText = "Location";
-            this.m_locationColumn.Name = "m_locationColumn";
-            this.m_locationColumn.ReadOnly = true;
-            // 
-            // m_emailColumn
-            // 
-            this.m_emailColumn.DataPropertyName = "Email";
-            this.m_emailColumn.HeaderText = "Email";
-            this.m_emailColumn.Name = "m_emailColumn";
-            this.m_emailColumn.ReadOnly = true;
             // 
             // m_bindingSource_Friends
             // 
@@ -121,6 +87,40 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
+            // 
+            // m_profilePicColumn
+            // 
+            this.m_profilePicColumn.DataPropertyName = "ImageNormal";
+            this.m_profilePicColumn.HeaderText = "Profile Picture";
+            this.m_profilePicColumn.Name = "m_profilePicColumn";
+            this.m_profilePicColumn.ReadOnly = true;
+            // 
+            // m_firstNameColumn
+            // 
+            this.m_firstNameColumn.DataPropertyName = "FirstName";
+            this.m_firstNameColumn.HeaderText = "First Name";
+            this.m_firstNameColumn.Name = "m_firstNameColumn";
+            this.m_firstNameColumn.ReadOnly = true;
+            // 
+            // m_lastNameColumn
+            // 
+            this.m_lastNameColumn.DataPropertyName = "LastName";
+            this.m_lastNameColumn.HeaderText = "Last Name";
+            this.m_lastNameColumn.Name = "m_lastNameColumn";
+            this.m_lastNameColumn.ReadOnly = true;
+            // 
+            // m_locationColumn
+            // 
+            this.m_locationColumn.HeaderText = "Location";
+            this.m_locationColumn.Name = "m_locationColumn";
+            this.m_locationColumn.ReadOnly = true;
+            // 
+            // m_emailColumn
+            // 
+            this.m_emailColumn.DataPropertyName = "Email";
+            this.m_emailColumn.HeaderText = "Email";
+            this.m_emailColumn.Name = "m_emailColumn";
+            this.m_emailColumn.ReadOnly = true;
             // 
             // RideForm
             // 
@@ -147,11 +147,11 @@
         private System.Windows.Forms.DataGridView m_dataGridView_Friends;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.BindingSource m_bindingSource_Friends;
+        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.DataGridViewImageColumn m_profilePicColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn m_firstNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn m_LastNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn m_lastNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn m_locationColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn m_emailColumn;
-        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

@@ -774,9 +774,10 @@
             // 
             // m_textBox_FaceRide_Km
             // 
-            this.m_textBox_FaceRide_Km.Location = new System.Drawing.Point(646, 441);
+            this.m_textBox_FaceRide_Km.Location = new System.Drawing.Point(641, 441);
             this.m_textBox_FaceRide_Km.Name = "m_textBox_FaceRide_Km";
-            this.m_textBox_FaceRide_Km.Size = new System.Drawing.Size(61, 22);
+            this.m_textBox_FaceRide_Km.ReadOnly = true;
+            this.m_textBox_FaceRide_Km.Size = new System.Drawing.Size(45, 22);
             this.m_textBox_FaceRide_Km.TabIndex = 38;
             this.m_textBox_FaceRide_Km.Text = "KM";
             this.m_textBox_FaceRide_Km.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -878,9 +879,9 @@
             // m_pictureBox_FaceRide_Radius
             // 
             this.m_pictureBox_FaceRide_Radius.Image = ((System.Drawing.Image)(resources.GetObject("m_pictureBox_FaceRide_Radius.Image")));
-            this.m_pictureBox_FaceRide_Radius.Location = new System.Drawing.Point(320, 430);
+            this.m_pictureBox_FaceRide_Radius.Location = new System.Drawing.Point(339, 428);
             this.m_pictureBox_FaceRide_Radius.Name = "m_pictureBox_FaceRide_Radius";
-            this.m_pictureBox_FaceRide_Radius.Size = new System.Drawing.Size(212, 44);
+            this.m_pictureBox_FaceRide_Radius.Size = new System.Drawing.Size(203, 35);
             this.m_pictureBox_FaceRide_Radius.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.m_pictureBox_FaceRide_Radius.TabIndex = 27;
             this.m_pictureBox_FaceRide_Radius.TabStop = false;
