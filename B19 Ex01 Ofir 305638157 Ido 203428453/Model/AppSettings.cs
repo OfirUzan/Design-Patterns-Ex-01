@@ -5,10 +5,16 @@ namespace Model
 {
     public class AppSettings
     {
+        #region Class Members / Properties
+
         private static readonly string r_filePath = Directory.GetCurrentDirectory() + "\\AcessToken.txt";
         private static readonly object r_ObjectCreationLockContext = new object();
         private static AppSettings s_appSettings = null;
         public string LastAcessToken { get; set; } = null;
+
+        #endregion
+
+        #region Class Methods
 
         private AppSettings() { }
 
@@ -43,12 +49,14 @@ namespace Model
             return s_appSettings;
         }
 
-        public void DeleteAppSettings()
+        public void DeleteAppSettingsXmlFile()
         {
             if (File.Exists(r_filePath))
             {
                 File.Delete(r_filePath);
             }
         }
+
+        #endregion
     }
 }

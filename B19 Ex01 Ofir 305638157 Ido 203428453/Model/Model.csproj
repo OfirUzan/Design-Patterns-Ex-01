@@ -52,6 +52,7 @@
     <Compile Include="AppController.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacebookAuthenticator.cs" />
+    <Compile Include="FaceRideManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WallManager.cs" />
   </ItemGroup>

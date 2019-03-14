@@ -346,7 +346,7 @@
             this.m_button_Feed_FaceRide.TabIndex = 8;
             this.m_button_Feed_FaceRide.Text = "FaceRide!";
             this.m_button_Feed_FaceRide.UseVisualStyleBackColor = false;
-            this.m_button_Feed_FaceRide.Click += new System.EventHandler(this.FeedTab_FaceRide_Click);
+            this.m_button_Feed_FaceRide.Click += new System.EventHandler(this.FeedTab_FaceRideButton_Click);
             // 
             // m_button_Feed_Profile
             // 
@@ -360,7 +360,7 @@
             this.m_button_Feed_Profile.TabIndex = 7;
             this.m_button_Feed_Profile.Text = "Profile ";
             this.m_button_Feed_Profile.UseVisualStyleBackColor = false;
-            this.m_button_Feed_Profile.Click += new System.EventHandler(this.FeedTab_Profile_Click);
+            this.m_button_Feed_Profile.Click += new System.EventHandler(this.FeedTab_ProfileButton_Click);
             // 
             // m_button_Feed_Albums
             // 
@@ -374,7 +374,7 @@
             this.m_button_Feed_Albums.TabIndex = 6;
             this.m_button_Feed_Albums.Text = "Albums";
             this.m_button_Feed_Albums.UseVisualStyleBackColor = false;
-            this.m_button_Feed_Albums.Click += new System.EventHandler(this.FeedTab_Albums_Click);
+            this.m_button_Feed_Albums.Click += new System.EventHandler(this.FeedTab_AlbumsButton_Click);
             // 
             // m_button_Feed_Friends
             // 
@@ -388,7 +388,7 @@
             this.m_button_Feed_Friends.TabIndex = 5;
             this.m_button_Feed_Friends.Text = "Friends";
             this.m_button_Feed_Friends.UseVisualStyleBackColor = false;
-            this.m_button_Feed_Friends.Click += new System.EventHandler(this.FeedTab_Friends_Click);
+            this.m_button_Feed_Friends.Click += new System.EventHandler(this.FeedTab_FriendsButton_Click);
             // 
             // m_button_Feed_Logout
             // 
@@ -800,7 +800,7 @@
             this.m_linkLabel_FaceRide_ShowOnMap.TabIndex = 36;
             this.m_linkLabel_FaceRide_ShowOnMap.TabStop = true;
             this.m_linkLabel_FaceRide_ShowOnMap.Text = "Show On Map";
-            this.m_linkLabel_FaceRide_ShowOnMap.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.m_linkLabel_FaceRide_ShowMap_LinkClicked);
+            this.m_linkLabel_FaceRide_ShowOnMap.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.FaceRideTab_linkLabelShowMap_Click);
             // 
             // m_comboBox_FaceRide_Radius
             // 

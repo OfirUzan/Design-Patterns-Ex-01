@@ -5,10 +5,14 @@ namespace Model
 {
     public class FacebookAuthenticator
     {
-        private AppSettings m_AppSettings;
+        #region Class Members / Properties
 
+        private AppSettings m_AppSettings;
         public bool RememberUser { get; set; } = false;
 
+        #endregion
+
+        #region Class Methods
         public FacebookAuthenticator()
         {
             m_AppSettings = AppSettings.GetOrCreateAppSettingsFromXmlFile();
@@ -62,7 +66,9 @@ namespace Model
 
         public void LogoutUser()
         {
-            m_AppSettings.DeleteAppSettings();
+            m_AppSettings.DeleteAppSettingsXmlFile();
         }
+
+        #endregion
     }
 }

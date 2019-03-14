@@ -5,12 +5,15 @@ namespace Model
 {
     public class AppController
     {
+        #region Class Members / Properties
+
         public User User { get; set; }
-
         public User Friend { get; set; }
-
         public User FaceRideFriend { get; set; }
 
+        #endregion
+
+        #region Class Methods
         public string GetFacebookUserInfo(User i_User)
         {
             return string.Format(
@@ -62,5 +65,7 @@ About: {8}",
             public System.Threading.Thread Thread { get; set; }
             public int PictureBoxIndex { get; set; }
         }
+
+        #endregion
     }
 }

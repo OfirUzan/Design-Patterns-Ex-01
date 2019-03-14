@@ -53,9 +53,5 @@ namespace View
                 m_locationColumn = value;
             }
         }
-
-
-
-      
     }
 }

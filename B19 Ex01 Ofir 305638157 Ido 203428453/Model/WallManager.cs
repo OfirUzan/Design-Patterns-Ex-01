@@ -5,6 +5,8 @@ namespace Model
 {
     public class WallManager
     {
+        #region Class Members / Properties
+
         private FacebookObjectCollection<Post> m_Wall;
         private int m_PostIndex;
         private int m_CommentIndex;
@@ -12,6 +14,9 @@ namespace Model
         private string m_CurrCommentId;
         private string m_CurrPostId;
 
+        #endregion
+
+        #region Class Methods
         public WallManager(FacebookObjectCollection<Post> i_Wall)
         {
             m_Wall = i_Wall;
@@ -100,4 +105,6 @@ namespace Model
             i_User.PostStatus(i_PostText);
         }
     }
+
+    #endregion
 }

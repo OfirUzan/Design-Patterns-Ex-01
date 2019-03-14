@@ -5,9 +5,15 @@ namespace Model
 {
     public class AlbumsManager
     {
+        #region Members / Properties
+
         public User User { get; set; }
         public LinkedListNode<string> CurrentPhotoURL { get; set; }
-        private object m_threadsLock = new object();
+        private readonly object r_getNextPhotoLockContext = new object();
+
+        #endregion
+
+        #region Class Methods
 
         public LinkedList<string> CurrentAlbumPhotosURL { get; set; }
 
@@ -28,7 +34,7 @@ namespace Model
         {
             string nextPhotoURL;
 
-            lock (m_threadsLock)
+            lock (r_getNextPhotoLockContext)
             {
                 if (CurrentPhotoURL.Next != null)
                 {
@@ -81,6 +87,8 @@ namespace Model
         {
             i_User.PostPhoto(i_FilePath);
         }
+
+        #endregion
 
         /* // like counters
          private int sumAlbumLikes(Album i_Album)

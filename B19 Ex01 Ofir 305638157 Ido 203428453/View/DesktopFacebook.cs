@@ -16,8 +16,9 @@ namespace View
         private AlbumsManager   m_albumsManager;
         private WallManager     m_wallManager;
         private FilesUploader   m_filesUploader;
+        private FaceRideManager m_faceRideManager;
+        private RideForm        m_rideForm;
         private bool            m_firstLaunch = true;
-        RideForm rideForm = new RideForm();
 
         #endregion
 
@@ -41,6 +42,7 @@ namespace View
             m_albumsManager = new AlbumsManager(m_appController.User);
             m_wallManager = new WallManager(m_appController.User.WallPosts);
             m_filesUploader = new FilesUploader();
+            m_faceRideManager = new FaceRideManager();
             if (m_firstLaunch)
             {
                 m_firstLaunch = false;
@@ -56,15 +58,13 @@ namespace View
 
         #region Tabs Init Methods
 
-        //Note for Ofir: Move Method implementation to Model.
         private void InitializeFormTabs()
         {
-            //Use threads to init each tab
+            //Use threads to init each tab FAST !!!
             new System.Threading.Thread(() => initializeFeedTab()).Start();
             new System.Threading.Thread(() => initializeAlbumsTab()).Start();
             new System.Threading.Thread(() => initializeProfileTab()).Start();
             new System.Threading.Thread(() => initializeFriendsTab()).Start();
-            new System.Threading.Thread(() => initializeFaceRideTab()).Start();
         }
 
         private void initializeFeedTab()
@@ -110,25 +110,10 @@ namespace View
             m_userProfileComponent_Friends.ButtonPost.Click += FriendsTabButtonPost_Click;
         }
 
-        private void initializeFaceRideTab()
-        {
-            rideForm.FriendsDataGridView.CellDoubleClick += FriendsDataGridView_CellDoubleClick;
-        }
-
-        //Implement message sending request to friend.
-        private void FriendsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridView friendsDataGridView = sender as DataGridView;
-            SelectedRideFriendForm selectedRideFriendForm = new SelectedRideFriendForm();
-            //selectedRideFriendForm.FriendProfilePicture=friendsDataGridView.SelectedRows[0].Cells[0].Im
-            //selectedRideFriendForm.FriendFirstName.Text = friendsDataGridView.SelectedRows[0].Cells[0].
-            selectedRideFriendForm.ShowDialog();
-            
-        }
-
         #endregion
 
-        #region Click Methods
+        #region Feed Tab Methods
+
         private void FeedTab_Logout_Click(object sender, EventArgs e)
         {
             Hide();
@@ -146,19 +131,24 @@ namespace View
             nextWallPost();
         }
 
-        private void FeedTab_Friends_Click(object sender, EventArgs e)
+        private void FeedTab_FriendsButton_Click(object sender, EventArgs e)
         {
             m_tabsControl.SelectedTab = m_tabPage_Friends;
         }
 
-        private void FeedTab_Albums_Click(object sender, EventArgs e)
+        private void FeedTab_AlbumsButton_Click(object sender, EventArgs e)
         {
             m_tabsControl.SelectedTab = m_tabPage_Albums;
         }
 
-        private void FeedTab_Profile_Click(object sender, EventArgs e)
+        private void FeedTab_ProfileButton_Click(object sender, EventArgs e)
         {
             m_tabsControl.SelectedTab = m_tabPage_Profile;
+        }
+
+        private void FeedTab_FaceRideButton_Click(object sender, EventArgs e)
+        {
+            m_tabsControl.SelectedTab = m_tabPage_FaceRide;
         }
 
         private void FeedTab_linkLabelFullName_Click(object sender, LinkLabelLinkClickedEventArgs e)
@@ -177,6 +167,41 @@ namespace View
             launchBrowser(m_wallManager.GetPostId());
         }
 
+        private void nextWallPost()
+        {
+            Post p = m_wallManager.GetNextWallPost();
+            Comment c = m_wallManager.GetNextCommentOfCurrentPost();
+            m_pictureBox_Feed_PostPic.ImageLocation = p.PictureURL;
+            m_pictureBox_Feed_PostPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            m_label_Feed_PostDate.Text = p.CreatedTime.ToString();
+            m_label_Feed_PostName.Text = p.Name;
+            m_richTextBox_Feed_PostDescription.Text = p.Message;
+            nextPostComment();
+        }
+
+        private void nextPostComment()
+        {
+            Comment c = m_wallManager.GetNextCommentOfCurrentPost();
+            if (c == null)
+            {
+                m_richTextBox_Feed_CommentText.Text = "No Comments";
+                m_label_Feed_CommentDate.Text = "";
+                m_linkLabel_Feed_PostInfo.Visible = false;
+
+
+            }
+            else
+            {
+                m_richTextBox_Feed_CommentText.Text = c.Message;
+                m_label_Feed_CommentDate.Text = c.CreatedTime.ToString();
+                m_linkLabel_Feed_PostInfo.Visible = true;
+            }
+        }
+
+        #endregion
+
+        #region Albums Tab Methods
+
         private void AlbumsTab_Next_Click(object sender, EventArgs e)
         {
             m_appController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnAlbumsTab, m_userAlbumPicturesComponent_Albums.NumOfPictureBoxes);
@@ -193,6 +218,35 @@ namespace View
             largePhotoForm.Picture.ImageLocation = (sender as PictureBox).ImageLocation;
             largePhotoForm.Show();
         }
+
+        private void AlbumsTab_ComboBoxAlbums_AlbumSelected(object sender, EventArgs e)
+        {
+            foreach (PictureBox pictureBox in m_userAlbumPicturesComponent_Albums.PictureBoxes)
+            {
+                pictureBox.Cursor = Cursors.Hand;
+            }
+            m_button_Albums_Next.Enabled = true;
+            m_button_Albums_Prevoius.Enabled = true;
+            string albumName = m_comboBox_Albums_AlbumsList.SelectedItem.ToString();
+            m_albumsManager.SetCurrentAlbum(albumName);
+            m_appController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnAlbumsTab, m_userAlbumPicturesComponent_Albums.NumOfPictureBoxes);
+        }
+
+        private void updateNextUserPhotosOnAlbumsTab(int i_PictureBoxIndex)
+        {
+            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_albumsManager.GetNextPhotoURL();
+            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        private void updatePreviousUserPhotosOnAlbumsTab(int i_PictureBoxIndex)
+        {
+            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_albumsManager.GetPreviousPhotoURL();
+            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        #endregion
+
+        #region Profile Tab Methods
 
         private void ProfileTab_Post_Click(object sender, EventArgs e)
         {
@@ -217,6 +271,10 @@ namespace View
         {
             m_filesUploader.UploadAPhotoToTimeline(m_albumsManager, m_appController.User);
         }
+
+        #endregion
+
+        #region Friends Tab Methods
 
         private void FriendsTabButtonPost_Click(object sender, EventArgs e)
         {
@@ -284,6 +342,10 @@ namespace View
             (sender as TextBox).Click -= FriendsTab_textBoxFriendName_Click;
         }
 
+        #endregion
+
+        #region FaceRide Tab Methods
+
         private void FaceRideTab_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
             m_richTextBox_FaceRide_WhereFrom.Text = m_appController.User.Location.Name;
@@ -293,9 +355,41 @@ namespace View
         {
             if (validateAllFields())
             {
-                rideForm.BindingSource.DataSource = m_appController.User.Friends;
-                rideForm.FriendsDataGridView.DataBindingComplete += FriendsDataGridView_DataBindingComplete;
-                rideForm.ShowDialog();
+                string searchRadius = m_comboBox_FaceRide_Radius.SelectedItem.ToString();
+                bool maleFriends = m_checkBox_FaceRide_Male.Checked;
+                bool femaleFriends = m_checkBox_FaceRide_Female.Checked;
+
+                try
+                {
+                    FacebookObjectCollection<User> possibleRideFriends = m_faceRideManager.GetPotentialRideFriends(m_appController.User, searchRadius, maleFriends, femaleFriends);
+                    if (possibleRideFriends.Count != 0)
+                    {
+                        //OnDemand object creation.
+                        m_rideForm = new RideForm();
+                        m_rideForm.FriendsDataGridView.CellDoubleClick += FaceRideTab_FriendsDataGridView_CellDoubleClick;
+                        m_rideForm.BindingSource.DataSource = m_appController.User.Friends;
+                        m_rideForm.FriendsDataGridView.DataBindingComplete += FriendsDataGridView_DataBindingComplete;
+                        m_rideForm.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("We are sorry but no available friends found :(");
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error: No permission to get user and/or friends locations.");
+                }
+            }
+        }
+
+        private void FaceRideTab_linkLabelShowMap_Click(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (validateWhereToField())
+            {
+                MapForm mapForm = new MapForm();
+                mapForm.ShowLocationOnMap(m_richTextBox_FaceRide_WhereTo.Text);
+                mapForm.ShowDialog();
             }
         }
 
@@ -310,9 +404,20 @@ namespace View
                     Value = friend.Location.Name
                 };
 
-                rideForm.FriendsDataGridView.Rows[rowIndex].Cells[rideForm.LocationColumn.Index] = dataGridViewTextBoxCell;
+                m_rideForm.FriendsDataGridView.Rows[rowIndex].Cells[m_rideForm.LocationColumn.Index] = dataGridViewTextBoxCell;
                 ++rowIndex;
             }
+        }
+
+        //Implement message sending request to friend.
+        private void FaceRideTab_FriendsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView friendsDataGridView = sender as DataGridView;
+            SelectedRideFriendForm selectedRideFriendForm = new SelectedRideFriendForm();
+            //selectedRideFriendForm.FriendProfilePicture=friendsDataGridView.SelectedRows[0].Cells[0].Im
+            //selectedRideFriendForm.FriendFirstName.Text = friendsDataGridView.SelectedRows[0].Cells[0].
+            selectedRideFriendForm.ShowDialog();
+
         }
 
         private bool validateAllFields()
@@ -350,7 +455,7 @@ namespace View
         {
             bool isValid = true;
 
-            if(m_richTextBox_FaceRide_WhereFrom.Text == string.Empty)
+            if (m_richTextBox_FaceRide_WhereFrom.Text == string.Empty)
             {
                 MessageBox.Show("Please Select Your Origin");
                 isValid = false;
@@ -363,7 +468,7 @@ namespace View
         {
             bool isValid = true;
 
-            if(!(m_checkBox_FaceRide_Male.Checked || m_checkBox_FaceRide_Female.Checked))
+            if (!(m_checkBox_FaceRide_Male.Checked || m_checkBox_FaceRide_Female.Checked))
             {
                 MessageBox.Show("Please Select A Gender Of Your Ride");
                 isValid = false;
@@ -375,61 +480,19 @@ namespace View
 
         #endregion
 
-        #region Class Methods
-        private void makeRoundPictureBox(PictureBox pictureBox, int i_WidthRound, int i_HeightRound)
-        {
-            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
-            gp.AddEllipse(0, 0, pictureBox.Width - i_WidthRound, pictureBox.Height - i_HeightRound);
-            Region rg = new Region(gp);
-            pictureBox.Region = rg;
-        }
+        #region General Methods
 
         private User getAFriendOfTheUserByName(string i_FriendName)
         {
             return m_appController.User.Friends.Find(x => x.Name == i_FriendName);
         }
 
-        private void updateNextUserPhotosOnAlbumsTab(int i_PictureBoxIndex)
+        private void makeRoundPictureBox(PictureBox pictureBox, int i_WidthRound, int i_HeightRound)
         {
-            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_albumsManager.GetNextPhotoURL();
-            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
-        }
-
-        private void updatePreviousUserPhotosOnAlbumsTab(int i_PictureBoxIndex)
-        {
-            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_albumsManager.GetPreviousPhotoURL();
-            m_userAlbumPicturesComponent_Albums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
-        }
-
-        private void nextWallPost()
-        {
-            Post p = m_wallManager.GetNextWallPost();
-            Comment c = m_wallManager.GetNextCommentOfCurrentPost();
-            m_pictureBox_Feed_PostPic.ImageLocation = p.PictureURL;
-            m_pictureBox_Feed_PostPic.SizeMode = PictureBoxSizeMode.StretchImage;
-            m_label_Feed_PostDate.Text = p.CreatedTime.ToString();
-            m_label_Feed_PostName.Text = p.Name;
-            m_richTextBox_Feed_PostDescription.Text = p.Message;
-            nextPostComment();
-        }
-
-        private void nextPostComment()
-        {
-            Comment c = m_wallManager.GetNextCommentOfCurrentPost();
-            if (c == null)
-            {
-                m_richTextBox_Feed_CommentText.Text = "No Comments";
-                m_label_Feed_CommentDate.Text = "";
-                m_linkLabel_Feed_PostInfo.Visible = false;
-
-
-            }
-            else
-            {
-                m_richTextBox_Feed_CommentText.Text = c.Message;
-                m_label_Feed_CommentDate.Text = c.CreatedTime.ToString();
-                m_linkLabel_Feed_PostInfo.Visible = true;
-            }
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            gp.AddEllipse(0, 0, pictureBox.Width - i_WidthRound, pictureBox.Height - i_HeightRound);
+            Region rg = new Region(gp);
+            pictureBox.Region = rg;
         }
 
         private void postToWall(User i_User, string i_postText)
@@ -451,19 +514,6 @@ namespace View
             }
         }
 
-        private void AlbumsTab_ComboBoxAlbums_AlbumSelected(object sender, EventArgs e)
-        {
-            foreach (PictureBox pictureBox in m_userAlbumPicturesComponent_Albums.PictureBoxes)
-            {
-                pictureBox.Cursor = Cursors.Hand;
-            }
-            m_button_Albums_Next.Enabled = true;
-            m_button_Albums_Prevoius.Enabled = true;
-            string albumName = m_comboBox_Albums_AlbumsList.SelectedItem.ToString();
-            m_albumsManager.SetCurrentAlbum(albumName);
-            m_appController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnAlbumsTab, m_userAlbumPicturesComponent_Albums.NumOfPictureBoxes);
-        }
-
         private void launchBrowser(string i_UrlToLaunch)
         {
             ProcessStartInfo sInfo = new ProcessStartInfo(i_UrlToLaunch);
@@ -483,22 +533,6 @@ namespace View
             m_loginForm.StartLoginSession();
         }
 
-
         #endregion
-
-        private void m_linkLabel_FaceRide_ShowMap_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (validateWhereToField())
-            {
-                MapForm mapForm = new MapForm();
-                mapForm.ShowLocationOnMap(m_richTextBox_FaceRide_WhereTo.Text);
-                mapForm.ShowDialog();
-            }
-        }
-
-        private void FeedTab_FaceRide_Click(object sender, EventArgs e)
-        {
-            m_tabsControl.SelectedTab = m_tabPage_FaceRide;
-        }
     }
 }
