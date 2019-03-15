@@ -41,12 +41,12 @@ namespace Model
             return true;
 
             //Change to following implementation for REAL implementation.
-            double userLatitude = (double)i_User.Location.Location.Latitude;
+            /*double userLatitude = (double)i_User.Location.Location.Latitude;
             double userLongtitude = (double)i_User.Location.Location.Longitude;
             double friendLatitude = (double)i_Friend.Location.Location.Latitude;
             double friendLongtitude = (double)i_Friend.Location.Location.Longitude;
 
-            return distanceBetween(userLatitude, userLongtitude, friendLatitude, friendLongtitude) <= i_SearchRadius;
+            return distanceBetween(userLatitude, userLongtitude, friendLatitude, friendLongtitude) <= i_SearchRadius;*/
         }
 
         private double convertToRadians(double i_Angle)

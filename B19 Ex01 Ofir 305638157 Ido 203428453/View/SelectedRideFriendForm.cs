@@ -85,15 +85,13 @@ namespace View
         {
             get
             {
-                return m_buttonPostOnMessanger;
+                return m_buttonSendViaMessanger;
             }
 
             set
             {
-                m_buttonPostOnMessanger = value;
+                m_buttonSendViaMessanger = value;
             }
         }
-
-        public BindingSource BindingSource { get; set; }
     }
 }

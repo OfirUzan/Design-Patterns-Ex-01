@@ -61,7 +61,7 @@
             this.m_dataGridView_Friends.Name = "m_dataGridView_Friends";
             this.m_dataGridView_Friends.RowHeadersWidth = 42;
             this.m_dataGridView_Friends.RowTemplate.Height = 50;
-            this.m_dataGridView_Friends.Size = new System.Drawing.Size(723, 346);
+            this.m_dataGridView_Friends.Size = new System.Drawing.Size(725, 346);
             this.m_dataGridView_Friends.TabIndex = 0;
             // 
             // m_bindingSource_Friends
@@ -90,7 +90,7 @@
             // 
             // m_profilePicColumn
             // 
-            this.m_profilePicColumn.DataPropertyName = "ImageNormal";
+            this.m_profilePicColumn.DataPropertyName = "ImageSmall";
             this.m_profilePicColumn.HeaderText = "Profile Picture";
             this.m_profilePicColumn.Name = "m_profilePicColumn";
             this.m_profilePicColumn.ReadOnly = true;

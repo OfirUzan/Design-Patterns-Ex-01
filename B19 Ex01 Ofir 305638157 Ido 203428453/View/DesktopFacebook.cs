@@ -418,27 +418,31 @@ namespace View
 
         private void FaceRideTab_FriendsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView friendsDataGridView = sender as DataGridView;
             m_faceRideManager.ChosenFriend = m_faceRideManager.PossibleRideFriends[e.RowIndex];
+            createAndShowSelectedRideFriendForm();
+        }
+
+        private void createAndShowSelectedRideFriendForm()
+        {
             m_selectedRideFriendForm = new SelectedRideFriendForm();
-            m_selectedRideFriendForm.FriendProfilePicture.Image = (Image) friendsDataGridView.Rows[e.RowIndex].Cells[m_rideForm.ProfilePictureColumn.Index].Value;
-            m_selectedRideFriendForm.FriendFirstName.Text = (string)friendsDataGridView.Rows[e.RowIndex].Cells[m_rideForm.FirstNameColumn.Index].Value;
-            m_selectedRideFriendForm.FriendLastName.Text = (string)friendsDataGridView.Rows[e.RowIndex].Cells[m_rideForm.LastNameColumn.Index].Value;
+            m_selectedRideFriendForm.FriendProfilePicture.Image = m_faceRideManager.ChosenFriend.ImageNormal;
+            m_selectedRideFriendForm.FriendFirstName.Text = m_faceRideManager.ChosenFriend.FirstName;
+            m_selectedRideFriendForm.FriendLastName.Text = m_faceRideManager.ChosenFriend.LastName;
             m_selectedRideFriendForm.RequestMessage.Text =
             string.Format("Hey {0}!{1}I would like to take a ride with you to {2}!{3}What do you say?",
                           m_selectedRideFriendForm.FriendFirstName.Text, Environment.NewLine, m_richTextBox_FaceRide_WhereTo.Text, Environment.NewLine);
             m_selectedRideFriendForm.FriendFirstName.ReadOnly = true;
             m_selectedRideFriendForm.FriendLastName.ReadOnly = true;
-            m_selectedRideFriendForm.ButtonPostOnWall.Click += ButtonPostOnWall_Click;
-            m_selectedRideFriendForm.ButtonPostOnMessanger.Click += ButtonPostOnMessanger_Click;
+            m_selectedRideFriendForm.ButtonPostOnWall.Click += FaceRideTab_PostOnWall_Click;
+            m_selectedRideFriendForm.ButtonPostOnMessanger.Click += FaceRideTab_SendViaMessanger_Click;
             m_selectedRideFriendForm.ShowDialog();
         }
 
-        private void ButtonPostOnMessanger_Click(object sender, EventArgs e)
+        private void FaceRideTab_SendViaMessanger_Click(object sender, EventArgs e)
         {
             launchBrowser("https://www.facebook.com/messages/t/" + m_faceRideManager.ChosenFriend.Id);
         }
-        private void ButtonPostOnWall_Click(object sender, EventArgs e)
+        private void FaceRideTab_PostOnWall_Click(object sender, EventArgs e)
         {
             try
             {
