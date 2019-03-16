@@ -11,15 +11,16 @@ namespace View
     {
         #region Class Members / Properties
 
-        private LoginForm       m_loginForm;
-        private AppController   m_appController;
-        private AlbumsManager   m_albumsManager;
-        private WallManager     m_wallManager;
-        private FilesUploader   m_filesUploader;
-        private FaceRideManager m_faceRideManager;
-        private RideForm        m_rideForm;
-        SelectedRideFriendForm  m_selectedRideFriendForm;
-        private bool            m_firstLaunch = true;
+        private LoginForm               m_loginForm;
+        private AppController           m_appController;
+        private AlbumsManager           m_albumsManager;
+        private WallManager             m_wallManager;
+        private FilesUploader           m_filesUploader;
+        private FaceRideManager         m_faceRideManager;
+        private RideForm                m_rideForm;
+        private SelectedRideFriendForm  m_selectedRideFriendForm;
+        private UserEventsForm          m_userEventsForm;
+        private bool                    m_firstLaunch = true;
 
         #endregion
 
@@ -350,6 +351,34 @@ namespace View
         private void FaceRideTab_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
             m_richTextBox_FaceRide_WhereFrom.Text = m_appController.User.Location.Name;
+        }
+
+        private void FaceRideTab_linkLabel_GetFromEvent_Click(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            m_userEventsForm = new UserEventsForm();
+            m_userEventsForm.DataGridView.CellDoubleClick += userEventsForm_DataGridView_CellDoubleClick;
+            m_userEventsForm.ButtonGetEvents.Click += userEventsForm_GetEvents_Click;
+            m_userEventsForm.ShowDialog();
+        }
+
+        private void userEventsForm_DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int locationCellIndex = m_userEventsForm.LocationColumn.Index;
+            DataGridView eventsGridView = sender as DataGridView;
+            m_richTextBox_FaceRide_WhereTo.Text = (string)eventsGridView.Rows[e.RowIndex].Cells[locationCellIndex].Value;
+        }
+
+        private void userEventsForm_GetEvents_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                m_userEventsForm.BindingSource.DataSource = m_appController.User.Events;
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void FaceRideTab_LetsRide_Click(object sender, EventArgs e)

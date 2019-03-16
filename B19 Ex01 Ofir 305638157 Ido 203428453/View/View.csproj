@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssistiveComponents\UserEventsComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AssistiveComponents\UserEventsComponent.Designer.cs">
+      <DependentUpon>UserEventsComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="RideForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,15 @@
     <Compile Include="SelectedRideFriendForm.Designer.cs">
       <DependentUpon>SelectedRideFriendForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserEventsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserEventsForm.Designer.cs">
+      <DependentUpon>UserEventsForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AssistiveComponents\UserEventsComponent.resx">
+      <DependentUpon>UserEventsComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RideForm.resx">
       <DependentUpon>RideForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +156,10 @@
     <EmbeddedResource Include="SelectedRideFriendForm.resx">
       <DependentUpon>SelectedRideFriendForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserEventsForm.resx">
+      <DependentUpon>UserEventsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Event.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.User.datasource" />
     <None Include="Properties\DataSources\RideForm.datasource" />
     <None Include="Properties\Settings.settings">
