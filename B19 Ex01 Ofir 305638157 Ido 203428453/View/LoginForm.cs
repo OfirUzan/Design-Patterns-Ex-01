@@ -19,7 +19,9 @@ namespace View
     {
         public event LoginSucessDelegate LoginSucessListeners;
         public event LoginFailedDelegate LoginFailedListeners;
+
         private FacebookAuthenticator m_facebookAuthenticator;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -95,7 +97,7 @@ namespace View
 
         private void m_checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)
         {
-            m_facebookAuthenticator.RememberUser = m_checkBoxRememberUser.Checked;
+            m_facebookAuthenticator.RememberUser = checkBox_RememberUser.Checked;
         }
     }
 }
