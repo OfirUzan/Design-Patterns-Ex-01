@@ -751,5 +751,10 @@ namespace View
         {
 
         }
+
+        private void button_TabFeed_Feature2_Click(object sender, EventArgs e)
+        {
+            tabsControl.SelectedTab = tabPage_Contacts;
+        }
     }
 }
