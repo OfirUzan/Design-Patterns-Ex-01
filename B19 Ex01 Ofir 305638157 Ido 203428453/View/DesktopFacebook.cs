@@ -384,7 +384,8 @@ namespace View
 
         private void tabFaceRide_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            richTextBox_TabFaceRide_WhereFrom.Text = m_FaceRideManager.GetUserCurrentAdress();
+            string currentUserAdress = m_FaceRideManager.GetUserCurrentAdress();
+            richTextBox_TabFaceRide_WhereFrom.Text = !string.IsNullOrEmpty(currentUserAdress) ? currentUserAdress : "Couldn't fetch location, try again or type manually.";
         }
 
         private void tabFaceRide_linkLabel_GetFromEvent_Click(object sender, LinkLabelLinkClickedEventArgs e)
