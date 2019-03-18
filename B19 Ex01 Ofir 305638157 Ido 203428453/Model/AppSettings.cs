@@ -36,13 +36,21 @@ namespace Model
                     s_appSettings = new AppSettings();
                 }
             }
-
+            
             if (File.Exists(r_filePath))
             {
                 using (Stream stream = File.Open(r_filePath, FileMode.Open))
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(typeof(AppSettings));
-                    s_appSettings = xmlSerializer.Deserialize(stream) as AppSettings;
+                    try
+                    {
+                        s_appSettings = xmlSerializer.Deserialize(stream) as AppSettings;
+                    }
+                    catch (System.InvalidOperationException e)
+                    {
+                        stream.Dispose();
+                        File.Delete(r_filePath); // AppSettings File is Currupt, Deleting it...
+                    }
                 }
             }
 

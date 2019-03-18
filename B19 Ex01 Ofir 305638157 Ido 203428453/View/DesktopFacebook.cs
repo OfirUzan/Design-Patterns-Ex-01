@@ -31,7 +31,7 @@ namespace View
         private readonly string           r_NotifyWhenDoneMessage = "Data will be exported and you will be notified when it is ready.";
         private readonly string           r_CsvErrorMakingFile = "It wasn't possible to write the data to the disk.";
         private readonly string           r_CsvMakeFileOk = "Your file was generated and its ready for use.";
-        private readonly string           r_GoogleUploadContactsLink = "https://contacts.google.com/";
+        private readonly string           r_GoogleUploadContactsLink = "https://www.solveyourtech.com/how-to-import-contacts-to-gmail-with-a-csv-file/";
 
 
 
@@ -732,6 +732,21 @@ namespace View
                 System.IO.File.WriteAllText(saveDialog.FileName, csvOutput, System.Text.Encoding.UTF8);
                 MessageBox.Show(r_CsvMakeFileOk);
             }
+        }
+
+        private void DesktopFacebook_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel_TabFeed_Navigate_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void userProfileComponent_TabFriends_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
