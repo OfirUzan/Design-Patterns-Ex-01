@@ -162,9 +162,9 @@ namespace Model
                 }
                 this.Location = i_User.Location.Name;
             }
-            catch (Exception e)
+            catch
             {
-                throw;
+                throw new Exception("Populate contact exception");
             }
         }
 

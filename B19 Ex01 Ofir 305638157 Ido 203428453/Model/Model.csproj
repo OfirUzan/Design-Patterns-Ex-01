@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +55,7 @@
     <Compile Include="FacebookAuthenticator.cs" />
     <Compile Include="FaceRideManager.cs" />
     <Compile Include="GoogleContact.cs" />
+    <Compile Include="LocationServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WallManager.cs" />
   </ItemGroup>

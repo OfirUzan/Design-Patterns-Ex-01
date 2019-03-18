@@ -7,7 +7,8 @@ using FacebookWrapper.ObjectModel;
 using Model;
 using System.IO;
 using System.Data;
-using System.Text;
+using System.Threading.Tasks;
+using System.Device.Location;
 
 namespace View
 {
@@ -80,6 +81,7 @@ namespace View
             new System.Threading.Thread(() => initializeTabAlbums()).Start();
             new System.Threading.Thread(() => initializeTabProfile()).Start();
             new System.Threading.Thread(() => initializeTabFriends()).Start();
+            new System.Threading.Thread(() => initializeTabContacts()).Start();
         }
 
         private void initializeTabFeed()
@@ -125,7 +127,7 @@ namespace View
             userProfileComponent_TabFriends.ButtonPost.Click += tabFriend_ButtonPost_Click;
         }
 
-        private void initiaozeTabContacts()
+        private void initializeTabContacts()
         {
             User user = m_AppController.User;
             m_Contacts = new LinkedList<GoogleContact>();
@@ -382,7 +384,7 @@ namespace View
 
         private void tabFaceRide_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            richTextBox_TabFaceRide_WhereFrom.Text = m_AppController.User.Location.Name;
+            richTextBox_TabFaceRide_WhereFrom.Text = m_FaceRideManager.GetUserCurrentAdress();
         }
 
         private void tabFaceRide_linkLabel_GetFromEvent_Click(object sender, LinkLabelLinkClickedEventArgs e)
@@ -440,7 +442,7 @@ namespace View
 
                     if (potentialRideFriends.Count != 0)
                     {
-                        //OnDemand object creation.
+                        //On demand object creation.
                         createAndShowRideForm();
                     }
                     else
@@ -609,6 +611,7 @@ namespace View
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 sucess = false;
             }
 
@@ -672,7 +675,6 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            initiaozeTabContacts();
             webBrowser_TabContacts.Url = new Uri(r_GoogleUploadContactsLink);
             GoogleContact.MakeCsvFromContactList(m_Contacts, r_DeafultCsvOutputName);
             populateDataGridViewWithCsvFile(dataGridView_TabContacts, r_DeafultCsvOutputName);

@@ -29,11 +29,14 @@ namespace Model
 
         public static AppSettings GetOrCreateAppSettingsFromXmlFile()
         {
-            lock (r_ObjectCreationLockContext)
+            if (s_appSettings == null)
             {
-                if (s_appSettings == null)
+                lock (r_ObjectCreationLockContext)
                 {
-                    s_appSettings = new AppSettings();
+                    if (s_appSettings == null)
+                    {
+                        s_appSettings = new AppSettings();
+                    }
                 }
             }
             
@@ -42,15 +45,7 @@ namespace Model
                 using (Stream stream = File.Open(r_filePath, FileMode.Open))
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(typeof(AppSettings));
-                    try
-                    {
-                        s_appSettings = xmlSerializer.Deserialize(stream) as AppSettings;
-                    }
-                    catch (System.InvalidOperationException e)
-                    {
-                        stream.Dispose();
-                        File.Delete(r_filePath); // AppSettings File is Currupt, Deleting it...
-                    }
+                    s_appSettings = xmlSerializer.Deserialize(stream) as AppSettings;
                 }
             }
 

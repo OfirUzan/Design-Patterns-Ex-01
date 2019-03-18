@@ -1,8 +1,11 @@
 ﻿using System;
 using FacebookWrapper.ObjectModel;
+using System.Device.Location;
+using System.Threading.Tasks;
 
 namespace Model
 {
+    public delegate void LocationChangedDelegate();
     public class FaceRideManager
     {
         #region Class Members / Properties
@@ -11,9 +14,27 @@ namespace Model
 
         public FacebookObjectCollection<User> PossibleRideFriends { get; set; }
 
+        public GeoCoordinateWatcher GeoCoordinateWatcher
+        {
+            get
+            {
+                return LocationServices.GeoCoordinateWatcher;
+            }
+        }
+
         #endregion
 
         #region Class Methods
+
+        public FaceRideManager()
+        {
+            LocationServices.GeoCoordinateWatcher.PositionChanged += GeoCoordinateWatcher_PositionChanged;
+        }
+
+        private void GeoCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            throw new NotImplementedException();
+        }
 
         //This method receives the user's information, radius search and desired gender for the ride.
         //The method creates and returns a collection of potential FaceRide partners.
@@ -67,6 +88,11 @@ namespace Model
             double v = Math.Sin((friendLonggRadians - userLongRadians) / 2);
 
             return 2.0 * earthKmRadius * Math.Asin(Math.Sqrt(u * u + Math.Cos(userLatRadians) * Math.Cos(friendLatRadians) * v * v));
+        }
+
+        public string GetUserCurrentAdress()
+        {
+            return LocationServices.UserCurrentAdress;
         }
 
         #endregion
