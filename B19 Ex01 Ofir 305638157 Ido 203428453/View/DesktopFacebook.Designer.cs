@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -77,6 +78,8 @@
             this.comboBox_TabAlbums_AlbumsList = new System.Windows.Forms.ComboBox();
             this.tabPage_Profile = new System.Windows.Forms.TabPage();
             this.tabPage_Friends = new System.Windows.Forms.TabPage();
+            this.textBox_TabFriends_FriendName = new System.Windows.Forms.TextBox();
+            this.button_TabFriends_Search = new System.Windows.Forms.Button();
             this.tabPage_FaceRide = new System.Windows.Forms.TabPage();
             this.linkLabel_TabFaceRide_GetFromEvent = new System.Windows.Forms.LinkLabel();
             this.textBox_TabFaceRide_Km = new System.Windows.Forms.TextBox();
@@ -104,10 +107,8 @@
             this.webBrowser_TabContacts = new System.Windows.Forms.WebBrowser();
             this.dataGridView_TabContacts = new System.Windows.Forms.DataGridView();
             this.userAlbumPicturesComponent_TabAlbums = new View.UserAlbumPicturesComponent();
-            this.m_userProfileComponent_TabProfile = new View.UserProfileComponent();
+            this.userProfileComponent_TabProfile = new View.UserProfileComponent();
             this.userProfileComponent_TabFriends = new View.UserProfileComponent();
-            this.button_TabFriends_Search = new System.Windows.Forms.Button();
-            this.textBox_TabFriends_FriendName = new System.Windows.Forms.TextBox();
             this.tabsControl.SuspendLayout();
             this.tabPage_Feed.SuspendLayout();
             this.panel_TabFeed_Posts.SuspendLayout();
@@ -171,7 +172,7 @@
             this.tabPage_Feed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_Feed.Name = "tabPage_Feed";
             this.tabPage_Feed.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage_Feed.Size = new System.Drawing.Size(1165, 1007);
+            this.tabPage_Feed.Size = new System.Drawing.Size(1168, 998);
             this.tabPage_Feed.TabIndex = 1;
             this.tabPage_Feed.Text = "Feed";
             // 
@@ -220,7 +221,7 @@
             // label_TabFeed_CommentDate
             // 
             this.label_TabFeed_CommentDate.AutoSize = true;
-            this.label_TabFeed_CommentDate.Location = new System.Drawing.Point(201, 321);
+            this.label_TabFeed_CommentDate.Location = new System.Drawing.Point(147, 321);
             this.label_TabFeed_CommentDate.Name = "label_TabFeed_CommentDate";
             this.label_TabFeed_CommentDate.Size = new System.Drawing.Size(90, 20);
             this.label_TabFeed_CommentDate.TabIndex = 8;
@@ -238,7 +239,7 @@
             // 
             // button_TabFeed_NextPost
             // 
-            this.button_TabFeed_NextPost.Location = new System.Drawing.Point(339, 366);
+            this.button_TabFeed_NextPost.Location = new System.Drawing.Point(329, 410);
             this.button_TabFeed_NextPost.Name = "button_TabFeed_NextPost";
             this.button_TabFeed_NextPost.Size = new System.Drawing.Size(462, 39);
             this.button_TabFeed_NextPost.TabIndex = 6;
@@ -263,18 +264,12 @@
             this.richTextBox_TabFeed_CommentText.Name = "richTextBox_TabFeed_CommentText";
             this.richTextBox_TabFeed_CommentText.Size = new System.Drawing.Size(319, 61);
             this.richTextBox_TabFeed_CommentText.TabIndex = 4;
-            this.richTextBox_TabFeed_CommentText.Text = "";
-            // 
-            // richTextBox_TabFeed_PostDescription
-            // 
+            this.richTextBox_TabFeed_CommentText.Text = string.Empty;
             this.richTextBox_TabFeed_PostDescription.Location = new System.Drawing.Point(339, 33);
             this.richTextBox_TabFeed_PostDescription.Name = "richTextBox_TabFeed_PostDescription";
             this.richTextBox_TabFeed_PostDescription.Size = new System.Drawing.Size(463, 289);
             this.richTextBox_TabFeed_PostDescription.TabIndex = 3;
-            this.richTextBox_TabFeed_PostDescription.Text = "";
-            // 
-            // label_TabFeed_PostName
-            // 
+            this.richTextBox_TabFeed_PostDescription.Text = string.Empty;
             this.label_TabFeed_PostName.AutoSize = true;
             this.label_TabFeed_PostName.BackColor = System.Drawing.Color.SkyBlue;
             this.label_TabFeed_PostName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
@@ -600,7 +595,7 @@
             this.tabPage_Albums.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_Albums.Name = "tabPage_Albums";
             this.tabPage_Albums.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage_Albums.Size = new System.Drawing.Size(1165, 1007);
+            this.tabPage_Albums.Size = new System.Drawing.Size(1168, 998);
             this.tabPage_Albums.TabIndex = 2;
             this.tabPage_Albums.Text = "Albums";
             this.tabPage_Albums.UseVisualStyleBackColor = true;
@@ -665,7 +660,7 @@
             // 
             // tabPage_Profile
             // 
-            this.tabPage_Profile.Controls.Add(this.m_userProfileComponent_TabProfile);
+            this.tabPage_Profile.Controls.Add(this.userProfileComponent_TabProfile);
             this.tabPage_Profile.Location = new System.Drawing.Point(4, 29);
             this.tabPage_Profile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_Profile.Name = "tabPage_Profile";
@@ -687,6 +682,27 @@
             this.tabPage_Friends.TabIndex = 4;
             this.tabPage_Friends.Text = "Friends";
             this.tabPage_Friends.UseVisualStyleBackColor = true;
+            // 
+            // textBox_TabFriends_FriendName
+            // 
+            this.textBox_TabFriends_FriendName.Location = new System.Drawing.Point(76, 4);
+            this.textBox_TabFriends_FriendName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox_TabFriends_FriendName.Name = "textBox_TabFriends_FriendName";
+            this.textBox_TabFriends_FriendName.Size = new System.Drawing.Size(229, 26);
+            this.textBox_TabFriends_FriendName.TabIndex = 10;
+            this.textBox_TabFriends_FriendName.Text = "What\'s your friend\'s name?";
+            // 
+            // button_TabFriends_Search
+            // 
+            this.button_TabFriends_Search.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button_TabFriends_Search.ForeColor = System.Drawing.SystemColors.Window;
+            this.button_TabFriends_Search.Location = new System.Drawing.Point(311, 4);
+            this.button_TabFriends_Search.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button_TabFriends_Search.Name = "button_TabFriends_Search";
+            this.button_TabFriends_Search.Size = new System.Drawing.Size(111, 32);
+            this.button_TabFriends_Search.TabIndex = 9;
+            this.button_TabFriends_Search.Text = "Search";
+            this.button_TabFriends_Search.UseVisualStyleBackColor = false;
             // 
             // tabPage_FaceRide
             // 
@@ -710,7 +726,7 @@
             this.tabPage_FaceRide.Controls.Add(this.pictureBox_TabFaceRide_FacebookLogo);
             this.tabPage_FaceRide.Location = new System.Drawing.Point(4, 29);
             this.tabPage_FaceRide.Name = "tabPage_FaceRide";
-            this.tabPage_FaceRide.Size = new System.Drawing.Size(1165, 1007);
+            this.tabPage_FaceRide.Size = new System.Drawing.Size(1168, 998);
             this.tabPage_FaceRide.TabIndex = 5;
             this.tabPage_FaceRide.Text = "FaceRide!";
             this.tabPage_FaceRide.UseVisualStyleBackColor = true;
@@ -798,7 +814,7 @@
             this.richTextBox_TabFaceRide_WhereFrom.Name = "richTextBox_TabFaceRide_WhereFrom";
             this.richTextBox_TabFaceRide_WhereFrom.Size = new System.Drawing.Size(331, 54);
             this.richTextBox_TabFaceRide_WhereFrom.TabIndex = 31;
-            this.richTextBox_TabFaceRide_WhereFrom.Text = "";
+            this.richTextBox_TabFaceRide_WhereFrom.Text = string.Empty;
             // 
             // pictureBox1
             // 
@@ -866,7 +882,7 @@
             this.richTextBox_TabFaceRide_WhereTo.Name = "richTextBox_TabFaceRide_WhereTo";
             this.richTextBox_TabFaceRide_WhereTo.Size = new System.Drawing.Size(331, 54);
             this.richTextBox_TabFaceRide_WhereTo.TabIndex = 24;
-            this.richTextBox_TabFaceRide_WhereTo.Text = "";
+            this.richTextBox_TabFaceRide_WhereTo.Text = string.Empty;
             // 
             // pictureBox_TabFaceRide_subTitle
             // 
@@ -908,7 +924,7 @@
             this.tabPage_Contacts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_Contacts.Name = "tabPage_Contacts";
             this.tabPage_Contacts.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage_Contacts.Size = new System.Drawing.Size(1165, 1007);
+            this.tabPage_Contacts.Size = new System.Drawing.Size(1168, 998);
             this.tabPage_Contacts.TabIndex = 6;
             this.tabPage_Contacts.Text = "Contacts";
             // 
@@ -987,15 +1003,15 @@
             this.userAlbumPicturesComponent_TabAlbums.Size = new System.Drawing.Size(1119, 516);
             this.userAlbumPicturesComponent_TabAlbums.TabIndex = 4;
             // 
-            // m_userProfileComponent_TabProfile
+            // userProfileComponent_TabProfile
             // 
-            this.m_userProfileComponent_TabProfile.AutoScroll = true;
-            this.m_userProfileComponent_TabProfile.AutoSize = true;
-            this.m_userProfileComponent_TabProfile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.m_userProfileComponent_TabProfile.Location = new System.Drawing.Point(3, 3);
-            this.m_userProfileComponent_TabProfile.Name = "m_userProfileComponent_TabProfile";
-            this.m_userProfileComponent_TabProfile.Size = new System.Drawing.Size(1109, 871);
-            this.m_userProfileComponent_TabProfile.TabIndex = 0;
+            this.userProfileComponent_TabProfile.AutoScroll = true;
+            this.userProfileComponent_TabProfile.AutoSize = true;
+            this.userProfileComponent_TabProfile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.userProfileComponent_TabProfile.Location = new System.Drawing.Point(3, 3);
+            this.userProfileComponent_TabProfile.Name = "userProfileComponent_TabProfile";
+            this.userProfileComponent_TabProfile.Size = new System.Drawing.Size(1109, 871);
+            this.userProfileComponent_TabProfile.TabIndex = 0;
             // 
             // userProfileComponent_TabFriends
             // 
@@ -1006,27 +1022,6 @@
             this.userProfileComponent_TabFriends.Name = "userProfileComponent_TabFriends";
             this.userProfileComponent_TabFriends.Size = new System.Drawing.Size(1109, 871);
             this.userProfileComponent_TabFriends.TabIndex = 8;
-            // 
-            // button_TabFriends_Search
-            // 
-            this.button_TabFriends_Search.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button_TabFriends_Search.ForeColor = System.Drawing.SystemColors.Window;
-            this.button_TabFriends_Search.Location = new System.Drawing.Point(311, 4);
-            this.button_TabFriends_Search.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_TabFriends_Search.Name = "button_TabFriends_Search";
-            this.button_TabFriends_Search.Size = new System.Drawing.Size(111, 32);
-            this.button_TabFriends_Search.TabIndex = 9;
-            this.button_TabFriends_Search.Text = "Search";
-            this.button_TabFriends_Search.UseVisualStyleBackColor = false;
-            // 
-            // textBox_TabFriends_FriendName
-            // 
-            this.textBox_TabFriends_FriendName.Location = new System.Drawing.Point(76, 4);
-            this.textBox_TabFriends_FriendName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox_TabFriends_FriendName.Name = "textBox_TabFriends_FriendName";
-            this.textBox_TabFriends_FriendName.Size = new System.Drawing.Size(229, 26);
-            this.textBox_TabFriends_FriendName.TabIndex = 10;
-            this.textBox_TabFriends_FriendName.Text = "What\'s your friend\'s name?";
             // 
             // DesktopFacebook
             // 
@@ -1164,7 +1159,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.WebBrowser webBrowser_TabContacts;
         private System.Windows.Forms.Button button_TabContacts_Save;
-        private UserProfileComponent m_userProfileComponent_TabProfile;
+        private UserProfileComponent userProfileComponent_TabProfile;
         private System.Windows.Forms.TextBox textBox_TabFriends_FriendName;
         private System.Windows.Forms.Button button_TabFriends_Search;
         private UserProfileComponent userProfileComponent_TabFriends;

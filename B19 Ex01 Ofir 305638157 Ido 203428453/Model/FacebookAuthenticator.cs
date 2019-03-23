@@ -8,6 +8,7 @@ namespace Model
         #region Class Members / Properties
 
         private AppSettings m_AppSettings;
+
         public bool RememberUser { get; set; } = false;
 
         #endregion

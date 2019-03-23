@@ -1,5 +1,5 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
+using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
@@ -46,17 +46,15 @@ namespace Model
                     m_PostIndex = 0;
                 }
 
-
                 post = m_Wall[++m_PostIndex];
-
                 if (post.Type != Post.eType.photo)
                 {
                     post = this.GetNextWallPost();
                 }
             }
 
-            //m_CurrPostId = post.Id;
             m_CurrPostId = post.Link;
+
             return post;
         }
 
@@ -92,12 +90,12 @@ namespace Model
         
         public string GetCommentID()
         {
-            return (m_CurrCommentId);
+            return m_CurrCommentId;
         }
 
         public string GetPostId()
         {
-            return (m_CurrPostId);
+            return m_CurrPostId;
         }
 
         public void PostToWall(User i_User, string i_PostText)

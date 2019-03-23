@@ -7,31 +7,21 @@ namespace Model
     {
         #region Class Members / Properties
 
-        private static readonly string r_filePath = Directory.GetCurrentDirectory() + "\\AcessToken.txt";
-        private static readonly object r_ObjectCreationLockContext = new object();
-        private static AppSettings s_appSettings = null;
+        private static readonly string sr_filePath = Directory.GetCurrentDirectory() + "\\AcessToken.txt";
+        private static readonly object sr_ObjectCreationLockContext = new object();
+        private static AppSettings     s_appSettings = null;
+
         public string LastAcessToken { get; set; } = null;
 
         #endregion
 
         #region Class Methods
 
-        private AppSettings() { }
-
-        public void SaveAppSettingsToXmlFile()
-        {
-            using (Stream stream = new FileStream(r_filePath, FileMode.Create))
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer(this.GetType());
-                xmlSerializer.Serialize(stream, this);
-            }
-        }
-
         public static AppSettings GetOrCreateAppSettingsFromXmlFile()
         {
             if (s_appSettings == null)
             {
-                lock (r_ObjectCreationLockContext)
+                lock (sr_ObjectCreationLockContext)
                 {
                     if (s_appSettings == null)
                     {
@@ -40,9 +30,9 @@ namespace Model
                 }
             }
             
-            if (File.Exists(r_filePath))
+            if (File.Exists(sr_filePath))
             {
-                using (Stream stream = File.Open(r_filePath, FileMode.Open))
+                using (Stream stream = File.Open(sr_filePath, FileMode.Open))
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(typeof(AppSettings));
                     s_appSettings = xmlSerializer.Deserialize(stream) as AppSettings;
@@ -52,11 +42,24 @@ namespace Model
             return s_appSettings;
         }
 
+        private AppSettings()
+        {
+        }
+
+        public void SaveAppSettingsToXmlFile()
+        {
+            using (Stream stream = new FileStream(sr_filePath, FileMode.Create))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(this.GetType());
+                xmlSerializer.Serialize(stream, this);
+            }
+        }
+
         public void DeleteAppSettingsXmlFile()
         {
-            if (File.Exists(r_filePath))
+            if (File.Exists(sr_filePath))
             {
-                File.Delete(r_filePath);
+                File.Delete(sr_filePath);
             }
         }
 

@@ -13,11 +13,13 @@ using Model;
 namespace View
 {
     public delegate void LoginSucessDelegate(User i_LoggedUser);
+
     public delegate void LoginFailedDelegate();
 
     public partial class LoginForm : Form
     {
         public event LoginSucessDelegate LoginSucessListeners;
+
         public event LoginFailedDelegate LoginFailedListeners;
 
         private FacebookAuthenticator m_facebookAuthenticator;
@@ -65,7 +67,6 @@ namespace View
         public void StartLoginSession()
         {
             User user = null;
-
             try
             {
                 bool isLoggedIn = m_facebookAuthenticator.IsUserLoggedIn(out user);
@@ -79,14 +80,12 @@ namespace View
                     ShowDialog();
                 }
             }
-
             catch(Exception e)
             {
                 MessageBox.Show(e.Message + Environment.NewLine + "Acess token file has been corrupted?");
                 m_facebookAuthenticator.LogoutUser();
                 ShowDialog();
             }
-            
         }
 
         public void LogoutUser()

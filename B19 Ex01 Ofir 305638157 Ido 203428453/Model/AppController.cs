@@ -1,5 +1,5 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
+using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
@@ -8,7 +8,9 @@ namespace Model
         #region Class Members / Properties
 
         public User User { get; set; }
+
         public User Friend { get; set; }
+
         public User FaceRideFriend { get; set; }
 
         #endregion
@@ -34,8 +36,7 @@ About: {8}",
                 i_User.Educations?[0].School?.Name,
                 i_User.WorkExperiences?[0].Name,
                 i_User.RelationshipStatus,
-                i_User.About
-);
+                i_User.About);
         }
 
         public void UpdatePhotosOnAlbumsTab(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
@@ -63,6 +64,7 @@ About: {8}",
         private class PictureBoxThread
         {
             public System.Threading.Thread Thread { get; set; }
+
             public int PictureBoxIndex { get; set; }
         }
 

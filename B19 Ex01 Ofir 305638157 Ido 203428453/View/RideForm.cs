@@ -18,6 +18,7 @@ namespace View
             {
                 return m_bindingSource_Friends;
             }
+
             set
             {
                 m_bindingSource_Friends = value;

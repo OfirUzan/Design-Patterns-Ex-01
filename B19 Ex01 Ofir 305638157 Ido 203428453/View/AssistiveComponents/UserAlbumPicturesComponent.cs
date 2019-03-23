@@ -14,6 +14,7 @@ namespace View
         #region Class Members / Properties
 
         public byte NumOfPictureBoxes { get; }
+
         public PictureBox[] PictureBoxes { get; set; }
 
         #endregion

@@ -1,5 +1,5 @@
-﻿using FacebookWrapper.ObjectModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
@@ -7,9 +7,11 @@ namespace Model
     {
         #region Members / Properties
 
-        public User User { get; set; }
-        public LinkedListNode<string> CurrentPhotoURL { get; set; }
         private readonly object r_getNextPhotoLockContext = new object();
+
+        public User User { get; set; }
+
+        public LinkedListNode<string> CurrentPhotoURL { get; set; }
 
         #endregion
 
@@ -45,7 +47,7 @@ namespace Model
                 {
                     nextPhotoURL = CurrentAlbumPhotosURL.First.Value;
                     CurrentPhotoURL = CurrentAlbumPhotosURL.First;
-                };
+                }
             }
 
             return nextPhotoURL;
@@ -77,7 +79,6 @@ namespace Model
             foreach (Photo photo in photosAlbum.Photos)
             {
                 CurrentAlbumPhotosURL.AddLast(photo.PictureNormalURL);
-                
             }
 
             CurrentPhotoURL = CurrentAlbumPhotosURL.First;

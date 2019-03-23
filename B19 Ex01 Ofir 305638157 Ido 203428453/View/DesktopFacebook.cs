@@ -3,12 +3,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
-using Model;
 using System.IO;
 using System.Data;
-using System.Threading.Tasks;
-using System.Device.Location;
+using FacebookWrapper.ObjectModel;
+using Model;
 
 namespace View
 {
@@ -16,6 +14,12 @@ namespace View
     {
         #region Class Members / Properties
 
+        private readonly string           r_SaveDialog_CsvFilter = "CSV (*.csv)|*.csv";
+        private readonly string           r_DeafultCsvOutputName = "Contacts_Output.csv";
+        private readonly string           r_NotifyWhenDoneMessage = "Data will be exported and you will be notified when it is ready.";
+        private readonly string           r_CsvErrorMakingFile = "It wasn't possible to write the data to the disk.";
+        private readonly string           r_CsvMakeFileOk = "Your file was generated and its ready for use.";
+        private readonly string           r_GoogleUploadContactsLink = "https://support.google.com/contacts/answer/1069522?co=GENIE.Platform%3DDesktop&hl=en";
         private LoginForm                 m_LoginForm;
         private AppController             m_AppController;
         private AlbumsManager             m_AlbumsManager;
@@ -27,17 +31,7 @@ namespace View
         private UserEventsForm            m_UserEventsForm;
         private bool                      m_FirstLaunch = true;
         private LinkedList<GoogleContact> m_Contacts;
-        private readonly string           r_SaveDialog_CsvFilter = "CSV (*.csv)|*.csv";
-        private readonly string           r_DeafultCsvOutputName = "Contacts_Output.csv";
-        private readonly string           r_NotifyWhenDoneMessage = "Data will be exported and you will be notified when it is ready.";
-        private readonly string           r_CsvErrorMakingFile = "It wasn't possible to write the data to the disk.";
-        private readonly string           r_CsvMakeFileOk = "Your file was generated and its ready for use.";
-        private readonly string           r_GoogleUploadContactsLink = "https://support.google.com/contacts/answer/1069522?co=GENIE.Platform%3DDesktop&hl=en";
-
-
-
         #endregion
-
         #region Login Methods
         private void initializeLoginForm()
         {
@@ -76,7 +70,7 @@ namespace View
 
         private void initializeTabForm()
         {
-            //Use threads to init each tab FAST !!!
+            // Use threads to init each tab FAST !!!
             new System.Threading.Thread(() => initializeTabFeed()).Start();
             new System.Threading.Thread(() => initializeTabAlbums()).Start();
             new System.Threading.Thread(() => initializeTabProfile()).Start();
@@ -113,11 +107,11 @@ namespace View
 
         private void initializeTabProfile()
         {
-            m_userProfileComponent_TabProfile.ButtonAttachAFile.Click += tabProfile_AttachAFile_Click;
-            m_userProfileComponent_TabProfile.ButtonGetEvents.Click += tabProfile_GetEvents_Click;
-            m_userProfileComponent_TabProfile.ButtonPost.Click += tabProfile_Post_Click;
-            m_userProfileComponent_TabProfile.PictureBoxProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
-            m_userProfileComponent_TabProfile.TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(m_AppController.User);
+            userProfileComponent_TabProfile.ButtonAttachAFile.Click += tabProfile_AttachAFile_Click;
+            userProfileComponent_TabProfile.ButtonGetEvents.Click += tabProfile_GetEvents_Click;
+            userProfileComponent_TabProfile.ButtonPost.Click += tabProfile_Post_Click;
+            userProfileComponent_TabProfile.PictureBoxProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
+            userProfileComponent_TabProfile.TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(m_AppController.User);
         }
 
         private void initializeTabFriends()
@@ -221,10 +215,8 @@ namespace View
             if (c == null)
             {
                 richTextBox_TabFeed_CommentText.Text = "No Comments";
-                label_TabFeed_CommentDate.Text = "";
+                label_TabFeed_CommentDate.Text = string.Empty;
                 linkLabel_TabFeed_PostInfo.Visible = false;
-
-
             }
             else
             {
@@ -261,6 +253,7 @@ namespace View
             {
                 pictureBox.Cursor = Cursors.Hand;
             }
+
             button_TabAlbums_Next.Enabled = true;
             button_TabAlbums_Prevoius.Enabled = true;
             string albumName = comboBox_TabAlbums_AlbumsList.SelectedItem.ToString();
@@ -286,7 +279,7 @@ namespace View
 
         private void tabProfile_Post_Click(object sender, EventArgs e)
         {
-            string postText = m_userProfileComponent_TabProfile.TextBoxPostText.Text;
+            string postText = userProfileComponent_TabProfile.TextBoxPostText.Text;
             postToWall(m_AppController.User, postText);
         }
 
@@ -294,9 +287,8 @@ namespace View
         {
             try
             {
-                m_userProfileComponent_TabProfile.BindingSourceUpcomingEvents.DataSource = m_AppController.User.Events;
+                userProfileComponent_TabProfile.BindingSourceUpcomingEvents.DataSource = m_AppController.User.Events;
             }
-
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
@@ -443,7 +435,7 @@ namespace View
 
                     if (potentialRideFriends.Count != 0)
                     {
-                        //On demand object creation.
+                        // On demand object creation.
                         createAndShowRideForm();
                     }
                     else
@@ -471,7 +463,6 @@ namespace View
             {
                 m_UserEventsForm.BindingSource.DataSource = m_AppController.User.Events;
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -510,8 +501,7 @@ namespace View
             m_SelectedRideFriendForm.FriendFirstName.Text = m_FaceRideManager.ChosenFriend.FirstName;
             m_SelectedRideFriendForm.FriendLastName.Text = m_FaceRideManager.ChosenFriend.LastName;
             m_SelectedRideFriendForm.RequestMessage.Text =
-            string.Format("Hey {0}!{1}I would like to take a ride with you to {2}!{3}What do you say?",
-                          m_SelectedRideFriendForm.FriendFirstName.Text, Environment.NewLine, richTextBox_TabFaceRide_WhereTo.Text, Environment.NewLine);
+            string.Format("Hey {0}!{1}I would like to take a ride with you to {2}!{3}What do you say?", m_SelectedRideFriendForm.FriendFirstName.Text, Environment.NewLine, richTextBox_TabFaceRide_WhereTo.Text, Environment.NewLine);
             m_SelectedRideFriendForm.FriendFirstName.ReadOnly = true;
             m_SelectedRideFriendForm.FriendLastName.ReadOnly = true;
             m_SelectedRideFriendForm.ButtonPostOnWall.Click += tabFaceRide_PostOnWall_Click;
@@ -621,17 +611,17 @@ namespace View
 
         #region General Methods
 
-        private User getAFriendOfTheUserByName(string i_FriendName)
-        {
-            return m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
-        }
-
-        private static void makeRoundPictureBox(PictureBox i_PictureBox, int i_WidthRound, int i_HeightRound)
+        private void makeRoundPictureBox(PictureBox i_PictureBox, int i_WidthRound, int i_HeightRound)
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, i_PictureBox.Width - i_WidthRound, i_PictureBox.Height - i_HeightRound);
             Region rg = new Region(gp);
             i_PictureBox.Region = rg;
+        }
+
+        private User getAFriendOfTheUserByName(string i_FriendName)
+        {
+            return m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
         }
 
         private void postToWall(User i_User, string i_postText)
@@ -693,7 +683,6 @@ namespace View
             saveDialog.Filter = r_SaveDialog_CsvFilter;
             saveDialog.FileName = r_DeafultCsvOutputName;
 
-
             if(saveDialog.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show(r_NotifyWhenDoneMessage);
@@ -718,7 +707,6 @@ namespace View
 
                 csvOutput += Environment.NewLine;
 
-
                 foreach (DataGridViewRow row in dataGridView_TabContacts.Rows)
                 {
                     foreach (DataGridViewCell cell in row.Cells)
@@ -739,17 +727,14 @@ namespace View
 
         private void DesktopFacebook_Load(object sender, EventArgs e)
         {
-
         }
 
         private void panel_TabFeed_Navigate_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void userProfileComponent_TabFriends_Load(object sender, EventArgs e)
         {
-
         }
 
         private void button_TabFeed_Feature2_Click(object sender, EventArgs e)

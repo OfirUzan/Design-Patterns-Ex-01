@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -91,11 +92,8 @@
             this.m_textBoxRequestText.Name = "m_textBoxRequestText";
             this.m_textBoxRequestText.Size = new System.Drawing.Size(363, 162);
             this.m_textBoxRequestText.TabIndex = 13;
-            this.m_textBoxRequestText.Tag = "";
+            this.m_textBoxRequestText.Tag = string.Empty;
             this.m_textBoxRequestText.Text = "[Request Text]";
-            // 
-            // m_buttonSendViaMessanger
-            // 
             this.m_buttonSendViaMessanger.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.m_buttonSendViaMessanger.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
             this.m_buttonSendViaMessanger.ForeColor = System.Drawing.SystemColors.HighlightText;

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+
 namespace View
 {
     partial class LoginForm
@@ -18,6 +19,7 @@ namespace View
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

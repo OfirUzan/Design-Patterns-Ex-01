@@ -1,7 +1,7 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Device.Location;
 using System.Xml;
+using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
@@ -46,23 +46,15 @@ namespace Model
         // *** Following method will fail because we don't have location acess from facebook as supposed to *** //
         public bool IsFriendOnSearchRadius(User i_User, User i_Friend, double i_SearchRadius)
         {
-            //Returning always true just for testing purpuses!!!
             return true;
 
-
-            //UnComment following lines for REAL implementation.
-
-
-            /*
-
-            double userLatitude = UserCurrentAdress != null ? m_lastLatitude : (double)i_User.Location.Location.Latitude;
+            // Returning always true just for testing purpuses!!!
+            // Uncomment following lines for REAL implementation.
+            /*double userLatitude = UserCurrentAdress != null ? m_lastLatitude : (double)i_User.Location.Location.Latitude;
             double userLongtitude = UserCurrentAdress != null ? m_lastLongitude : (double)i_User.Location.Location.Longitude;
             double friendLatitude = (double)i_Friend.Location.Location.Latitude;
             double friendLongtitude = (double)i_Friend.Location.Location.Longitude;
-
-            return distanceBetween(userLatitude, userLongtitude, friendLatitude, friendLongtitude) <= i_SearchRadius;
-            
-            */
+            return distanceBetween(userLatitude, userLongtitude, friendLatitude, friendLongtitude) <= i_SearchRadius;*/
         }
 
         private double convertToRadians(double i_Angle)
@@ -70,10 +62,10 @@ namespace Model
             return (Math.PI / 180) * i_Angle;
         }
 
-        //Following method will calculate distance between two points based on KM calculations.
+        // Following method will calculate distance between two points based on KM calculations.
         private double distanceBetween(double i_UserLatitude, double i_UserLongitude, double i_FriendLatitude, double i_FriendLongitude)
         {
-            int earthKmRadius = 6371; //The radius of the earth in Km.
+            int earthRadiusInKM = 6371;
             double userLatRadians = convertToRadians(i_UserLatitude);
             double userLongRadians = convertToRadians(i_UserLongitude);
             double friendLatRadians = convertToRadians(i_FriendLatitude);
@@ -81,7 +73,7 @@ namespace Model
             double u = Math.Sin((friendLatRadians - userLatRadians) / 2);
             double v = Math.Sin((friendLonggRadians - userLongRadians) / 2);
 
-            return 2.0 * earthKmRadius * Math.Asin(Math.Sqrt(u * u + Math.Cos(userLatRadians) * Math.Cos(friendLatRadians) * v * v));
+            return 2.0 * earthRadiusInKM * Math.Asin(Math.Sqrt((u * u) + (Math.Cos(userLatRadians) * Math.Cos(friendLatRadians) * v * v)));
         }
     }
 }
