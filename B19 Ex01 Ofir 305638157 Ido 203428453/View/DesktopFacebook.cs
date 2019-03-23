@@ -17,19 +17,22 @@ namespace View
         private const char                k_CsvColSeperator = ',';
         private const char                k_CsvNewLine = ';';
         private const string              k_SaveDialog_CsvFilter = "CSV (*.csv)|*.csv";
-        private const string              k_RadiusSearchMsg = "Please Select Radius Of Search";
-        private const string              k_EmptyTextMsg = "Please insert a text to post!";
-        private const string              k_KostToWallMsg = "Do you want to say anything?";
+        private const string              k_MsgRadiusSearch = "Please Select Radius Of Search";
+        private const string              k_ErrorMsgEmptyText = "Please insert a text to post!";
+        private const string              k_PostToWallMsg = "Do you want to say anything?";
         private const string              k_DeafultCsvOutputName = "Contacts_Output.csv";
-        private const string              k_NotifyWhenDoneMessage = "Data will be exported and you will be notified when it is ready.";
-        private const string              k_CsvErrorMakingFile = "It wasn't possible to write the data to the disk.";
-        private const string              k_CsvMakeFileOk = "Your file was generated and its ready for use.";
+        private const string              k_MsgNotifyWhenDone = "Data will be exported and you will be notified when it is ready.";
+        private const string              k_ErrorMsgCsvMakingFile = "It wasn't possible to write the data to the disk.";
+        private const string              k_OkMsgCsvMakeFile = "Your file was generated and its ready for use.";
         private const string              k_AlbumCoverPhotosName = "Cover Photos";
-        private const string              k_NoCommentsMessage = "No Comments";
-        private const string              k_SelectDestinationMsg = "Please Select Radius Of Search";
-        private const string              k_ErrorNoPremmitionMessage = "Error: No permission to get user and/or friends locations.";
-        private const string              k_ErrorNoFriendsMessage = "We are sorry but no available friends found :(";
-        private const string              k_ErrorLocationMessage = "Couldn't fetch location, try again or type manually.";
+        private const string              k_MsgNoComments = "No Comments";
+        private const string              k_ErrorMsgSelectDestination = "Please Select Radius Of Search";
+        private const string              k_ErrorMsgNoPremmition = "Error: No permission to get user and/or friends locations.";
+        private const string              k_ErrorMsgNoFriends = "We are sorry but no available friends found :(";
+        private const string              k_ErrorMsgLocation = "Couldn't fetch location, try again or type manually.";
+        private const string              k_ErrorMsgSelectFriend = "Please select a friend first!";
+        private const string              k_ErrorMsgFriendNotFound = "Please select a friend first!";
+        private const string              k_ErrorMsgSelectGender = "Please Select a Gender";
         private const string              k_CatchARideFormat = "Hey {0}!{1}I would like to take a ride with you to {2}!{3}What do you say?";
         private const string              k_FacebookMessengerUrl = "https://www.facebook.com/messages/t/";
         private const string              k_FacebookUrl = "https://www.facebook.com/";
@@ -226,7 +229,7 @@ namespace View
             Comment c = m_WallManager.GetNextCommentOfCurrentPost();
             if (c == null)
             {
-                richTextBox_TabFeed_CommentText.Text = k_NoCommentsMessage;
+                richTextBox_TabFeed_CommentText.Text = k_MsgNoComments;
                 label_TabFeed_CommentDate.Text = string.Empty;
                 linkLabel_TabFeed_PostInfo.Visible = false;
             }
@@ -315,7 +318,7 @@ namespace View
         {
             if (m_AppController.Friend == null)
             {
-                MessageBox.Show("Please select a friend first!");
+                MessageBox.Show(k_ErrorMsgSelectFriend);
             }
             else
             {
@@ -328,7 +331,7 @@ namespace View
         {
             if (m_AppController.Friend == null)
             {
-                MessageBox.Show("Please select a friend first!");
+                MessageBox.Show(k_ErrorMsgSelectFriend);
             }
             else
             {
@@ -347,7 +350,7 @@ namespace View
         {
             if (m_AppController.Friend == null)
             {
-                MessageBox.Show("Please select a friend first!");
+                MessageBox.Show(k_ErrorMsgSelectFriend);
             }
             else
             {
@@ -367,7 +370,7 @@ namespace View
             }
             else
             {
-                MessageBox.Show("Friend was not found.");
+                MessageBox.Show(k_ErrorMsgNoFriends);
             }
         }
 
@@ -384,7 +387,7 @@ namespace View
         private void tabFaceRide_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string currentUserAdress = m_FaceRideManager.GetUserCurrentAdress();
-            richTextBox_TabFaceRide_WhereFrom.Text = !string.IsNullOrEmpty(currentUserAdress) ? currentUserAdress : k_ErrorLocationMessage;
+            richTextBox_TabFaceRide_WhereFrom.Text = !string.IsNullOrEmpty(currentUserAdress) ? currentUserAdress : k_ErrorMsgLocation;
         }
 
         private void tabFaceRide_linkLabel_GetFromEvent_Click(object sender, LinkLabelLinkClickedEventArgs e)
@@ -446,12 +449,12 @@ namespace View
                     }
                     else
                     {
-                        MessageBox.Show(k_ErrorNoFriendsMessage);
+                        MessageBox.Show(k_ErrorMsgNoFriends);
                     }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(k_ErrorNoPremmitionMessage);
+                    MessageBox.Show(k_ErrorMsgNoPremmition);
                 }
             }
         }
@@ -526,7 +529,7 @@ namespace View
 
             if (comboBox_TabFaceRide_Radius.SelectedItem == null)
             {
-                MessageBox.Show(k_RadiusSearchMsg);
+                MessageBox.Show(k_MsgRadiusSearch);
                 isValid = false;
             }
 
@@ -539,7 +542,7 @@ namespace View
 
             if (richTextBox_TabFaceRide_WhereTo.Text == string.Empty)
             {
-                MessageBox.Show(k_SelectDestinationMsg);
+                MessageBox.Show(k_ErrorMsgSelectDestination);
                 isValid = false;
             }
 
@@ -565,7 +568,7 @@ namespace View
 
             if (!(checkBox_TabFaceRide_Male.Checked || checkBox_TabFaceRide_Female.Checked))
             {
-                MessageBox.Show("Please Select A Gender Of Your Ride");
+                MessageBox.Show(k_ErrorMsgSelectGender);
                 isValid = false;
             }
 
@@ -574,7 +577,7 @@ namespace View
 
         #endregion
 
-        public static bool populateDataGridViewWithCsvFile(DataGridView i_GridView, string i_CsvPath)
+        private bool populateDataGridViewWithCsvFile(DataGridView i_GridView, string i_CsvPath)
         {
             bool sucess = true;
             try
@@ -617,6 +620,11 @@ namespace View
 
         #region General Methods
 
+        private User getAFriendOfTheUserByName(string i_FriendName)
+        {
+            return m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
+        }
+
         private void makeRoundPictureBox(PictureBox i_PictureBox, int i_WidthRound, int i_HeightRound)
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
@@ -625,14 +633,9 @@ namespace View
             i_PictureBox.Region = rg;
         }
 
-        private User getAFriendOfTheUserByName(string i_FriendName)
-        {
-            return m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
-        }
-
         private void postToWall(User i_User, string i_PostText)
         {
-            if (i_PostText != string.Empty && i_PostText != k_KostToWallMsg)
+            if (i_PostText != string.Empty && i_PostText != k_PostToWallMsg)
             {
                 try
                 {
@@ -645,7 +648,7 @@ namespace View
             }
             else
             {
-                MessageBox.Show(k_EmptyTextMsg);
+                MessageBox.Show(k_ErrorMsgEmptyText);
             }
         }
 
@@ -690,7 +693,7 @@ namespace View
 
             if(saveDialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(k_NotifyWhenDoneMessage);
+                MessageBox.Show(k_MsgNotifyWhenDone);
                 if (File.Exists(filename))
                 {
                     try
@@ -699,7 +702,7 @@ namespace View
                     }
                     catch (IOException ex)
                     {
-                        MessageBox.Show(k_CsvErrorMakingFile + ex.Message);
+                        MessageBox.Show(k_ErrorMsgCsvMakingFile + ex.Message);
                     }
                 }
 
@@ -726,7 +729,7 @@ namespace View
                 }
 
                 System.IO.File.WriteAllText(saveDialog.FileName, csvOutput, System.Text.Encoding.UTF8);
-                MessageBox.Show(k_CsvMakeFileOk);
+                MessageBox.Show(k_OkMsgCsvMakeFile);
             }
         }
 

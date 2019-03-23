@@ -19,7 +19,7 @@ namespace View
     public partial class LoginForm : Form
     {
         private const string          k_InternetErrorMsg = "Please check your internet connection.";
-        private FacebookAuthenticator m_facebookAuthenticator;
+        private FacebookAuthenticator m_FacebookAuthenticator;
 
         public event LoginSucessDelegate LoginSucessListeners;
 
@@ -28,7 +28,7 @@ namespace View
         public LoginForm()
         {
             InitializeComponent();
-            m_facebookAuthenticator = new FacebookAuthenticator();
+            m_FacebookAuthenticator = new FacebookAuthenticator();
         }
 
         private void finishLoginWithSucess(User i_User)
@@ -54,7 +54,7 @@ namespace View
         {
             try
             {
-                User user = m_facebookAuthenticator.LoginUser();
+                User user = m_FacebookAuthenticator.LoginUser();
                 finishLoginWithSucess(user);
             }
             catch (Exception exception)
@@ -70,7 +70,7 @@ namespace View
             User user = null;
             try
             {
-                bool isLoggedIn = m_facebookAuthenticator.IsUserLoggedIn(out user);
+                bool isLoggedIn = m_FacebookAuthenticator.IsUserLoggedIn(out user);
 
                 if (isLoggedIn)
                 {
@@ -84,20 +84,20 @@ namespace View
             catch(Exception e)
             {
                 MessageBox.Show(e.Message + Environment.NewLine + "Acess token file has been corrupted?");
-                m_facebookAuthenticator.LogoutUser();
+                m_FacebookAuthenticator.LogoutUser();
                 ShowDialog();
             }
         }
 
         public void LogoutUser()
         {
-            m_facebookAuthenticator.LogoutUser();
+            m_FacebookAuthenticator.LogoutUser();
             ShowDialog();
         }
 
         private void m_checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)
         {
-            m_facebookAuthenticator.RememberUser = checkBox_RememberUser.Checked;
+            m_FacebookAuthenticator.RememberUser = checkBox_RememberUser.Checked;
         }
     }
 }

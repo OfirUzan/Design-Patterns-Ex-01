@@ -6,7 +6,7 @@ namespace Model
     public class AlbumsManager
     {
         #region Members / Properties
-        private readonly object r_getNextPhotoLockContext = new object();
+        private readonly object r_GetNextPhotoLockContext = new object();
 
         public User User { get; set; }
 
@@ -33,7 +33,7 @@ namespace Model
         public string GetNextPhotoURL()
         {
             string nextPhotoURL;
-            lock (r_getNextPhotoLockContext)
+            lock (r_GetNextPhotoLockContext)
             {
                 if (CurrentPhotoURL.Next != null)
                 {

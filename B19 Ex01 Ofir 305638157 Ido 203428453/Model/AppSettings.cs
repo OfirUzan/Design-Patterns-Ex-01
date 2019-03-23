@@ -8,20 +8,21 @@ namespace Model
         #region Class Members / Properties
         private static readonly string sr_filePath = Directory.GetCurrentDirectory() + "\\AcessToken.txt";
         private static readonly object sr_ObjectCreationLockContext = new object();
-        private static AppSettings     s_appSettings = null;
+        private static AppSettings     s_AppSettings = null;
+
         public string LastAcessToken { get; set; } = null;
         #endregion
 
         #region Class Methods
         public static AppSettings GetOrCreateAppSettingsFromXmlFile()
         {
-            if (s_appSettings == null)
+            if (s_AppSettings == null)
             {
                 lock (sr_ObjectCreationLockContext)
                 {
-                    if (s_appSettings == null)
+                    if (s_AppSettings == null)
                     {
-                        s_appSettings = new AppSettings();
+                        s_AppSettings = new AppSettings();
                     }
                 }
             }
@@ -31,11 +32,11 @@ namespace Model
                 using (Stream stream = File.Open(sr_filePath, FileMode.Open))
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(typeof(AppSettings));
-                    s_appSettings = xmlSerializer.Deserialize(stream) as AppSettings;
+                    s_AppSettings = xmlSerializer.Deserialize(stream) as AppSettings;
                 }
             }
 
-            return s_appSettings;
+            return s_AppSettings;
         }
 
         public void SaveAppSettingsToXmlFile()

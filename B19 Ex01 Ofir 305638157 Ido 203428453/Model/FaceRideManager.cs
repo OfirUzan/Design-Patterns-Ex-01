@@ -8,7 +8,7 @@ namespace Model
     {
         #region Class Members / Properties
 
-        private LocationServices m_locationServices = new LocationServices();
+        private LocationServices m_LocationServices = new LocationServices();
 
         public User ChosenFriend { get; set; }
 
@@ -25,7 +25,7 @@ namespace Model
 
             foreach (User friend in i_User.Friends)
             {
-                if ((friend.Gender == User.eGender.male) && (i_MaleFriends || friend.Gender == User.eGender.female) && i_FemaleFriends && m_locationServices.IsFriendOnSearchRadius(i_User, friend, radius))
+                if ((friend.Gender == User.eGender.male) && (i_MaleFriends || friend.Gender == User.eGender.female) && i_FemaleFriends && m_LocationServices.IsFriendOnSearchRadius(i_User, friend, radius))
                 {
                     PossibleRideFriends.Add(friend);
                 }
@@ -36,7 +36,7 @@ namespace Model
 
         public string GetUserCurrentAdress()
         {
-            return m_locationServices.UserCurrentAdress;
+            return m_LocationServices.UserCurrentAdress;
         }
 
         #endregion

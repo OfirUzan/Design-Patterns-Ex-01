@@ -7,9 +7,9 @@ namespace Model
 {
     public class GoogleContact
     {
-        private const string k_Csv_Head = "Name,Given Name,Family Name,Nickname,Short Name,Maiden Name,User Name,Birthday,Gender,Location,Relationship Status,SignificantOther,Religion,Quotes,Locale,About,Language,Cover,Photo,E-mail 1 - Type,E-mail 1 - Value,E-mail 2 - Type,E-mail 2 - Value,Phone 1 - Type,Phone 1 - Value,Phone 2 - Type,Phone 2 - Value,Address 1 - Type,Address 1 - Formatted,Address 1 - Street,Address 1 - City,Address 1 - PO Box,Address 1 - Region,Address 1 - Postal Code,Address 1 - Country,Address 1 - Extended Address,Organization 1 - Type,Organization 1 - Name,Organization 1 - Yomi Name,Organization 1 - Title,Organization 1 - Department,Organization 1 - Symbol,Organization 1 - Location,Organization 1 - Job Description,Website 1 - Type,Website 1 - Value";
+        private const string k_CsvHeader = "Name,Given Name,Family Name,Nickname,Short Name,Maiden Name,User Name,Birthday,Gender,Location,Relationship Status,SignificantOther,Religion,Quotes,Locale,About,Language,Cover,Photo,E-mail 1 - Type,E-mail 1 - Value,E-mail 2 - Type,E-mail 2 - Value,Phone 1 - Type,Phone 1 - Value,Phone 2 - Type,Phone 2 - Value,Address 1 - Type,Address 1 - Formatted,Address 1 - Street,Address 1 - City,Address 1 - PO Box,Address 1 - Region,Address 1 - Postal Code,Address 1 - Country,Address 1 - Extended Address,Organization 1 - Type,Organization 1 - Name,Organization 1 - Yomi Name,Organization 1 - Title,Organization 1 - Department,Organization 1 - Symbol,Organization 1 - Location,Organization 1 - Job Description,Website 1 - Type,Website 1 - Value";
         private const string k_SearchProp = "String";
-        private const string k_PopulateError = "Populate contact exception";
+        private const string k_PopulateError = "Error: Populate contacts faild";
 
         public string Name { get; set; }
 
@@ -82,7 +82,7 @@ namespace Model
 
             public override string ToString()
             {
-                return GoogleContact.ObjectPropsToCsvString(this);
+                return GoogleContact.objectPropsToCsvString(this);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Model
 
             public override string ToString()
             {
-                return GoogleContact.ObjectPropsToCsvString(this);
+                return GoogleContact.objectPropsToCsvString(this);
             }
         }
 
@@ -106,7 +106,7 @@ namespace Model
 
             public override string ToString()
             {
-                return GoogleContact.ObjectPropsToCsvString(this);
+                return GoogleContact.objectPropsToCsvString(this);
             }
         }
 
@@ -130,7 +130,7 @@ namespace Model
     
             public override string ToString()
             {
-                return GoogleContact.ObjectPropsToCsvString(this);
+                return GoogleContact.objectPropsToCsvString(this);
             }
         }
 
@@ -156,7 +156,7 @@ namespace Model
 
             public override string ToString()
             {
-                return GoogleContact.ObjectPropsToCsvString(this);
+                return GoogleContact.objectPropsToCsvString(this);
             }
         }
 
@@ -201,12 +201,7 @@ namespace Model
             }
         }
 
-        public override string ToString()
-        {
-            return ObjectPropsToCsvString(this);
-        }
-
-        private static string ObjectPropsToCsvString(object t)
+        private static string objectPropsToCsvString(object t)
         {
             string res = null;
             bool first = true;
@@ -234,21 +229,26 @@ namespace Model
             return res;
         }
 
-        public static string Csv_Header()
+        public static string GetCsvHeader()
         {
-            return k_Csv_Head;
+            return k_CsvHeader;
         }
 
         public static void MakeCsvFromContactList(LinkedList<GoogleContact> i_Contacts, string i_FilePath)
         {         
                 using (StreamWriter writer = new StreamWriter(new FileStream(i_FilePath, FileMode.Create, FileAccess.Write)))
                 {
-                    writer.WriteLine(GoogleContact.Csv_Header());
+                    writer.WriteLine(GoogleContact.GetCsvHeader());
                     foreach (GoogleContact contact in i_Contacts)
                     {
                         writer.WriteLine(contact.ToString());
                     }
                 }  
+        }
+
+        public override string ToString()
+        {
+            return objectPropsToCsvString(this);
         }
     }
 }

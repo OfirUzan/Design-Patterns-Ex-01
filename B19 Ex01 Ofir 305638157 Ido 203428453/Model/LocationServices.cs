@@ -15,15 +15,15 @@ namespace Model
         private double          m_LastLatitude;
         private double          m_LastLongitude;
 
-        public GeoCoordinateWatcher GeoCoordinateWatcher { get; private set; }
+        public GeoCoordinateWatcher GeoCodorinateWatcher { get; private set; }
 
         public string UserCurrentAdress { get; private set; }
 
         public LocationServices()
         {
-            GeoCoordinateWatcher = new GeoCoordinateWatcher();
-            GeoCoordinateWatcher.PositionChanged += GeoCoordinateWatcher_PositionChanged;
-            GeoCoordinateWatcher.Start();
+            GeoCodorinateWatcher = new GeoCoordinateWatcher();
+            GeoCodorinateWatcher.PositionChanged += GeoCoordinateWatcher_PositionChanged;
+            GeoCodorinateWatcher.Start();
         }
 
         private void GeoCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
@@ -45,7 +45,25 @@ namespace Model
                 UserCurrentAdress = null;
             }
 
-            GeoCoordinateWatcher.Stop();
+            GeoCodorinateWatcher.Stop();
+        }
+
+        private double convertToRadians(double i_Angle)
+        {
+            return Math.PI / k_Semicircle * i_Angle;
+        }
+       
+        // Following method will calculate distance between two points based on KM calculations.
+        private double distanceBetween(double i_UserLatitude, double i_UserLongitude, double i_FriendLatitude, double i_FriendLongitude)
+        {
+            double userLatRadians = convertToRadians(i_UserLatitude);
+            double userLongRadians = convertToRadians(i_UserLongitude);
+            double friendLatRadians = convertToRadians(i_FriendLatitude);
+            double friendLonggRadians = convertToRadians(i_FriendLongitude);
+            double u = Math.Sin((friendLatRadians - userLatRadians) / 2);
+            double v = Math.Sin((friendLonggRadians - userLongRadians) / 2);
+
+            return 2.0 * k_EarthRadiousInKM * Math.Asin(Math.Sqrt((u * u) + (Math.Cos(userLatRadians) * Math.Cos(friendLatRadians) * v * v)));
         }
 
         // *** Following method will fail because we don't have location acess from facebook as supposed to *** //
@@ -61,24 +79,6 @@ namespace Model
             double friendLatitude = (double)i_Friend.Location.Location.Latitude;
             double friendLongtitude = (double)i_Friend.Location.Location.Longitude;
             return distanceBetween(userLatitude, userLongtitude, friendLatitude, friendLongtitude) <= i_SearchRadius;*/
-        }
-
-        private double convertToRadians(double i_Angle)
-        {
-            return Math.PI / k_Semicircle * i_Angle;
-        }
-
-        // Following method will calculate distance between two points based on KM calculations.
-        private double distanceBetween(double i_UserLatitude, double i_UserLongitude, double i_FriendLatitude, double i_FriendLongitude)
-        {
-            double userLatRadians = convertToRadians(i_UserLatitude);
-            double userLongRadians = convertToRadians(i_UserLongitude);
-            double friendLatRadians = convertToRadians(i_FriendLatitude);
-            double friendLonggRadians = convertToRadians(i_FriendLongitude);
-            double u = Math.Sin((friendLatRadians - userLatRadians) / 2);
-            double v = Math.Sin((friendLonggRadians - userLongRadians) / 2);
-
-            return 2.0 * k_EarthRadiousInKM * Math.Asin(Math.Sqrt((u * u) + (Math.Cos(userLatRadians) * Math.Cos(friendLatRadians) * v * v)));
         }
     }
 }

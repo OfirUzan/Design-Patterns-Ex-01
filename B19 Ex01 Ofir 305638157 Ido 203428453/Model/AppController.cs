@@ -13,6 +13,13 @@ namespace Model
         public User FaceRideFriend { get; set; }
         #endregion
 
+        private class PictureBoxThread
+        {
+            public System.Threading.Thread Thread { get; set; }
+
+            public int PictureBoxIndex { get; set; }
+        }
+        
         #region Class Methods
         private void startThreadsForAlbumsTabUpdate(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
         {
@@ -29,13 +36,6 @@ namespace Model
                 pictureBoxThread.Thread = new System.Threading.Thread(() => i_MethodToExecute(pictureBoxThread.PictureBoxIndex));
                 pictureBoxThread.Thread.Start();
             }
-        }
-
-        private class PictureBoxThread
-        {
-            public System.Threading.Thread Thread { get; set; }
-
-            public int PictureBoxIndex { get; set; }
         }
 
         public string GetFacebookUserInfo(User i_User)
