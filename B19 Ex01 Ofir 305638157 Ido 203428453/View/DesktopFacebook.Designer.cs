@@ -1,4 +1,6 @@
-﻿namespace View
+﻿using System.Windows.Forms;
+
+namespace View
 {
     public partial class DesktopFacebook
     {
@@ -140,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel_TabContacts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TabContacts)).BeginInit();
+            this.pictureBox_TabFaceRide_Title.SizeMode = PictureBoxSizeMode.StretchImage;
             this.SuspendLayout();
             // 
             // tabsControl

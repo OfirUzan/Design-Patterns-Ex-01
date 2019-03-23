@@ -9,7 +9,6 @@ namespace Model
         private static readonly string sr_filePath = Directory.GetCurrentDirectory() + "\\AcessToken.txt";
         private static readonly object sr_ObjectCreationLockContext = new object();
         private static AppSettings     s_appSettings = null;
-  
         public string LastAcessToken { get; set; } = null;
         #endregion
 
