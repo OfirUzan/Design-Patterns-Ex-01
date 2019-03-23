@@ -6,19 +6,16 @@ namespace Model
     public class AlbumsManager
     {
         #region Members / Properties
-
         private readonly object r_getNextPhotoLockContext = new object();
 
         public User User { get; set; }
 
         public LinkedListNode<string> CurrentPhotoURL { get; set; }
 
+        public LinkedList<string> CurrentAlbumPhotosURL { get; set; }  
         #endregion
 
         #region Class Methods
-
-        public LinkedList<string> CurrentAlbumPhotosURL { get; set; }
-
         public AlbumsManager(User i_User)
         {
             CurrentAlbumPhotosURL = new LinkedList<string>();
@@ -29,13 +26,13 @@ namespace Model
         {
             Album photosAlbum = User.Albums.Find(x => x.Name == i_AlbumName);
             Photo latestPhoto = photosAlbum.Photos[0];
+
             return latestPhoto.PictureNormalURL;
         }
 
         public string GetNextPhotoURL()
         {
             string nextPhotoURL;
-
             lock (r_getNextPhotoLockContext)
             {
                 if (CurrentPhotoURL.Next != null)
@@ -56,7 +53,6 @@ namespace Model
         public string GetPreviousPhotoURL()
         {
             string previousPhotoURL;
-
             if (CurrentPhotoURL.Previous != null)
             {
                 previousPhotoURL = CurrentPhotoURL.Previous.Value;

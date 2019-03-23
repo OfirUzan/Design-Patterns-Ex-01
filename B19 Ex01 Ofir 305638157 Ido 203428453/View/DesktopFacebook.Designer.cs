@@ -319,7 +319,6 @@
             this.panel_TabFeed_Navigate.Name = "panel_TabFeed_Navigate";
             this.panel_TabFeed_Navigate.Size = new System.Drawing.Size(1152, 69);
             this.panel_TabFeed_Navigate.TabIndex = 4;
-            this.panel_TabFeed_Navigate.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_TabFeed_Navigate_Paint);
             // 
             // button_TabFeed_Feature2
             // 
@@ -332,7 +331,7 @@
             this.button_TabFeed_Feature2.TabIndex = 9;
             this.button_TabFeed_Feature2.Text = "Contacts";
             this.button_TabFeed_Feature2.UseVisualStyleBackColor = false;
-            this.button_TabFeed_Feature2.Click += new System.EventHandler(this.button_TabFeed_Feature2_Click);
+            this.button_TabFeed_Feature2.Click += new System.EventHandler(this.tabsControl_SelectedTab_Contacts_Click);
             // 
             // button_TabFeed_FaceRide
             // 
@@ -1038,7 +1037,6 @@
             this.Name = "DesktopFacebook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facebook For Desktop!";
-            this.Load += new System.EventHandler(this.DesktopFacebook_Load);
             this.tabsControl.ResumeLayout(false);
             this.tabPage_Feed.ResumeLayout(false);
             this.tabPage_Feed.PerformLayout();

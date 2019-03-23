@@ -6,16 +6,38 @@ namespace Model
     public class AppController
     {
         #region Class Members / Properties
-
         public User User { get; set; }
 
         public User Friend { get; set; }
 
         public User FaceRideFriend { get; set; }
-
         #endregion
 
         #region Class Methods
+        private void startThreadsForAlbumsTabUpdate(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
+        {
+            PictureBoxThread[] pictureBoxThreads = new PictureBoxThread[i_NumOfPictureBoxes];
+
+            for (int i = 0; i < i_NumOfPictureBoxes; ++i)
+            {
+                pictureBoxThreads[i] = new PictureBoxThread();
+                pictureBoxThreads[i].PictureBoxIndex = i;
+            }
+
+            foreach (PictureBoxThread pictureBoxThread in pictureBoxThreads)
+            {
+                pictureBoxThread.Thread = new System.Threading.Thread(() => i_MethodToExecute(pictureBoxThread.PictureBoxIndex));
+                pictureBoxThread.Thread.Start();
+            }
+        }
+
+        private class PictureBoxThread
+        {
+            public System.Threading.Thread Thread { get; set; }
+
+            public int PictureBoxIndex { get; set; }
+        }
+
         public string GetFacebookUserInfo(User i_User)
         {
             return string.Format(
@@ -43,31 +65,6 @@ About: {8}",
         {
             startThreadsForAlbumsTabUpdate(i_MethodToExecute, i_NumOfPictureBoxes);
         }
-
-        private void startThreadsForAlbumsTabUpdate(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
-        {
-            PictureBoxThread[] pictureBoxThreads = new PictureBoxThread[i_NumOfPictureBoxes];
-
-            for (int i = 0; i < i_NumOfPictureBoxes; ++i)
-            {
-                pictureBoxThreads[i] = new PictureBoxThread();
-                pictureBoxThreads[i].PictureBoxIndex = i;
-            }
-
-            foreach (PictureBoxThread pictureBoxThread in pictureBoxThreads)
-            {
-                pictureBoxThread.Thread = new System.Threading.Thread(() => i_MethodToExecute(pictureBoxThread.PictureBoxIndex));
-                pictureBoxThread.Thread.Start();
-            }
-        }
-
-        private class PictureBoxThread
-        {
-            public System.Threading.Thread Thread { get; set; }
-
-            public int PictureBoxIndex { get; set; }
-        }
-
         #endregion
     }
 }

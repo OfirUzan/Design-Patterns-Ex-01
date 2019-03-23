@@ -14,12 +14,12 @@ namespace View
     {
         #region Class Members / Properties
 
-        private readonly string           r_SaveDialog_CsvFilter = "CSV (*.csv)|*.csv";
-        private readonly string           r_DeafultCsvOutputName = "Contacts_Output.csv";
-        private readonly string           r_NotifyWhenDoneMessage = "Data will be exported and you will be notified when it is ready.";
-        private readonly string           r_CsvErrorMakingFile = "It wasn't possible to write the data to the disk.";
-        private readonly string           r_CsvMakeFileOk = "Your file was generated and its ready for use.";
-        private readonly string           r_GoogleUploadContactsLink = "https://support.google.com/contacts/answer/1069522?co=GENIE.Platform%3DDesktop&hl=en";
+        private const string              k_SaveDialog_CsvFilter = "CSV (*.csv)|*.csv";
+        private const string              k_DeafultCsvOutputName = "Contacts_Output.csv";
+        private const string              k_NotifyWhenDoneMessage = "Data will be exported and you will be notified when it is ready.";
+        private const string              k_CsvErrorMakingFile = "It wasn't possible to write the data to the disk.";
+        private const string              k_CsvMakeFileOk = "Your file was generated and its ready for use.";
+        private const string              k_GoogleUploadContactsLink = "https://support.google.com/contacts/answer/1069522?co=GENIE.Platform%3DDesktop&hl=en";
         private LoginForm                 m_LoginForm;
         private AppController             m_AppController;
         private AlbumsManager             m_AlbumsManager;
@@ -29,8 +29,8 @@ namespace View
         private RideForm                  m_RideForm;
         private SelectedRideFriendForm    m_SelectedRideFriendForm;
         private UserEventsForm            m_UserEventsForm;
-        private bool                      m_FirstLaunch = true;
         private LinkedList<GoogleContact> m_Contacts;
+        private bool                      m_FirstLaunch = true;
         #endregion
         #region Login Methods
         private void initializeLoginForm()
@@ -666,9 +666,9 @@ namespace View
 
         private void button_TabContacts_DisplayContacts_Click(object sender, EventArgs e)
         {
-            webBrowser_TabContacts.Url = new Uri(r_GoogleUploadContactsLink);
-            GoogleContact.MakeCsvFromContactList(m_Contacts, r_DeafultCsvOutputName);
-            populateDataGridViewWithCsvFile(dataGridView_TabContacts, r_DeafultCsvOutputName);
+            webBrowser_TabContacts.Url = new Uri(k_GoogleUploadContactsLink);
+            GoogleContact.MakeCsvFromContactList(m_Contacts, k_DeafultCsvOutputName);
+            populateDataGridViewWithCsvFile(dataGridView_TabContacts, k_DeafultCsvOutputName);
         }
 
         private void button_TabContacts_Save_Click(object sender, EventArgs e)
@@ -680,12 +680,12 @@ namespace View
         {
             string filename = string.Empty;
             SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Filter = r_SaveDialog_CsvFilter;
-            saveDialog.FileName = r_DeafultCsvOutputName;
+            saveDialog.Filter = k_SaveDialog_CsvFilter;
+            saveDialog.FileName = k_DeafultCsvOutputName;
 
             if(saveDialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(r_NotifyWhenDoneMessage);
+                MessageBox.Show(k_NotifyWhenDoneMessage);
                 if (File.Exists(filename))
                 {
                     try
@@ -694,7 +694,7 @@ namespace View
                     }
                     catch (IOException ex)
                     {
-                        MessageBox.Show(r_CsvErrorMakingFile + ex.Message);
+                        MessageBox.Show(k_CsvErrorMakingFile + ex.Message);
                     }
                 }
 
@@ -721,23 +721,11 @@ namespace View
                 }
 
                 System.IO.File.WriteAllText(saveDialog.FileName, csvOutput, System.Text.Encoding.UTF8);
-                MessageBox.Show(r_CsvMakeFileOk);
+                MessageBox.Show(k_CsvMakeFileOk);
             }
         }
 
-        private void DesktopFacebook_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void panel_TabFeed_Navigate_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void userProfileComponent_TabFriends_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void button_TabFeed_Feature2_Click(object sender, EventArgs e)
+        private void tabsControl_SelectedTab_Contacts_Click(object sender, EventArgs e)
         {
             tabsControl.SelectedTab = tabPage_Contacts;
         }

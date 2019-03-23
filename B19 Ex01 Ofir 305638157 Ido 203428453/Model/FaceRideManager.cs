@@ -8,11 +8,11 @@ namespace Model
     {
         #region Class Members / Properties
 
+        private LocationServices m_locationServices = new LocationServices();
+
         public User ChosenFriend { get; set; }
 
         public FacebookObjectCollection<User> PossibleRideFriends { get; set; }
-
-        private LocationServices m_locationServices = new LocationServices();
 
         #endregion
         #region Class Methods
