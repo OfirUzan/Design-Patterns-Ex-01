@@ -32,7 +32,7 @@ namespace View
         private readonly string           r_NotifyWhenDoneMessage = "Data will be exported and you will be notified when it is ready.";
         private readonly string           r_CsvErrorMakingFile = "It wasn't possible to write the data to the disk.";
         private readonly string           r_CsvMakeFileOk = "Your file was generated and its ready for use.";
-        private readonly string           r_GoogleUploadContactsLink = "https://www.solveyourtech.com/how-to-import-contacts-to-gmail-with-a-csv-file/";
+        private readonly string           r_GoogleUploadContactsLink = "https://support.google.com/contacts/answer/1069522?co=GENIE.Platform%3DDesktop&hl=en";
 
 
 
@@ -674,14 +674,14 @@ namespace View
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_TabContacts_DisplayContacts_Click(object sender, EventArgs e)
         {
             webBrowser_TabContacts.Url = new Uri(r_GoogleUploadContactsLink);
             GoogleContact.MakeCsvFromContactList(m_Contacts, r_DeafultCsvOutputName);
             populateDataGridViewWithCsvFile(dataGridView_TabContacts, r_DeafultCsvOutputName);
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button_TabContacts_Save_Click(object sender, EventArgs e)
         {
             dataGridViewToCSV(dataGridView_TabContacts);
         }
