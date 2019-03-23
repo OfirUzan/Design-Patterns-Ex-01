@@ -14,11 +14,25 @@ namespace View
     {
         #region Class Members / Properties
 
+        private const char                k_CsvColSeperator = ',';
+        private const char                k_CsvNewLine = ';';
         private const string              k_SaveDialog_CsvFilter = "CSV (*.csv)|*.csv";
+        private const string              k_RadiusSearchMsg = "Please Select Radius Of Search";
+        private const string              k_EmptyTextMsg = "Please insert a text to post!";
+        private const string              k_KostToWallMsg = "Do you want to say anything?";
         private const string              k_DeafultCsvOutputName = "Contacts_Output.csv";
         private const string              k_NotifyWhenDoneMessage = "Data will be exported and you will be notified when it is ready.";
         private const string              k_CsvErrorMakingFile = "It wasn't possible to write the data to the disk.";
         private const string              k_CsvMakeFileOk = "Your file was generated and its ready for use.";
+        private const string              k_AlbumCoverPhotosName = "Cover Photos";
+        private const string              k_NoCommentsMessage = "No Comments";
+        private const string              k_SelectDestinationMsg = "Please Select Radius Of Search";
+        private const string              k_ErrorNoPremmitionMessage = "Error: No permission to get user and/or friends locations.";
+        private const string              k_ErrorNoFriendsMessage = "We are sorry but no available friends found :(";
+        private const string              k_ErrorLocationMessage = "Couldn't fetch location, try again or type manually.";
+        private const string              k_CatchARideFormat = "Hey {0}!{1}I would like to take a ride with you to {2}!{3}What do you say?";
+        private const string              k_FacebookMessengerUrl = "https://www.facebook.com/messages/t/";
+        private const string              k_FacebookUrl = "https://www.facebook.com/";
         private const string              k_GoogleUploadContactsLink = "https://support.google.com/contacts/answer/1069522?co=GENIE.Platform%3DDesktop&hl=en";
         private LoginForm                 m_LoginForm;
         private AppController             m_AppController;
@@ -32,6 +46,7 @@ namespace View
         private LinkedList<GoogleContact> m_Contacts;
         private bool                      m_FirstLaunch = true;
         #endregion
+
         #region Login Methods
         private void initializeLoginForm()
         {
@@ -63,12 +78,10 @@ namespace View
                 Show();
             }
         }
-
         #endregion
 
         #region Tabs Init Methods
-
-        private void initializeTabForm()
+        private void initializeAllTabs()
         {
             // Use threads to init each tab FAST !!!
             new System.Threading.Thread(() => initializeTabFeed()).Start();
@@ -80,7 +93,7 @@ namespace View
 
         private void initializeTabFeed()
         {
-            pictureBox_TabFeed_CoverPhoto.ImageLocation = m_AlbumsManager.GetLatestPhotoURL("Cover Photos");
+            pictureBox_TabFeed_CoverPhoto.ImageLocation = m_AlbumsManager.GetLatestPhotoURL(k_AlbumCoverPhotosName);
             pictureBox_TabFeed_CoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_TabFeed_ProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
             pictureBox_TabFeed_ProfilePic.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -139,7 +152,6 @@ namespace View
                 }
             }
         }
-
         #endregion
 
         #region Feed Tab Methods
@@ -188,7 +200,7 @@ namespace View
 
         private void tabFeed_linkLabelCommentInfo_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string commentUrl = "https://www.facebook.com/" + m_WallManager.GetCommentID();
+            string commentUrl = k_FacebookUrl + m_WallManager.GetCommentID();
             launchBrowser(commentUrl);
         }
 
@@ -214,7 +226,7 @@ namespace View
             Comment c = m_WallManager.GetNextCommentOfCurrentPost();
             if (c == null)
             {
-                richTextBox_TabFeed_CommentText.Text = "No Comments";
+                richTextBox_TabFeed_CommentText.Text = k_NoCommentsMessage;
                 label_TabFeed_CommentDate.Text = string.Empty;
                 linkLabel_TabFeed_PostInfo.Visible = false;
             }
@@ -225,11 +237,9 @@ namespace View
                 linkLabel_TabFeed_PostInfo.Visible = true;
             }
         }
-
         #endregion
 
         #region Albums Tab Methods
-
         private void tabAlbum_Next_Click(object sender, EventArgs e)
         {
             m_AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, userAlbumPicturesComponent_TabAlbums.NumOfPictureBoxes);
@@ -272,11 +282,9 @@ namespace View
             userAlbumPicturesComponent_TabAlbums.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetPreviousPhotoURL();
             userAlbumPicturesComponent_TabAlbums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
         }
-
         #endregion
 
         #region Profile Tab Methods
-
         private void tabProfile_Post_Click(object sender, EventArgs e)
         {
             string postText = userProfileComponent_TabProfile.TextBoxPostText.Text;
@@ -299,7 +307,6 @@ namespace View
         {
             m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.User);
         }
-
         #endregion
 
         #region Friends Tab Methods
@@ -377,7 +384,7 @@ namespace View
         private void tabFaceRide_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string currentUserAdress = m_FaceRideManager.GetUserCurrentAdress();
-            richTextBox_TabFaceRide_WhereFrom.Text = !string.IsNullOrEmpty(currentUserAdress) ? currentUserAdress : "Couldn't fetch location, try again or type manually.";
+            richTextBox_TabFaceRide_WhereFrom.Text = !string.IsNullOrEmpty(currentUserAdress) ? currentUserAdress : k_ErrorLocationMessage;
         }
 
         private void tabFaceRide_linkLabel_GetFromEvent_Click(object sender, LinkLabelLinkClickedEventArgs e)
@@ -406,7 +413,7 @@ namespace View
 
         private void tabFaceRide_SendViaMessanger_Click(object sender, EventArgs e)
         {
-            launchBrowser("https://www.facebook.com/messages/t/" + m_FaceRideManager.ChosenFriend.Id);
+            launchBrowser(k_FacebookMessengerUrl + m_FaceRideManager.ChosenFriend.Id);
         }
 
         private void tabFaceRide_PostOnWall_Click(object sender, EventArgs e)
@@ -435,21 +442,20 @@ namespace View
 
                     if (potentialRideFriends.Count != 0)
                     {
-                        // On demand object creation.
                         createAndShowRideForm();
                     }
                     else
                     {
-                        MessageBox.Show("We are sorry but no available friends found :(");
+                        MessageBox.Show(k_ErrorNoFriendsMessage);
                     }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Error: No permission to get user and/or friends locations.");
+                    MessageBox.Show(k_ErrorNoPremmitionMessage);
                 }
             }
         }
-
+       
         private void userEventsForm_DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int locationCellIndex = m_UserEventsForm.LocationColumn.Index;
@@ -501,7 +507,7 @@ namespace View
             m_SelectedRideFriendForm.FriendFirstName.Text = m_FaceRideManager.ChosenFriend.FirstName;
             m_SelectedRideFriendForm.FriendLastName.Text = m_FaceRideManager.ChosenFriend.LastName;
             m_SelectedRideFriendForm.RequestMessage.Text =
-            string.Format("Hey {0}!{1}I would like to take a ride with you to {2}!{3}What do you say?", m_SelectedRideFriendForm.FriendFirstName.Text, Environment.NewLine, richTextBox_TabFaceRide_WhereTo.Text, Environment.NewLine);
+            string.Format(k_CatchARideFormat, m_SelectedRideFriendForm.FriendFirstName.Text, Environment.NewLine, richTextBox_TabFaceRide_WhereTo.Text, Environment.NewLine);
             m_SelectedRideFriendForm.FriendFirstName.ReadOnly = true;
             m_SelectedRideFriendForm.FriendLastName.ReadOnly = true;
             m_SelectedRideFriendForm.ButtonPostOnWall.Click += tabFaceRide_PostOnWall_Click;
@@ -520,7 +526,7 @@ namespace View
 
             if (comboBox_TabFaceRide_Radius.SelectedItem == null)
             {
-                MessageBox.Show("Please Select Radius Of Search");
+                MessageBox.Show(k_RadiusSearchMsg);
                 isValid = false;
             }
 
@@ -533,7 +539,7 @@ namespace View
 
             if (richTextBox_TabFaceRide_WhereTo.Text == string.Empty)
             {
-                MessageBox.Show("Please Select Your Destination");
+                MessageBox.Show(k_SelectDestinationMsg);
                 isValid = false;
             }
 
@@ -624,13 +630,13 @@ namespace View
             return m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
         }
 
-        private void postToWall(User i_User, string i_postText)
+        private void postToWall(User i_User, string i_PostText)
         {
-            if (i_postText != string.Empty && i_postText != "Do you want to say anything?")
+            if (i_PostText != string.Empty && i_PostText != k_KostToWallMsg)
             {
                 try
                 {
-                    m_WallManager.PostToWall(i_User, i_postText);
+                    m_WallManager.PostToWall(i_User, i_PostText);
                 }
                 catch (Exception exception)
                 {
@@ -639,7 +645,7 @@ namespace View
             }
             else
             {
-                MessageBox.Show("Please insert a text to post!");
+                MessageBox.Show(k_EmptyTextMsg);
             }
         }
 
@@ -652,7 +658,7 @@ namespace View
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            initializeTabForm();
+            initializeAllTabs();
         }
 
         public void StartLoginSession()
@@ -661,7 +667,6 @@ namespace View
             initializeLoginForm();
             m_LoginForm.StartLoginSession();
         }
-
         #endregion
 
         private void button_TabContacts_DisplayContacts_Click(object sender, EventArgs e)
@@ -676,7 +681,7 @@ namespace View
             dataGridViewToCSV(dataGridView_TabContacts);
         }
 
-        private void dataGridViewToCSV(DataGridView i_dataGridView)
+        private void dataGridViewToCSV(DataGridView i_DataGridView)
         {
             string filename = string.Empty;
             SaveFileDialog saveDialog = new SaveFileDialog();
@@ -702,7 +707,7 @@ namespace View
 
                 foreach (DataGridViewColumn column in dataGridView_TabContacts.Columns)
                 {
-                    csvOutput += column.HeaderText + ',';
+                    csvOutput += column.HeaderText + k_CsvColSeperator;
                 }
 
                 csvOutput += Environment.NewLine;
@@ -713,7 +718,7 @@ namespace View
                     {
                         if (cell.Value != null)
                         {
-                            csvOutput += cell.Value.ToString().TrimEnd(',').Replace(",", ";") + ',';
+                            csvOutput += cell.Value.ToString().TrimEnd(k_CsvColSeperator).Replace(k_CsvColSeperator.ToString(), k_CsvNewLine.ToString()) + k_CsvColSeperator;
                         }
                     }
 
