@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class RideForm
+    public partial class RideForm
     {
         /// <summary>
         /// Required designer variable.

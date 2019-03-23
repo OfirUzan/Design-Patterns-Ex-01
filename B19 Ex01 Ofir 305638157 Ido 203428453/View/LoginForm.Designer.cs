@@ -2,7 +2,7 @@
 
 namespace View
 {
-    partial class LoginForm
+    public partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.

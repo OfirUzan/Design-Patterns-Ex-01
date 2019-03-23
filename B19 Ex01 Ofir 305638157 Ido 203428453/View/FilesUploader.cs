@@ -7,7 +7,8 @@ namespace View
 {
     public partial class FilesUploader : Form
     {
-        private static readonly string sr_imageFilesStr = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+        private const string k_imageFilesStr = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+        private const string k_UploadTitle = "Select a picture";
 
         public FilesUploader()
         {
@@ -17,8 +18,8 @@ namespace View
         public void UploadAPhotoToTimeline(AlbumsManager i_AlbumsManager, User i_User)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Select a picture";
-            openFileDialog.Filter = sr_imageFilesStr;
+            openFileDialog.Title = k_UploadTitle;
+            openFileDialog.Filter = k_imageFilesStr;
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

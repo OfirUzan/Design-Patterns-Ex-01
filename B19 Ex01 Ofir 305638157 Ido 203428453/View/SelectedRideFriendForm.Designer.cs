@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class SelectedRideFriendForm
+    public partial class SelectedRideFriendForm
     {
         /// <summary>
         /// Required designer variable.

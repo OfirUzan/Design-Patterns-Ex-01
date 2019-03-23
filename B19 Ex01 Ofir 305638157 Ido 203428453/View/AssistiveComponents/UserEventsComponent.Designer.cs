@@ -1,6 +1,6 @@
 ﻿namespace View.AssistiveComponents
 {
-    partial class UserEventsComponent
+    public partial class UserEventsComponent
     {
         /// <summary> 
         /// Required designer variable.

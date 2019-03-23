@@ -51,7 +51,8 @@ namespace Model
         // *** Following method will fail because we don't have location acess from facebook as supposed to *** //
         public bool IsFriendOnSearchRadius(User i_User, User i_Friend, double i_SearchRadius)
         {
-            return true;
+            const bool v_UnrealResult = true;
+            return v_UnrealResult;
 
             // Returning always true just for testing purpuses!!!
             // Uncomment following lines for REAL implementation.

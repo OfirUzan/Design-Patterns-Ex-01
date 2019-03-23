@@ -2,7 +2,7 @@
 
 namespace View
 {
-    partial class UserProfileComponent
+    public partial class UserProfileComponent
     {
         /// <summary> 
         /// Required designer variable.

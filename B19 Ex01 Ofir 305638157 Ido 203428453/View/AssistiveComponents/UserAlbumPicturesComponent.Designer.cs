@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class UserAlbumPicturesComponent
+    public partial class UserAlbumPicturesComponent
     {
         /// <summary> 
         /// Required designer variable.

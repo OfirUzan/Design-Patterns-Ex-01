@@ -11,6 +11,8 @@ namespace View
 {
     public partial class MapForm : Form
     {
+        private const string k_GoogleMapsUrl = "http://maps.google.com/maps?q=";
+
         public MapForm()
         {
             InitializeComponent();
@@ -18,7 +20,7 @@ namespace View
 
         internal void ShowLocationOnMap(string i_Location)
         {
-            string url = "http://maps.google.com/maps?q=" + i_Location;
+            string url = k_GoogleMapsUrl + i_Location;
             webBrowserGoogleMap.Navigate(url);
         }
     }

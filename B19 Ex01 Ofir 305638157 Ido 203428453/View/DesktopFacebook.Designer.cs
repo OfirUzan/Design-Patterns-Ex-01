@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class DesktopFacebook
+    public partial class DesktopFacebook
     {
         /// <summary>
         /// Required designer variable.

@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class LargePhotoForm
+    public partial class LargePhotoForm
     {
         /// <summary>
         /// Required designer variable.

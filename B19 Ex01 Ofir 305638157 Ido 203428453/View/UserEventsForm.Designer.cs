@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class UserEventsForm
+    public partial class UserEventsForm
     {
         /// <summary>
         /// Required designer variable.

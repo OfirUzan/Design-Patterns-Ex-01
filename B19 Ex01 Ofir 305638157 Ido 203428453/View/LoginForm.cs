@@ -18,11 +18,12 @@ namespace View
 
     public partial class LoginForm : Form
     {
+        private const string          k_InternetErrorMsg = "Please check your internet connection.";
+        private FacebookAuthenticator m_facebookAuthenticator;
+
         public event LoginSucessDelegate LoginSucessListeners;
 
         public event LoginFailedDelegate LoginFailedListeners;
-
-        private FacebookAuthenticator m_facebookAuthenticator;
 
         public LoginForm()
         {
@@ -58,7 +59,7 @@ namespace View
             }
             catch (Exception exception)
             {
-                string errorMsg = exception.Message + System.Environment.NewLine + "Please check your internet connection.";
+                string errorMsg = exception.Message + System.Environment.NewLine + k_InternetErrorMsg;
                 MessageBox.Show(errorMsg);
                 finishLoginWithFailure();
             }
