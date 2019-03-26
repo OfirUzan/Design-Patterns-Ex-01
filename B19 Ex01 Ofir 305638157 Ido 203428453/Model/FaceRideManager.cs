@@ -24,7 +24,7 @@ namespace Model
 
             foreach (User friend in i_User.Friends)
             {
-                if ((friend.Gender == User.eGender.male) && (i_MaleFriends || friend.Gender == User.eGender.female) && i_FemaleFriends && m_LocationServices.IsFriendOnSearchRadius(i_User, friend, radius))
+                if (((friend.Gender == User.eGender.male && i_MaleFriends) || (friend.Gender == User.eGender.female && i_FemaleFriends)) && m_LocationServices.IsFriendOnSearchRadius(i_User, friend, radius))
                 {
                     PossibleRideFriends.Add(friend);
                 }
