@@ -7,9 +7,12 @@ namespace View
 {
     public partial class FilesUploader : Form
     {
+        #region Class Members / Properties
         private const string k_imageFilesStr = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
         private const string k_UploadTitle = "Select a picture";
+        #endregion
 
+        #region Class Methods
         public FilesUploader()
         {
             InitializeComponent();
@@ -33,5 +36,6 @@ namespace View
                 }
             }
         }
+        #endregion
     }
 }

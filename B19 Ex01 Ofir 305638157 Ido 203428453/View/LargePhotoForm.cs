@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace View
 {
     public partial class LargePhotoForm : Form
     {
+        #region Class Members / Properties
         public PictureBox Picture
         {
             get
@@ -23,10 +17,13 @@ namespace View
                 m_pictureBox = value;
             }
         }
+        #endregion
 
+        #region Class Methods
         public LargePhotoForm()
         {
             InitializeComponent();
         }
+        #endregion
     }
 }

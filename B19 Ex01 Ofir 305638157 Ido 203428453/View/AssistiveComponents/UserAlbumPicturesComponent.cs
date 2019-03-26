@@ -1,31 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace View
 {
     public partial class UserAlbumPicturesComponent : UserControl
     {
         #region Class Members / Properties
-
         public byte NumOfPictureBoxes { get; }
 
         public PictureBox[] PictureBoxes { get; set; }
-
         #endregion
 
-        public UserAlbumPicturesComponent()
-        {
-            NumOfPictureBoxes = 8;
-            InitializeComponent();
-            initializePictureBoxesArray();
-        }
-
+        #region Class Methods
         private void initializePictureBoxesArray()
         {
             PictureBoxes = new PictureBox[NumOfPictureBoxes];
@@ -38,5 +23,13 @@ namespace View
             PictureBoxes[6] = m_pictureBox6;
             PictureBoxes[7] = m_pictureBox7;
         }
+
+        public UserAlbumPicturesComponent()
+        {
+            NumOfPictureBoxes = 8;
+            InitializeComponent();
+            initializePictureBoxesArray();
+        }
+        #endregion
     }
 }

@@ -6,14 +6,12 @@ namespace Model
     public class WallManager
     {
         #region Class Members / Properties
-
         private FacebookObjectCollection<Post> m_Wall;
         private int                            m_PostIndex;
         private int                            m_CommentIndex;
         private int                            m_PicturePostCount;
         private string                         m_CurrCommentId;
         private string                         m_CurrPostId;
-
         #endregion
 
         #region Class Methods

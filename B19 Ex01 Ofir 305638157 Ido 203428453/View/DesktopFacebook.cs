@@ -13,7 +13,6 @@ namespace View
     public partial class DesktopFacebook : Form
     {
         #region Class Members / Properties
-
         private const char                k_CsvColSeperator = ',';
         private const char                k_CsvNewLine = ';';
         private const string              k_SaveDialog_CsvFilter = "CSV (*.csv)|*.csv";
@@ -158,7 +157,6 @@ namespace View
         #endregion
 
         #region Feed Tab Methods
-
         private void tabFeed_Logout_Click(object sender, EventArgs e)
         {
             Hide();
@@ -194,6 +192,11 @@ namespace View
         private void tabFeed_FaceRideButton_Click(object sender, EventArgs e)
         {
             tabsControl.SelectedTab = tabPage_FaceRide;
+        }
+
+        private void tabFeed_ContactsButton_Click(object sender, EventArgs e)
+        {
+            tabsControl.SelectedTab = tabPage_Contacts;
         }
 
         private void tabFeed_linkLabelFullName_Click(object sender, LinkLabelLinkClickedEventArgs e)
@@ -313,7 +316,6 @@ namespace View
         #endregion
 
         #region Friends Tab Methods
-
         private void tabFriend_ButtonPost_Click(object sender, EventArgs e)
         {
             if (m_AppController.Friend == null)
@@ -379,11 +381,9 @@ namespace View
             textBox_TabFriends_FriendName.Text = string.Empty;
             (sender as TextBox).Click -= tabFriend_textBoxFriendName_Click;
         }
-
         #endregion
 
         #region FaceRide Tab Methods
-
         private void tabFaceRide_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string currentUserAdress = m_FaceRideManager.GetUserCurrentAdress();
@@ -574,8 +574,20 @@ namespace View
 
             return isValid;
         }
-
         #endregion
+
+        #region Contacts Tab Methods
+        private void tabContacts_DisplayContacts_Click(object sender, EventArgs e)
+        {
+            webBrowser_TabContacts.Url = new Uri(k_GoogleUploadContactsLink);
+            GoogleContact.MakeCsvFromContactList(m_Contacts, k_DeafultCsvOutputName);
+            populateDataGridViewWithCsvFile(dataGridView_TabContacts, k_DeafultCsvOutputName);
+        }
+
+        private void tabContacts_Save_Click(object sender, EventArgs e)
+        {
+            dataGridViewToCSV(dataGridView_TabContacts);
+        }
 
         private bool populateDataGridViewWithCsvFile(DataGridView i_GridView, string i_CsvPath)
         {
@@ -618,8 +630,57 @@ namespace View
             return sucess;
         }
 
-        #region General Methods
+        private void dataGridViewToCSV(DataGridView i_DataGridView)
+        {
+            string filename = string.Empty;
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = k_SaveDialog_CsvFilter;
+            saveDialog.FileName = k_DeafultCsvOutputName;
 
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(k_MsgNotifyWhenDone);
+                if (File.Exists(filename))
+                {
+                    try
+                    {
+                        File.Delete(filename);
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show(k_ErrorMsgCsvMakingFile + ex.Message);
+                    }
+                }
+
+                string csvOutput = string.Empty;
+
+                foreach (DataGridViewColumn column in dataGridView_TabContacts.Columns)
+                {
+                    csvOutput += column.HeaderText + k_CsvColSeperator;
+                }
+
+                csvOutput += Environment.NewLine;
+
+                foreach (DataGridViewRow row in dataGridView_TabContacts.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null)
+                        {
+                            csvOutput += cell.Value.ToString().TrimEnd(k_CsvColSeperator).Replace(k_CsvColSeperator.ToString(), k_CsvNewLine.ToString()) + k_CsvColSeperator;
+                        }
+                    }
+
+                    csvOutput += Environment.NewLine;
+                }
+
+                System.IO.File.WriteAllText(saveDialog.FileName, csvOutput, System.Text.Encoding.UTF8);
+                MessageBox.Show(k_OkMsgCsvMakeFile);
+            }
+        }
+        #endregion
+
+        #region General Methods
         private User getAFriendOfTheUserByName(string i_FriendName)
         {
             return m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
@@ -671,71 +732,5 @@ namespace View
             m_LoginForm.StartLoginSession();
         }
         #endregion
-
-        private void button_TabContacts_DisplayContacts_Click(object sender, EventArgs e)
-        {
-            webBrowser_TabContacts.Url = new Uri(k_GoogleUploadContactsLink);
-            GoogleContact.MakeCsvFromContactList(m_Contacts, k_DeafultCsvOutputName);
-            populateDataGridViewWithCsvFile(dataGridView_TabContacts, k_DeafultCsvOutputName);
-        }
-
-        private void button_TabContacts_Save_Click(object sender, EventArgs e)
-        {
-            dataGridViewToCSV(dataGridView_TabContacts);
-        }
-
-        private void dataGridViewToCSV(DataGridView i_DataGridView)
-        {
-            string filename = string.Empty;
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Filter = k_SaveDialog_CsvFilter;
-            saveDialog.FileName = k_DeafultCsvOutputName;
-
-            if(saveDialog.ShowDialog() == DialogResult.OK)
-            {
-                MessageBox.Show(k_MsgNotifyWhenDone);
-                if (File.Exists(filename))
-                {
-                    try
-                    {
-                        File.Delete(filename);
-                    }
-                    catch (IOException ex)
-                    {
-                        MessageBox.Show(k_ErrorMsgCsvMakingFile + ex.Message);
-                    }
-                }
-
-                string csvOutput = string.Empty;
-
-                foreach (DataGridViewColumn column in dataGridView_TabContacts.Columns)
-                {
-                    csvOutput += column.HeaderText + k_CsvColSeperator;
-                }
-
-                csvOutput += Environment.NewLine;
-
-                foreach (DataGridViewRow row in dataGridView_TabContacts.Rows)
-                {
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        if (cell.Value != null)
-                        {
-                            csvOutput += cell.Value.ToString().TrimEnd(k_CsvColSeperator).Replace(k_CsvColSeperator.ToString(), k_CsvNewLine.ToString()) + k_CsvColSeperator;
-                        }
-                    }
-
-                    csvOutput += Environment.NewLine;
-                }
-
-                System.IO.File.WriteAllText(saveDialog.FileName, csvOutput, System.Text.Encoding.UTF8);
-                MessageBox.Show(k_OkMsgCsvMakeFile);
-            }
-        }
-
-        private void tabsControl_SelectedTab_Contacts_Click(object sender, EventArgs e)
-        {
-            tabsControl.SelectedTab = tabPage_Contacts;
-        }
     }
 }

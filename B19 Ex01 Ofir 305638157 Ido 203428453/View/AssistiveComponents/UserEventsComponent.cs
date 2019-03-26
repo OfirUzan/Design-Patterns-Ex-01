@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace View.AssistiveComponents
 {
     public partial class UserEventsComponent : UserControl
     {
-        public UserEventsComponent()
-        {
-            InitializeComponent();
-        }
-
+        #region Class Members / Properties
         public Button ButtonGetEvents
         {
             get
@@ -67,5 +56,13 @@ namespace View.AssistiveComponents
                 locationDataGridViewTextBoxColumn = value;
             }
         }
+        #endregion
+
+        #region Class Methods
+        public UserEventsComponent()
+        {
+            InitializeComponent();
+        }
+        #endregion
     }
 }

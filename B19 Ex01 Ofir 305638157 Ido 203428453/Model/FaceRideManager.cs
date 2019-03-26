@@ -7,14 +7,13 @@ namespace Model
     public class FaceRideManager
     {
         #region Class Members / Properties
-
         private LocationServices m_LocationServices = new LocationServices();
 
         public User ChosenFriend { get; set; }
 
         public FacebookObjectCollection<User> PossibleRideFriends { get; set; }
-
         #endregion
+
         #region Class Methods
         // This method receives the user's information, radius search and desired gender for the ride.
         // The method creates and returns a collection of potential FaceRide partners.
@@ -38,7 +37,6 @@ namespace Model
         {
             return m_LocationServices.UserCurrentAdress;
         }
-
         #endregion
     }
 }

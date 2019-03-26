@@ -6,6 +6,13 @@ namespace Model
     public class AppController
     {
         #region Class Members / Properties
+        private class PictureBoxThread
+        {
+            public System.Threading.Thread Thread { get; set; }
+
+            public int PictureBoxIndex { get; set; }
+        }
+
         public User User { get; set; }
 
         public User Friend { get; set; }
@@ -13,13 +20,6 @@ namespace Model
         public User FaceRideFriend { get; set; }
         #endregion
 
-        private class PictureBoxThread
-        {
-            public System.Threading.Thread Thread { get; set; }
-
-            public int PictureBoxIndex { get; set; }
-        }
-        
         #region Class Methods
         private void startThreadsForAlbumsTabUpdate(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
         {

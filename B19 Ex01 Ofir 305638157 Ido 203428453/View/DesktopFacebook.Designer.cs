@@ -334,7 +334,7 @@ namespace View
             this.button_TabFeed_Feature2.TabIndex = 9;
             this.button_TabFeed_Feature2.Text = "Contacts";
             this.button_TabFeed_Feature2.UseVisualStyleBackColor = false;
-            this.button_TabFeed_Feature2.Click += new System.EventHandler(this.tabsControl_SelectedTab_Contacts_Click);
+            this.button_TabFeed_Feature2.Click += new System.EventHandler(this.tabFeed_ContactsButton_Click);
             // 
             // button_TabFeed_FaceRide
             // 
@@ -964,7 +964,7 @@ namespace View
             this.button_TabContacts_Save.TabIndex = 22;
             this.button_TabContacts_Save.Text = "Save Contacts.Csv";
             this.button_TabContacts_Save.UseVisualStyleBackColor = false;
-            this.button_TabContacts_Save.Click += new System.EventHandler(this.button_TabContacts_Save_Click);
+            this.button_TabContacts_Save.Click += new System.EventHandler(this.tabContacts_Save_Click);
             // 
             // button_TabContacts_DisplayContacts
             // 
@@ -975,7 +975,7 @@ namespace View
             this.button_TabContacts_DisplayContacts.TabIndex = 1;
             this.button_TabContacts_DisplayContacts.Text = "Show Contacts to Edit";
             this.button_TabContacts_DisplayContacts.UseVisualStyleBackColor = true;
-            this.button_TabContacts_DisplayContacts.Click += new System.EventHandler(this.button_TabContacts_DisplayContacts_Click);
+            this.button_TabContacts_DisplayContacts.Click += new System.EventHandler(this.tabContacts_DisplayContacts_Click);
             // 
             // webBrowser_TabContacts
             // 

@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace View
 {
     public partial class UserEventsForm : Form
     {
-        public UserEventsForm()
-        {
-            InitializeComponent();
-        }
-
+        #region Class Members / Properties
         public Button ButtonGetEvents
         {
             get
@@ -67,5 +56,13 @@ namespace View
                 m_userEventsComponent.LocationColumn = value;
             }
         }
+        #endregion
+
+        #region Class Methods
+        public UserEventsForm()
+        {
+            InitializeComponent();
+        }
+        #endregion
     }
 }

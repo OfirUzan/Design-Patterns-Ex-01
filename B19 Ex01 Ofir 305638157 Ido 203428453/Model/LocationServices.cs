@@ -7,6 +7,7 @@ namespace Model
 {
     public class LocationServices
     {
+        #region Class Members / Properties
         private const string    k_ApiLink = "https://api.opencagedata.com/geocode/v1/xml?q={0}%2C%20{1}&key=de6bc97eaa8a4c3a99198c1cfbf0fe9d&language=en&pretty=1";
         private const string    k_TagName = "result";
         private const string    k_SingleNode = "formatted";
@@ -18,14 +19,9 @@ namespace Model
         public GeoCoordinateWatcher GeoCodorinateWatcher { get; private set; }
 
         public string UserCurrentAdress { get; private set; }
+        #endregion
 
-        public LocationServices()
-        {
-            GeoCodorinateWatcher = new GeoCoordinateWatcher();
-            GeoCodorinateWatcher.PositionChanged += GeoCoordinateWatcher_PositionChanged;
-            GeoCodorinateWatcher.Start();
-        }
-
+        #region Class Methods
         private void GeoCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             m_LastLatitude = e.Position.Location.Latitude;
@@ -52,7 +48,14 @@ namespace Model
         {
             return Math.PI / k_Semicircle * i_Angle;
         }
-       
+
+        public LocationServices()
+        {
+            GeoCodorinateWatcher = new GeoCoordinateWatcher();
+            GeoCodorinateWatcher.PositionChanged += GeoCoordinateWatcher_PositionChanged;
+            GeoCodorinateWatcher.Start();
+        }
+
         // Following method will calculate distance between two points based on KM calculations.
         private double distanceBetween(double i_UserLatitude, double i_UserLongitude, double i_FriendLatitude, double i_FriendLongitude)
         {
@@ -80,5 +83,6 @@ namespace Model
             double friendLongtitude = (double)i_Friend.Location.Location.Longitude;
             return distanceBetween(userLatitude, userLongtitude, friendLatitude, friendLongtitude) <= i_SearchRadius;*/
         }
+        #endregion
     }
 }

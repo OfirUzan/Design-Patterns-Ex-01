@@ -1,36 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
 using Model;
 
 namespace View
 {
     public delegate void LoginSucessDelegate(User i_LoggedUser);
-
     public delegate void LoginFailedDelegate();
 
     public partial class LoginForm : Form
     {
-        private const string          k_InternetErrorMsg = "Please check your internet connection.";
-        private FacebookAuthenticator m_FacebookAuthenticator;
-
+        #region Class Members / Properties
+        private const string             k_InternetErrorMsg = "Please check your internet connection.";
+        private FacebookAuthenticator    m_FacebookAuthenticator;
         public event LoginSucessDelegate LoginSucessListeners;
-
         public event LoginFailedDelegate LoginFailedListeners;
+        #endregion
 
-        public LoginForm()
-        {
-            InitializeComponent();
-            m_FacebookAuthenticator = new FacebookAuthenticator();
-        }
-
+        #region Class Methods
         private void finishLoginWithSucess(User i_User)
         {
             Hide();
@@ -65,6 +52,17 @@ namespace View
             }
         }
 
+        private void m_checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)
+        {
+            m_FacebookAuthenticator.RememberUser = checkBox_RememberUser.Checked;
+        }
+
+        public LoginForm()
+        {
+            InitializeComponent();
+            m_FacebookAuthenticator = new FacebookAuthenticator();
+        }
+
         public void StartLoginSession()
         {
             User user = null;
@@ -94,10 +92,6 @@ namespace View
             m_FacebookAuthenticator.LogoutUser();
             ShowDialog();
         }
-
-        private void m_checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)
-        {
-            m_FacebookAuthenticator.RememberUser = checkBox_RememberUser.Checked;
-        }
+        #endregion
     }
 }

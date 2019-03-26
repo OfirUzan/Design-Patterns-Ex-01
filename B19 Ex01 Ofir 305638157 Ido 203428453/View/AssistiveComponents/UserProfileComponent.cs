@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace View
 {
     public partial class UserProfileComponent : UserControl
     {
+        #region Class Members / Properties
         public PictureBox PictureBoxProfilePic
         {
             get
@@ -101,16 +96,19 @@ namespace View
                 m_buttonPost = value;
             }
         }
+        #endregion
 
-        public UserProfileComponent()
-        {
-            InitializeComponent();
-        }
-
+        #region Class Methods
         private void m_textBoxPostText_Click(object sender, EventArgs e)
         {
             m_textBoxPostText.Text = string.Empty;
             (sender as TextBox).Click -= m_textBoxPostText_Click;
         }
+
+        public UserProfileComponent()
+        {
+            InitializeComponent();
+        }
+        #endregion
     }
 }
