@@ -12,7 +12,7 @@ namespace Model
         private const string k_SearchProp = "String";
         private const string k_PopulateError = "Error: Populate contacts faild";
 
-        public class Email
+        public class TypeValue
         {
             public string Type { get; set; }
 
@@ -23,31 +23,7 @@ namespace Model
                 return GoogleContact.objectPropsToCsvString(this);
             }
         }
-
-        public class Website
-        {
-            public string Type { get; set; }
-
-            public string Value { get; set; }
-
-            public override string ToString()
-            {
-                return GoogleContact.objectPropsToCsvString(this);
-            }
-        }
-
-        public class Phone
-        {
-            public string Type { get; set; }
-
-            public string Value { get; set; }
-
-            public override string ToString()
-            {
-                return GoogleContact.objectPropsToCsvString(this);
-            }
-        }
-
+       
         public class Organization
         {
             public string Type { get; set; }
@@ -136,19 +112,19 @@ namespace Model
 
         public string Photo { get; set; }
 
-        public Email Email1 { get; set; }
+        public TypeValue Email1 { get; set; }
 
-        public Email Email2 { get; set; }
+        public TypeValue Email2 { get; set; }
 
-        public Phone Phone1 { get; set; }
+        public TypeValue Phone1 { get; set; }
 
-        public Phone Phone2 { get; set; }
+        public TypeValue Phone2 { get; set; }
 
         public Address Address1 { get; set; }
 
         public Organization Organization1 { get; set; }
 
-        public Website Website1 { get; set; }
+        public TypeValue Website1 { get; set; }
         #endregion
 
         #region Class Methods
@@ -182,12 +158,12 @@ namespace Model
 
         public GoogleContact()
         {
-            Email1 = new Email();
-            Email2 = new Email();
-            Phone1 = new Phone();
-            Phone2 = new Phone();
+            Email1 = new TypeValue();
+            Email2 = new TypeValue();
+            Phone1 = new TypeValue();
+            Phone2 = new TypeValue();
             Address1 = new Address();
-            Website1 = new Website();
+            Website1 = new TypeValue();
             Organization1 = new Organization();
         }
 
