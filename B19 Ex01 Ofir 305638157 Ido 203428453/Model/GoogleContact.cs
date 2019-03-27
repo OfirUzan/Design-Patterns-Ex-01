@@ -173,9 +173,9 @@ namespace Model
             {
                 this.Birthday = i_User.Birthday;
                 this.Name = i_User.Name;
-                this.Maiden_Name = i_User.MiddleName;
+                this.MaidenName = i_User.MiddleName;
                 this.Photo = i_User.PictureNormalURL;
-                this.Family_Name = i_User.LastName;
+                this.FamilyName = i_User.LastName;
                 this.GivenName = i_User.FirstName;
                 if (i_User.Hometown != null)
                 {
