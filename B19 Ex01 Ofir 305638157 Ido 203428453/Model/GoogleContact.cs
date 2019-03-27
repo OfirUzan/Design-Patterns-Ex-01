@@ -78,13 +78,13 @@ namespace Model
 
         public string GivenName { get; set; }
 
-        public string Family_Name { get; set; }
+        public string FamilyName { get; set; }
 
         public string Nickname { get; set; }
 
-        public string Short_Name { get; set; }
+        public string ShortName { get; set; }
 
-        public string Maiden_Name { get; set; }
+        public string MaidenName { get; set; }
 
         public string UserName { get; set; }
 
