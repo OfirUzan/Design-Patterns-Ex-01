@@ -10,7 +10,7 @@ namespace View
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            DesktopFacebook desktopFacebook = new DesktopFacebook();
+            AppForm desktopFacebook = new AppForm();
             desktopFacebook.StartLoginSession();
         }
     }

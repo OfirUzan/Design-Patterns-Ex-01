@@ -45,7 +45,7 @@ namespace Model
             {
                 if (RememberUser)
                 {
-                    m_AppSettings.SaveAppSettingsToXmlFile();
+                    new System.Threading.Thread(m_AppSettings.SaveAppSettingsToXmlFile).Start();
                 }
             }
             else

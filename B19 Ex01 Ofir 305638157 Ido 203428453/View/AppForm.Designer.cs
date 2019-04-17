@@ -2,7 +2,7 @@
 
 namespace View
 {
-    public partial class DesktopFacebook
+    public partial class AppForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesktopFacebook));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppForm));
             this.tabsControl = new System.Windows.Forms.TabControl();
             this.tabPage_Feed = new System.Windows.Forms.TabPage();
             this.panel_TabFeed_Posts = new System.Windows.Forms.Panel();

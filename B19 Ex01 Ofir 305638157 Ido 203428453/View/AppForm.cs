@@ -10,7 +10,7 @@ using Model;
 
 namespace View
 {
-    public partial class DesktopFacebook : Form
+    public partial class AppForm : Form
     {
         #region Class Members / Properties
         private const char                k_CsvColSeperator = ',';
