@@ -5,16 +5,16 @@ namespace View
     public partial class RideForm : Form
     {
         #region Class Members / Properties
-        public BindingSource BindingSource
+        public BindingSource FriendsBindingSource
         {
             get
             {
-                return m_bindingSource_Friends;
+                return friendsBindingSource;
             }
 
             set
             {
-                m_bindingSource_Friends = value;
+                friendsBindingSource = value;
             }
         }
 

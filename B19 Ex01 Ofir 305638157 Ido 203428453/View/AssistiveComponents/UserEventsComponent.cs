@@ -22,16 +22,16 @@ namespace View.AssistiveComponents
             }
         }
 
-        public BindingSource BindingSource
+        public BindingSource EventsBindingSource
         {
             get
             {
-                return eventBindingSource;
+                return eventsBindingSource;
             }
 
             set
             {
-                eventBindingSource = value;
+                eventsBindingSource = value;
             }
         }
 
@@ -74,7 +74,7 @@ namespace View.AssistiveComponents
         {
             try
             {
-                BindingSource.DataSource = User.Events;
+                EventsBindingSource.DataSource = User.Events;
             }
             catch (Exception ex)
             {

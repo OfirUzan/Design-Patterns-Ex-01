@@ -78,14 +78,10 @@ namespace View
             this.pictureBox_TabAlbums_ChooseYourAlbum = new System.Windows.Forms.PictureBox();
             this.button_TabAlbums_Next = new System.Windows.Forms.Button();
             this.button_TabAlbums_Prevoius = new System.Windows.Forms.Button();
-            this.comboBox_TabAlbums_AlbumsList = new System.Windows.Forms.ComboBox();
-            //this.userAlbumPicturesComponent_TabAlbums = new View.UserAlbumPicturesComponent();
             this.tabPage_Profile = new System.Windows.Forms.TabPage();
-            //this.userProfileComponent_TabProfile = new View.UserProfileComponent();
             this.tabPage_Friends = new System.Windows.Forms.TabPage();
             this.textBox_TabFriends_FriendName = new System.Windows.Forms.TextBox();
             this.button_TabFriends_Search = new System.Windows.Forms.Button();
-            //this.userProfileComponent_TabFriends = new View.UserProfileComponent();
             this.tabPage_FaceRide = new System.Windows.Forms.TabPage();
             this.linkLabel_TabFaceRide_GetFromEvent = new System.Windows.Forms.LinkLabel();
             this.textBox_TabFaceRide_Km = new System.Windows.Forms.TextBox();
@@ -112,6 +108,8 @@ namespace View
             this.button_TabContacts_DisplayContacts = new System.Windows.Forms.Button();
             this.webBrowser_TabContacts = new System.Windows.Forms.WebBrowser();
             this.dataGridView_TabContacts = new System.Windows.Forms.DataGridView();
+            this.AlbumsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboBox_TabAlbums_AlbumsList = new System.Windows.Forms.ComboBox();
             this.tabsControl.SuspendLayout();
             this.tabPage_Feed.SuspendLayout();
             this.panel_TabFeed_Posts.SuspendLayout();
@@ -128,7 +126,6 @@ namespace View
             this.tabPage_Albums.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TabAlbums_FacebookLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TabAlbums_ChooseYourAlbum)).BeginInit();
-            this.tabPage_Profile.SuspendLayout();
             this.tabPage_Friends.SuspendLayout();
             this.tabPage_FaceRide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TabFaceRide_Location)).BeginInit();
@@ -143,6 +140,7 @@ namespace View
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel_TabContacts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TabContacts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlbumsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabsControl
@@ -593,12 +591,11 @@ namespace View
             // tabPage_Albums
             // 
             this.tabPage_Albums.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabPage_Albums.Controls.Add(this.comboBox_TabAlbums_AlbumsList);
             this.tabPage_Albums.Controls.Add(this.pictureBox_TabAlbums_FacebookLogo);
             this.tabPage_Albums.Controls.Add(this.pictureBox_TabAlbums_ChooseYourAlbum);
             this.tabPage_Albums.Controls.Add(this.button_TabAlbums_Next);
             this.tabPage_Albums.Controls.Add(this.button_TabAlbums_Prevoius);
-            this.tabPage_Albums.Controls.Add(this.comboBox_TabAlbums_AlbumsList);
-            //this.tabPage_Albums.Controls.Add(this.userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent);
             this.tabPage_Albums.Location = new System.Drawing.Point(4, 29);
             this.tabPage_Albums.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_Albums.Name = "tabPage_Albums";
@@ -657,27 +654,8 @@ namespace View
             this.button_TabAlbums_Prevoius.UseVisualStyleBackColor = false;
             this.button_TabAlbums_Prevoius.Click += new System.EventHandler(this.tabAlbum_Previous_Click);
             // 
-            // comboBox_TabAlbums_AlbumsList
-            // 
-            this.comboBox_TabAlbums_AlbumsList.FormattingEnabled = true;
-            this.comboBox_TabAlbums_AlbumsList.Location = new System.Drawing.Point(3, 120);
-            this.comboBox_TabAlbums_AlbumsList.Name = "comboBox_TabAlbums_AlbumsList";
-            this.comboBox_TabAlbums_AlbumsList.Size = new System.Drawing.Size(295, 28);
-            this.comboBox_TabAlbums_AlbumsList.TabIndex = 0;
-            this.comboBox_TabAlbums_AlbumsList.SelectedIndexChanged += new System.EventHandler(this.tabAlbum_ComboBoxAlbums_AlbumSelected);
-            // 
-            // userAlbumPicturesComponent_TabAlbums
-            // 
-            //this.userAlbumPicturesComponent_TabAlbums.BackColor = System.Drawing.Color.WhiteSmoke;
-            //this.userAlbumPicturesComponent_TabAlbums.Location = new System.Drawing.Point(0, 120);
-            //this.userAlbumPicturesComponent_TabAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            //this.userAlbumPicturesComponent_TabAlbums.Name = "userAlbumPicturesComponent_TabAlbums";
-            //this.userAlbumPicturesComponent_TabAlbums.Size = new System.Drawing.Size(1119, 516);
-            //this.userAlbumPicturesComponent_TabAlbums.TabIndex = 4;
-            // 
             // tabPage_Profile
             // 
-            //this.tabPage_Profile.Controls.Add(this.userProfileComponent_TabProfile);
             this.tabPage_Profile.Location = new System.Drawing.Point(4, 29);
             this.tabPage_Profile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_Profile.Name = "tabPage_Profile";
@@ -686,21 +664,10 @@ namespace View
             this.tabPage_Profile.Text = "Profile";
             this.tabPage_Profile.UseVisualStyleBackColor = true;
             // 
-            // userProfileComponent_TabProfile
-            // 
-            //this.userProfileComponent_TabProfile.AutoScroll = true;
-            //this.userProfileComponent_TabProfile.AutoSize = true;
-            //this.userProfileComponent_TabProfile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            //this.userProfileComponent_TabProfile.Location = new System.Drawing.Point(3, 3);
-            //this.userProfileComponent_TabProfile.Name = "userProfileComponent_TabProfile";
-            //this.userProfileComponent_TabProfile.Size = new System.Drawing.Size(1109, 871);
-            //this.userProfileComponent_TabProfile.TabIndex = 0;
-            // 
             // tabPage_Friends
             // 
             this.tabPage_Friends.Controls.Add(this.textBox_TabFriends_FriendName);
             this.tabPage_Friends.Controls.Add(this.button_TabFriends_Search);
-            //this.tabPage_Friends.Controls.Add(this.userProfileComponent_TabFriends);
             this.tabPage_Friends.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage_Friends.Location = new System.Drawing.Point(4, 29);
             this.tabPage_Friends.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -730,16 +697,6 @@ namespace View
             this.button_TabFriends_Search.TabIndex = 9;
             this.button_TabFriends_Search.Text = "Search";
             this.button_TabFriends_Search.UseVisualStyleBackColor = false;
-            // 
-            // userProfileComponent_TabFriends
-            // 
-            //this.userProfileComponent_TabFriends.AutoScroll = true;
-            //this.userProfileComponent_TabFriends.AutoSize = true;
-            //this.userProfileComponent_TabFriends.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            //this.userProfileComponent_TabFriends.Location = new System.Drawing.Point(0, -5);
-            //this.userProfileComponent_TabFriends.Name = "userProfileComponent_TabFriends";
-            //this.userProfileComponent_TabFriends.Size = new System.Drawing.Size(1109, 871);
-            //this.userProfileComponent_TabFriends.TabIndex = 8;
             // 
             // tabPage_FaceRide
             // 
@@ -1032,7 +989,22 @@ namespace View
             this.dataGridView_TabContacts.Size = new System.Drawing.Size(1130, 381);
             this.dataGridView_TabContacts.TabIndex = 0;
             // 
-            // DesktopFacebook
+            // albumsBindingSource
+            // 
+            this.AlbumsBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
+            // 
+            // comboBox_TabAlbums_AlbumsList
+            // 
+            this.comboBox_TabAlbums_AlbumsList.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.AlbumsBindingSource, "Name", true));
+            this.comboBox_TabAlbums_AlbumsList.DataSource = this.AlbumsBindingSource;
+            this.comboBox_TabAlbums_AlbumsList.DisplayMember = "Name";
+            this.comboBox_TabAlbums_AlbumsList.FormattingEnabled = true;
+            this.comboBox_TabAlbums_AlbumsList.Location = new System.Drawing.Point(6, 122);
+            this.comboBox_TabAlbums_AlbumsList.Name = "comboBox_TabAlbums_AlbumsList";
+            this.comboBox_TabAlbums_AlbumsList.Size = new System.Drawing.Size(269, 28);
+            this.comboBox_TabAlbums_AlbumsList.TabIndex = 21;
+            // 
+            // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -1044,7 +1016,7 @@ namespace View
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "DesktopFacebook";
+            this.Name = "AppForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facebook For Desktop!";
             this.tabsControl.ResumeLayout(false);
@@ -1070,8 +1042,6 @@ namespace View
             this.tabPage_Albums.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TabAlbums_FacebookLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TabAlbums_ChooseYourAlbum)).EndInit();
-            this.tabPage_Profile.ResumeLayout(false);
-            this.tabPage_Profile.PerformLayout();
             this.tabPage_Friends.ResumeLayout(false);
             this.tabPage_Friends.PerformLayout();
             this.tabPage_FaceRide.ResumeLayout(false);
@@ -1088,6 +1058,7 @@ namespace View
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel_TabContacts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TabContacts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlbumsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1096,7 +1067,6 @@ namespace View
         private System.Windows.Forms.TabControl tabsControl;
         private System.Windows.Forms.TabPage tabPage_Feed;
         private System.Windows.Forms.TabPage tabPage_Albums;
-        private System.Windows.Forms.ComboBox comboBox_TabAlbums_AlbumsList;
         private System.Windows.Forms.LinkLabel linkLabel_TabFeed_FullName;
         private System.Windows.Forms.PictureBox pictureBox_TabFeed_CoverPhoto;
         private System.Windows.Forms.Panel panel_TabFeed_Intro;
@@ -1171,5 +1141,7 @@ namespace View
         private IAppComponent userAlbumPicturesComponent_TabAlbums;
         private IAppComponent userProfileComponent_TabProfile;
         private IAppComponent userProfileComponent_TabFriends;
+        private BindingSource AlbumsBindingSource;
+        private ComboBox comboBox_TabAlbums_AlbumsList;
     }
 }

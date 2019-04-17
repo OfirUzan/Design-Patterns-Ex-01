@@ -24,12 +24,12 @@ namespace View
         {
             get
             {
-                return (m_userEventsComponent as UserEventsComponent).BindingSource;
+                return (m_userEventsComponent as UserEventsComponent).EventsBindingSource;
             }
 
             set
             {
-                (m_userEventsComponent as UserEventsComponent).BindingSource = value;
+                (m_userEventsComponent as UserEventsComponent).EventsBindingSource = value;
             }
         }
 

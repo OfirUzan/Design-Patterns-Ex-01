@@ -69,8 +69,8 @@ namespace View.AssistiveComponents
             // 
             this.m_dataGridViewUpcomingEvents.AllowUserToAddRows = false;
             this.m_dataGridViewUpcomingEvents.AllowUserToDeleteRows = false;
-            this.m_dataGridViewUpcomingEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_dataGridViewUpcomingEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_dataGridViewUpcomingEvents.AutoGenerateColumns = false;
             this.m_dataGridViewUpcomingEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -145,8 +145,8 @@ namespace View.AssistiveComponents
             // 
             // m_labelUpcomingEvents
             // 
-            this.m_labelUpcomingEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_labelUpcomingEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_labelUpcomingEvents.AutoSize = true;
             this.m_labelUpcomingEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -158,8 +158,8 @@ namespace View.AssistiveComponents
             // 
             // m_labelBasicInformation
             // 
-            this.m_labelBasicInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_labelBasicInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_labelBasicInformation.AutoSize = true;
             this.m_labelBasicInformation.BackColor = System.Drawing.SystemColors.Control;
@@ -172,8 +172,8 @@ namespace View.AssistiveComponents
             // 
             // m_buttonPost
             // 
-            this.m_buttonPost.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_buttonPost.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_buttonPost.AutoSize = true;
             this.m_buttonPost.BackColor = System.Drawing.Color.DarkBlue;
@@ -187,8 +187,8 @@ namespace View.AssistiveComponents
             // 
             // m_textBoxPostText
             // 
-            this.m_textBoxPostText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_textBoxPostText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_textBoxPostText.BackColor = System.Drawing.Color.AliceBlue;
             this.m_textBoxPostText.Location = new System.Drawing.Point(509, 453);
@@ -202,8 +202,8 @@ namespace View.AssistiveComponents
             // 
             // m_textBoxUserInfo
             // 
-            this.m_textBoxUserInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_textBoxUserInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_textBoxUserInfo.Location = new System.Drawing.Point(79, 453);
             this.m_textBoxUserInfo.Multiline = true;
@@ -215,8 +215,8 @@ namespace View.AssistiveComponents
             // 
             // m_pictureBoxProfilePic
             // 
-            this.m_pictureBoxProfilePic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_pictureBoxProfilePic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_pictureBoxProfilePic.Location = new System.Drawing.Point(79, 53);
             this.m_pictureBoxProfilePic.Name = "m_pictureBoxProfilePic";
@@ -226,8 +226,8 @@ namespace View.AssistiveComponents
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(765, 748);
@@ -251,8 +251,8 @@ namespace View.AssistiveComponents
             // 
             // m_buttonAttachAPicture
             // 
-            this.m_buttonAttachAPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_buttonAttachAPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_buttonAttachAPicture.AutoSize = true;
             this.m_buttonAttachAPicture.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -267,8 +267,8 @@ namespace View.AssistiveComponents
             // 
             // m_buttonGetEvents
             // 
-            this.m_buttonGetEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.m_buttonGetEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_buttonGetEvents.AutoSize = true;
             this.m_buttonGetEvents.Location = new System.Drawing.Point(509, 413);
@@ -296,6 +296,7 @@ namespace View.AssistiveComponents
             this.Controls.Add(this.m_textBoxPostText);
             this.Controls.Add(this.m_textBoxUserInfo);
             this.Controls.Add(this.m_pictureBoxProfilePic);
+            this.Location = new System.Drawing.Point(3, 3);
             this.Name = "UserProfileComponent";
             this.Size = new System.Drawing.Size(1109, 871);
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceFeed)).EndInit();
@@ -304,15 +305,9 @@ namespace View.AssistiveComponents
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxProfilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxFacebookLogo)).EndInit();
-            this.AutoScroll = true;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Location = new System.Drawing.Point(3, 3);
-            this.Name = "userProfileComponent_TabProfile";
-            this.Size = new System.Drawing.Size(1109, 871);
-            this.TabIndex = 0;
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

@@ -32,7 +32,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RideForm));
             this.m_dataGridView_Friends = new System.Windows.Forms.DataGridView();
-            this.m_bindingSource_Friends = new System.Windows.Forms.BindingSource(this.components);
+            this.friendsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.m_profilePicColumn = new System.Windows.Forms.DataGridViewImageColumn();
@@ -41,7 +41,7 @@
             this.m_locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_emailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.m_dataGridView_Friends)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_bindingSource_Friends)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.friendsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +57,7 @@
             this.m_lastNameColumn,
             this.m_locationColumn,
             this.m_emailColumn});
-            this.m_dataGridView_Friends.DataSource = this.m_bindingSource_Friends;
+            this.m_dataGridView_Friends.DataSource = this.friendsBindingSource;
             this.m_dataGridView_Friends.Location = new System.Drawing.Point(107, 168);
             this.m_dataGridView_Friends.Name = "m_dataGridView_Friends";
             this.m_dataGridView_Friends.RowHeadersWidth = 42;
@@ -67,7 +67,7 @@
             // 
             // m_bindingSource_Friends
             // 
-            this.m_bindingSource_Friends.DataSource = typeof(FacebookWrapper.ObjectModel.User);
+            this.friendsBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
             // 
             // pictureBox1
             // 
@@ -136,7 +136,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choose Your Riding Friend";
             ((System.ComponentModel.ISupportInitialize)(this.m_dataGridView_Friends)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_bindingSource_Friends)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.friendsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -147,7 +147,7 @@
 
         private System.Windows.Forms.DataGridView m_dataGridView_Friends;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.BindingSource m_bindingSource_Friends;
+        private System.Windows.Forms.BindingSource friendsBindingSource;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.DataGridViewImageColumn m_profilePicColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn m_firstNameColumn;

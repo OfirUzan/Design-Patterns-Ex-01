@@ -55,9 +55,9 @@
             this.imageLargeDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.imageSqaureDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eventsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.m_dataGridViewUpcomingEvents)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // m_dataGridViewUpcomingEvents
@@ -90,7 +90,7 @@
             this.imageLargeDataGridViewImageColumn,
             this.imageSqaureDataGridViewImageColumn,
             this.idDataGridViewTextBoxColumn});
-            this.m_dataGridViewUpcomingEvents.DataSource = this.eventBindingSource;
+            this.m_dataGridViewUpcomingEvents.DataSource = this.eventsBindingSource;
             this.m_dataGridViewUpcomingEvents.Location = new System.Drawing.Point(67, 25);
             this.m_dataGridViewUpcomingEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.m_dataGridViewUpcomingEvents.Name = "m_dataGridViewUpcomingEvents";
@@ -271,7 +271,7 @@
             // 
             // eventBindingSource
             // 
-            this.eventBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Event);
+            this.eventsBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Event);
             // 
             // UserEventsComponent
             // 
@@ -282,7 +282,7 @@
             this.Name = "UserEventsComponent";
             this.Size = new System.Drawing.Size(785, 533);
             ((System.ComponentModel.ISupportInitialize)(this.m_dataGridViewUpcomingEvents)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventsBindingSource)).EndInit();
             this.Location = new System.Drawing.Point(102, 64);
             this.Size = new System.Drawing.Size(725, 471);
             this.TabIndex = 0;
@@ -316,7 +316,7 @@
         private System.Windows.Forms.DataGridViewImageColumn imageLargeDataGridViewImageColumn;
         private System.Windows.Forms.DataGridViewImageColumn imageSqaureDataGridViewImageColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource eventBindingSource;
+        private System.Windows.Forms.BindingSource eventsBindingSource;
         private System.Windows.Forms.Button m_buttonGetEvents;
     }
 }

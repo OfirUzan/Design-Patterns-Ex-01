@@ -118,10 +118,12 @@ namespace View
             userAlbumPicturesComponent_TabAlbums.Initialize();
             //tabPage_Albums.Controls.Add(userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent);
 
-            foreach (Album album in m_AppController.User.Albums)
-            {
-                comboBox_TabAlbums_AlbumsList.Items.Add(album.Name);
-            }
+            //foreach (Album album in m_AppController.User.Albums)
+            //{
+            //comboBox_TabAlbums_AlbumsList.Items.Add(album.Name);
+            //}
+            AlbumsBindingSource.DataSource = m_AppController.User.Albums;
+            comboBox_TabAlbums_AlbumsList.SelectedIndexChanged += tabAlbum_ComboBoxAlbums_AlbumSelected;
         }
 
         private void initializeTabProfile()
@@ -266,7 +268,7 @@ namespace View
 
             button_TabAlbums_Next.Enabled = true;
             button_TabAlbums_Prevoius.Enabled = true;
-            string albumName = comboBox_TabAlbums_AlbumsList.SelectedItem.ToString();
+            string albumName = (comboBox_TabAlbums_AlbumsList.SelectedItem as Album).Name;
             m_AlbumsManager.SetCurrentAlbum(albumName);
             m_AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
         }
@@ -476,7 +478,7 @@ namespace View
         {
             m_RideForm = new RideForm();
             m_RideForm.FriendsDataGridView.CellDoubleClick += tabFaceRide_FriendsDataGridView_CellDoubleClick;
-            m_RideForm.BindingSource.DataSource = m_AppController.User.Friends;
+            m_RideForm.FriendsBindingSource.DataSource = m_AppController.User.Friends;
             m_RideForm.FriendsDataGridView.DataBindingComplete += friendsDataGridView_DataBindingComplete;
             m_RideForm.ShowDialog();
         }

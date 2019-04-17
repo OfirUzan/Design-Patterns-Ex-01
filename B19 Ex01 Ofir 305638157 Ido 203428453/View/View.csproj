@@ -53,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssistiveComponents\AppComponent.cs" />
+    <Compile Include="AssistiveComponents\IAppComponent.cs" />
     <Compile Include="AssistiveComponents\AppComponentFactory.cs" />
     <Compile Include="AssistiveComponents\UserEventsComponent.cs">
       <SubType>UserControl</SubType>
@@ -163,6 +163,7 @@
     <EmbeddedResource Include="UserEventsForm.resx">
       <DependentUpon>UserEventsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Album.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Event.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.User.datasource" />
     <None Include="Properties\DataSources\RideForm.datasource" />
