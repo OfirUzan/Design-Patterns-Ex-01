@@ -96,7 +96,7 @@ namespace Model
             return m_CurrPostId;
         }
 
-        public void PostToWall(User i_User, string i_PostText)
+        public static void PostToWall(User i_User, string i_PostText)
         {
             i_User.PostStatus(i_PostText);
         }

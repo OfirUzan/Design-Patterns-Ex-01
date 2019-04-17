@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using FacebookWrapper.ObjectModel;
+using System.Windows.Forms;
+using View.AssistiveComponents;
 
 namespace View
 {
@@ -9,12 +11,12 @@ namespace View
         {
             get
             {
-                return m_userEventsComponent.ButtonGetEvents;
+                return (m_userEventsComponent as UserEventsComponent).ButtonGetEvents;
             }
 
             set
             {
-                m_userEventsComponent.ButtonGetEvents = value;
+                (m_userEventsComponent as UserEventsComponent).ButtonGetEvents = value;
             }
         }
 
@@ -22,12 +24,12 @@ namespace View
         {
             get
             {
-                return m_userEventsComponent.BindingSource;
+                return (m_userEventsComponent as UserEventsComponent).BindingSource;
             }
 
             set
             {
-                m_userEventsComponent.BindingSource = value;
+                (m_userEventsComponent as UserEventsComponent).BindingSource = value;
             }
         }
 
@@ -35,12 +37,12 @@ namespace View
         {
             get
             {
-                return m_userEventsComponent.DataGridView;
+                return (m_userEventsComponent as UserEventsComponent).DataGridView;
             }
 
             set
             {
-                m_userEventsComponent.DataGridView = value;
+                (m_userEventsComponent as UserEventsComponent).DataGridView = value;
             }
         }
 
@@ -48,20 +50,22 @@ namespace View
         {
             get
             {
-                return m_userEventsComponent.LocationColumn;
+                return (m_userEventsComponent as UserEventsComponent).LocationColumn;
             }
 
             set
             {
-                m_userEventsComponent.LocationColumn = value;
+                (m_userEventsComponent as UserEventsComponent).LocationColumn = value;
             }
         }
         #endregion
 
         #region Class Methods
-        public UserEventsForm()
+        public UserEventsForm(User i_User)
         {
             InitializeComponent();
+            IAppComponent userEventsComponent = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserEvents, Controls, i_User);
+            userEventsComponent.Initialize();
         }
         #endregion
     }

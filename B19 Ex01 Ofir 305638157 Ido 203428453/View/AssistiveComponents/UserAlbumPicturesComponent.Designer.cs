@@ -1,4 +1,4 @@
-﻿namespace View
+﻿namespace View.AssistiveComponents
 {
     public partial class UserAlbumPicturesComponent
     {
@@ -139,9 +139,7 @@
             this.Controls.Add(this.m_pictureBox2);
             this.Controls.Add(this.m_pictureBox1);
             this.Controls.Add(this.m_pictureBox0);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UserAlbumPicturesComponent";
-            this.Size = new System.Drawing.Size(1096, 437);
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox2)).EndInit();
@@ -150,8 +148,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBox4)).EndInit();
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Location = new System.Drawing.Point(0, 120);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Size = new System.Drawing.Size(1119, 516);
+            this.TabIndex = 4;
             this.ResumeLayout(false);
-
         }
 
         #endregion

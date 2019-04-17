@@ -53,12 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssistiveComponents\AppComponent.cs" />
+    <Compile Include="AssistiveComponents\AppComponentFactory.cs" />
     <Compile Include="AssistiveComponents\UserEventsComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AssistiveComponents\UserEventsComponent.Designer.cs">
       <DependentUpon>UserEventsComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="AssistiveComponents\Utils.cs" />
     <Compile Include="RideForm.cs">
       <SubType>Form</SubType>
     </Compile>

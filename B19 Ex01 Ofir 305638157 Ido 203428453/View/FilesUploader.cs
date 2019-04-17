@@ -18,7 +18,7 @@ namespace View
             InitializeComponent();
         }
 
-        public void UploadAPhotoToTimeline(AlbumsManager i_AlbumsManager, User i_User)
+        public static void UploadAPhotoToTimeline(User i_User)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = k_UploadTitle;
@@ -28,7 +28,7 @@ namespace View
             {
                 try
                 {
-                    i_AlbumsManager.UploadAPhotoToTimeline(i_User, openFileDialog.FileName);
+                    AlbumsManager.UploadAPhotoToTimeline(i_User, openFileDialog.FileName);
                 }
                 catch (Exception uploadException)
                 {

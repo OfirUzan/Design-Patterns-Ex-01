@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
+using Model;
+using FacebookWrapper.ObjectModel;
 
-namespace View
+namespace View.AssistiveComponents
 {
-    public partial class UserProfileComponent : UserControl
+    public partial class UserProfileComponent : UserControl, IAppComponent
     {
         #region Class Members / Properties
+        private const string k_PostToWallMsg     = "Do you want to say anything?";
+        private const string k_ErrorMsgEmptyText = "Please insert a text to post!";
+
+        public User User { get; set; }
         public PictureBox PictureBoxProfilePic
         {
             get
@@ -105,9 +112,50 @@ namespace View
             (sender as TextBox).Click -= m_textBoxPostText_Click;
         }
 
-        public UserProfileComponent()
+        void IAppComponent.Initialize()
         {
             InitializeComponent();
+            ButtonAttachAFile.Click += ButtonAttachAFile_Click;
+            ButtonGetEvents.Click += ButtonGetEvents_Click;
+            ButtonPost.Click += ButtonPost_Click;
+        }
+
+        private void ButtonPost_Click(object sender, EventArgs e)
+        {
+            string postText = TextBoxPostText.Text;
+
+            if (postText != string.Empty && postText != k_PostToWallMsg)
+            {
+                try
+                {
+                    WallManager.PostToWall(User, postText);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show(k_ErrorMsgEmptyText);
+            }
+        }
+
+        private void ButtonGetEvents_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BindingSourceUpcomingEvents.DataSource = User.Events;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void ButtonAttachAFile_Click(object sender, EventArgs e)
+        {
+            FilesUploader.UploadAPhotoToTimeline(User);
         }
         #endregion
     }

@@ -1,10 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using FacebookWrapper.ObjectModel;
+using System;
+using System.Windows.Forms;
 
 namespace View.AssistiveComponents
 {
-    public partial class UserEventsComponent : UserControl
+    public partial class UserEventsComponent : UserControl, IAppComponent
     {
         #region Class Members / Properties
+
+        public User User { get; set; }
         public Button ButtonGetEvents
         {
             get
@@ -59,9 +63,23 @@ namespace View.AssistiveComponents
         #endregion
 
         #region Class Methods
-        public UserEventsComponent()
+
+        void IAppComponent.Initialize()
         {
             InitializeComponent();
+            ButtonGetEvents.Click += ButtonGetEvents_Click;
+        }
+
+        private void ButtonGetEvents_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                BindingSource.DataSource = User.Events;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         #endregion
     }

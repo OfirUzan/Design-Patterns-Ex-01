@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using View.AssistiveComponents;
 
 namespace View
 {
@@ -78,13 +79,13 @@ namespace View
             this.button_TabAlbums_Next = new System.Windows.Forms.Button();
             this.button_TabAlbums_Prevoius = new System.Windows.Forms.Button();
             this.comboBox_TabAlbums_AlbumsList = new System.Windows.Forms.ComboBox();
-            this.userAlbumPicturesComponent_TabAlbums = new View.UserAlbumPicturesComponent();
+            //this.userAlbumPicturesComponent_TabAlbums = new View.UserAlbumPicturesComponent();
             this.tabPage_Profile = new System.Windows.Forms.TabPage();
-            this.userProfileComponent_TabProfile = new View.UserProfileComponent();
+            //this.userProfileComponent_TabProfile = new View.UserProfileComponent();
             this.tabPage_Friends = new System.Windows.Forms.TabPage();
             this.textBox_TabFriends_FriendName = new System.Windows.Forms.TextBox();
             this.button_TabFriends_Search = new System.Windows.Forms.Button();
-            this.userProfileComponent_TabFriends = new View.UserProfileComponent();
+            //this.userProfileComponent_TabFriends = new View.UserProfileComponent();
             this.tabPage_FaceRide = new System.Windows.Forms.TabPage();
             this.linkLabel_TabFaceRide_GetFromEvent = new System.Windows.Forms.LinkLabel();
             this.textBox_TabFaceRide_Km = new System.Windows.Forms.TextBox();
@@ -597,7 +598,7 @@ namespace View
             this.tabPage_Albums.Controls.Add(this.button_TabAlbums_Next);
             this.tabPage_Albums.Controls.Add(this.button_TabAlbums_Prevoius);
             this.tabPage_Albums.Controls.Add(this.comboBox_TabAlbums_AlbumsList);
-            this.tabPage_Albums.Controls.Add(this.userAlbumPicturesComponent_TabAlbums);
+            //this.tabPage_Albums.Controls.Add(this.userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent);
             this.tabPage_Albums.Location = new System.Drawing.Point(4, 29);
             this.tabPage_Albums.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_Albums.Name = "tabPage_Albums";
@@ -667,16 +668,16 @@ namespace View
             // 
             // userAlbumPicturesComponent_TabAlbums
             // 
-            this.userAlbumPicturesComponent_TabAlbums.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.userAlbumPicturesComponent_TabAlbums.Location = new System.Drawing.Point(0, 120);
-            this.userAlbumPicturesComponent_TabAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.userAlbumPicturesComponent_TabAlbums.Name = "userAlbumPicturesComponent_TabAlbums";
-            this.userAlbumPicturesComponent_TabAlbums.Size = new System.Drawing.Size(1119, 516);
-            this.userAlbumPicturesComponent_TabAlbums.TabIndex = 4;
+            //this.userAlbumPicturesComponent_TabAlbums.BackColor = System.Drawing.Color.WhiteSmoke;
+            //this.userAlbumPicturesComponent_TabAlbums.Location = new System.Drawing.Point(0, 120);
+            //this.userAlbumPicturesComponent_TabAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            //this.userAlbumPicturesComponent_TabAlbums.Name = "userAlbumPicturesComponent_TabAlbums";
+            //this.userAlbumPicturesComponent_TabAlbums.Size = new System.Drawing.Size(1119, 516);
+            //this.userAlbumPicturesComponent_TabAlbums.TabIndex = 4;
             // 
             // tabPage_Profile
             // 
-            this.tabPage_Profile.Controls.Add(this.userProfileComponent_TabProfile);
+            //this.tabPage_Profile.Controls.Add(this.userProfileComponent_TabProfile);
             this.tabPage_Profile.Location = new System.Drawing.Point(4, 29);
             this.tabPage_Profile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_Profile.Name = "tabPage_Profile";
@@ -687,19 +688,19 @@ namespace View
             // 
             // userProfileComponent_TabProfile
             // 
-            this.userProfileComponent_TabProfile.AutoScroll = true;
-            this.userProfileComponent_TabProfile.AutoSize = true;
-            this.userProfileComponent_TabProfile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.userProfileComponent_TabProfile.Location = new System.Drawing.Point(3, 3);
-            this.userProfileComponent_TabProfile.Name = "userProfileComponent_TabProfile";
-            this.userProfileComponent_TabProfile.Size = new System.Drawing.Size(1109, 871);
-            this.userProfileComponent_TabProfile.TabIndex = 0;
+            //this.userProfileComponent_TabProfile.AutoScroll = true;
+            //this.userProfileComponent_TabProfile.AutoSize = true;
+            //this.userProfileComponent_TabProfile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            //this.userProfileComponent_TabProfile.Location = new System.Drawing.Point(3, 3);
+            //this.userProfileComponent_TabProfile.Name = "userProfileComponent_TabProfile";
+            //this.userProfileComponent_TabProfile.Size = new System.Drawing.Size(1109, 871);
+            //this.userProfileComponent_TabProfile.TabIndex = 0;
             // 
             // tabPage_Friends
             // 
             this.tabPage_Friends.Controls.Add(this.textBox_TabFriends_FriendName);
             this.tabPage_Friends.Controls.Add(this.button_TabFriends_Search);
-            this.tabPage_Friends.Controls.Add(this.userProfileComponent_TabFriends);
+            //this.tabPage_Friends.Controls.Add(this.userProfileComponent_TabFriends);
             this.tabPage_Friends.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage_Friends.Location = new System.Drawing.Point(4, 29);
             this.tabPage_Friends.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -732,13 +733,13 @@ namespace View
             // 
             // userProfileComponent_TabFriends
             // 
-            this.userProfileComponent_TabFriends.AutoScroll = true;
-            this.userProfileComponent_TabFriends.AutoSize = true;
-            this.userProfileComponent_TabFriends.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.userProfileComponent_TabFriends.Location = new System.Drawing.Point(0, -5);
-            this.userProfileComponent_TabFriends.Name = "userProfileComponent_TabFriends";
-            this.userProfileComponent_TabFriends.Size = new System.Drawing.Size(1109, 871);
-            this.userProfileComponent_TabFriends.TabIndex = 8;
+            //this.userProfileComponent_TabFriends.AutoScroll = true;
+            //this.userProfileComponent_TabFriends.AutoSize = true;
+            //this.userProfileComponent_TabFriends.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            //this.userProfileComponent_TabFriends.Location = new System.Drawing.Point(0, -5);
+            //this.userProfileComponent_TabFriends.Name = "userProfileComponent_TabFriends";
+            //this.userProfileComponent_TabFriends.Size = new System.Drawing.Size(1109, 871);
+            //this.userProfileComponent_TabFriends.TabIndex = 8;
             // 
             // tabPage_FaceRide
             // 
@@ -1131,7 +1132,6 @@ namespace View
         private System.Windows.Forms.Button button_TabFeed_Friends;
         private System.Windows.Forms.PictureBox pictureBox_TabFeed_IntroPic;
         private System.Windows.Forms.LinkLabel linkLabel_TabFeed_OpenPostInBrowser;
-        private UserAlbumPicturesComponent userAlbumPicturesComponent_TabAlbums;
         private System.Windows.Forms.Button button_TabAlbums_Next;
         private System.Windows.Forms.Button button_TabAlbums_Prevoius;
         private System.Windows.Forms.PictureBox pictureBox_TabAlbums_ChooseYourAlbum;
@@ -1166,9 +1166,10 @@ namespace View
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.WebBrowser webBrowser_TabContacts;
         private System.Windows.Forms.Button button_TabContacts_Save;
-        private UserProfileComponent userProfileComponent_TabProfile;
         private System.Windows.Forms.TextBox textBox_TabFriends_FriendName;
         private System.Windows.Forms.Button button_TabFriends_Search;
-        private UserProfileComponent userProfileComponent_TabFriends;
+        private IAppComponent userAlbumPicturesComponent_TabAlbums;
+        private IAppComponent userProfileComponent_TabProfile;
+        private IAppComponent userProfileComponent_TabFriends;
     }
 }

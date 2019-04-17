@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using FacebookWrapper.ObjectModel;
+using Model.Interfaces;
 
 namespace Model
 {
     public class GoogleContact
     {
         #region Class Members / Properties
-        private const string k_CsvHeader = "Name,Given Name,Family Name,Nickname,Short Name,Maiden Name,User Name,Birthday,Gender,Location,Relationship Status,SignificantOther,Religion,Quotes,Locale,About,Language,Cover,Photo,E-mail 1 - Type,E-mail 1 - Value,E-mail 2 - Type,E-mail 2 - Value,Phone 1 - Type,Phone 1 - Value,Phone 2 - Type,Phone 2 - Value,Address 1 - Type,Address 1 - Formatted,Address 1 - Street,Address 1 - City,Address 1 - PO Box,Address 1 - Region,Address 1 - Postal Code,Address 1 - Country,Address 1 - Extended Address,Organization 1 - Type,Organization 1 - Name,Organization 1 - Yomi Name,Organization 1 - Title,Organization 1 - Department,Organization 1 - Symbol,Organization 1 - Location,Organization 1 - Job Description,Website 1 - Type,Website 1 - Value";
         private const string k_SearchProp = "String";
-        private const string k_PopulateError = "Error: Populate contacts faild";
+       
 
         public class TypeValue
         {
@@ -166,65 +166,7 @@ namespace Model
             Website1 = new TypeValue();
             Organization1 = new Organization();
         }
-
-        public void PopulateContactFromFacebookUser(User i_User)
-        {
-            try
-            {
-                this.Birthday = i_User.Birthday;
-                this.Name = i_User.Name;
-                this.MaidenName = i_User.MiddleName;
-                this.Photo = i_User.PictureNormalURL;
-                this.FamilyName = i_User.LastName;
-                this.GivenName = i_User.FirstName;
-                if (i_User.Hometown != null)
-                {
-                    this.Address1.City = i_User.Hometown.Name;
-                }
-
-                this.Gender = i_User.Gender.ToString();
-                this.Email1.Value = i_User.Email;
-                if (i_User.Cover != null)
-                {
-                    this.Cover = i_User.Cover.SourceURL;
-                }
-
-                this.About = i_User.About;
-                this.Locale = i_User.Locale;
-                this.Religion = i_User.Religion;
-                this.RelationshipStatus = i_User.RelationshipStatus.ToString();
-                this.Quotes = i_User.Quotes;
-                this.UserName = i_User.UserName;
-                if (i_User.SignificantOther != null)
-                {
-                    this.Name = i_User.SignificantOther.Name;
-                }
-
-                this.Location = i_User.Location.Name;
-            }
-            catch
-            {
-                throw new Exception(k_PopulateError);
-            }
-        }
-
-        public static string GetCsvHeader()
-        {
-            return k_CsvHeader;
-        }
-
-        public static void MakeCsvFromContactList(LinkedList<GoogleContact> i_Contacts, string i_FilePath)
-        {         
-                using (StreamWriter writer = new StreamWriter(new FileStream(i_FilePath, FileMode.Create, FileAccess.Write)))
-                {
-                    writer.WriteLine(GoogleContact.GetCsvHeader());
-                    foreach (GoogleContact contact in i_Contacts)
-                    {
-                        writer.WriteLine(contact.ToString());
-                    }
-                }  
-        }
-
+       
         public override string ToString()
         {
             return objectPropsToCsvString(this);

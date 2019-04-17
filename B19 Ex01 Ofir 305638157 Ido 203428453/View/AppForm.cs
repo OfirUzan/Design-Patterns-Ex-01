@@ -7,6 +7,12 @@ using System.IO;
 using System.Data;
 using FacebookWrapper.ObjectModel;
 using Model;
+using View.AssistiveComponents;
+using Model.Interfaces;
+using Model.Adapters;
+
+
+// *** note to ofir : REMOVE 0 reference methods in all classes + unused 'using'
 
 namespace View
 {
@@ -17,8 +23,6 @@ namespace View
         private const char                k_CsvNewLine = ';';
         private const string              k_SaveDialog_CsvFilter = "CSV (*.csv)|*.csv";
         private const string              k_MsgRadiusSearch = "Please Select Radius Of Search";
-        private const string              k_ErrorMsgEmptyText = "Please insert a text to post!";
-        private const string              k_PostToWallMsg = "Do you want to say anything?";
         private const string              k_DeafultCsvOutputName = "Contacts_Output.csv";
         private const string              k_MsgNotifyWhenDone = "Data will be exported and you will be notified when it is ready.";
         private const string              k_ErrorMsgCsvMakingFile = "It wasn't possible to write the data to the disk.";
@@ -36,6 +40,7 @@ namespace View
         private const string              k_FacebookMessengerUrl = "https://www.facebook.com/messages/t/";
         private const string              k_FacebookUrl = "https://www.facebook.com/";
         private const string              k_GoogleUploadContactsLink = "https://support.google.com/contacts/answer/1069522?co=GENIE.Platform%3DDesktop&hl=en";
+        private static readonly int       sr_NumOfPicturesPerAlbum = 8;
         private LoginForm                 m_LoginForm;
         private AppController             m_AppController;
         private AlbumsManager             m_AlbumsManager;
@@ -45,7 +50,7 @@ namespace View
         private RideForm                  m_RideForm;
         private SelectedRideFriendForm    m_SelectedRideFriendForm;
         private UserEventsForm            m_UserEventsForm;
-        private LinkedList<GoogleContact> m_Contacts;
+        private IContactList              m_Contacts;
         private bool                      m_FirstLaunch = true;
         #endregion
 
@@ -109,50 +114,39 @@ namespace View
 
         private void initializeTabAlbums()
         {
+            userAlbumPicturesComponent_TabAlbums = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserAlbumPictures, tabPage_Albums.Controls, m_AppController.User);
+            userAlbumPicturesComponent_TabAlbums.Initialize();
+            //tabPage_Albums.Controls.Add(userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent);
+
             foreach (Album album in m_AppController.User.Albums)
             {
                 comboBox_TabAlbums_AlbumsList.Items.Add(album.Name);
-            }
-
-            foreach(PictureBox pictureBox in userAlbumPicturesComponent_TabAlbums.PictureBoxes)
-            {
-                pictureBox.Click += tabAlbum_PictureBox_Click;
             }
         }
 
         private void initializeTabProfile()
         {
-            userProfileComponent_TabProfile.ButtonAttachAFile.Click += tabProfile_AttachAFile_Click;
-            userProfileComponent_TabProfile.ButtonGetEvents.Click += tabProfile_GetEvents_Click;
-            userProfileComponent_TabProfile.ButtonPost.Click += tabProfile_Post_Click;
-            userProfileComponent_TabProfile.PictureBoxProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
-            userProfileComponent_TabProfile.TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(m_AppController.User);
+            userProfileComponent_TabProfile = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserProfile, tabPage_Profile.Controls, m_AppController.User);
+            userProfileComponent_TabProfile.Initialize();
+            //userProfileComponent_TabProfile.ButtonAttachAFile.Click += tabProfile_AttachAFile_Click;
+            //userProfileComponent_TabProfile.ButtonGetEvents.Click += tabProfile_GetEvents_Click;
+            //userProfileComponent_TabProfile.ButtonPost.Click += tabProfile_Post_Click;
+            (userProfileComponent_TabProfile as UserProfileComponent).PictureBoxProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
+            (userProfileComponent_TabProfile as UserProfileComponent).TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(m_AppController.User);
         }
 
         private void initializeTabFriends()
         {
-            userProfileComponent_TabFriends.ButtonAttachAFile.Click += tabFriend_AttachAFile_Click;
-            userProfileComponent_TabFriends.ButtonGetEvents.Click += tabFriend_GetEvents_Click;
-            userProfileComponent_TabFriends.ButtonPost.Click += tabFriend_ButtonPost_Click;
+            userProfileComponent_TabFriends = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserProfile, tabPage_Friends.Controls, m_AppController.Friend);
+            userProfileComponent_TabFriends.Initialize();
+            //userProfileComponent_TabFriends.ButtonAttachAFile.Click += tabFriend_AttachAFile_Click;
+            //userProfileComponent_TabFriends.ButtonGetEvents.Click += tabFriend_GetEvents_Click;
+            //userProfileComponent_TabFriends.ButtonPost.Click += tabFriend_ButtonPost_Click;
         }
 
         private void initializeTabContacts()
         {
-            User user = m_AppController.User;
-            m_Contacts = new LinkedList<GoogleContact>();
-            foreach (User friend in user.Friends)
-            {
-                try
-                {
-                    GoogleContact contact = new GoogleContact();
-                    contact.PopulateContactFromFacebookUser(friend);
-                    m_Contacts.AddLast(contact);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error is " + ex.ToString());
-                }
-            }
+            m_Contacts = new GoogleContactListAdapter(m_AppController.User);
         }
         #endregion
 
@@ -248,12 +242,12 @@ namespace View
         #region Albums Tab Methods
         private void tabAlbum_Next_Click(object sender, EventArgs e)
         {
-            m_AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, userAlbumPicturesComponent_TabAlbums.NumOfPictureBoxes);
+            m_AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
         }
 
         private void tabAlbum_Previous_Click(object sender, EventArgs e)
         {
-            m_AppController.UpdatePhotosOnAlbumsTab(updatePreviousUserPhotosOnTabAlbum, userAlbumPicturesComponent_TabAlbums.NumOfPictureBoxes);
+            m_AppController.UpdatePhotosOnAlbumsTab(updatePreviousUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
         }
 
         private void tabAlbum_PictureBox_Click(object sender, EventArgs e)
@@ -265,7 +259,7 @@ namespace View
 
         private void tabAlbum_ComboBoxAlbums_AlbumSelected(object sender, EventArgs e)
         {
-            foreach (PictureBox pictureBox in userAlbumPicturesComponent_TabAlbums.PictureBoxes)
+            foreach (PictureBox pictureBox in (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes)
             {
                 pictureBox.Cursor = Cursors.Hand;
             }
@@ -274,34 +268,34 @@ namespace View
             button_TabAlbums_Prevoius.Enabled = true;
             string albumName = comboBox_TabAlbums_AlbumsList.SelectedItem.ToString();
             m_AlbumsManager.SetCurrentAlbum(albumName);
-            m_AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, userAlbumPicturesComponent_TabAlbums.NumOfPictureBoxes);
+            m_AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
         }
 
         private void updateNextUserPhotosOnTabAlbum(int i_PictureBoxIndex)
         {
-            userAlbumPicturesComponent_TabAlbums.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetNextPhotoURL();
-            userAlbumPicturesComponent_TabAlbums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
+            (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetNextPhotoURL();
+            (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void updatePreviousUserPhotosOnTabAlbum(int i_PictureBoxIndex)
         {
-            userAlbumPicturesComponent_TabAlbums.PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetPreviousPhotoURL();
-            userAlbumPicturesComponent_TabAlbums.PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
+            (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetPreviousPhotoURL();
+            (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
         }
         #endregion
 
         #region Profile Tab Methods
         private void tabProfile_Post_Click(object sender, EventArgs e)
         {
-            string postText = userProfileComponent_TabProfile.TextBoxPostText.Text;
-            postToWall(m_AppController.User, postText);
+            //string postText = userProfileComponent_TabProfile.TextBoxPostText.Text;
+            //postToWall(m_AppController.User, postText);
         }
 
         private void tabProfile_GetEvents_Click(object sender, EventArgs e)
         {
             try
             {
-                userProfileComponent_TabProfile.BindingSourceUpcomingEvents.DataSource = m_AppController.User.Events;
+                //userProfileComponent_TabProfile.BindingSourceUpcomingEvents.DataSource = m_AppController.User.Events;
             }
             catch (Exception exception)
             {
@@ -309,72 +303,72 @@ namespace View
             }
         }
 
-        private void tabProfile_AttachAFile_Click(object sender, EventArgs e)
-        {
-            m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.User);
-        }
+        //private void tabProfile_AttachAFile_Click(object sender, EventArgs e)
+        //{
+        //    m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.User);
+        //}
         #endregion
 
         #region Friends Tab Methods
-        private void tabFriend_ButtonPost_Click(object sender, EventArgs e)
-        {
-            if (m_AppController.Friend == null)
-            {
-                MessageBox.Show(k_ErrorMsgSelectFriend);
-            }
-            else
-            {
-                string postText = userProfileComponent_TabFriends.TextBoxPostText.Text;
-                postToWall(m_AppController.Friend, postText);
-            }
-        }
+        //private void tabFriend_ButtonPost_Click(object sender, EventArgs e)
+        //{
+        //    if (m_AppController.Friend == null)
+        //    {
+        //        MessageBox.Show(k_ErrorMsgSelectFriend);
+        //    }
+        //    else
+        //    {
+        //        string postText = userProfileComponent_TabFriends.TextBoxPostText.Text;
+        //        postToWall(m_AppController.Friend, postText);
+        //    }
+        //}
 
-        private void tabFriend_GetEvents_Click(object sender, EventArgs e)
-        {
-            if (m_AppController.Friend == null)
-            {
-                MessageBox.Show(k_ErrorMsgSelectFriend);
-            }
-            else
-            {
-                try
-                {
-                    userProfileComponent_TabFriends.BindingSourceUpcomingEvents.DataSource = m_AppController.Friend.Events;
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-        }
+        //private void tabFriend_GetEvents_Click(object sender, EventArgs e)
+        //{
+        //    if (m_AppController.Friend == null)
+        //    {
+        //        MessageBox.Show(k_ErrorMsgSelectFriend);
+        //    }
+        //    else
+        //    {
+        //        try
+        //        {
+        //            userProfileComponent_TabFriends.BindingSourceUpcomingEvents.DataSource = m_AppController.Friend.Events;
+        //        }
+        //        catch (Exception exception)
+        //        {
+        //            MessageBox.Show(exception.Message);
+        //        }
+        //    }
+        //}
 
-        private void tabFriend_AttachAFile_Click(object sender, EventArgs e)
-        {
-            if (m_AppController.Friend == null)
-            {
-                MessageBox.Show(k_ErrorMsgSelectFriend);
-            }
-            else
-            {
-                m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.Friend);
-            }
-        }
+        //private void tabFriend_AttachAFile_Click(object sender, EventArgs e)
+        //{
+        //    if (m_AppController.Friend == null)
+        //    {
+        //        MessageBox.Show(k_ErrorMsgSelectFriend);
+        //    }
+        //    else
+        //    {
+        //        m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.Friend);
+        //    }
+        //}
 
-        private void tabFriend_Search_Click(object sender, EventArgs e)
-        {
-            User friend = getAFriendOfTheUserByName(textBox_TabFriends_FriendName.Text);
+        //private void tabFriend_Search_Click(object sender, EventArgs e)
+        //{
+        //    User friend = getAFriendOfTheUserByName(textBox_TabFriends_FriendName.Text);
 
-            if (friend != null)
-            {
-                m_AppController.Friend = friend;
-                userProfileComponent_TabFriends.PictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
-                userProfileComponent_TabFriends.TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(friend);
-            }
-            else
-            {
-                MessageBox.Show(k_ErrorMsgNoFriends);
-            }
-        }
+        //    if (friend != null)
+        //    {
+        //        m_AppController.Friend = friend;
+        //        userProfileComponent_TabFriends.PictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
+        //        userProfileComponent_TabFriends.TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(friend);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show(k_ErrorMsgNoFriends);
+        //    }
+        //}
 
         private void tabFriend_textBoxFriendName_Click(object sender, EventArgs e)
         {
@@ -392,7 +386,7 @@ namespace View
 
         private void tabFaceRide_linkLabel_GetFromEvent_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            m_UserEventsForm = new UserEventsForm();
+            m_UserEventsForm = new UserEventsForm(m_AppController.User);
             m_UserEventsForm.DataGridView.CellDoubleClick += userEventsForm_DataGridView_CellDoubleClick;
             m_UserEventsForm.ButtonGetEvents.Click += userEventsForm_GetEvents_Click;
             m_UserEventsForm.ShowDialog();
@@ -580,7 +574,7 @@ namespace View
         private void tabContacts_DisplayContacts_Click(object sender, EventArgs e)
         {
             webBrowser_TabContacts.Url = new Uri(k_GoogleUploadContactsLink);
-            GoogleContact.MakeCsvFromContactList(m_Contacts, k_DeafultCsvOutputName);
+            m_Contacts.MakeCsvFromContactList(k_DeafultCsvOutputName);
             populateDataGridViewWithCsvFile(dataGridView_TabContacts, k_DeafultCsvOutputName);
         }
 
@@ -696,11 +690,11 @@ namespace View
 
         private void postToWall(User i_User, string i_PostText)
         {
-            if (i_PostText != string.Empty && i_PostText != k_PostToWallMsg)
+            if (i_PostText != string.Empty && i_PostText != null)
             {
                 try
                 {
-                    m_WallManager.PostToWall(i_User, i_PostText);
+                    WallManager.PostToWall(i_User, i_PostText);
                 }
                 catch (Exception exception)
                 {
@@ -709,7 +703,7 @@ namespace View
             }
             else
             {
-                MessageBox.Show(k_ErrorMsgEmptyText);
+                MessageBox.Show(null);
             }
         }
 

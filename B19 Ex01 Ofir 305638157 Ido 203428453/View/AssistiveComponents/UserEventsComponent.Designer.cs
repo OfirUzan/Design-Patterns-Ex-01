@@ -283,6 +283,9 @@
             this.Size = new System.Drawing.Size(785, 533);
             ((System.ComponentModel.ISupportInitialize)(this.m_dataGridViewUpcomingEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
+            this.Location = new System.Drawing.Point(102, 64);
+            this.Size = new System.Drawing.Size(725, 471);
+            this.TabIndex = 0;
             this.ResumeLayout(false);
 
         }

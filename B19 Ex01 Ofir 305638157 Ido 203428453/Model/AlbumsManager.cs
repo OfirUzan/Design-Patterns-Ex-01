@@ -80,7 +80,7 @@ namespace Model
             CurrentPhotoURL = CurrentAlbumPhotosURL.First;
         }
 
-        public void UploadAPhotoToTimeline(User i_User, string i_FilePath)
+        public static void UploadAPhotoToTimeline(User i_User, string i_FilePath)
         {
             i_User.PostPhoto(i_FilePath);
         }
