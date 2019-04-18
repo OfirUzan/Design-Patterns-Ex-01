@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using View.AssistiveComponents;
 
-namespace View
+namespace View.AssistiveFroms
 {
     public partial class UserEventsForm : Form
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace View.AssistiveComponents
+﻿namespace View.AssistiveComponents
 {
     public static class Utils
     {

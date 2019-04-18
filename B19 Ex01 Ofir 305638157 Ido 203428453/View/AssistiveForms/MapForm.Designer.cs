@@ -1,8 +1,6 @@
-﻿using View.AssistiveComponents;
-
-namespace View
+﻿namespace View.AssistiveFroms
 {
-    public partial class UserEventsForm
+    public partial class MapForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,34 +29,38 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserEventsForm));
-            //this.m_userEventsComponent = new View.AssistiveComponents.UserEventsComponent();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapForm));
+            this.webBrowserGoogleMap = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
-            // m_userEventsComponent
+            // webBrowserGoogleMap
             // 
-            //this.m_userEventsComponent.Location = new System.Drawing.Point(102, 64);
-            //this.m_userEventsComponent.Name = "m_userEventsComponent";
-            //this.m_userEventsComponent.Size = new System.Drawing.Size(725, 471);
-            //this.m_userEventsComponent.TabIndex = 0;
+            this.webBrowserGoogleMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowserGoogleMap.Location = new System.Drawing.Point(0, 0);
+            this.webBrowserGoogleMap.Margin = new System.Windows.Forms.Padding(4);
+            this.webBrowserGoogleMap.MinimumSize = new System.Drawing.Size(27, 25);
+            this.webBrowserGoogleMap.Name = "webBrowserGoogleMap";
+            this.webBrowserGoogleMap.Size = new System.Drawing.Size(939, 601);
+            this.webBrowserGoogleMap.TabIndex = 0;
             // 
-            // UserEventsForm
+            // MapForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 626);
-            //this.Controls.Add(this.m_userEventsComponent);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(939, 601);
+            this.Controls.Add(this.webBrowserGoogleMap);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "UserEventsForm";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "MapForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Upcoming Events";
+            this.Text = "Map";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private IAppComponent m_userEventsComponent;
+        private System.Windows.Forms.WebBrowser webBrowserGoogleMap;
     }
 }

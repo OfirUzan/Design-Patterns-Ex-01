@@ -62,10 +62,10 @@
       <DependentUpon>UserEventsComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="AssistiveComponents\Utils.cs" />
-    <Compile Include="RideForm.cs">
+    <Compile Include="AssistiveForms\RideForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RideForm.Designer.cs">
+    <Compile Include="AssistiveForms\RideForm.Designer.cs">
       <DependentUpon>RideForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AppForm.cs">
@@ -80,22 +80,22 @@
     <Compile Include="FilesUploader.Designer.cs">
       <DependentUpon>FilesUploader.cs</DependentUpon>
     </Compile>
-    <Compile Include="LargePhotoForm.cs">
+    <Compile Include="AssistiveForms\LargePhotoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LargePhotoForm.Designer.cs">
+    <Compile Include="AssistiveForms\LargePhotoForm.Designer.cs">
       <DependentUpon>LargePhotoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Include="AssistiveForms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="AssistiveForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapForm.cs">
+    <Compile Include="AssistiveForms\MapForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MapForm.Designer.cs">
+    <Compile Include="AssistiveForms\MapForm.Designer.cs">
       <DependentUpon>MapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -112,34 +112,34 @@
     <Compile Include="AssistiveComponents\UserProfileComponent.Designer.cs">
       <DependentUpon>UserProfileComponent.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectedRideFriendForm.cs">
+    <Compile Include="AssistiveForms\SelectedRideFriendForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectedRideFriendForm.Designer.cs">
+    <Compile Include="AssistiveForms\SelectedRideFriendForm.Designer.cs">
       <DependentUpon>SelectedRideFriendForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserEventsForm.cs">
+    <Compile Include="AssistiveForms\UserEventsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserEventsForm.Designer.cs">
+    <Compile Include="AssistiveForms\UserEventsForm.Designer.cs">
       <DependentUpon>UserEventsForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AssistiveComponents\UserEventsComponent.resx">
       <DependentUpon>UserEventsComponent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RideForm.resx">
+    <EmbeddedResource Include="AssistiveForms\RideForm.resx">
       <DependentUpon>RideForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppForm.resx">
       <DependentUpon>AppForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LargePhotoForm.resx">
+    <EmbeddedResource Include="AssistiveForms\LargePhotoForm.resx">
       <DependentUpon>LargePhotoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="AssistiveForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapForm.resx">
+    <EmbeddedResource Include="AssistiveForms\MapForm.resx">
       <DependentUpon>MapForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -157,10 +157,10 @@
     <EmbeddedResource Include="AssistiveComponents\UserProfileComponent.resx">
       <DependentUpon>UserProfileComponent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectedRideFriendForm.resx">
+    <EmbeddedResource Include="AssistiveForms\SelectedRideFriendForm.resx">
       <DependentUpon>SelectedRideFriendForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserEventsForm.resx">
+    <EmbeddedResource Include="AssistiveForms\UserEventsForm.resx">
       <DependentUpon>UserEventsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Album.datasource" />

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using Model;
 
-namespace View
+namespace View.AssistiveFroms
 {
     public delegate void LoginSucessDelegate(User i_LoggedUser);
     public delegate void LoginFailedDelegate();

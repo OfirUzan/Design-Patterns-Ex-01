@@ -1,4 +1,4 @@
-﻿namespace View
+﻿namespace View.AssistiveFroms
 {
     public partial class SelectedRideFriendForm
     {
@@ -82,8 +82,8 @@
             // 
             // m_textBoxRequestText
             // 
-            this.m_textBoxRequestText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.m_textBoxRequestText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_textBoxRequestText.BackColor = System.Drawing.Color.AliceBlue;
             this.m_textBoxRequestText.Location = new System.Drawing.Point(259, 277);

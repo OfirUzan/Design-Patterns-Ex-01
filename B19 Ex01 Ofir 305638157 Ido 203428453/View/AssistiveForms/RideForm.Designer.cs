@@ -1,4 +1,4 @@
-﻿namespace View
+﻿namespace View.AssistiveFroms
 {
     public partial class RideForm
     {

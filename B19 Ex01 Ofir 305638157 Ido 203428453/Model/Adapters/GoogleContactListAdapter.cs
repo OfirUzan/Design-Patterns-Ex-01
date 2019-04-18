@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Model.Interfaces;
-using Model;
 using FacebookWrapper.ObjectModel;
+
 namespace Model.Adapters
 {
     public class GoogleContactListAdapter : IContactList

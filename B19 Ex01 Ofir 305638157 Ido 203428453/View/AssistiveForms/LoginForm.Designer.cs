@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace View
+namespace View.AssistiveFroms
 {
     public partial class LoginForm
     {
