@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using FacebookWrapper.ObjectModel;
 
 namespace Model
@@ -98,7 +99,7 @@ namespace Model
 
         public static void PostToWall(User i_User, string i_PostText)
         {
-            i_User.PostStatus(i_PostText);
+            new Thread(() => { i_User.PostStatus(i_PostText); }).Start();
         }
     }
 
