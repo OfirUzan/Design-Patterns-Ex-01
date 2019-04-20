@@ -34,14 +34,6 @@ namespace View.AssistiveComponents
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserProfileComponent));
             this.m_ComponentBindingSourceFeed = new System.Windows.Forms.BindingSource(this.components);
-            this.m_dataGridViewUpcomingEvents = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.startTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.locationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.linkToFacebookDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeStringDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_ComponentBindingSourceUpcomingEvents = new System.Windows.Forms.BindingSource(this.components);
             this.m_labelUpcomingEvents = new System.Windows.Forms.Label();
             this.m_labelBasicInformation = new System.Windows.Forms.Label();
@@ -52,9 +44,7 @@ namespace View.AssistiveComponents
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.m_pictureBoxFacebookLogo = new System.Windows.Forms.PictureBox();
             this.m_buttonAttachAPicture = new System.Windows.Forms.Button();
-            this.m_buttonGetEvents = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceFeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_dataGridViewUpcomingEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceUpcomingEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -64,80 +54,6 @@ namespace View.AssistiveComponents
             // m_ComponentBindingSourceFeed
             // 
             this.m_ComponentBindingSourceFeed.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
-            // 
-            // m_dataGridViewUpcomingEvents
-            // 
-            this.m_dataGridViewUpcomingEvents.AllowUserToAddRows = false;
-            this.m_dataGridViewUpcomingEvents.AllowUserToDeleteRows = false;
-            this.m_dataGridViewUpcomingEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_dataGridViewUpcomingEvents.AutoGenerateColumns = false;
-            this.m_dataGridViewUpcomingEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.m_dataGridViewUpcomingEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn1,
-            this.descriptionDataGridViewTextBoxColumn1,
-            this.startTimeDataGridViewTextBoxColumn,
-            this.endTimeDataGridViewTextBoxColumn,
-            this.locationDataGridViewTextBoxColumn,
-            this.linkToFacebookDataGridViewTextBoxColumn,
-            this.timeStringDataGridViewTextBoxColumn});
-            this.m_dataGridViewUpcomingEvents.DataSource = this.m_ComponentBindingSourceUpcomingEvents;
-            this.m_dataGridViewUpcomingEvents.Location = new System.Drawing.Point(509, 53);
-            this.m_dataGridViewUpcomingEvents.Name = "m_dataGridViewUpcomingEvents";
-            this.m_dataGridViewUpcomingEvents.ReadOnly = true;
-            this.m_dataGridViewUpcomingEvents.RowTemplate.Height = 28;
-            this.m_dataGridViewUpcomingEvents.Size = new System.Drawing.Size(597, 350);
-            this.m_dataGridViewUpcomingEvents.TabIndex = 17;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // descriptionDataGridViewTextBoxColumn1
-            // 
-            this.descriptionDataGridViewTextBoxColumn1.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn1.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn1.Name = "descriptionDataGridViewTextBoxColumn1";
-            this.descriptionDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // startTimeDataGridViewTextBoxColumn
-            // 
-            this.startTimeDataGridViewTextBoxColumn.DataPropertyName = "StartTime";
-            this.startTimeDataGridViewTextBoxColumn.HeaderText = "Start Time";
-            this.startTimeDataGridViewTextBoxColumn.Name = "startTimeDataGridViewTextBoxColumn";
-            this.startTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // endTimeDataGridViewTextBoxColumn
-            // 
-            this.endTimeDataGridViewTextBoxColumn.DataPropertyName = "EndTime";
-            this.endTimeDataGridViewTextBoxColumn.HeaderText = "End Time";
-            this.endTimeDataGridViewTextBoxColumn.Name = "endTimeDataGridViewTextBoxColumn";
-            this.endTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // locationDataGridViewTextBoxColumn
-            // 
-            this.locationDataGridViewTextBoxColumn.DataPropertyName = "Location";
-            this.locationDataGridViewTextBoxColumn.HeaderText = "Location";
-            this.locationDataGridViewTextBoxColumn.Name = "locationDataGridViewTextBoxColumn";
-            this.locationDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // linkToFacebookDataGridViewTextBoxColumn
-            // 
-            this.linkToFacebookDataGridViewTextBoxColumn.DataPropertyName = "LinkToFacebook";
-            this.linkToFacebookDataGridViewTextBoxColumn.HeaderText = "Link To Facebook";
-            this.linkToFacebookDataGridViewTextBoxColumn.Name = "linkToFacebookDataGridViewTextBoxColumn";
-            this.linkToFacebookDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // timeStringDataGridViewTextBoxColumn
-            // 
-            this.timeStringDataGridViewTextBoxColumn.DataPropertyName = "TimeString";
-            this.timeStringDataGridViewTextBoxColumn.HeaderText = "TimeString";
-            this.timeStringDataGridViewTextBoxColumn.Name = "timeStringDataGridViewTextBoxColumn";
-            this.timeStringDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // m_ComponentBindingSourceUpcomingEvents
             // 
@@ -152,7 +68,7 @@ namespace View.AssistiveComponents
             this.m_labelUpcomingEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_labelUpcomingEvents.Location = new System.Drawing.Point(504, 25);
             this.m_labelUpcomingEvents.Name = "m_labelUpcomingEvents";
-            this.m_labelUpcomingEvents.Size = new System.Drawing.Size(187, 25);
+            this.m_labelUpcomingEvents.Size = new System.Drawing.Size(161, 20);
             this.m_labelUpcomingEvents.TabIndex = 14;
             this.m_labelUpcomingEvents.Text = "Upcoming Events:";
             // 
@@ -166,7 +82,7 @@ namespace View.AssistiveComponents
             this.m_labelBasicInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.m_labelBasicInformation.Location = new System.Drawing.Point(136, 425);
             this.m_labelBasicInformation.Name = "m_labelBasicInformation";
-            this.m_labelBasicInformation.Size = new System.Drawing.Size(185, 25);
+            this.m_labelBasicInformation.Size = new System.Drawing.Size(163, 20);
             this.m_labelBasicInformation.TabIndex = 16;
             this.m_labelBasicInformation.Text = "Basic Information:";
             // 
@@ -265,31 +181,15 @@ namespace View.AssistiveComponents
             this.m_buttonAttachAPicture.Text = "Attach A Picture";
             this.m_buttonAttachAPicture.UseVisualStyleBackColor = false;
             // 
-            // m_buttonGetEvents
-            // 
-            this.m_buttonGetEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_buttonGetEvents.AutoSize = true;
-            this.m_buttonGetEvents.Location = new System.Drawing.Point(509, 413);
-            this.m_buttonGetEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.m_buttonGetEvents.Name = "m_buttonGetEvents";
-            this.m_buttonGetEvents.Size = new System.Drawing.Size(597, 37);
-            this.m_buttonGetEvents.TabIndex = 21;
-            this.m_buttonGetEvents.Text = "Get Events";
-            this.m_buttonGetEvents.UseVisualStyleBackColor = true;
-            // 
             // UserProfileComponent
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.m_buttonGetEvents);
             this.Controls.Add(this.m_buttonAttachAPicture);
             this.Controls.Add(this.m_pictureBoxFacebookLogo);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.m_dataGridViewUpcomingEvents);
             this.Controls.Add(this.m_labelUpcomingEvents);
             this.Controls.Add(this.m_labelBasicInformation);
             this.Controls.Add(this.m_buttonPost);
@@ -300,7 +200,6 @@ namespace View.AssistiveComponents
             this.Name = "UserProfileComponent";
             this.Size = new System.Drawing.Size(1109, 871);
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceFeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m_dataGridViewUpcomingEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_ComponentBindingSourceUpcomingEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_pictureBoxProfilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -311,7 +210,6 @@ namespace View.AssistiveComponents
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView m_dataGridViewUpcomingEvents;
         private System.Windows.Forms.Label m_labelUpcomingEvents;
         private System.Windows.Forms.Label m_labelBasicInformation;
         private System.Windows.Forms.Button m_buttonPost;
@@ -320,16 +218,8 @@ namespace View.AssistiveComponents
         private System.Windows.Forms.PictureBox m_pictureBoxProfilePic;
         private System.Windows.Forms.BindingSource m_ComponentBindingSourceFeed;
         private System.Windows.Forms.BindingSource m_ComponentBindingSourceUpcomingEvents;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn startTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn endTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn locationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn linkToFacebookDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeStringDataGridViewTextBoxColumn;
         private PictureBox pictureBox1;
         private PictureBox m_pictureBoxFacebookLogo;
         private Button m_buttonAttachAPicture;
-        private Button m_buttonGetEvents;
     }
 }

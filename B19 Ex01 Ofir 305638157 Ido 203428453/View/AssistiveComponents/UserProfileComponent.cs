@@ -10,7 +10,7 @@ namespace View.AssistiveComponents
         #region Class Members / Properties
         private const string k_PostToWallMsg     = "Do you want to say anything?";
         private const string k_ErrorMsgEmptyText = "Please insert a text to post!";
-        //private IAppComponent m_userEventsComponent;
+        private IAppComponent m_userEventsComponent;
 
         public User User { get; set; }
         public PictureBox PictureBoxProfilePic
@@ -78,18 +78,18 @@ namespace View.AssistiveComponents
             }
         }
 
-        public Button ButtonGetEvents
-        {
-            get
-            {
-                return m_buttonGetEvents;
-            }
+        //public Button ButtonGetEvents
+        //{
+        //    get
+        //    {
+        //        return m_buttonGetEvents;
+        //    }
 
-            set
-            {
-                m_buttonGetEvents = value;
-            }
-        }
+        //    set
+        //    {
+        //        m_buttonGetEvents = value;
+        //    }
+        //}
 
         public Button ButtonPost
         {
@@ -150,12 +150,33 @@ namespace View.AssistiveComponents
             FilesUploader.UploadAPhotoToTimeline(User);
         }
 
+        private void setEventsComponentVisualSettings()
+        {
+            DataGridView dataGridView = (m_userEventsComponent as UserEventsComponent).DataGridView;
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridView.AutoGenerateColumns = false;
+            dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.DataSource = this.m_ComponentBindingSourceUpcomingEvents;
+            dataGridView.Location = new System.Drawing.Point(509, 53);
+            dataGridView.Name = "m_dataGridViewUpcomingEvents";
+            dataGridView.ReadOnly = true;
+            dataGridView.RowTemplate.Height = 28;
+            dataGridView.Size = new System.Drawing.Size(597, 350);
+            dataGridView.TabIndex = 17;
+        }
+
         void IAppComponent.Initialize()
         {
             InitializeComponent();
             ButtonAttachAFile.Click += ButtonAttachAFile_Click;
-            ButtonGetEvents.Click += ButtonGetEvents_Click;
             ButtonPost.Click += ButtonPost_Click;
+            m_userEventsComponent = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserEvents, Controls, User);
+            m_userEventsComponent.Initialize();
+            setEventsComponentVisualSettings();
         }
         #endregion
     }
