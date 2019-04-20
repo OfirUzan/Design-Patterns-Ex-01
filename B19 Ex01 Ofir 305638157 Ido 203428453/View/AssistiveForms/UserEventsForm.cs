@@ -64,8 +64,8 @@ namespace View.AssistiveFroms
         public UserEventsForm(User i_User)
         {
             InitializeComponent();
-            IAppComponent userEventsComponent = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserEvents, Controls, i_User);
-            userEventsComponent.Initialize();
+            m_userEventsComponent = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserEvents, Controls, i_User);
+            m_userEventsComponent.Initialize();
         }
         #endregion
     }

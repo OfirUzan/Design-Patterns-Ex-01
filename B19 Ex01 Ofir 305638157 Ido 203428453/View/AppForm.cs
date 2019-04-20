@@ -109,19 +109,13 @@ namespace View
             label_TabFeed_Birthday.Text = m_AppController.User.Birthday;
             label_TabMain_Gender.Text = m_AppController.User.Gender.ToString();
             makeRoundPictureBox(pictureBox_TabFeed_ProfilePic, 3, 3);
-            this.nextWallPost();
+            nextWallPost();
         }
 
         private void initializeTabAlbums()
         {
             userAlbumPicturesComponent_TabAlbums = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserAlbumPictures, tabPage_Albums.Controls, m_AppController.User);
             userAlbumPicturesComponent_TabAlbums.Initialize();
-            //tabPage_Albums.Controls.Add(userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent);
-
-            //foreach (Album album in m_AppController.User.Albums)
-            //{
-            //comboBox_TabAlbums_AlbumsList.Items.Add(album.Name);
-            //}
             AlbumsBindingSource.DataSource = m_AppController.User.Albums;
             comboBox_TabAlbums_AlbumsList.SelectedIndexChanged += tabAlbum_ComboBoxAlbums_AlbumSelected;
         }
@@ -130,9 +124,6 @@ namespace View
         {
             userProfileComponent_TabProfile = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserProfile, tabPage_Profile.Controls, m_AppController.User);
             userProfileComponent_TabProfile.Initialize();
-            //userProfileComponent_TabProfile.ButtonAttachAFile.Click += tabProfile_AttachAFile_Click;
-            //userProfileComponent_TabProfile.ButtonGetEvents.Click += tabProfile_GetEvents_Click;
-            //userProfileComponent_TabProfile.ButtonPost.Click += tabProfile_Post_Click;
             (userProfileComponent_TabProfile as UserProfileComponent).PictureBoxProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
             (userProfileComponent_TabProfile as UserProfileComponent).TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(m_AppController.User);
         }
@@ -141,9 +132,8 @@ namespace View
         {
             userProfileComponent_TabFriends = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserProfile, tabPage_Friends.Controls, m_AppController.Friend);
             userProfileComponent_TabFriends.Initialize();
-            //userProfileComponent_TabFriends.ButtonAttachAFile.Click += tabFriend_AttachAFile_Click;
-            //userProfileComponent_TabFriends.ButtonGetEvents.Click += tabFriend_GetEvents_Click;
-            //userProfileComponent_TabFriends.ButtonPost.Click += tabFriend_ButtonPost_Click;
+            textBox_TabFriends_FriendName.Click += tabFriend_textBoxFriendName_Click;
+            button_TabFriends_Search.Click += tabFriend_Search_Click;
         }
 
         private void initializeTabContacts()
@@ -252,13 +242,6 @@ namespace View
             m_AppController.UpdatePhotosOnAlbumsTab(updatePreviousUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
         }
 
-        private void tabAlbum_PictureBox_Click(object sender, EventArgs e)
-        {
-            LargePhotoForm largePhotoForm = new LargePhotoForm();
-            largePhotoForm.Picture.ImageLocation = (sender as PictureBox).ImageLocation;
-            largePhotoForm.Show();
-        }
-
         private void tabAlbum_ComboBoxAlbums_AlbumSelected(object sender, EventArgs e)
         {
             foreach (PictureBox pictureBox in (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes)
@@ -286,96 +269,28 @@ namespace View
         }
         #endregion
 
-        #region Profile Tab Methods
-        private void tabProfile_Post_Click(object sender, EventArgs e)
-        {
-            //string postText = userProfileComponent_TabProfile.TextBoxPostText.Text;
-            //postToWall(m_AppController.User, postText);
-        }
-
-        private void tabProfile_GetEvents_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //userProfileComponent_TabProfile.BindingSourceUpcomingEvents.DataSource = m_AppController.User.Events;
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-        }
-
-        //private void tabProfile_AttachAFile_Click(object sender, EventArgs e)
-        //{
-        //    m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.User);
-        //}
-        #endregion
-
         #region Friends Tab Methods
-        //private void tabFriend_ButtonPost_Click(object sender, EventArgs e)
-        //{
-        //    if (m_AppController.Friend == null)
-        //    {
-        //        MessageBox.Show(k_ErrorMsgSelectFriend);
-        //    }
-        //    else
-        //    {
-        //        string postText = userProfileComponent_TabFriends.TextBoxPostText.Text;
-        //        postToWall(m_AppController.Friend, postText);
-        //    }
-        //}
-
-        //private void tabFriend_GetEvents_Click(object sender, EventArgs e)
-        //{
-        //    if (m_AppController.Friend == null)
-        //    {
-        //        MessageBox.Show(k_ErrorMsgSelectFriend);
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            userProfileComponent_TabFriends.BindingSourceUpcomingEvents.DataSource = m_AppController.Friend.Events;
-        //        }
-        //        catch (Exception exception)
-        //        {
-        //            MessageBox.Show(exception.Message);
-        //        }
-        //    }
-        //}
-
-        //private void tabFriend_AttachAFile_Click(object sender, EventArgs e)
-        //{
-        //    if (m_AppController.Friend == null)
-        //    {
-        //        MessageBox.Show(k_ErrorMsgSelectFriend);
-        //    }
-        //    else
-        //    {
-        //        m_FilesUploader.UploadAPhotoToTimeline(m_AlbumsManager, m_AppController.Friend);
-        //    }
-        //}
-
-        //private void tabFriend_Search_Click(object sender, EventArgs e)
-        //{
-        //    User friend = getAFriendOfTheUserByName(textBox_TabFriends_FriendName.Text);
-
-        //    if (friend != null)
-        //    {
-        //        m_AppController.Friend = friend;
-        //        userProfileComponent_TabFriends.PictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
-        //        userProfileComponent_TabFriends.TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(friend);
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show(k_ErrorMsgNoFriends);
-        //    }
-        //}
-
         private void tabFriend_textBoxFriendName_Click(object sender, EventArgs e)
         {
             textBox_TabFriends_FriendName.Text = string.Empty;
             (sender as TextBox).Click -= tabFriend_textBoxFriendName_Click;
+        }
+
+        private void tabFriend_Search_Click(object sender, EventArgs e)
+        {
+            User friend = getAFriendOfTheUserByName(textBox_TabFriends_FriendName.Text);
+
+            if (friend != null)
+            {
+                m_AppController.Friend = friend;
+                (userProfileComponent_TabFriends as UserProfileComponent).User = friend;
+                (userProfileComponent_TabFriends as UserProfileComponent).PictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
+                (userProfileComponent_TabFriends as UserProfileComponent).TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(friend);
+            }
+            else
+            {
+                MessageBox.Show(k_ErrorMsgNoFriends);
+            }
         }
         #endregion
 
@@ -390,7 +305,6 @@ namespace View
         {
             m_UserEventsForm = new UserEventsForm(m_AppController.User);
             m_UserEventsForm.DataGridView.CellDoubleClick += userEventsForm_DataGridView_CellDoubleClick;
-            m_UserEventsForm.ButtonGetEvents.Click += userEventsForm_GetEvents_Click;
             m_UserEventsForm.ShowDialog();
         }
 
@@ -460,6 +374,7 @@ namespace View
             int locationCellIndex = m_UserEventsForm.LocationColumn.Index;
             DataGridView eventsGridView = sender as DataGridView;
             richTextBox_TabFaceRide_WhereTo.Text = (string)eventsGridView.Rows[e.RowIndex].Cells[locationCellIndex].Value;
+            m_UserEventsForm.Close();
         }
 
         private void userEventsForm_GetEvents_Click(object sender, EventArgs e)

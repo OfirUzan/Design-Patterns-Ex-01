@@ -10,6 +10,7 @@ namespace View.AssistiveComponents
         #region Class Members / Properties
         private const string k_PostToWallMsg     = "Do you want to say anything?";
         private const string k_ErrorMsgEmptyText = "Please insert a text to post!";
+        //private IAppComponent m_userEventsComponent;
 
         public User User { get; set; }
         public PictureBox PictureBoxProfilePic
@@ -111,14 +112,6 @@ namespace View.AssistiveComponents
             (sender as TextBox).Click -= m_textBoxPostText_Click;
         }
 
-        void IAppComponent.Initialize()
-        {
-            InitializeComponent();
-            ButtonAttachAFile.Click += ButtonAttachAFile_Click;
-            ButtonGetEvents.Click += ButtonGetEvents_Click;
-            ButtonPost.Click += ButtonPost_Click;
-        }
-
         private void ButtonPost_Click(object sender, EventArgs e)
         {
             string postText = TextBoxPostText.Text;
@@ -155,6 +148,14 @@ namespace View.AssistiveComponents
         private void ButtonAttachAFile_Click(object sender, EventArgs e)
         {
             FilesUploader.UploadAPhotoToTimeline(User);
+        }
+
+        void IAppComponent.Initialize()
+        {
+            InitializeComponent();
+            ButtonAttachAFile.Click += ButtonAttachAFile_Click;
+            ButtonGetEvents.Click += ButtonGetEvents_Click;
+            ButtonPost.Click += ButtonPost_Click;
         }
         #endregion
     }
