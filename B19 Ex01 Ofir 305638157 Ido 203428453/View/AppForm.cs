@@ -50,7 +50,7 @@ namespace View
         private RideForm                  m_RideForm;
         private SelectedRideFriendForm    m_SelectedRideFriendForm;
         private UserEventsForm            m_UserEventsForm;
-        private IContactList              m_Contacts;
+        private ICsvSerializable              m_Contacts;
         private bool                      m_FirstLaunch = true;
         #endregion
 
@@ -138,7 +138,7 @@ namespace View
 
         private void initializeTabContacts()
         {
-            m_Contacts = new GoogleContactListAdapter(m_AppController.User);
+            m_Contacts = new GoogleContactsCsvAdapter(m_AppController.User);
         }
         #endregion
 
