@@ -5,16 +5,16 @@ using Model;
 
 namespace View.AssistiveFroms
 {
-    public delegate void LoginSucessDelegate(User i_LoggedUser);
+    public delegate void LoginSucessDelegate(AppFacade i_AppFacade);
     public delegate void LoginFailedDelegate();
 
     public partial class LoginForm : Form
     {
         #region Class Members / Properties
         private const string             k_InternetErrorMsg = "Please check your internet connection.";
-        private FacebookAuthenticator    m_FacebookAuthenticator;
         public event LoginSucessDelegate LoginSucessListeners;
         public event LoginFailedDelegate LoginFailedListeners;
+        private AppFacade                m_AppFacade;
         #endregion
 
         #region Class Methods
@@ -22,7 +22,8 @@ namespace View.AssistiveFroms
         {
             Hide();
             Close();
-            LoginSucessListeners.Invoke(i_User);
+            m_AppFacade.User = i_User;
+            LoginSucessListeners.Invoke(m_AppFacade);
         }
 
         private void finishLoginWithFailure()
@@ -41,7 +42,7 @@ namespace View.AssistiveFroms
         {
             try
             {
-                User user = m_FacebookAuthenticator.LoginUser();
+                User user = m_AppFacade.LoginUser();
                 finishLoginWithSucess(user);
             }
             catch (Exception exception)
@@ -54,21 +55,21 @@ namespace View.AssistiveFroms
 
         private void m_checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)
         {
-            m_FacebookAuthenticator.RememberUser = checkBox_RememberUser.Checked;
+            m_AppFacade.RememberUser = checkBox_RememberUser.Checked;
         }
 
         public LoginForm()
         {
             InitializeComponent();
-            m_FacebookAuthenticator = new FacebookAuthenticator();
+            m_AppFacade = new AppFacade();
         }
-
+    
         public void StartLoginSession()
         {
             User user = null;
             try
             {
-                bool isLoggedIn = m_FacebookAuthenticator.IsUserLoggedIn(out user);
+                bool isLoggedIn = m_AppFacade.IsUserLoggedIn(out user);
 
                 if (isLoggedIn)
                 {
@@ -82,14 +83,14 @@ namespace View.AssistiveFroms
             catch(Exception e)
             {
                 MessageBox.Show(e.Message + Environment.NewLine + "Acess token file has been corrupted?");
-                m_FacebookAuthenticator.LogoutUser();
+                m_AppFacade.LogoutUser();
                 ShowDialog();
             }
         }
 
         public void LogoutUser()
         {
-            m_FacebookAuthenticator.LogoutUser();
+            m_AppFacade.LogoutUser();
             ShowDialog();
         }
         #endregion

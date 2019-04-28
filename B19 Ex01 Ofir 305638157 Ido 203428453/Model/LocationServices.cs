@@ -5,7 +5,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
-    public class LocationServices
+    internal class LocationServices
     {
         #region Class Members / Properties
         private const string    k_ApiLink = "https://api.opencagedata.com/geocode/v1/xml?q={0}%2C%20{1}&key=de6bc97eaa8a4c3a99198c1cfbf0fe9d&language=en&pretty=1";

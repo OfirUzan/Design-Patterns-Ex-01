@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Adapters\GoogleContactsCsvAdapter.cs" />
     <Compile Include="AlbumsManager.cs" />
-    <Compile Include="AppController.cs" />
+    <Compile Include="AppFacade.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacebookAuthenticator.cs" />
     <Compile Include="FaceRideManager.cs" />

@@ -3,7 +3,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
-    public class AlbumsManager
+    internal class AlbumsManager
     {
         #region Members / Properties
         private readonly object r_GetNextPhotoLockContext = new object();

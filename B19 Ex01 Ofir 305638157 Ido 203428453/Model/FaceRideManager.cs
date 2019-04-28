@@ -4,7 +4,7 @@ namespace Model
 {
     public delegate void LocationChangedDelegate();
 
-    public class FaceRideManager
+    internal class FaceRideManager
     {
         #region Class Members / Properties
         private LocationServices m_LocationServices = new LocationServices();

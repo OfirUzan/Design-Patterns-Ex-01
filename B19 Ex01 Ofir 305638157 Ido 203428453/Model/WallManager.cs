@@ -87,7 +87,7 @@ namespace Model
             return comment;
         }
         
-        public string GetCommentID()
+        public string GetCommentId()
         {
             return m_CurrCommentId;
         }

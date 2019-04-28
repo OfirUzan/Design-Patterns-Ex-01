@@ -3,7 +3,7 @@ using FacebookWrapper;
 
 namespace Model
 {
-    public class FacebookAuthenticator
+    internal class FacebookAuthenticator
     {
         #region Class Members / Properties
         private const string             k_AppId = "451139335614057";

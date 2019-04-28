@@ -28,7 +28,7 @@ namespace View
             {
                 try
                 {
-                    AlbumsManager.UploadAPhotoToTimeline(i_User, openFileDialog.FileName);
+                    AppFacade.UploadAPhotoToTimeline(i_User, openFileDialog.FileName);
                 }
                 catch (Exception uploadException)
                 {

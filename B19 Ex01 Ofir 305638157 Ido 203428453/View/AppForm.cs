@@ -11,9 +11,6 @@ using View.AssistiveFroms;
 using Model.Interfaces;
 using Model.Adapters;
 
-
-// *** note to ofir : REMOVE 0 reference methods in all classes + unused 'using'
-
 namespace View
 {
     public partial class AppForm : Form
@@ -27,7 +24,6 @@ namespace View
         private const string              k_MsgNotifyWhenDone = "Data will be exported and you will be notified when it is ready.";
         private const string              k_ErrorMsgCsvMakingFile = "It wasn't possible to write the data to the disk.";
         private const string              k_OkMsgCsvMakeFile = "Your file was generated and its ready for use.";
-        private const string              k_AlbumCoverPhotosName = "Cover Photos";
         private const string              k_MsgNoComments = "No Comments";
         private const string              k_ErrorMsgSelectDestination = "Please Select Radius Of Search";
         private const string              k_ErrorMsgNoPremmition = "Error: No permission to get user and/or friends locations.";
@@ -42,15 +38,15 @@ namespace View
         private const string              k_GoogleUploadContactsLink = "https://support.google.com/contacts/answer/1069522?co=GENIE.Platform%3DDesktop&hl=en";
         private static readonly int       sr_NumOfPicturesPerAlbum = 8;
         private LoginForm                 m_LoginForm;
-        private AppController             m_AppController;
-        private AlbumsManager             m_AlbumsManager;
-        private WallManager               m_WallManager;
+        private AppFacade                 m_AppFacade;
+        //private AlbumsManager             m_AlbumsManager;
+        //private WallManager               m_WallManager;
         private FilesUploader             m_FilesUploader;
-        private FaceRideManager           m_FaceRideManager;
+        //private FaceRideManager           m_FaceRideManager;
         private RideForm                  m_RideForm;
         private SelectedRideFriendForm    m_SelectedRideFriendForm;
         private UserEventsForm            m_UserEventsForm;
-        private ICsvSerializable              m_Contacts;
+        private ICsvSerializable          m_Contacts;
         private bool                      m_FirstLaunch = true;
         #endregion
 
@@ -67,14 +63,13 @@ namespace View
             Close();
         }
 
-        private void loginForm_LoginSucess(User i_LoggedUser)
+        private void loginForm_LoginSucess(AppFacade i_AppFacade)
         {
             InitializeComponent();
-            m_AppController = new AppController() { User = i_LoggedUser };
-            m_AlbumsManager = new AlbumsManager(m_AppController.User);
-            m_WallManager = new WallManager(m_AppController.User.WallPosts);
+            m_AppFacade = i_AppFacade;
+            m_AppFacade.Init();
             m_FilesUploader = new FilesUploader();
-            m_FaceRideManager = new FaceRideManager();
+
             if (m_FirstLaunch)
             {
                 m_FirstLaunch = false;
@@ -100,37 +95,37 @@ namespace View
 
         private void initializeTabFeed()
         {
-            pictureBox_TabFeed_CoverPhoto.ImageLocation = m_AlbumsManager.GetLatestPhotoURL(k_AlbumCoverPhotosName);
+            pictureBox_TabFeed_CoverPhoto.ImageLocation = m_AppFacade.GetCoverPhotoURL();
             pictureBox_TabFeed_CoverPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_TabFeed_ProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
+            pictureBox_TabFeed_ProfilePic.ImageLocation = m_AppFacade.User.PictureLargeURL;
             pictureBox_TabFeed_ProfilePic.SizeMode = PictureBoxSizeMode.StretchImage;
-            linkLabel_TabFeed_FullName.Text = m_AppController.User.Name;
-            label_TabFeed_Email.Text = m_AppController.User.Email;
-            label_TabFeed_Birthday.Text = m_AppController.User.Birthday;
-            label_TabMain_Gender.Text = m_AppController.User.Gender.ToString();
+            linkLabel_TabFeed_FullName.Text = m_AppFacade.User.Name;
+            label_TabFeed_Email.Text = m_AppFacade.User.Email;
+            label_TabFeed_Birthday.Text = m_AppFacade.User.Birthday;
+            label_TabMain_Gender.Text = m_AppFacade.User.Gender.ToString();
             makeRoundPictureBox(pictureBox_TabFeed_ProfilePic, 3, 3);
             nextWallPost();
         }
 
         private void initializeTabAlbums()
         {
-            userAlbumPicturesComponent_TabAlbums = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserAlbumPictures, tabPage_Albums.Controls, m_AppController.User);
+            userAlbumPicturesComponent_TabAlbums = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserAlbumPictures, tabPage_Albums.Controls, m_AppFacade.User);
             userAlbumPicturesComponent_TabAlbums.Initialize();
-            AlbumsBindingSource.DataSource = m_AppController.User.Albums;
+            AlbumsBindingSource.DataSource = m_AppFacade.User.Albums;
             comboBox_TabAlbums_AlbumsList.SelectedIndexChanged += tabAlbum_ComboBoxAlbums_AlbumSelected;
         }
 
         private void initializeTabProfile()
         {
-            userProfileComponent_TabProfile = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserProfile, tabPage_Profile.Controls, m_AppController.User);
+            userProfileComponent_TabProfile = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserProfile, tabPage_Profile.Controls, m_AppFacade.User);
             userProfileComponent_TabProfile.Initialize();
-            (userProfileComponent_TabProfile as UserProfileComponent).PictureBoxProfilePic.ImageLocation = m_AppController.User.PictureLargeURL;
-            (userProfileComponent_TabProfile as UserProfileComponent).TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(m_AppController.User);
+            (userProfileComponent_TabProfile as UserProfileComponent).PictureBoxProfilePic.ImageLocation = m_AppFacade.User.PictureLargeURL;
+            (userProfileComponent_TabProfile as UserProfileComponent).TextBoxUserInfo.Text = m_AppFacade.GetFacebookUserInfo(m_AppFacade.User);
         }
 
         private void initializeTabFriends()
         {
-            userProfileComponent_TabFriends = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserProfile, tabPage_Friends.Controls, m_AppController.Friend);
+            userProfileComponent_TabFriends = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserProfile, tabPage_Friends.Controls, m_AppFacade.Friend);
             userProfileComponent_TabFriends.Initialize();
             textBox_TabFriends_FriendName.Click += tabFriend_textBoxFriendName_Click;
             button_TabFriends_Search.Click += tabFriend_Search_Click;
@@ -138,7 +133,7 @@ namespace View
 
         private void initializeTabContacts()
         {
-            m_Contacts = new GoogleContactsCsvAdapter(m_AppController.User);
+            m_Contacts = new GoogleContactsCsvAdapter(m_AppFacade.User);
         }
         #endregion
 
@@ -187,24 +182,24 @@ namespace View
 
         private void tabFeed_linkLabelFullName_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            launchBrowser(m_AppController.User.Link);
+            launchBrowser(m_AppFacade.User.Link);
         }
 
         private void tabFeed_linkLabelCommentInfo_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string commentUrl = k_FacebookUrl + m_WallManager.GetCommentID();
+            string commentUrl = k_FacebookUrl + m_AppFacade.GetCommentId();
             launchBrowser(commentUrl);
         }
 
         private void tabFeed_linkLabelPostLink_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            launchBrowser(m_WallManager.GetPostId());
+            launchBrowser(m_AppFacade.GetPostId());
         }
 
         private void nextWallPost()
         {
-            Post p = m_WallManager.GetNextWallPost();
-            Comment c = m_WallManager.GetNextCommentOfCurrentPost();
+            Post p = m_AppFacade.GetNextWallPost();
+            Comment c = m_AppFacade.GetNextCommentOfCurrentPost();
             pictureBox_TabFeed_PostPic.ImageLocation = p.PictureURL;
             pictureBox_TabFeed_PostPic.SizeMode = PictureBoxSizeMode.StretchImage;
             label_TabFeed_PostDate.Text = p.CreatedTime.ToString();
@@ -215,7 +210,7 @@ namespace View
 
         private void nextPostComment()
         {
-            Comment c = m_WallManager.GetNextCommentOfCurrentPost();
+            Comment c = m_AppFacade.GetNextCommentOfCurrentPost();
             if (c == null)
             {
                 richTextBox_TabFeed_CommentText.Text = k_MsgNoComments;
@@ -234,12 +229,12 @@ namespace View
         #region Albums Tab Methods
         private void tabAlbum_Next_Click(object sender, EventArgs e)
         {
-            m_AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
+            m_AppFacade.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
         }
 
         private void tabAlbum_Previous_Click(object sender, EventArgs e)
         {
-            m_AppController.UpdatePhotosOnAlbumsTab(updatePreviousUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
+            m_AppFacade.UpdatePhotosOnAlbumsTab(updatePreviousUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
         }
 
         private void tabAlbum_ComboBoxAlbums_AlbumSelected(object sender, EventArgs e)
@@ -252,19 +247,19 @@ namespace View
             button_TabAlbums_Next.Enabled = true;
             button_TabAlbums_Prevoius.Enabled = true;
             string albumName = (comboBox_TabAlbums_AlbumsList.SelectedItem as Album).Name;
-            m_AlbumsManager.SetCurrentAlbum(albumName);
-            m_AppController.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
+            m_AppFacade.SetCurrentAlbum(albumName);
+            m_AppFacade.UpdatePhotosOnAlbumsTab(updateNextUserPhotosOnTabAlbum, sr_NumOfPicturesPerAlbum);
         }
 
         private void updateNextUserPhotosOnTabAlbum(int i_PictureBoxIndex)
         {
-            (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetNextPhotoURL();
+            (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AppFacade.GetNextPhotoURL();
             (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void updatePreviousUserPhotosOnTabAlbum(int i_PictureBoxIndex)
         {
-            (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AlbumsManager.GetPreviousPhotoURL();
+            (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].ImageLocation = m_AppFacade.GetPreviousPhotoURL();
             (userAlbumPicturesComponent_TabAlbums as UserAlbumPicturesComponent).PictureBoxes[i_PictureBoxIndex].SizeMode = PictureBoxSizeMode.StretchImage;
         }
         #endregion
@@ -282,10 +277,10 @@ namespace View
 
             if (friend != null)
             {
-                m_AppController.Friend = friend;
+                m_AppFacade.Friend = friend;
                 (userProfileComponent_TabFriends as UserProfileComponent).User = friend;
                 (userProfileComponent_TabFriends as UserProfileComponent).PictureBoxProfilePic.ImageLocation = friend.PictureLargeURL;
-                (userProfileComponent_TabFriends as UserProfileComponent).TextBoxUserInfo.Text = m_AppController.GetFacebookUserInfo(friend);
+                (userProfileComponent_TabFriends as UserProfileComponent).TextBoxUserInfo.Text = m_AppFacade.GetFacebookUserInfo(friend);
             }
             else
             {
@@ -297,13 +292,13 @@ namespace View
         #region FaceRide Tab Methods
         private void tabFaceRide_linkLabelLocation_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string currentUserAdress = m_FaceRideManager.GetUserCurrentAdress();
+            string currentUserAdress = m_AppFacade.GetUserCurrentAdress();
             richTextBox_TabFaceRide_WhereFrom.Text = !string.IsNullOrEmpty(currentUserAdress) ? currentUserAdress : k_ErrorMsgLocation;
         }
 
         private void tabFaceRide_linkLabel_GetFromEvent_Click(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            m_UserEventsForm = new UserEventsForm(m_AppController.User);
+            m_UserEventsForm = new UserEventsForm(m_AppFacade.User);
             m_UserEventsForm.DataGridView.CellDoubleClick += userEventsForm_DataGridView_CellDoubleClick;
             m_UserEventsForm.ShowDialog();
         }
@@ -320,20 +315,23 @@ namespace View
 
         private void tabFaceRide_FriendsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            m_FaceRideManager.ChosenFriend = m_FaceRideManager.PossibleRideFriends[e.RowIndex];
-            createAndShowSelectedRideFriendForm();
+            new System.Threading.Thread(() => 
+            {
+                m_AppFacade.SetFaceRideFriend(e.RowIndex);
+                createAndShowSelectedRideFriendForm();
+            }).Start();
         }
 
         private void tabFaceRide_SendViaMessanger_Click(object sender, EventArgs e)
         {
-            launchBrowser(k_FacebookMessengerUrl + m_FaceRideManager.ChosenFriend.Id);
+            launchBrowser(k_FacebookMessengerUrl + m_AppFacade.GetFaceRideChosendFriend().Id);
         }
 
         private void tabFaceRide_PostOnWall_Click(object sender, EventArgs e)
         {
             try
             {
-                m_FaceRideManager.ChosenFriend.PostStatus(m_SelectedRideFriendForm.RequestMessage.Text);
+                m_AppFacade.GetFaceRideChosendFriend().PostStatus(m_SelectedRideFriendForm.RequestMessage.Text);
             }
             catch(Exception ex)
             {
@@ -351,7 +349,7 @@ namespace View
 
                 try
                 {
-                    FacebookObjectCollection<User> potentialRideFriends = m_FaceRideManager.GetPotentialRideFriends(m_AppController.User, searchRadius, maleFriends, femaleFriends);
+                    FacebookObjectCollection<User> potentialRideFriends = m_AppFacade.GetPotentialRideFriends(m_AppFacade.User, searchRadius, maleFriends, femaleFriends);
 
                     if (potentialRideFriends.Count != 0)
                     {
@@ -381,7 +379,7 @@ namespace View
         {
             try
             {
-                m_UserEventsForm.BindingSource.DataSource = m_AppController.User.Events;
+                m_UserEventsForm.BindingSource.DataSource = m_AppFacade.User.Events;
             }
             catch (Exception ex)
             {
@@ -393,7 +391,7 @@ namespace View
         {
             m_RideForm = new RideForm();
             m_RideForm.FriendsDataGridView.CellDoubleClick += tabFaceRide_FriendsDataGridView_CellDoubleClick;
-            m_RideForm.FriendsBindingSource.DataSource = m_AppController.User.Friends;
+            m_RideForm.FriendsBindingSource.DataSource = m_AppFacade.User.Friends;
             m_RideForm.FriendsDataGridView.DataBindingComplete += friendsDataGridView_DataBindingComplete;
             m_RideForm.ShowDialog();
         }
@@ -402,7 +400,7 @@ namespace View
         {
             int rowIndex = 0;
 
-            foreach (User friend in m_AppController.User.Friends)
+            foreach (User friend in m_AppFacade.User.Friends)
             {
                 DataGridViewTextBoxCell dataGridViewTextBoxCell = new DataGridViewTextBoxCell()
                 {
@@ -417,9 +415,9 @@ namespace View
         private void createAndShowSelectedRideFriendForm()
         {
             m_SelectedRideFriendForm = new SelectedRideFriendForm();
-            m_SelectedRideFriendForm.FriendProfilePicture.Image = m_FaceRideManager.ChosenFriend.ImageNormal;
-            m_SelectedRideFriendForm.FriendFirstName.Text = m_FaceRideManager.ChosenFriend.FirstName;
-            m_SelectedRideFriendForm.FriendLastName.Text = m_FaceRideManager.ChosenFriend.LastName;
+            m_SelectedRideFriendForm.FriendProfilePicture.Image = m_AppFacade.GetFaceRideChosendFriend().ImageNormal;
+            m_SelectedRideFriendForm.FriendFirstName.Text = m_AppFacade.GetFaceRideChosendFriend().FirstName;
+            m_SelectedRideFriendForm.FriendLastName.Text = m_AppFacade.GetFaceRideChosendFriend().LastName;
             m_SelectedRideFriendForm.RequestMessage.Text =
             string.Format(k_CatchARideFormat, m_SelectedRideFriendForm.FriendFirstName.Text, Environment.NewLine, richTextBox_TabFaceRide_WhereTo.Text, Environment.NewLine);
             m_SelectedRideFriendForm.FriendFirstName.ReadOnly = true;
@@ -594,7 +592,7 @@ namespace View
         #region General Methods
         private User getAFriendOfTheUserByName(string i_FriendName)
         {
-            return m_AppController.User.Friends.Find(x => x.Name == i_FriendName);
+            return m_AppFacade.User.Friends.Find(x => x.Name == i_FriendName);
         }
 
         private void makeRoundPictureBox(PictureBox i_PictureBox, int i_WidthRound, int i_HeightRound)
@@ -603,25 +601,6 @@ namespace View
             gp.AddEllipse(0, 0, i_PictureBox.Width - i_WidthRound, i_PictureBox.Height - i_HeightRound);
             Region rg = new Region(gp);
             i_PictureBox.Region = rg;
-        }
-
-        private void postToWall(User i_User, string i_PostText)
-        {
-            if (i_PostText != string.Empty && i_PostText != null)
-            {
-                try
-                {
-                    WallManager.PostToWall(i_User, i_PostText);
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
-            }
-            else
-            {
-                MessageBox.Show(null);
-            }
         }
 
         private void launchBrowser(string i_UrlToLaunch)
