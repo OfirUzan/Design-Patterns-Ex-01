@@ -77,7 +77,7 @@ namespace Model.Adapters
             return k_CsvHeader;
         }
 
-        void ICsvSerializable.MakeCsvFromContactList(string i_FilePath)
+        void ICsvSerializable.WriteCsv(string i_FilePath)
         {
             using (StreamWriter writer = new StreamWriter(new FileStream(i_FilePath, FileMode.Create, FileAccess.Write)))
             {

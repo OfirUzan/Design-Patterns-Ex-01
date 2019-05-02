@@ -489,7 +489,7 @@ namespace View
         private void tabContacts_DisplayContacts_Click(object sender, EventArgs e)
         {
             webBrowser_TabContacts.Url = new Uri(k_GoogleUploadContactsLink);
-            m_Contacts.MakeCsvFromContactList(k_DeafultCsvOutputName);
+            m_Contacts.WriteCsv(k_DeafultCsvOutputName);
             populateDataGridViewWithCsvFile(dataGridView_TabContacts, k_DeafultCsvOutputName);
         }
 
