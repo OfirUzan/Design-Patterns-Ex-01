@@ -16,6 +16,11 @@ namespace Model
         #endregion
 
         #region Class Methods
+        public static void PostToWall(User i_User, string i_PostText)
+        {
+            new Thread(() => { i_User.PostStatus(i_PostText); }).Start();
+        }
+
         public WallManager(FacebookObjectCollection<Post> i_Wall)
         {
             m_Wall = i_Wall;
@@ -95,12 +100,7 @@ namespace Model
         public string GetPostId()
         {
             return m_CurrPostId;
-        }
-
-        public static void PostToWall(User i_User, string i_PostText)
-        {
-            new Thread(() => { i_User.PostStatus(i_PostText); }).Start();
-        }
+        }    
     }
 
     #endregion

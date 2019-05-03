@@ -3,7 +3,7 @@ using View.AssistiveFroms;
 
 namespace View.AssistiveComponents
 {
-    public partial class UserAlbumPicturesComponent: UserControl, IAppComponent
+    public partial class UserAlbumPicturesComponent : UserControl, IAppComponent
     {
         #region Class Members / Properties
         public byte NumOfPictureBoxes { get; }

@@ -6,15 +6,19 @@ using Model;
 namespace View.AssistiveFroms
 {
     public delegate void LoginSucessDelegate(AppFacade i_AppFacade);
+
     public delegate void LoginFailedDelegate();
 
     public partial class LoginForm : Form
     {
         #region Class Members / Properties
         private const string             k_InternetErrorMsg = "Please check your internet connection.";
-        public event LoginSucessDelegate LoginSucessListeners;
-        public event LoginFailedDelegate LoginFailedListeners;
         private AppFacade                m_AppFacade;
+
+        public event LoginSucessDelegate LoginSucessListeners;
+
+        public event LoginFailedDelegate LoginFailedListeners;
+
         #endregion
 
         #region Class Methods

@@ -11,7 +11,6 @@ namespace Model
         #region Class Members / Properties
         private const string k_SearchProp = "String";
        
-
         public class TypeValue
         {
             public string Type { get; set; }

@@ -265,7 +265,7 @@ namespace View
             this.richTextBox_TabFeed_CommentText.Name = "richTextBox_TabFeed_CommentText";
             this.richTextBox_TabFeed_CommentText.Size = new System.Drawing.Size(319, 61);
             this.richTextBox_TabFeed_CommentText.TabIndex = 4;
-            this.richTextBox_TabFeed_CommentText.Text = "";
+            this.richTextBox_TabFeed_CommentText.Text = string.Empty;
             // 
             // richTextBox_TabFeed_PostDescription
             // 
@@ -273,7 +273,7 @@ namespace View
             this.richTextBox_TabFeed_PostDescription.Name = "richTextBox_TabFeed_PostDescription";
             this.richTextBox_TabFeed_PostDescription.Size = new System.Drawing.Size(463, 289);
             this.richTextBox_TabFeed_PostDescription.TabIndex = 3;
-            this.richTextBox_TabFeed_PostDescription.Text = "";
+            this.richTextBox_TabFeed_PostDescription.Text = string.Empty;
             // 
             // label_TabFeed_PostName
             // 
@@ -808,7 +808,7 @@ namespace View
             this.richTextBox_TabFaceRide_WhereFrom.Name = "richTextBox_TabFaceRide_WhereFrom";
             this.richTextBox_TabFaceRide_WhereFrom.Size = new System.Drawing.Size(331, 54);
             this.richTextBox_TabFaceRide_WhereFrom.TabIndex = 31;
-            this.richTextBox_TabFaceRide_WhereFrom.Text = "";
+            this.richTextBox_TabFaceRide_WhereFrom.Text = string.Empty;
             // 
             // pictureBox1
             // 
@@ -876,7 +876,7 @@ namespace View
             this.richTextBox_TabFaceRide_WhereTo.Name = "richTextBox_TabFaceRide_WhereTo";
             this.richTextBox_TabFaceRide_WhereTo.Size = new System.Drawing.Size(331, 54);
             this.richTextBox_TabFaceRide_WhereTo.TabIndex = 24;
-            this.richTextBox_TabFaceRide_WhereTo.Text = "";
+            this.richTextBox_TabFaceRide_WhereTo.Text = string.Empty;
             // 
             // pictureBox_TabFaceRide_subTitle
             // 

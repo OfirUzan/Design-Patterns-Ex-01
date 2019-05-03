@@ -39,10 +39,7 @@ namespace View
         private static readonly int       sr_NumOfPicturesPerAlbum = 8;
         private LoginForm                 m_LoginForm;
         private AppFacade                 m_AppFacade;
-        //private AlbumsManager             m_AlbumsManager;
-        //private WallManager               m_WallManager;
         private FilesUploader             m_FilesUploader;
-        //private FaceRideManager           m_FaceRideManager;
         private RideForm                  m_RideForm;
         private SelectedRideFriendForm    m_SelectedRideFriendForm;
         private UserEventsForm            m_UserEventsForm;

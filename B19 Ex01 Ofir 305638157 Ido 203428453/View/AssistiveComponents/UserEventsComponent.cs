@@ -1,6 +1,6 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using FacebookWrapper.ObjectModel;
 
 namespace View.AssistiveComponents
 {
@@ -8,7 +8,8 @@ namespace View.AssistiveComponents
     {
         #region Class Members / Properties
 
-        public User User { get; set; }
+        public User   User { get; set; }
+
         public Button ButtonGetEvents
         {
             get

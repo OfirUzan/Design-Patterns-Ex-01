@@ -22,6 +22,11 @@ namespace Model
             User = i_User;
         }
 
+        public static void UploadAPhotoToTimeline(User i_User, string i_FilePath)
+        {
+            i_User.PostPhoto(i_FilePath);
+        }
+
         public string GetLatestPhotoURL(string i_AlbumName)
         {
             Album photosAlbum = User.Albums.Find(x => x.Name == i_AlbumName);
@@ -78,11 +83,6 @@ namespace Model
             }
 
             CurrentPhotoURL = CurrentAlbumPhotosURL.First;
-        }
-
-        public static void UploadAPhotoToTimeline(User i_User, string i_FilePath)
-        {
-            i_User.PostPhoto(i_FilePath);
         }
         #endregion
     }

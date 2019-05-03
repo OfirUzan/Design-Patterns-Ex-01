@@ -8,11 +8,12 @@ namespace View.AssistiveComponents
     public partial class UserProfileComponent : UserControl, IAppComponent
     {
         #region Class Members / Properties
-        private const string k_PostToWallMsg     = "Do you want to say anything?";
-        private const string k_ErrorMsgEmptyText = "Please insert a text to post!";
+        private const string  k_PostToWallMsg     = "Do you want to say anything?";
+        private const string  k_ErrorMsgEmptyText = "Please insert a text to post!";
         private IAppComponent m_userEventsComponent;
 
         public User User { get; set; }
+
         public PictureBox PictureBoxProfilePic
         {
             get
@@ -78,19 +79,6 @@ namespace View.AssistiveComponents
             }
         }
 
-        //public Button ButtonGetEvents
-        //{
-        //    get
-        //    {
-        //        return m_buttonGetEvents;
-        //    }
-
-        //    set
-        //    {
-        //        m_buttonGetEvents = value;
-        //    }
-        //}
-
         public Button ButtonPost
         {
             get
@@ -155,12 +143,12 @@ namespace View.AssistiveComponents
             DataGridView dataGridView = (m_userEventsComponent as UserEventsComponent).DataGridView;
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
-            dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridView.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Bottom
+            | AnchorStyles.Left
+            | AnchorStyles.Right);
             dataGridView.AutoGenerateColumns = false;
-            dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.DataSource = this.m_ComponentBindingSourceUpcomingEvents;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.DataSource = m_ComponentBindingSourceUpcomingEvents;
             dataGridView.Location = new System.Drawing.Point(509, 53);
             dataGridView.Name = "m_dataGridViewUpcomingEvents";
             dataGridView.ReadOnly = true;

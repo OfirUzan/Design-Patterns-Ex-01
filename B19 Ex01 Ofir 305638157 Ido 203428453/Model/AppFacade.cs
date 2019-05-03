@@ -13,11 +13,11 @@ namespace Model
             public int PictureBoxIndex { get; set; }
         }
 
+        private const string k_AlbumCoverPhotosName = "Cover Photos";
         private AlbumsManager m_AlbumsManager;
         private FaceRideManager m_FaceRideManager;
         private FacebookAuthenticator m_FacebookAuthenticator;
         private WallManager m_WallManager;
-        private const string k_AlbumCoverPhotosName = "Cover Photos";
 
         public User User { get; set; }
 
@@ -112,7 +112,6 @@ About: {8}",
         public string GetCoverPhotoURL()
         {
             return m_AlbumsManager.GetLatestPhotoURL(k_AlbumCoverPhotosName);
-
         }
 
         public Post GetNextWallPost()

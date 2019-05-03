@@ -3,7 +3,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace View.AssistiveComponents
 {
-    class AppComponentFactory
+    public class AppComponentFactory
     {
         public static IAppComponent CreateAppComponent(Utils.eAppComponent i_Context, Control.ControlCollection i_Controls, User i_User)
         {
