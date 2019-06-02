@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    public partial class FilesUploader
+    public partial class FilesUploadForm
     {
         /// <summary>
         /// Required designer variable.

@@ -5,7 +5,7 @@ using Model;
 
 namespace View
 {
-    public partial class FilesUploader : Form
+    public partial class FilesUploadForm : Form
     {
         #region Class Members / Properties
         private const string k_imageFilesStr = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
@@ -13,7 +13,7 @@ namespace View
         #endregion
 
         #region Class Methods
-        public FilesUploader()
+        public FilesUploadForm()
         {
             InitializeComponent();
         }

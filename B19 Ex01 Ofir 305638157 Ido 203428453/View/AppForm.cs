@@ -39,7 +39,7 @@ namespace View
         private static readonly int       sr_NumOfPicturesPerAlbum = 8;
         private LoginForm                 m_LoginForm;
         private AppFacade                 m_AppFacade;
-        private FilesUploader             m_FilesUploader;
+        private FilesUploadForm             m_FilesUploader;
         private RideForm                  m_RideForm;
         private SelectedRideFriendForm    m_SelectedRideFriendForm;
         private UserEventsForm            m_UserEventsForm;
@@ -65,7 +65,7 @@ namespace View
             InitializeComponent();
             m_AppFacade = i_AppFacade;
             m_AppFacade.Init();
-            m_FilesUploader = new FilesUploader();
+            m_FilesUploader = new FilesUploadForm();
 
             if (m_FirstLaunch)
             {

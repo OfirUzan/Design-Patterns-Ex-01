@@ -74,11 +74,11 @@
     <Compile Include="AppForm.Designer.cs">
       <DependentUpon>AppForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FilesUploader.cs">
+    <Compile Include="FilesUploadForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FilesUploader.Designer.cs">
-      <DependentUpon>FilesUploader.cs</DependentUpon>
+    <Compile Include="FilesUploadForm.Designer.cs">
+      <DependentUpon>FilesUploadForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AssistiveForms\LargePhotoForm.cs">
       <SubType>Form</SubType>

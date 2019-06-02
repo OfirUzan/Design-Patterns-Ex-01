@@ -135,7 +135,7 @@ namespace View.AssistiveComponents
 
         private void ButtonAttachAFile_Click(object sender, EventArgs e)
         {
-            FilesUploader.UploadAPhotoToTimeline(User);
+            FilesUploadForm.UploadAPhotoToTimeline(User);
         }
 
         private void setEventsComponentVisualSettings()
