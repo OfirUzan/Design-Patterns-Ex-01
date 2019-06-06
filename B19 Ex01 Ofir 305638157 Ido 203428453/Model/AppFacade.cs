@@ -1,5 +1,6 @@
 ﻿using System;
 using FacebookWrapper.ObjectModel;
+using Model.Interfaces;
 
 namespace Model
 {
@@ -44,7 +45,7 @@ namespace Model
         public AppFacade()
         {
             m_FacebookAuthenticator = new FacebookAuthenticator();
-            m_FaceRideManager = new FaceRideManager();
+            m_FaceRideManager = new FaceRideManager { SearchStrategy = new RadiusSearchStrategy() };
         }
 
         private void startThreadsForAlbumsTabUpdate(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
@@ -166,7 +167,12 @@ About: {8}",
 
         public FacebookObjectCollection<User> GetPotentialRideFriends(User i_User, string i_SearchRadius, bool i_MaleFriends, bool i_FemaleFriends)
         {
-            return m_FaceRideManager.GetPotentialRideFriends(i_User, i_SearchRadius, i_MaleFriends, i_FemaleFriends);
+            (m_FaceRideManager.SearchStrategy as RadiusSearchStrategy).User = i_User;
+            (m_FaceRideManager.SearchStrategy as RadiusSearchStrategy).SearchRadius = i_SearchRadius;
+            (m_FaceRideManager.SearchStrategy as RadiusSearchStrategy).MaleFriends = i_MaleFriends;
+            (m_FaceRideManager.SearchStrategy as RadiusSearchStrategy).FemaleFriends = i_FemaleFriends;
+
+            return m_FaceRideManager.GetPotentialRideFriends();
         }
 
         public void UpdatePhotosOnAlbumsTab(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)

@@ -57,8 +57,10 @@
     <Compile Include="FaceRideManager.cs" />
     <Compile Include="GoogleContact.cs" />
     <Compile Include="Interfaces\ICsvSerializable.cs" />
+    <Compile Include="Interfaces\ISearchStrategy.cs" />
     <Compile Include="LocationServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadiusSearchStrategy.cs" />
     <Compile Include="WallManager.cs" />
   </ItemGroup>
   <ItemGroup />
