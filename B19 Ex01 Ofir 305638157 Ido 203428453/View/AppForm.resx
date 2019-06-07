@@ -117,10 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="albumsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox_TabFeed_IntroPic.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACgAAAArCAYAAAAKasrDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
+        JQAAFiUBSVIk8AAAAxJJREFUWEftl71rFUEUxf3bLCwE/wAbsRMsooVNCu1UUARBCxuxSGUhghi0UNNo
+        QAIB8QMRQRELEYKFGjAiI7+B+7jvenZmdl4iW+TAIZudmXvPu1+7eyBNHPsCF0WXwO8/d9Laxud08dZm
+        OnX5WTp29nE6vLSayTX3WGMPexfBKIE4xPnBE/dGkTOc7UGTwFfvt7qERWIDW2NQFXj99kvpbBFisxWD
+        AqmdM1fXpYPdILZb6lMK5ODxc0+k4d0kPmoipcC9jFwkvkr4R2BvzR05/SBTrdVYqsk5gXSYMqB46OT9
+        tHztebq79iFtvP6a3n78lsk191hjjzqrONTdcwJbR8nSpaczUQ/XP6Ubd97ka49fO3/yHvYqG5H4VpgJ
+        ZJCqg55E5MrKi/RlazutrL6bSylCAUJZN/zY/p3PtERTDfOZwJbo4QiHpC+uIZhIIoSoEUEPzsYzkSqK
+        WSCtrg54mlNEqHWL0NHlR1lsBD+sJd1x7GSBtfTinHoC529uyj0QcT69EdiopTqmOQu8UHAKSamlLAo0
+        h/y1OlRgjfpU5eGJFo8ssFZ/jA2DCSRdOLVOVWk1EFVLPbaifc9Yh1kg73Bqs9HSCxDFPWoRWJfGMePB
+        GhEmetiK9j3R4pEF8qKpNkNGiXdOqokiUbP5R4Ri13qwxo8giuwvPXHQ4jFaoIFIEBEcG7iHaKIcBdt4
+        6hI4JsURiKGuiKrvUBPjYTXrbUfKFI9pEgWKX50jpYgyEMWuJuEDR202Eo1SjZXSZs0EsIEttc+IFo8s
+        cMygHgLrRMyfI+1EzcAeXwaKclC3Puq8MwX/vI1PFc52P+pArQ6h71gFX19xcHvxQ4z1B2YCa2mGpAdH
+        Q5FkjVr0TcVe7tdSC2N6wUwgaIkiJFXUU2wc7llaWeP/lrRCFT0wJ3Dyr/xg0h9Nhkl/dgJafdIf7oCD
+        exlJbNfEgUGBht6aLLFUcxFVgYAOax1BJWJjqFuH0CTQwCDtEcoZNYRbMEqggdrBIR84OOcdjhdNyDX3
+        WGNPS52V0CXwf2Jf4KKYuMCU/gJ5EbYWQlygbAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="AlbumsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox_TabAlbums_FacebookLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAABGdBTUEAALGPC/xhBQAADc1JREFUeF7t
@@ -2403,25 +2422,6 @@
         brHGeLABb3ibiVTiEZKP8QBsk8P4Ahv9gZlqMms0vOSIL4WJznSq02BE5AhmPLNG0AyFjcxAZEsAVg59
         uG48qfzIPcq5zoAKdKDSsic2fdahJ8JEKjx550bsyZEOEXSiFK1oEh0jUYtqdKMc7ahHPwrSkIp0pCQt
         qUlPitKUqnSlLG2pS18K05jKdKY0ralNb4rTnOp0pzztqU9DEhAAOw==
-</value>
-  </data>
-  <data name="pictureBox_TabFeed_IntroPic.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACgAAAArCAYAAAAKasrDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
-        JQAAFiUBSVIk8AAAAxJJREFUWEftl71rFUEUxf3bLCwE/wAbsRMsooVNCu1UUARBCxuxSGUhghi0UNNo
-        QAIB8QMRQRELEYKFGjAiI7+B+7jvenZmdl4iW+TAIZudmXvPu1+7eyBNHPsCF0WXwO8/d9Laxud08dZm
-        OnX5WTp29nE6vLSayTX3WGMPexfBKIE4xPnBE/dGkTOc7UGTwFfvt7qERWIDW2NQFXj99kvpbBFisxWD
-        AqmdM1fXpYPdILZb6lMK5ODxc0+k4d0kPmoipcC9jFwkvkr4R2BvzR05/SBTrdVYqsk5gXSYMqB46OT9
-        tHztebq79iFtvP6a3n78lsk191hjjzqrONTdcwJbR8nSpaczUQ/XP6Ubd97ka49fO3/yHvYqG5H4VpgJ
-        ZJCqg55E5MrKi/RlazutrL6bSylCAUJZN/zY/p3PtERTDfOZwJbo4QiHpC+uIZhIIoSoEUEPzsYzkSqK
-        WSCtrg54mlNEqHWL0NHlR1lsBD+sJd1x7GSBtfTinHoC529uyj0QcT69EdiopTqmOQu8UHAKSamlLAo0
-        h/y1OlRgjfpU5eGJFo8ssFZ/jA2DCSRdOLVOVWk1EFVLPbaifc9Yh1kg73Bqs9HSCxDFPWoRWJfGMePB
-        GhEmetiK9j3R4pEF8qKpNkNGiXdOqokiUbP5R4Ri13qwxo8giuwvPXHQ4jFaoIFIEBEcG7iHaKIcBdt4
-        6hI4JsURiKGuiKrvUBPjYTXrbUfKFI9pEgWKX50jpYgyEMWuJuEDR202Eo1SjZXSZs0EsIEttc+IFo8s
-        cMygHgLrRMyfI+1EzcAeXwaKclC3Puq8MwX/vI1PFc52P+pArQ6h71gFX19xcHvxQ4z1B2YCa2mGpAdH
-        Q5FkjVr0TcVe7tdSC2N6wUwgaIkiJFXUU2wc7llaWeP/lrRCFT0wJ3Dyr/xg0h9Nhkl/dgJafdIf7oCD
-        exlJbNfEgUGBht6aLLFUcxFVgYAOax1BJWJjqFuH0CTQwCDtEcoZNYRbMEqggdrBIR84OOcdjhdNyDX3
-        WGNPS52V0CXwf2Jf4KKYuMCU/gJ5EbYWQlygbAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="pictureBox_TabFaceRide_Location.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

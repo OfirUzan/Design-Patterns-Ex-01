@@ -62,6 +62,12 @@
       <DependentUpon>UserEventsComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="AssistiveComponents\Utils.cs" />
+    <Compile Include="AssistiveForms\SlideForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssistiveForms\SlideForm.Designer.cs">
+      <DependentUpon>SlideForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AssistiveForms\RideForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </Compile>
     <EmbeddedResource Include="AssistiveComponents\UserEventsComponent.resx">
       <DependentUpon>UserEventsComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssistiveForms\SlideForm.resx">
+      <DependentUpon>SlideForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AssistiveForms\RideForm.resx">
       <DependentUpon>RideForm.cs</DependentUpon>

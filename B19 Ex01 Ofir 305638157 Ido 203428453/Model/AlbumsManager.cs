@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
-    internal class AlbumsManager
+    internal class AlbumsManager : IEnumerable
     {
         #region Members / Properties
         private readonly object r_GetNextPhotoLockContext = new object();
@@ -83,6 +84,14 @@ namespace Model
             }
 
             CurrentPhotoURL = CurrentAlbumPhotosURL.First;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            foreach(string url in CurrentAlbumPhotosURL)
+            {
+                yield return url;
+            }
         }
         #endregion
     }

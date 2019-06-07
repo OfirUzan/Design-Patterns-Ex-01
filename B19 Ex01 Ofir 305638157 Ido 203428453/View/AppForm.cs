@@ -10,6 +10,7 @@ using View.AssistiveComponents;
 using View.AssistiveFroms;
 using Model.Interfaces;
 using Model.Adapters;
+using View.AssistiveForms;
 
 namespace View
 {
@@ -39,8 +40,9 @@ namespace View
         private static readonly int       sr_NumOfPicturesPerAlbum = 8;
         private LoginForm                 m_LoginForm;
         private AppFacade                 m_AppFacade;
-        private FilesUploadForm             m_FilesUploader;
+        private FilesUploadForm           m_FilesUploader;
         private RideForm                  m_RideForm;
+        private SlideForm m_SlideForm;     
         private SelectedRideFriendForm    m_SelectedRideFriendForm;
         private UserEventsForm            m_UserEventsForm;
         private ICsvSerializable          m_Contacts;
@@ -109,6 +111,7 @@ namespace View
             userAlbumPicturesComponent_TabAlbums = AppComponentFactory.CreateAppComponent(Utils.eAppComponent.UserAlbumPictures, tabPage_Albums.Controls, m_AppFacade.User);
             userAlbumPicturesComponent_TabAlbums.Initialize();
             AlbumsBindingSource.DataSource = m_AppFacade.User.Albums;
+            buttonSlideShow.Click += buttonSlideShow_Click;
             comboBox_TabAlbums_AlbumsList.SelectedIndexChanged += tabAlbum_ComboBoxAlbums_AlbumSelected;
         }
 
@@ -391,6 +394,17 @@ namespace View
             m_RideForm.FriendsBindingSource.DataSource = m_AppFacade.User.Friends;
             m_RideForm.FriendsDataGridView.DataBindingComplete += friendsDataGridView_DataBindingComplete;
             m_RideForm.ShowDialog();
+        }
+
+        private void createAndShowSlide()
+        {
+            m_SlideForm = new SlideForm(m_AppFacade.AlbumPhotosFacade);
+            m_SlideForm.ShowDialog();
+        }
+
+        private void buttonSlideShow_Click(object sender, EventArgs e)
+        {
+            createAndShowSlide();
         }
 
         private void friendsDataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

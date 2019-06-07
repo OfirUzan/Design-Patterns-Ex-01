@@ -1,9 +1,25 @@
 ﻿using System;
+using System.Collections;
 using FacebookWrapper.ObjectModel;
 using Model.Interfaces;
 
 namespace Model
 {
+    public class AlbumFacade : IEnumerable
+    {
+        internal AlbumsManager AlbumsManager { get; set; }
+        internal AlbumFacade()
+        {
+        }
+        public IEnumerator GetEnumerator()
+        {
+            foreach(string url in AlbumsManager)
+            {
+                yield return url;
+            }
+        }
+    }
+
     public class AppFacade
     {
         #region Class Members / Properties
@@ -14,11 +30,13 @@ namespace Model
             public int PictureBoxIndex { get; set; }
         }
 
-        private const string k_AlbumCoverPhotosName = "Cover Photos";
-        private AlbumsManager m_AlbumsManager;
-        private FaceRideManager m_FaceRideManager;
+        private const string          k_AlbumCoverPhotosName = "Cover Photos";
+        private AlbumsManager         m_AlbumsManager;
+        private FaceRideManager       m_FaceRideManager;
         private FacebookAuthenticator m_FacebookAuthenticator;
-        private WallManager m_WallManager;
+        private WallManager           m_WallManager;
+
+        public AlbumFacade AlbumPhotosFacade { get; }
 
         public User User { get; set; }
 
@@ -44,8 +62,10 @@ namespace Model
 
         public AppFacade()
         {
+            AlbumPhotosFacade = new AlbumFacade();
             m_FacebookAuthenticator = new FacebookAuthenticator();
             m_FaceRideManager = new FaceRideManager { SearchStrategy = new RadiusSearchStrategy() };
+
         }
 
         private void startThreadsForAlbumsTabUpdate(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
@@ -64,10 +84,11 @@ namespace Model
                 pictureBoxThread.Thread.Start();
             }
         }
-
+  
         public void Init()
         {
             m_AlbumsManager = new AlbumsManager(User);
+            AlbumPhotosFacade.AlbumsManager = m_AlbumsManager;
             m_WallManager = new WallManager(User.WallPosts);
         }
 
