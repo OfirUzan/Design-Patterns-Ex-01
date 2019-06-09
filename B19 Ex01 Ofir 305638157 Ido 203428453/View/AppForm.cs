@@ -42,7 +42,7 @@ namespace View
         private AppFacade                 m_AppFacade;
         private FilesUploadForm           m_FilesUploader;
         private RideForm                  m_RideForm;
-        private SlideForm m_SlideForm;     
+        private SlideForm                 m_SlideForm;     
         private SelectedRideFriendForm    m_SelectedRideFriendForm;
         private UserEventsForm            m_UserEventsForm;
         private ICsvSerializable          m_Contacts;
@@ -624,6 +624,7 @@ namespace View
         {
             base.OnShown(e);
             initializeAllTabs();
+            m_AppFacade.m_ObserversForNewPost += doWhenNewPost;
         }
 
         public void StartLoginSession()
@@ -631,6 +632,11 @@ namespace View
             CheckForIllegalCrossThreadCalls = false;
             initializeLoginForm();
             m_LoginForm.StartLoginSession();
+        }
+
+        private void doWhenNewPost(int i_NumOfNewPosts)
+        {
+            MessageBox.Show("There Are" + i_NumOfNewPosts + " New Posts Wating For You");
         }
         #endregion
     }

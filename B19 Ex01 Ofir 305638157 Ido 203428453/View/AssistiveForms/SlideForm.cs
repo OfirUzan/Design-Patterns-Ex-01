@@ -15,7 +15,7 @@ namespace View.AssistiveForms
     {
         private AlbumFacade      m_Album;
         private List<PictureBox> m_Pictures = new List<PictureBox>();
-        private int              m_CurrPic = 0;
+        private int              m_CurrPicIndex = 0;
 
         public SlideForm(AlbumFacade i_AlbumFacade)
         {
@@ -26,38 +26,24 @@ namespace View.AssistiveForms
 
         private void init()
         {
-            timer1.Interval = 40;
-            timer1.Tick += timerLoad_Tick;
-            timer1.Enabled = true;
             foreach (string url in m_Album)
             {
                 PictureBox picToAdd = new PictureBox();
-                this.Controls.Add(picToAdd);
                 picToAdd.Size = pictureBox.Size;
                 picToAdd.Location = pictureBox.Location;
                 picToAdd.Visible = false;
                 picToAdd.ImageLocation = url;
                 picToAdd.SizeMode = PictureBoxSizeMode.StretchImage;
                 m_Pictures.Add(picToAdd);
+                this.Controls.Add(picToAdd);
             }
 
             label1.Visible = false;
-            timer1.Tick -= timerLoad_Tick;
+            pictureBox.Visible = false;
             timer1.Interval = 3000;
             timer1.Tick += timer1_Tick;
-            m_Pictures[m_CurrPic].Visible = true;
-        }
-
-        private void timerLoad_Tick(object sender, System.EventArgs e)
-        {
-            if (label1.ForeColor == Color.White)
-            {
-                label1.ForeColor = Color.Pink;
-            }
-            else
-            {
-                label1.ForeColor = Color.White;
-            }
+            timer1.Enabled = true;
+            m_Pictures[m_CurrPicIndex].Visible = true;
         }
 
         private void timer1_Tick(object sender, System.EventArgs e)
@@ -71,16 +57,13 @@ namespace View.AssistiveForms
                 this.BackColor = Color.DarkSlateBlue;
             }
 
-         
-            m_Pictures[m_CurrPic++].Visible = false;
-
-            if (m_CurrPic >= m_Pictures.Count)
+            m_Pictures[m_CurrPicIndex++].Visible = false;
+            if (m_CurrPicIndex >= m_Pictures.Count)
             {
-                m_CurrPic = 0;
+                m_CurrPicIndex = 0;
             }
 
-            m_Pictures[m_CurrPic].Visible = true;
-            m_Pictures[m_CurrPic].Visible = true;
+            m_Pictures[m_CurrPicIndex].Visible = true;
         }
 
     }
