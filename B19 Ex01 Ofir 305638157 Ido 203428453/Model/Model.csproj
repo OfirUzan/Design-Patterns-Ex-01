@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\GoogleContactsCsvAdapter.cs" />
+    <Compile Include="AlbumFacade.cs" />
     <Compile Include="AlbumsManager.cs" />
     <Compile Include="AppFacade.cs" />
     <Compile Include="AppSettings.cs" />

@@ -3,7 +3,7 @@ using Model.Interfaces;
 
 namespace Model
 {
-    class RadiusSearchStrategy : ISearchStrategy
+    public class RadiusSearchStrategy : ISearchStrategy
     {
         public User User { get; set; }
 

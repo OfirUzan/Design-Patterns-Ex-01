@@ -2,7 +2,7 @@
 
 namespace Model.Interfaces
 {
-    interface ISearchStrategy
+    public interface ISearchStrategy
     {
         FacebookObjectCollection<User> GetPotentialRideFriends();
     }

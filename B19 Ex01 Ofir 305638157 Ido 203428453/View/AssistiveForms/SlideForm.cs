@@ -65,6 +65,5 @@ namespace View.AssistiveForms
 
             m_Pictures[m_CurrPicIndex].Visible = true;
         }
-
     }
 }

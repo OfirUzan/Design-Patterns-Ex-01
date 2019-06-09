@@ -1,24 +1,10 @@
 ﻿using System;
 using System.Collections;
-using FacebookWrapper.ObjectModel;
-using Model.Interfaces;
 using System.Timers;
+using FacebookWrapper.ObjectModel;
 
 namespace Model
 {
-    public class AlbumFacade : IEnumerable
-    {
-        internal AlbumsManager AlbumsManager { get; set; }
-        internal AlbumFacade(){}
-        public IEnumerator GetEnumerator()
-        {
-            foreach(string url in AlbumsManager)
-            {
-                yield return url;
-            }
-        }
-    }
-
     public class AppFacade
     {
         #region Class Members / Properties
@@ -68,7 +54,6 @@ namespace Model
             AlbumPhotosFacade = new AlbumFacade();
             m_FacebookAuthenticator = new FacebookAuthenticator();
             m_FaceRideManager = new FaceRideManager { SearchStrategy = new RadiusSearchStrategy() };
-
         }
 
         private void startThreadsForAlbumsTabUpdate(Action<int> i_MethodToExecute, int i_NumOfPictureBoxes)
@@ -104,13 +89,11 @@ namespace Model
             m_AlbumsManager = new AlbumsManager(User);
             AlbumPhotosFacade.AlbumsManager = m_AlbumsManager;
             m_WallManager = new WallManager(User.WallPosts);
-
             m_NumberOfUserPosts = User.WallPosts.Count;
             m_TimerCheckUpdates = new Timer(60000);
             m_TimerCheckUpdates.Elapsed += OnTimedEvent;
             m_TimerCheckUpdates.AutoReset = true;
             m_TimerCheckUpdates.Enabled = true;
-
         }
 
         public bool IsUserLoggedIn(out User o_User)

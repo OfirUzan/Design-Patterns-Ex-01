@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Collections;
 using Model.Interfaces;
 using FacebookWrapper.ObjectModel;
-using System.Collections;
 
 namespace Model.Adapters
 {
